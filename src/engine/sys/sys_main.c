@@ -549,18 +549,16 @@ Sys_GetDLLName
 Used to load a development dll instead of a virtual machine
 =================
 */
-#if defined (UPDATE_SERVER)
-int cl_connectedToPureServer;
-#else
-extern int cl_connectedToPureServer;
-#endif
-
 char *Sys_GetDLLName(const char *name) {
 #if defined _WIN32
-	return va("%s_mp_" ARCH_STRING DLL_EXT, name);
-#else
-	return va("%s.mp." ARCH_STRING DLL_EXT, name);
-#endif
+    return va("%s_mp_" ARCH_STRING DLL_EXT, name);
+#elif defined (__linux__)
+    return va("%s.mp." ARCH_STRING DLL_EXT, name);
+#elif defined MACOS_X
+    return va("%s" ARCH_STRING DLL_EXT, name);
+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__) || defined(__DragonFly__)
+    return va("%s_mp." ARCH_STRING DLL_EXT, name);
+#endif 
 }
 
 /*

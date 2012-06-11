@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final|Win32">
+      <Configuration>Final</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{790F4C89-6715-EB39-C392-3FC1D1DB9618}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PostBuildEventUseInBuild>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</PostBuildEventUseInBuild>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</GenerateManifest>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</PostBuildEventUseInBuild>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">true</GenerateManifest>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">true</PostBuildEventUseInBuild>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Final|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>/J %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../../src/talloc;../../include;../../src/mesa;../../src/mapi;../../src/glsl/msvc;../../src/glsl;../../../../../Shared;../../../../../Tools/Shared;../../../freetype-2.1.10/include;../../../Lua/include;../../../FreeImage;../../../../Include;../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;snprintf=_snprintf;NOMINMAX;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;AURORA_TOOL;AURORA_DEBUGG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>true</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>PreCompiled.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4512;4127;4996;4291;4291;4996;4800;4099;4244;4018;4245;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <UseFullPaths>false</UseFullPaths>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../freetype-2.1.10/lib;../../../Lua/lib;../../../FreeImage;../../../../Lib ;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Console</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <StackCommitSize>8388608</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AllowIsolation>true</AllowIsolation>
+      <Profile>false</Profile>
+    </Link>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalOptions>/J %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../src/talloc;../../include;../../src/mesa;../../src/mapi;../../src/glsl/msvc;../../src/glsl;../../../../../Shared;../../../../../Tools/Shared;../../../freetype-2.1.10/include;../../../Lua/include;../../../FreeImage;../../../../Include;../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;snprintf=_snprintf;NOMINMAX;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;AURORA_TOOL;AURORA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>PreCompiled.h</PrecompiledHeaderFile>
+      <AssemblerOutput>
+      </AssemblerOutput>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4512;4127;4996;4291;4291;4996;4800;4099;4244;4018;4245;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <UseFullPaths>false</UseFullPaths>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../freetype-2.1.10/lib;../../../Lua/lib;../../../FreeImage;../../../../Lib ;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Console</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <StackCommitSize>8388608</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AllowIsolation>true</AllowIsolation>
+      <Profile>false</Profile>
+    </Link>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalOptions>/J %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../src/talloc;../../include;../../src/mesa;../../src/mapi;../../src/glsl/msvc;../../src/glsl;../../../../../Shared;../../../../../Tools/Shared;../../../freetype-2.1.10/include;../../../Lua/include;../../../FreeImage;../../../../Include;../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;snprintf=_snprintf;NOMINMAX;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;AURORA_TOOL;AURORA_PROFILE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>PreCompiled.h</PrecompiledHeaderFile>
+      <AssemblerOutput>
+      </AssemblerOutput>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4512;4127;4996;4291;4291;4996;4800;4099;4244;4018;4245;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <UseFullPaths>false</UseFullPaths>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../freetype-2.1.10/lib;../../../Lua/lib;../../../FreeImage;../../../../Lib ;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Console</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <StackCommitSize>8388608</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AllowIsolation>true</AllowIsolation>
+      <Profile>false</Profile>
+    </Link>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalOptions>/J %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../src/talloc;../../include;../../src/mesa;../../src/mapi;../../src/glsl/msvc;../../src/glsl;../../../../../Shared;../../../../../Tools/Shared;../../../freetype-2.1.10/include;../../../Lua/include;../../../FreeImage;../../../../Include;../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;snprintf=_snprintf;NOMINMAX;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;AURORA_TOOL;AURORA_FINAL;AURORA_RETAIL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>PreCompiled.h</PrecompiledHeaderFile>
+      <AssemblerOutput>
+      </AssemblerOutput>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CallingConvention>Cdecl</CallingConvention>
+      <CompileAs>Default</CompileAs>
+      <DisableSpecificWarnings>4512;4127;4996;4291;4291;4996;4800;4099;4244;4018;4245;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <UseFullPaths>false</UseFullPaths>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../freetype-2.1.10/lib;../../../Lua/lib;../../../FreeImage;../../../../Lib ;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Console</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <StackCommitSize>8388608</StackCommitSize>
+      <LargeAddressAware>true</LargeAddressAware>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AllowIsolation>true</AllowIsolation>
+      <Profile>false</Profile>
+    </Link>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="..\..\src\mesa\program\hash_table.c" />
+    <ClCompile Include="..\..\src\mesa\program\symbol_table.c" />
+    <ClCompile Include="..\..\src\talloc\talloc.c" />
+    <ClCompile Include="..\..\src\glsl\ast_expr.cpp" />
+    <ClCompile Include="..\..\src\glsl\ast_function.cpp" />
+    <ClCompile Include="..\..\src\glsl\ast_to_hir.cpp" />
+    <ClCompile Include="..\..\src\glsl\ast_type.cpp" />
+    <ClCompile Include="..\..\src\glsl\builtin_function.cpp" />
+    <ClCompile Include="..\..\src\glsl\glsl_lexer.cpp" />
+    <ClCompile Include="..\..\src\glsl\glsl_optimizer.cpp" />
+    <ClCompile Include="..\..\src\glsl\glsl_parser.cpp" />
+    <ClCompile Include="..\..\src\glsl\glsl_parser_extras.cpp" />
+    <ClCompile Include="..\..\src\glsl\glsl_types.cpp" />
+    <ClCompile Include="..\..\src\glsl\hir_field_selection.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_algebraic.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_basic_block.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_clone.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_constant_expression.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_constant_folding.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_constant_propagation.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_constant_variable.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_copy_propagation.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_dead_code.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_dead_code_local.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_dead_functions.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_div_to_mul_rcp.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_expression_flattening.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_function.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_function_can_inline.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_function_inlining.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_hierarchical_visitor.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_hv_accept.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_if_return.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_if_simplification.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_if_to_cond_assign.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_import_prototypes.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_mat_op_to_vec.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_mod_to_fract.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_noop_swizzle.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_print_glsl_visitor.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_print_visitor.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_reader.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_rvalue_visitor.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_structure_splitting.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_sub_to_add_neg.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_swizzle_swizzle.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_tree_grafting.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_unused_structs.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_validate.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_variable.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_variable_refcount.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_vec_index_to_cond_assign.cpp" />
+    <ClCompile Include="..\..\src\glsl\ir_vec_index_to_swizzle.cpp" />
+    <ClCompile Include="..\..\src\glsl\link_functions.cpp" />
+    <ClCompile Include="..\..\src\glsl\linker.cpp" />
+    <ClCompile Include="..\..\src\glsl\s_expression.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Readme" />
+    <None Include="..\..\src\glsl\glsl_lexer.lpp" />
+    <None Include="..\..\src\glsl\glsl_parser.ypp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\mesa\program\hash_table.h" />
+    <ClInclude Include="..\..\src\mesa\program\symbol_table.h" />
+    <ClInclude Include="..\..\src\talloc\talloc.h" />
+    <ClInclude Include="..\..\src\glsl\ast.h" />
+    <ClInclude Include="..\..\src\glsl\builtin_types.h" />
+    <ClInclude Include="..\..\src\glsl\builtin_variables.h" />
+    <ClInclude Include="..\..\src\glsl\glsl_optimizer.h" />
+    <ClInclude Include="..\..\src\glsl\glsl_parser.h" />
+    <ClInclude Include="..\..\src\glsl\glsl_parser_extras.h" />
+    <ClInclude Include="..\..\src\glsl\glsl_symbol_table.h" />
+    <ClInclude Include="..\..\src\glsl\glsl_types.h" />
+    <ClInclude Include="..\..\src\glsl\ir.h" />
+    <ClInclude Include="..\..\src\glsl\ir_basic_block.h" />
+    <ClInclude Include="..\..\src\glsl\ir_expression_flattening.h" />
+    <ClInclude Include="..\..\src\glsl\ir_function_inlining.h" />
+    <ClInclude Include="..\..\src\glsl\ir_hierarchical_visitor.h" />
+    <ClInclude Include="..\..\src\glsl\ir_optimization.h" />
+    <ClInclude Include="..\..\src\glsl\ir_print_glsl_visitor.h" />
+    <ClInclude Include="..\..\src\glsl\ir_print_visitor.h" />
+    <ClInclude Include="..\..\src\glsl\ir_reader.h" />
+    <ClInclude Include="..\..\src\glsl\ir_rvalue_visitor.h" />
+    <ClInclude Include="..\..\src\glsl\ir_unused_structs.h" />
+    <ClInclude Include="..\..\src\glsl\ir_variable_refcount.h" />
+    <ClInclude Include="..\..\src\glsl\ir_visitor.h" />
+    <ClInclude Include="..\..\src\glsl\linker.h" />
+    <ClInclude Include="..\..\src\glsl\list.h" />
+    <ClInclude Include="..\..\src\glsl\program.h" />
+    <ClInclude Include="..\..\src\glsl\s_expression.h" />
+    <ClInclude Include="..\..\src\glsl\msvc\msvccompat.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

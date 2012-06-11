@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}</ProjectGuid>
+    <RootNamespace>idLib</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\bin\win64\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Output\Debug\idLib\x86\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Output\Debug\idLib\x64\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\bin\win64\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Output\Release\idLib\x86\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Output\Release\idLib\x64\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WIN64;__WIN64__;_AMD64_;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_WIN64;__WIN64__;_AMD64_;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="math\Angles.h" />
+    <ClInclude Include="Base64.h" />
+    <ClInclude Include="containers\BinSearch.h" />
+    <ClInclude Include="BitMsg.h" />
+    <ClInclude Include="bv\Bounds.h" />
+    <ClInclude Include="bv\Box.h" />
+    <ClInclude Include="containers\BTree.h" />
+    <ClInclude Include="CmdArgs.h" />
+    <ClInclude Include="math\Complex.h" />
+    <ClInclude Include="hashing\CRC32.h" />
+    <ClInclude Include="math\Curve.h" />
+    <ClInclude Include="Dict.h" />
+    <ClInclude Include="geometry\DrawVert.h" />
+    <ClInclude Include="math\Extrapolate.h" />
+    <ClInclude Include="bv\Frustum.h" />
+    <ClInclude Include="containers\HashIndex.h" />
+    <ClInclude Include="containers\HashTable.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="containers\Hierarchy.h" />
+    <ClInclude Include="math\Interpolate.h" />
+    <ClInclude Include="geometry\JointTransform.h" />
+    <ClInclude Include="LangDict.h" />
+    <ClInclude Include="math\Lcp.h" />
+    <ClInclude Include="Lexer.h" />
+    <ClInclude Include="Lib.h" />
+    <ClInclude Include="containers\LinkList.h" />
+    <ClInclude Include="containers\List.h" />
+    <ClInclude Include="MapFile.h" />
+    <ClInclude Include="math\Math.h" />
+    <ClInclude Include="math\Matrix.h" />
+    <ClInclude Include="hashing\MD4.h" />
+    <ClInclude Include="hashing\MD5.h" />
+    <ClInclude Include="math\Ode.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="math\Plane.h" />
+    <ClInclude Include="containers\PlaneSet.h" />
+    <ClInclude Include="math\Pluecker.h" />
+    <ClInclude Include="math\Polynomial.h" />
+    <ClInclude Include="precompiled.h" />
+    <ClInclude Include="math\Quat.h" />
+    <ClInclude Include="containers\Queue.h" />
+    <ClInclude Include="math\Random.h" />
+    <ClInclude Include="math\Rotation.h" />
+    <ClInclude Include="math\Simd.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_3DNow.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_AltiVec.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_Generic.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_MMX.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_SSE.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_SSE2.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="math\Simd_SSE3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="bv\Sphere.h" />
+    <ClInclude Include="containers\Stack.h" />
+    <ClInclude Include="containers\StaticList.h" />
+    <ClInclude Include="Str.h" />
+    <ClInclude Include="containers\StrList.h" />
+    <ClInclude Include="containers\StrPool.h" />
+    <ClInclude Include="geometry\Surface.h" />
+    <ClInclude Include="geometry\Surface_Patch.h" />
+    <ClInclude Include="geometry\Surface_Polytope.h" />
+    <ClInclude Include="geometry\Surface_SweptSpline.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Token.h" />
+    <ClInclude Include="geometry\TraceModel.h" />
+    <ClInclude Include="math\Vector.h" />
+    <ClInclude Include="containers\VectorSet.h" />
+    <ClInclude Include="geometry\Winding.h" />
+    <ClInclude Include="geometry\Winding2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\qcommon\q_math.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Angles.cpp" />
+    <ClCompile Include="Base64.cpp" />
+    <ClCompile Include="BitMsg.cpp" />
+    <ClCompile Include="bv\Bounds.cpp" />
+    <ClCompile Include="bv\Box.cpp" />
+    <ClCompile Include="CmdArgs.cpp" />
+    <ClCompile Include="math\Complex.cpp" />
+    <ClCompile Include="hashing\CRC32.cpp" />
+    <ClCompile Include="Dict.cpp" />
+    <ClCompile Include="geometry\DrawVert.cpp" />
+    <ClCompile Include="bv\Frustum.cpp" />
+    <ClCompile Include="bv\Frustum_gcc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="containers\HashIndex.cpp" />
+    <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="geometry\JointTransform.cpp" />
+    <ClCompile Include="LangDict.cpp" />
+    <ClCompile Include="math\Lcp.cpp" />
+    <ClCompile Include="Lexer.cpp" />
+    <ClCompile Include="Lib.cpp" />
+    <ClCompile Include="MapFile.cpp" />
+    <ClCompile Include="math\Math.cpp" />
+    <ClCompile Include="math\Matrix.cpp" />
+    <ClCompile Include="hashing\MD4.cpp" />
+    <ClCompile Include="hashing\MD5.cpp" />
+    <ClCompile Include="math\Ode.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="math\Plane.cpp" />
+    <ClCompile Include="math\Pluecker.cpp" />
+    <ClCompile Include="math\Polynomial.cpp" />
+    <ClCompile Include="precompiled.cpp" />
+    <ClCompile Include="math\Quat.cpp" />
+    <ClCompile Include="math\Rotation.cpp" />
+    <ClCompile Include="math\Simd.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_3DNow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_AltiVec.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_Generic.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_MMX.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_SSE.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_SSE2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="math\Simd_SSE3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="bv\Sphere.cpp" />
+    <ClCompile Include="Str.cpp" />
+    <ClCompile Include="geometry\Surface.cpp" />
+    <ClCompile Include="geometry\Surface_Patch.cpp" />
+    <ClCompile Include="geometry\Surface_Polytope.cpp" />
+    <ClCompile Include="geometry\Surface_SweptSpline.cpp" />
+    <ClCompile Include="Sys_stubs.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Token.cpp" />
+    <ClCompile Include="geometry\TraceModel.cpp" />
+    <ClCompile Include="math\Vector.cpp" />
+    <ClCompile Include="geometry\Winding.cpp" />
+    <ClCompile Include="geometry\Winding2D.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

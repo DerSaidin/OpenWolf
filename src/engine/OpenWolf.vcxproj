@@ -1,0 +1,1821 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug AutoUpdate|Win32">
+      <Configuration>Debug AutoUpdate</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug AutoUpdate|x64">
+      <Configuration>Debug AutoUpdate</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Dedicated|Win32">
+      <Configuration>Debug Dedicated</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Dedicated|x64">
+      <Configuration>Debug Dedicated</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release AutoUpdate|Win32">
+      <Configuration>Release AutoUpdate</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release AutoUpdate|x64">
+      <Configuration>Release AutoUpdate</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Dedicated|Win32">
+      <Configuration>Release Dedicated</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Dedicated|x64">
+      <Configuration>Release Dedicated</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A09DE158-B7E5-4883-8EA3-26FB37F24CFA}</ProjectGuid>
+    <RootNamespace>OpenWolf</RootNamespace>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bin\win32\debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\bin\win64\debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\Output\Debug\engine\x86\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\Output\Debug\engine\x64\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">..\..\bin\win32\debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">..\..\bin\win32\debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">..\..\bin\win64\debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">..\..\bin\win64\debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">..\Output\Debug\engine\x86\dedi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">..\Output\Debug\engine\x86\autoupdate\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">..\Output\Debug\engine\x64\dedi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">..\Output\Debug\engine\x64\autoupdate\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bin\win32\release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\bin\win64\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Output\Release\engine\x86\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\Output\Release\engine\x64\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">..\..\bin\win32\release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">..\..\bin\win32\release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">..\..\bin\win64\release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">..\..\bin\win64\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">..\Output\Release\engine\x86\dedi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">..\Output\Release\engine\x86\autoupdate\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">..\Output\Release\engine\x64\dedi\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">..\Output\Release\engine\x64\autoupdate\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(LibraryPath)</LibraryPath>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PreLinkEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</PostBuildEventUseInBuild>
+    <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">OpenWolf-Dedicated</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">OpenWolf-AutoUpdate</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">OpenWolf-Dedicated</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">OpenWolf-AutoUpdate</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">OpenWolf-Dedicated</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">OpenWolf-AutoUpdate</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">OpenWolf-Dedicated</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">OpenWolf-AutoUpdate</TargetName>
+    <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PreBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">false</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;HAVE_BZIP2;USE_VOIP;USE_MUMBLE;USE_PHYSICS;USE_CRYPTO;HAVE_CONFIG_H;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
+      <OpenMPSupport>true</OpenMPSupport>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\glew\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\llvm\include;..\libs\bass\include;..\libs\libbz2\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pdcurses\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>false</TreatWarningAsError>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;libbz2.lib;newton.lib;mpir.lib;pdcurses.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\debug;..\libs\libbz2\libs\x32;..\libs\libnewton\libs\win32;..\libs\mpir\libs\win32;..\libs\pdcurses\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
+echo $(Platform) $(Configuration) &gt; status-info/build-config
+hostname &gt; status-info/build-machine
+</Command>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Debug/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_AMD64;_WIN64;__WIN64__;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;USE_VOIP;USE_MUMBLE;USE_OPENSSL;USE_CRYPTO;USE_PHP;USE_CURSES;USE_LLVM;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\libs\mysql\include;..\libs\cpuinfo;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\glew\include\;..\libs\curl-7.25.0\include;..\libs\libvorbis\include;..\libs\libogg\include;..\libs\libspeex\win32;..\libs\libspeex\libspeex;..\libs\libspeex\include;..\libs\openssl\include;..\libs\libtheora\include;..\libs\libbz2\include;..\libs\llvm\include;..\libs\libnewton\include\;..\libs\libnewton\include\dMath;..\libs\libnewton\include\dContainers;..\libs\msinttypes;..\libs\nettle;..\libs\mpir\include;..\libs\pthreads\include;..\libs\pdcurses\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <OpenMPSupport>true</OpenMPSupport>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Message>Generating Build Info</Message>
+      <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
+echo $(Platform) $(Configuration) &gt; status-info/build-config
+hostname &gt; status-info/build-machine
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/MACHINE:X64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libbz2.lib;libeay32.lib;mpir.lib;pdcurses.a;newton.lib;pthreadVC2_x64.lib;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\openssl\lib\VC;..\libs\zlibwapi\lib\x64;..\libs\libbz2\libs\x64;..\libs\llvm\libs\win64\debug;..\libs\libnewton\libs\win64;..\libs\openssl\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <MapExports>
+      </MapExports>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;USE_CODEC_VORBIS;USE_VOIP;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;HAVE_BZIP2;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\libspeex;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\glew\include\;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;..\libs\libbz2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;mpir.lib;pthreads.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
+echo $(Platform) $(Configuration) &gt; status-info/build-config
+hostname &gt; status-info/build-machine
+</Command>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;USE_CODEC_VORBIS;USE_VOIP;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;USE_LLVM;HAVE_BZIP2;ET_SQL;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\libspeex;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\glew\include\;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;..\libs\libbz2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;mpir.lib;pthreads.lib;pdcurses.a;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\llvm\libs\win32\debug;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
+echo $(Platform) $(Configuration) &gt; status-info/build-config
+hostname &gt; status-info/build-machine
+</Command>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Debug_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WIN64;WIN32;_AMD64_;__WIN64__;_DEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_MUMBLE;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_VOIP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;newton.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libeay32.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\openssl\lib\VC;..\libs\zlibwapi\lib\x64;..\libs\libspeex\libs\win64\debug;..\libs\libnewton\libs\win64\static;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\libbz2\libs\x64;..\libs\openssl\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreLinkEvent>
+      <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
+echo $(Platform) $(Configuration) &gt; status-info/build-config
+hostname &gt; status-info/build-machine
+</Command>
+    </PreLinkEvent>
+    <PreLinkEvent>
+      <Message>Generating Build Info</Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Debug_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WIN64;WIN32;_AMD64_;__WIN64__;_DEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_CRYPTO;USE_PHP;USE_CURSES;HAVE_BZIP2;USE_INCREASED_ENTITIES;USE_OPENSSL;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <AdditionalOptions>/wd4430 %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;newton.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libeay32.lib;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\openssl\lib\VC;..\libs\zlibwapi\lib\x64;..\libs\libspeex\libs\win64\debug;..\libs\libnewton\libs\win64\static;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\llvm\libs\win64\debug\;..\libs\libbz2\libs\x64;..\libs\openssl\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PreLinkEvent>
+      <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
+echo $(Platform) $(Configuration) &gt; status-info/build-config
+hostname &gt; status-info/build-machine</Command>
+      <Message>Generating Build Info</Message>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+      <Message>
+      </Message>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_VOIP;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_PHYSICS;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>
+      </StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\llvm\include;..\libs\bass\include;..\libs\libbz2\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pthreads\include;..\libs\pdcurses\include;..\libs\glew\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <CompileAs>Default</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;libbz2.lib;mpir.lib;pthreads.lib;pdcurses.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libbz2\libs\x32;..\libs\libnewton\libs\win32;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <CustomBuild>
+      <Message>
+      </Message>
+    </CustomBuild>
+    <PostBuildEvent>
+      <Command>svn status -u ./../ &gt; status-info/versions
+echo $(Configuration) &gt; status-info/build-config
+echo hostname &gt; status-info/build-machine
+</Command>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+      <Message>
+      </Message>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Release/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>
+      </StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pthreads\include;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <CompileAs>Default</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;libbz2.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\libs\win64;..\libs\libbz2\libs\x64;..\libs\libnewton\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+    </Link>
+    <PreBuildEvent>
+      <Command>svn status -u ./../ &gt; status-info/versions</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Generating Build Info</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>svn status -u ./../ &gt; status-info/versions
+echo $(Configuration) &gt; status-info/build-config
+echo hostname &gt; status-info/build-machine
+</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;HAVE_BZIP2;ET_SQL;USE_VOIP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;..\libs\libbz2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreads.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\release;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>svn status -u ./../ &gt; status-info/versions
+echo $(Configuration) &gt; status-info/build-config
+echo hostname &gt; status-info/build-machine
+</Command>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;HAVE_BZIP2;ET_SQL;USE_VOIP;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pdcurses\include;..\libs\pthreads\include;..\libs\libbz2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreads.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\release;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>svn status -u ./../ &gt; status-info/versions
+echo $(Configuration) &gt; status-info/build-config
+echo hostname &gt; status-info/build-machine
+</Command>
+      <Message>Generating Build Info</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Release_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;USE_PHYSICS;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>
+      </StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\lib\VC;..\libs\libspeex\libs\win64\release;..\libs\libnewton\libs\win64\static;..\libs\openssl\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\llvm\libs\win64\release;..\libs\libbz2\libs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Message>Generating Build Info</Message>
+      <Command>svn status -u ./../ &gt; status-info/versions
+echo $(Configuration) &gt; status-info/build-config
+echo hostname &gt; status-info/build-machine
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TypeLibraryName>.\Release_Dedicated/wolf.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>
+      </StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>8388608</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\lib\VC;..\libs\libspeex\libs\win64\release;..\libs\libnewton\libs\win64\static;..\libs\openssl\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\libbz2\libs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Message>Generating Build Info</Message>
+      <Command>svn status -u ./../ &gt; status-info/versions
+echo $(Configuration) &gt; status-info/build-config
+echo hostname &gt; status-info/build-machine
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libs\libnewton\include\dContainers\dBaseHierarchy.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dContainers\dContainersStdAfx.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dContainers\dCRC.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dContainers\dRefCounter.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dContainers\dTree.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dMath\dMathDefines.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dMath\dMatrix.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dMath\dQuaternion.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dMath\dStdAfxMath.cpp" />
+    <ClCompile Include="..\libs\libnewton\include\dMath\dVector.cpp" />
+    <ClCompile Include="..\libs\libspeex\libspeex\bits.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\buffer.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\cb_search.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\exc_10_16_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\exc_10_32_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\exc_20_32_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\exc_5_256_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\exc_5_64_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\exc_8_128_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\fftwrap.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\filterbank.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\filters.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\gain_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\gain_table_lbr.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\hexc_10_32_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\hexc_table.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\high_lsp_tables.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\jitter.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\kiss_fft.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\kiss_fftr.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\lpc.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\lsp.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\lsp_tables_nb.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\ltp.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\mdf.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\modes.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\modes_wb.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\nb_celp.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\preprocess.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\quant_lsp.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\resample.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\sb_celp.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\smallft.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\speex.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\speex_callbacks.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\speex_header.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\stereo.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\vbr.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\vq.c" />
+    <ClCompile Include="..\libs\libspeex\libspeex\window.c" />
+    <ClCompile Include="..\libs\nettle\nettle\bignum-random.c" />
+    <ClCompile Include="..\libs\nettle\nettle\bignum.c" />
+    <ClCompile Include="..\libs\nettle\nettle\nettle-buffer.c" />
+    <ClCompile Include="..\libs\nettle\nettle\rsa-decrypt.c" />
+    <ClCompile Include="..\libs\nettle\nettle\rsa-encrypt.c" />
+    <ClCompile Include="..\libs\nettle\nettle\rsa-keygen.c" />
+    <ClCompile Include="..\libs\nettle\nettle\rsa-sign.c" />
+    <ClCompile Include="..\libs\nettle\nettle\rsa.c" />
+    <ClCompile Include="..\libs\nettle\nettle\rsa2sexp.c" />
+    <ClCompile Include="..\libs\nettle\nettle\sexp-format.c" />
+    <ClCompile Include="..\libs\nettle\nettle\sexp.c" />
+    <ClCompile Include="..\libs\nettle\nettle\sexp2bignum.c" />
+    <ClCompile Include="..\libs\nettle\nettle\sexp2rsa.c" />
+    <ClCompile Include="client\cin_ogm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_avi.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_cgame.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_cin.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_console.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_download.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_input.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_irc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_keys.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_main.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_net_chan.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_parse.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_scrn.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_text.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\cl_ui.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\libmumblelink.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_adpcm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_codec.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_codec_ogg.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_codec_wav.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_dma.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_load.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_mem.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_mix.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="client\snd_wavelet.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="cm\CollisionModel_contacts.cpp" />
+    <ClCompile Include="cm\CollisionModel_contents.cpp" />
+    <ClCompile Include="cm\CollisionModel_debug.cpp" />
+    <ClCompile Include="cm\CollisionModel_files.cpp" />
+    <ClCompile Include="cm\CollisionModel_load.cpp" />
+    <ClCompile Include="cm\CollisionModel_q3BSP.cpp" />
+    <ClCompile Include="cm\CollisionModel_rotate.cpp" />
+    <ClCompile Include="cm\CollisionModel_trace.cpp" />
+    <ClCompile Include="cm\CollisionModel_translate.cpp" />
+    <ClCompile Include="database\db_main.c" />
+    <ClCompile Include="database\db_mysql.c" />
+    <ClCompile Include="qcommon\cm_api.cpp" />
+    <ClCompile Include="qcommon\cm_load.c" />
+    <ClCompile Include="qcommon\cm_patch.c" />
+    <ClCompile Include="qcommon\cm_physics.cpp" />
+    <ClCompile Include="qcommon\cm_polylib.c" />
+    <ClCompile Include="qcommon\cm_test.c" />
+    <ClCompile Include="qcommon\cm_trace.c" />
+    <ClCompile Include="qcommon\cmd.c" />
+    <ClCompile Include="qcommon\cm_trisoup.c" />
+    <ClCompile Include="qcommon\common.c" />
+    <ClCompile Include="qcommon\crypto.c" />
+    <ClCompile Include="qcommon\cvar.c" />
+    <ClCompile Include="qcommon\files.c" />
+    <ClCompile Include="qcommon\htable.c" />
+    <ClCompile Include="qcommon\huffman.c" />
+    <ClCompile Include="qcommon\ioapi.c" />
+    <ClCompile Include="qcommon\md4.c" />
+    <ClCompile Include="qcommon\md5.c" />
+    <ClCompile Include="qcommon\msg.c" />
+    <ClCompile Include="qcommon\net_chan.c" />
+    <ClCompile Include="null\null_client.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="null\null_input.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="null\null_snddma.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="qcommon\net_http.c" />
+    <ClCompile Include="qcommon\net_ip.c" />
+    <ClCompile Include="qcommon\parse.c" />
+    <ClCompile Include="qcommon\q_math.c" />
+    <ClCompile Include="qcommon\q_shared.c" />
+    <ClCompile Include="server\sv_bot.c" />
+    <ClCompile Include="server\sv_ccmds.c" />
+    <ClCompile Include="server\sv_client.c" />
+    <ClCompile Include="server\sv_game.c" />
+    <ClCompile Include="server\sv_init.c" />
+    <ClCompile Include="server\sv_main.c" />
+    <ClCompile Include="server\sv_net_chan.c" />
+    <ClCompile Include="server\sv_snapshot.c" />
+    <ClCompile Include="server\sv_world.c" />
+    <ClCompile Include="qcommon\unzip.c" />
+    <ClCompile Include="qcommon\vm.c" />
+    <ClCompile Include="qcommon\vm_interpreted.c" />
+    <ClCompile Include="qcommon\vm_x86.c" />
+    <ClCompile Include="qcommon\dl_main.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="qcommon\dl_main_curl.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="qcommon\dl_main_stubs.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys\con_curses.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys\con_log.c" />
+    <ClCompile Include="sys\con_win32.c" />
+    <ClCompile Include="sys\sdl_input.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys\sdl_snd.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys\sys_main.c" />
+    <ClCompile Include="sys\sys_sysinfo.c" />
+    <ClCompile Include="sys\sys_win32.c" />
+    <ClCompile Include="sys\sys_win32_con.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\etmain\src\game\bg_public.h" />
+    <ClInclude Include="..\gamelogic\etmain\src\botai\botai.h" />
+    <ClInclude Include="..\gamelogic\etmain\src\game\botlib.h" />
+    <ClInclude Include="..\libs\libnewton\include\dContainers\dBaseHierarchy.h" />
+    <ClInclude Include="..\libs\libnewton\include\dContainers\dContainersStdAfx.h" />
+    <ClInclude Include="..\libs\libnewton\include\dContainers\dCRC.h" />
+    <ClInclude Include="..\libs\libnewton\include\dContainers\dList.h" />
+    <ClInclude Include="..\libs\libnewton\include\dContainers\dRefCounter.h" />
+    <ClInclude Include="..\libs\libnewton\include\dContainers\dTree.h" />
+    <ClInclude Include="..\libs\libnewton\include\dMath\dMathDefines.h" />
+    <ClInclude Include="..\libs\libnewton\include\dMath\dMatrix.h" />
+    <ClInclude Include="..\libs\libnewton\include\dMath\dQuaternion.h" />
+    <ClInclude Include="..\libs\libnewton\include\dMath\dStdAfxMath.h" />
+    <ClInclude Include="..\libs\libnewton\include\dMath\dVector.h" />
+    <ClInclude Include="..\libs\libnewton\include\Newton.h" />
+    <ClInclude Include="..\libs\libspeex\libspeex\config.h" />
+    <ClInclude Include="..\libs\mpir\include\gmp.h" />
+    <ClInclude Include="..\libs\nettle\nettle\bignum.h" />
+    <ClInclude Include="..\libs\nettle\nettle\buffer.h" />
+    <ClInclude Include="..\libs\nettle\nettle\rsa.h" />
+    <ClInclude Include="..\libs\nettle\nettle\sexp.h" />
+    <ClInclude Include="client\snd_api.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="client\snd_codec.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="client\snd_local.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="client\snd_public.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="cm\CollisionModel.h" />
+    <ClInclude Include="cm\CollisionModel_local.h" />
+    <ClInclude Include="qcommon\crypto.h" />
+    <ClInclude Include="qcommon\q_platform.h" />
+    <ClInclude Include="client\cg_api.h" />
+    <ClInclude Include="client\libmumblelink.h" />
+    <ClInclude Include="client\ui_api.h" />
+    <ClInclude Include="database\database.h" />
+    <ClInclude Include="qcommon\htable.h" />
+    <ClInclude Include="qcommon\ioapi.h" />
+    <ClInclude Include="qcommon\md4.h" />
+    <ClInclude Include="qcommon\vm_llvm.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="client\client.h" />
+    <ClInclude Include="qcommon\cm_local.h" />
+    <ClInclude Include="qcommon\cm_patch.h" />
+    <ClInclude Include="qcommon\cm_polylib.h" />
+    <ClInclude Include="qcommon\cm_public.h" />
+    <ClInclude Include="..\..\etmain\src\ui\keycodes.h" />
+    <ClInclude Include="client\keys.h" />
+    <ClInclude Include="qcommon\q_shared.h" />
+    <ClInclude Include="qcommon\qcommon.h" />
+    <ClInclude Include="qcommon\qfiles.h" />
+    <ClInclude Include="server\g_api.h" />
+    <ClInclude Include="server\server.h" />
+    <ClInclude Include="qcommon\surfaceflags.h" />
+    <ClInclude Include="qcommon\unzip.h" />
+    <ClInclude Include="qcommon\vm_local.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\etmain\ui\menudef.h" />
+    <ClInclude Include="qcommon\dl_local.h" />
+    <ClInclude Include="qcommon\dl_public.h" />
+    <ClInclude Include="sys\sys_loadlib.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="sys\sys_local.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="sys\sys_win32.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\etmain\ui\addfilter.menu" />
+    <None Include="..\..\etmain\ui\bookp.menu" />
+    <None Include="..\..\etmain\ui\bookv.menu" />
+    <None Include="..\..\etmain\ui\bookz.menu" />
+    <None Include="..\..\etmain\ui\cdkey.menu" />
+    <None Include="..\..\etmain\ui\cinematicmenu.menu" />
+    <None Include="..\..\etmain\ui\clipboard.menu" />
+    <None Include="..\..\etmain\ui\connect.menu" />
+    <None Include="..\..\etmain\ui\controls.menu" />
+    <None Include="..\..\etmain\ui\createfavorite.menu" />
+    <None Include="..\..\etmain\ui\createserver.menu" />
+    <None Include="..\..\etmain\ui\credit.menu" />
+    <None Include="..\..\etmain\ui\default.menu" />
+    <None Include="..\..\etmain\ui\demo.menu" />
+    <None Include="..\..\etmain\ui\demo_quit.menu" />
+    <None Include="..\..\etmain\ui\endofgame.menu" />
+    <None Include="..\..\etmain\ui\error.menu" />
+    <None Include="..\..\etmain\ui\fight.menu" />
+    <None Include="..\..\etmain\ui\findplayer.menu" />
+    <None Include="..\..\etmain\ui\help.menu" />
+    <None Include="..\..\etmain\ui\hud.menu" />
+    <None Include="..\..\etmain\ui\hud.txt" />
+    <None Include="..\..\etmain\ui\ingame.menu" />
+    <None Include="..\..\etmain\ui\ingame.txt" />
+    <None Include="..\..\etmain\ui\ingame_about.menu" />
+    <None Include="..\..\etmain\ui\ingame_addbot.menu" />
+    <None Include="..\..\etmain\ui\ingame_callvote.menu" />
+    <None Include="..\..\etmain\ui\ingame_controls.menu" />
+    <None Include="..\..\etmain\ui\ingame_help.menu" />
+    <None Include="..\..\etmain\ui\ingame_join.menu" />
+    <None Include="..\..\etmain\ui\ingame_leave.menu" />
+    <None Include="..\..\etmain\ui\ingame_loadsave.menu" />
+    <None Include="..\..\etmain\ui\ingame_options.menu" />
+    <None Include="..\..\etmain\ui\ingame_orders.menu" />
+    <None Include="..\..\etmain\ui\ingame_player.menu" />
+    <None Include="..\..\etmain\ui\ingame_system.menu" />
+    <None Include="..\..\etmain\ui\ingame_vote.menu" />
+    <None Include="..\..\etmain\ui\joinserver.menu" />
+    <None Include="..\..\etmain\ui\load.menu" />
+    <None Include="..\..\etmain\ui\main.menu" />
+    <None Include="..\..\etmain\ui\menus.txt" />
+    <None Include="..\..\etmain\ui\min_hud.menu" />
+    <None Include="..\..\etmain\ui\mod.menu" />
+    <None Include="..\..\etmain\ui\multiplayer.menu" />
+    <None Include="..\..\etmain\ui\notebook.menu" />
+    <None Include="..\..\etmain\ui\options.menu" />
+    <None Include="..\..\etmain\ui\ordershelp.menu" />
+    <None Include="..\..\etmain\ui\password.menu" />
+    <None Include="..\..\etmain\ui\play.menu" />
+    <None Include="..\..\etmain\ui\player.menu" />
+    <None Include="..\..\etmain\ui\powerup.menu" />
+    <None Include="..\..\etmain\ui\quit.menu" />
+    <None Include="..\..\etmain\ui\quitcredit.menu" />
+    <None Include="..\..\etmain\ui\resetscore.menu" />
+    <None Include="..\..\etmain\ui\score.menu" />
+    <None Include="..\..\etmain\ui\serverinfo.menu" />
+    <None Include="..\..\etmain\ui\setup.menu" />
+    <None Include="..\..\etmain\ui\skirmish.menu" />
+    <None Include="..\..\etmain\ui\system.menu" />
+    <None Include="..\..\etmain\ui\teamscore.menu" />
+    <None Include="..\..\etmain\ui\vid_restart.menu" />
+    <None Include="..\..\etmain\ui\wm_limbo.menu" />
+    <None Include="..\..\etmain\ui\wm_pickplayer.menu" />
+    <None Include="..\..\etmain\ui\wm_pickteam.menu" />
+    <None Include="..\..\etmain\ui\wm_quickmessage.menu" />
+    <None Include="..\..\etmain\scripts\ai.shader" />
+    <None Include="..\..\etmain\scripts\alpha.shader" />
+    <None Include="..\..\etmain\scripts\blacksmokeanim.shader" />
+    <None Include="..\..\etmain\scripts\blacksmokeanimb.shader" />
+    <None Include="..\..\etmain\scripts\clipboard.shader" />
+    <None Include="..\..\etmain\scripts\common.shader" />
+    <None Include="..\..\etmain\scripts\cursorhints.shader" />
+    <None Include="..\..\etmain\scripts\decals.shader" />
+    <None Include="..\..\etmain\scripts\eerie.shader" />
+    <None Include="..\..\etmain\scripts\expblue.shader" />
+    <None Include="..\..\etmain\scripts\explode1.shader" />
+    <None Include="..\..\etmain\scripts\fijets.shader" />
+    <None Include="..\..\etmain\scripts\firest.shader" />
+    <None Include="..\..\etmain\scripts\flamethrower.shader" />
+    <None Include="..\..\etmain\scripts\funnel.shader" />
+    <None Include="..\..\etmain\scripts\gfx.shader" />
+    <None Include="..\..\etmain\scripts\heat.shader" />
+    <None Include="..\..\etmain\scripts\lights.shader" />
+    <None Include="..\..\etmain\scripts\liquid.shader" />
+    <None Include="..\..\etmain\scripts\maxx.shader" />
+    <None Include="..\..\etmain\scripts\menu.shader" />
+    <None Include="..\..\etmain\scripts\metal.shader" />
+    <None Include="..\..\etmain\scripts\models.shader" />
+    <None Include="..\..\etmain\scripts\netest.shader" />
+    <None Include="..\..\etmain\scripts\oldwolf.shader" />
+    <None Include="..\..\etmain\scripts\organics.shader" />
+    <None Include="..\..\etmain\scripts\particle.shader" />
+    <None Include="..\..\etmain\scripts\q3view.shader" />
+    <None Include="..\..\etmain\scripts\sfx.shader" />
+    <None Include="..\..\etmain\scripts\skin.shader" />
+    <None Include="..\..\etmain\scripts\sky.shader" />
+    <None Include="..\..\etmain\scripts\solo.shader" />
+    <None Include="..\..\etmain\scripts\terrain.shader" />
+    <None Include="..\..\etmain\scripts\test.shader" />
+    <None Include="..\..\etmain\scripts\twiltb.shader" />
+    <None Include="..\..\etmain\scripts\twiltb2.shader" />
+    <None Include="..\..\etmain\scripts\ui.shader" />
+    <None Include="..\..\etmain\scripts\ui_hud.shader" />
+    <None Include="..\..\etmain\scripts\ui_kc.shader" />
+    <None Include="..\..\etmain\scripts\ui_notebook.shader" />
+    <None Include="..\..\etmain\scripts\viewflames.shader" />
+    <None Include="..\..\etmain\scripts\walls.shader" />
+    <None Include="..\..\etmain\scripts\z_light.shader" />
+    <CustomBuild Include="asm\ftola.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ml  -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ml  -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Assembling...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">ml  -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">ml  -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">ml  -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">ml  -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\snapvector.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ml  -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ml  -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Assembling...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml64  -D idx64=1 -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">ml  -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">ml  -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">ml  -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">ml  -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">ml64  -D idx64=1 -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">ml64  -D idx64=1 -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\vm_x86_64.asm">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml64  -D idx64=1 -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">ml64  -D idx64=1 -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">ml64  -D idx64=1 -c "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">Assembling...</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">Assembling...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+    </CustomBuild>
+    <None Include="status-info\build-config" />
+    <None Include="status-info\build-machine" />
+    <None Include="status-info\versions" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sys\winquake.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libs\cpuinfo\CPUInfo_VS2010.vcxproj">
+      <Project>{17d5927a-ece8-4ebb-93d8-1f8f448a12c0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\curl-7.25.0\lib\vc6libcurl.vcxproj">
+      <Project>{646c5937-da0e-c442-ca3e-fe868abd5628}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libogg\win32\VS2010\libogg_dynamic.vcxproj">
+      <Project>{15cbfeff-7965-41f5-b4e2-21e8795c9159}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libsdl\VisualC\SDLmain\SDLmain.vcxproj">
+      <Project>{da956fd3-e142-46f2-9dd5-c78bebb56b7a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libsdl\VisualC\SDL\SDL.vcxproj">
+      <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libtheora\win32\VS2010\libtheora\libtheora_dynamic.vcxproj">
+      <Project>{653f3841-3f26-49b9-afcf-091db4b67031}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libvorbis\win32\VS2010\libvorbisfile\libvorbisfile_dynamic.vcxproj">
+      <Project>{cebde98b-a6aa-46e6-bc79-faaf823db9ec}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libvorbis\win32\VS2010\libvorbis\libvorbis_dynamic.vcxproj">
+      <Project>{3a214e06-b95e-4d61-a291-1f8df2ec10fd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="botlib\botlib.vcxproj">
+      <Project>{efa65954-05a8-43c4-b4fe-fafe8e678ab7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="idLib\idLib.vcxproj">
+      <Project>{4b9edd89-0b65-46f0-94e0-6827116bbc6d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug AutoUpdate|Win32">
+      <Configuration>Debug AutoUpdate</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug AutoUpdate|x64">
+      <Configuration>Debug AutoUpdate</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release AutoUpdate|Win32">
+      <Configuration>Release AutoUpdate</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release AutoUpdate|x64">
+      <Configuration>Release AutoUpdate</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7906CC4F-E230-4049-A3EF-EA7F64E73DDE}</ProjectGuid>
+    <RootNamespace>rendererGL</RootNamespace>
+    <ProjectName>rendererGL</ProjectName>
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\win32\debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">..\..\..\bin\win32\debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\Output\Debug\RendererGL\x86\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">..\..\Output\Debug\RendererGL\x86\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\win32\release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">..\..\..\bin\win32\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Output\Release\Renderer\x86\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">..\..\Output\Release\Renderer\x86\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\bin\win64\debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">..\..\..\bin\win64\debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Output\Debug\RendererGL\x64\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">..\..\Output\Debug\RendererGL\x64\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\bin\win64\release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">..\..\..\bin\win64\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Output\Release\Renderer\x64\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">..\..\Output\Release\Renderer\x64\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rendererGLx86_64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">rendererGLx86_64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rendererGLx86_64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">rendererGLx86_64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">rendererGLx86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">rendererGLx86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">rendererGLx86</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">rendererGLx86</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_HTTP;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x32;..\..\libs\freetype\lib;..\..\libs\libpng\libs\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_HTTP;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x32;..\..\libs\freetype\lib;..\..\libs\libpng\libs\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x32;..\..\libs\freetype\lib;..\..\libs\libpng\libs\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x32;..\..\libs\freetype\lib;..\..\libs\libpng\libs\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x64;..\..\libs\freetype\lib\x64;..\..\libs\libpng\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <MapExports>
+      </MapExports>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_WIN32;_WIN64;__WIN64__;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ManifestResourceCompile>
+      <ResourceOutputFileName>
+      </ResourceOutputFileName>
+    </ManifestResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">
+    <Link>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x64;..\..\libs\freetype\lib\x64;..\..\libs\libpng\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <MapExports>
+      </MapExports>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_WIN32;_WIN64;__WIN64__;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ManifestResourceCompile>
+      <ResourceOutputFileName>
+      </ResourceOutputFileName>
+    </ManifestResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x64;..\..\libs\freetype\lib\x64;..\..\libs\libpng\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_WIN32;_WIN64;__WIN64__;WINDOWS;_CRT_SECURE_NO_WARNINGS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">
+    <Link>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;zlibwapi.lib;freetype.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>..\..\libs\zlibwapi\lib\x64;..\..\libs\freetype\lib\x64;..\..\libs\libpng\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_WIN32;_WIN64;__WIN64__;WINDOWS;_CRT_SECURE_NO_WARNINGS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\qcommon\q_math.c" />
+    <ClCompile Include="..\qcommon\q_shared.c" />
+    <ClCompile Include="..\..\libs\jpeg\jaricom.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcapimin.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcapistd.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcarith.c" />
+    <ClCompile Include="..\..\libs\jpeg\jccoefct.c" />
+    <ClCompile Include="..\..\libs\jpeg\jccolor.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcdctmgr.c" />
+    <ClCompile Include="..\..\libs\jpeg\jchuff.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcinit.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcmainct.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcmarker.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcmaster.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcomapi.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcparam.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcprepct.c" />
+    <ClCompile Include="..\..\libs\jpeg\jcsample.c" />
+    <ClCompile Include="..\..\libs\jpeg\jctrans.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdapimin.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdapistd.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdarith.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdatadst.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdatasrc.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdcoefct.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdcolor.c" />
+    <ClCompile Include="..\..\libs\jpeg\jddctmgr.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdhuff.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdinput.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdmainct.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdmarker.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdmaster.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdmerge.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdpostct.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdsample.c" />
+    <ClCompile Include="..\..\libs\jpeg\jdtrans.c" />
+    <ClCompile Include="..\..\libs\jpeg\jerror.c" />
+    <ClCompile Include="..\..\libs\jpeg\jfdctflt.c" />
+    <ClCompile Include="..\..\libs\jpeg\jfdctfst.c" />
+    <ClCompile Include="..\..\libs\jpeg\jfdctint.c" />
+    <ClCompile Include="..\..\libs\jpeg\jidctflt.c" />
+    <ClCompile Include="..\..\libs\jpeg\jidctfst.c" />
+    <ClCompile Include="..\..\libs\jpeg\jidctint.c" />
+    <ClCompile Include="..\..\libs\jpeg\jmemmgr.c" />
+    <ClCompile Include="..\..\libs\jpeg\jmemnobs.c" />
+    <ClCompile Include="..\..\libs\jpeg\jquant1.c" />
+    <ClCompile Include="..\..\libs\jpeg\jquant2.c" />
+    <ClCompile Include="..\..\libs\jpeg\jutils.c" />
+    <ClCompile Include="..\sys\sdl_gamma.c" />
+    <ClCompile Include="..\sys\sdl_glimp.c" />
+    <ClCompile Include="tr_animation.c" />
+    <ClCompile Include="tr_animation_mdm.c" />
+    <ClCompile Include="tr_animation_mds.c" />
+    <ClCompile Include="tr_backend.c" />
+    <ClCompile Include="tr_bsp.c" />
+    <ClCompile Include="tr_cmds.c" />
+    <ClCompile Include="tr_cmesh.c" />
+    <ClCompile Include="tr_curve.c" />
+    <ClCompile Include="tr_decals.c" />
+    <ClCompile Include="tr_flares.c" />
+    <ClCompile Include="tr_font.c" />
+    <ClCompile Include="tr_image.c" />
+    <ClCompile Include="tr_init.c" />
+    <ClCompile Include="tr_light.c" />
+    <ClCompile Include="tr_main.c" />
+    <ClCompile Include="tr_marks.c" />
+    <ClCompile Include="tr_mesh.c" />
+    <ClCompile Include="tr_model.c" />
+    <ClCompile Include="tr_model_md5.c" />
+    <ClCompile Include="tr_noise.c" />
+    <ClCompile Include="tr_scene.c" />
+    <ClCompile Include="tr_shade.c" />
+    <ClCompile Include="tr_shade_calc.c" />
+    <ClCompile Include="tr_shader.c" />
+    <ClCompile Include="tr_shadows.c" />
+    <ClCompile Include="tr_skin.c" />
+    <ClCompile Include="tr_sky.c" />
+    <ClCompile Include="tr_surface.c" />
+    <ClCompile Include="tr_world.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\libs\jpeg\jconfig.h" />
+    <ClInclude Include="..\..\libs\jpeg\jdct.h" />
+    <ClInclude Include="..\..\libs\jpeg\jerror.h" />
+    <ClInclude Include="..\..\libs\jpeg\jinclude.h" />
+    <ClInclude Include="..\..\libs\jpeg\jmemsys.h" />
+    <ClInclude Include="..\..\libs\jpeg\jmorecfg.h" />
+    <ClInclude Include="..\..\libs\jpeg\jpegint.h" />
+    <ClInclude Include="..\..\libs\jpeg\jpeglib.h" />
+    <ClInclude Include="..\..\libs\jpeg\jversion.h" />
+    <ClInclude Include="anorms256.h" />
+    <ClInclude Include="glext.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\qcommon\q_shared.h" />
+    <ClInclude Include="..\qcommon\qcommon.h" />
+    <ClInclude Include="..\qcommon\qfiles.h" />
+    <ClInclude Include="..\win32\resource.h" />
+    <ClInclude Include="..\..\shared\surfaceflags.h" />
+    <ClInclude Include="tr_local.h" />
+    <ClInclude Include="tr_public.h" />
+    <ClInclude Include="..\renderergl\tr_types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rendererGL.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\glew\build\vc6\glew_shared.vcxproj">
+      <Project>{583b8b2e-e56e-4a63-8697-0942c654ac5f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\libsdl\VisualC\SDL\SDL.vcxproj">
+      <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

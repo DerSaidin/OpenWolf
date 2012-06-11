@@ -1068,7 +1068,7 @@ static int GLimp_SetMode(int mode, int fullscreen, int noborder) {
 GLimp_StartDriverAndSetMode
 ===============
 */
-static qboolean GLimp_StartDriverAndSetMode( int mode, qboolean fullscreen, qboolean noborder )
+static qboolean GLimp_StartDriverAndSetMode( int mode, int fullscreen, int noborder )
 {
 	rserr_t err;
 
@@ -1985,8 +1985,7 @@ success:
 	// initialize extensions
 #if defined USE_XREAL_RENDERER
 	GLimp_XreaLInitExtensions();
-#endif
-#if !defined USE_XREAL_RENDERER
+#else
 	GLimp_InitExtensions();
 #endif
 
@@ -2016,8 +2015,6 @@ void GLimp_EndFrame( void )
 
 	if ( r_minimize && r_minimize->integer )
 	{
-		//SDL_Surface *s         = SDL_GetVideoSurface();
-		//qboolean    fullscreen = ( s && ( s->flags & SDL_FULLSCREEN ) );
 
 #ifdef MACOS_X
 		SDL_Surface *s = SDL_GetVideoSurface();

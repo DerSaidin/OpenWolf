@@ -1015,6 +1015,8 @@ static int GLimp_SetMode(int mode, int fullscreen, int noborder) {
 			continue;
 		}
 
+		GLimp_GetCurrentContext();
+
 		ri.Printf( PRINT_ALL, "Using %d/%d/%d Color bits, %d depth, %d stencil display.\n",
 		           sdlcolorbits, sdlcolorbits, sdlcolorbits, tdepthbits, tstencilbits );
 

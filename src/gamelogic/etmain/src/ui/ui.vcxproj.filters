@@ -338,8 +338,5 @@
     <ClInclude Include="..\..\ui\menudef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\ui\menudef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

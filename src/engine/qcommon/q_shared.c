@@ -2398,41 +2398,60 @@ Info_SetValueForKey
 Changes or adds a key/value pair
 ==================
 */
-void Info_SetValueForKey( char *s, const char *key, const char *value ) {
-	char newi[MAX_INFO_STRING];
+qboolean Info_SetValueForKey( char *s, const char *key, const char *value ) {
+	char	newi[MAX_INFO_STRING], *v;
+	int		c, maxsize = MAX_INFO_STRING;
 
 	if ( strlen( s ) >= MAX_INFO_STRING ) {
-		Com_Error( ERR_DROP, "Info_SetValueForKey: oversize infostring [%s] [%s] [%s]", s, key, value );
+		Com_Error( ERR_DROP, "SetValueForKey: oversize infostring [%s] [%s] [%s]", s, key, value );
 	}
 
 	if ( strchr( key, '\\' ) || strchr( value, '\\' ) ) {
-		Com_Printf( "Can't use keys or values with a \\\n" );
-		return;
+		Com_Printf( "SetValueForKey: Can't use keys or values with a \\\n" );
+		return qfalse;
 	}
 
 	if ( strchr( key, ';' ) || strchr( value, ';' ) ) {
-		Com_Printf( "Can't use keys or values with a semicolon\n" );
-		return;
+		Com_Printf( "SetValueForKey: Can't use keys or values with a semicolon\n" );
+		return qfalse;
 	}
 
 	if ( strchr( key, '\"' ) || strchr( value, '\"' ) ) {
-		Com_Printf( "Can't use keys or values with a \"\n" );
-		return;
+		Com_Printf( "SetValueForKey: Can't use keys or values with a \"\n" );
+		return qfalse;
+	}
+
+	if( strlen( key ) > MAX_INFO_KEY - 1 || strlen( value ) > MAX_INFO_KEY - 1 ) {
+		Com_Error( ERR_DROP, "SetValueForKey: keys and values must be < %i characters.\n", MAX_INFO_KEY );
+		return qfalse;
 	}
 
 	Info_RemoveKey( s, key );
 	if ( !value || !strlen( value ) ) {
-		return;
+		return qtrue; // just clear variable
 	}
 
 	Com_sprintf( newi, sizeof( newi ), "\\%s\\%s", key, value );
 
 	if ( strlen( newi ) + strlen( s ) > MAX_INFO_STRING ) {
-		Com_Printf( "Info string length exceeded\n" );
-		return;
+		Com_Printf( "SetValueForKey: Info string length exceeded\n" );
+		return qtrue;
 	}
 
-	strcat( s, newi );
+	// only copy ascii values
+	s += strlen( s );
+	v = newi;
+
+	while( *v ) {
+		c = *v++;
+		c &= 255;	// strip high bits
+		if( c >= 32 && c <= 255 )
+			*s++ = c;
+	}
+	*s = 0;
+
+	// all done
+	return qtrue;
 }
 
 /*

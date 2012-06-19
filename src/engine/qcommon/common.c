@@ -159,8 +159,8 @@ int             com_frameNumber;
 int             com_expectedhunkusage;
 int             com_hunkusedvalue;
 
-qboolean        com_errorEntered;
-qboolean        com_fullyInitialized;
+qboolean		com_errorEntered = qfalse;
+qboolean		com_fullyInitialized = qfalse;
 
 char            com_errorMessage[MAXPRINTMSG];
 
@@ -367,11 +367,9 @@ void QDECL Com_Error(int code, const char *fmt, ...)
 	static int      errorCount;
 	int             currentTime;
 	static qboolean calledSysError = qfalse;
-	char            com_errorMessage[MAXPRINTMSG];
 
 	if(com_errorEntered) {
 		if( !calledSysError ) {
-			calledSysError = qtrue;
 			Sys_Error("recursive error after: %s", com_errorMessage);
 		}
 		return;
@@ -395,7 +393,7 @@ void QDECL Com_Error(int code, const char *fmt, ...)
 
 	// when we are running automated scripts, make sure we
 	// know if anything failed
-	if              (com_buildScript && com_buildScript->integer)
+	if (com_buildScript && com_buildScript->integer)
 	{
 		code = ERR_FATAL;
 	}
@@ -473,6 +471,7 @@ void QDECL Com_Error(int code, const char *fmt, ...)
 
 	Com_Shutdown(code == ERR_VID_FATAL ? qtrue : qfalse);
 
+	calledSysError = qtrue;
 	Sys_Error("%s", com_errorMessage);
 }
 

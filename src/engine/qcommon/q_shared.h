@@ -285,7 +285,7 @@ typedef int clipHandle_t;
 #define MAX_STRING_TOKENS   256     // max tokens resulting from Cmd_TokenizeString
 #define MAX_TOKEN_CHARS     1024    // max length of an individual token
 
-#define MAX_INFO_STRING     1024
+#define MAX_INFO_STRING     4096
 #define MAX_INFO_KEY        1024
 #define MAX_INFO_VALUE      1024
 
@@ -1508,7 +1508,7 @@ char	* QDECL va(const char *format, ...) __attribute__ ((format (printf, 1, 2)))
 char *Info_ValueForKey( const char *s, const char *key );
 void Info_RemoveKey( char *s, const char *key );
 void Info_RemoveKey_big( char *s, const char *key );
-void Info_SetValueForKey( char *s, const char *key, const char *value );
+qboolean Info_SetValueForKey( char *s, const char *key, const char *value );
 void Info_SetValueForKey_Big( char *s, const char *key, const char *value );
 qboolean Info_Validate( const char *s );
 void Info_NextPair( const char **s, char *key, char *value );
@@ -1546,30 +1546,32 @@ cheats is zero, force all unspecified variables to their
 default values.
 ==========================================================
 */
-
-#define CVAR_ARCHIVE                     1        // set to cause it to be saved to vars.rc
+//Dushan
+typedef enum cvar_flags_s {
+	CVAR_ARCHIVE                   = BIT(0),      // set to cause it to be saved to vars.rc
 								                  // used for system variables, not for player
 								                  // specific configurations
-#define CVAR_USERINFO                    2        // sent to server on connect or change
-#define CVAR_SERVERINFO                  4        // sent in response to front end requests
-#define CVAR_SYSTEMINFO                  8        // these cvars will be duplicated on all clients
-#define CVAR_INIT                        16       // don't allow change from console at all,
+	CVAR_USERINFO                  = BIT(1),      // sent to server on connect or change
+	CVAR_SERVERINFO                = BIT(2),      // sent in response to front end requests
+	CVAR_SYSTEMINFO                = BIT(3),      // these cvars will be duplicated on all clients
+	CVAR_INIT                      = BIT(4),      // don't allow change from console at all,
 							             	      // but can be set from the command line
-#define CVAR_LATCH                       32       // will only change when C code next does
+	CVAR_LATCH                     = BIT(5),      // will only change when C code next does
 							             	      // a Cvar_Get(), so it can't be changed
 							             	      // without proper initialization.  modified
 							             	      // will be set, even though the value hasn't
 							             	      // changed yet
-#define CVAR_ROM                         64       // display only, cannot be set by user at all
-#define CVAR_USER_CREATED                128      // created by a set command
-#define CVAR_TEMP                        256      // can be set even when cheats are disabled, but is not archived
-#define CVAR_CHEAT                       512      // can not be changed if cheats are disabled
-#define CVAR_NORESTART                  1024      // do not clear when a cvar_restart is issued
-#define CVAR_WOLFINFO                   2048      // DHM - NERVE :: Like userinfo, but for wolf multiplayer info
-#define CVAR_UNSAFE                     4096      // ydnar: unsafe system cvars (renderer, sound settings, anything that might cause a crash)
-#define CVAR_SERVERINFO_NOUPDATE        8192      // gordon: WONT automatically send this to clients, but server browsers will see it
-#define CVAR_SHADER                    16384      // tell renderer to recompile shaders.
-#define CVAR_NONEXISTENT	           0xFFFFFFFF // Cvar doesn't exist.
+	CVAR_ROM                       = BIT(6),      // display only, cannot be set by user at all
+	CVAR_USER_CREATED              = BIT(7),      // created by a set command
+	CVAR_TEMP                      = BIT(8),      // can be set even when cheats are disabled, but is not archived
+	CVAR_CHEAT                     = BIT(9),      // can not be changed if cheats are disabled
+	CVAR_NORESTART                 = BIT(10),     // do not clear when a cvar_restart is issued
+	CVAR_WOLFINFO                  = BIT(11),     // DHM - NERVE :: Like userinfo, but for wolf multiplayer info
+	CVAR_UNSAFE                    = BIT(12),     // ydnar: unsafe system cvars (renderer, sound settings, anything that might cause a crash)
+	CVAR_SERVERINFO_NOUPDATE       = BIT(13),     // gordon: WONT automatically send this to clients, but server browsers will see it
+	CVAR_SHADER                    = BIT(13),     // tell renderer to recompile shaders.
+	CVAR_NONEXISTENT	           = BIT(15),     // Cvar doesn't exist.
+} cvar_flags_t;
 
 // nothing outside the Cvar_*() functions should modify these fields!
 typedef struct cvar_s

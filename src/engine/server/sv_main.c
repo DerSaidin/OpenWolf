@@ -1025,19 +1025,23 @@ void SVC_RemoteCommand(netadr_t from, msg_t * msg) {
 	static unsigned int lasttime = 0;
 
 	// TTimo - show_bug.cgi?id=534
-	time = Com_Milliseconds();
-	if(time < (lasttime + 500)) {
-		return;
-	}
-	lasttime = time;
-
-	if(!strlen(sv_rconPassword->string) || strcmp(Cmd_Argv(1), sv_rconPassword->string)) {
-		valid = qfalse;
-		Com_Printf("Bad rcon from %s:\n%s\n", NET_AdrToString(from), Cmd_Argv(2));
-	} else {
-		valid = qtrue;
-		Com_Printf("Rcon from %s:\n%s\n", NET_AdrToString(from), Cmd_Argv(2));
-	}
+    time = Com_Milliseconds();
+    if ( !strlen( sv_rconPassword->string ) || strcmp (Cmd_Argv(1), sv_rconPassword->string) ) {
+        // MaJ - If the rconpassword is bad and one just happned recently, don't spam the log file, just die.
+        if ( (unsigned)( time - lasttime ) < 500u ) {
+			return;
+        }
+        valid = qfalse;
+        Com_Printf ("Bad rcon from %s:\n%s\n", NET_AdrToString (from), Cmd_Argv(2) );
+    } else {
+        // MaJ - If the rconpassword is good, allow it much sooner than a bad one.
+        if ( (unsigned)( time - lasttime ) < 200u ) {
+			return;
+        }
+        valid = qtrue;
+        Com_Printf ("Rcon from %s:\n%s\n", NET_AdrToString (from), Cmd_Argv(2) );
+    }
+    lasttime = time;
 
 	// start redirecting all print outputs to the packet
 	svs.redirectAddress = from;

@@ -731,8 +731,10 @@ static const char *SignalToString(int sig) {
 			return "Invalid memory reference";
 		case SIGTERM:
 			return "Termination signal";
+#if defined (WIN32)
 		case SIGBREAK:
 			return "Control-break";
+#endif
 		case SIGABRT:
 			return "Process abort signal";
 		default:

@@ -12,6 +12,9 @@ set( CMAKE_C_FLAGS_DEBUG "-g" CACHE STRING "" )
 set( CMAKE_C_FLAGS_MINSIZEREL "-DNDEBUG -Os" CACHE STRING "" )
 set( CMAKE_C_FLAGS_RELEASE "-DNDEBUG -O3 -ffast-math -fomit-frame-pointer -fno-strict-aliasing" CACHE STRING "" )
 set( CMAKE_C_FLAGS_RELWITHDEBINFO "-DNDEBUG -O3 -ffast-math -fomit-frame-pointer -fno-strict-aliasing -g" CACHE STRING "" )
+# Most of the source now builds without this flag, but there are a
+# few lines in SoundWorld.cpp which I'm unsure how to fix.
+set( CMAKE_CXX_FLAGS "-fpermissive" )
 set( CMAKE_CXX_FLAGS ${CMAKE_C_FLAGS} CACHE STRING "" )
 set( CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG} CACHE STRING "" )
 set( CMAKE_CXX_FLAGS_MINSIZEREL ${CMAKE_C_FLAGS_MINSIZEREL} CACHE STRING "" )
@@ -28,36 +31,36 @@ set( CMAKE_ASM_COMPILE_OBJECT ${CMAKE_C_COMPILE_OBJECT} )
 set( CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "" ) # Need this to get rid of -rdynamic linker flag set by default by cmake
 
 # Options
-option( BUILD_CLIENT         "Build OpenWolf client"                       1 )
-option( BUILD_OLD_RENDERER   "Build old renderer library"                  1 )
-option( BUILD_NEW_RENDERER   "Build new renderer library"                  1 )
-option( BUILD_SERVER         "Build OpenWolfded server"                    0 )
-option( BUILD_GAME_SO_ET     "Build game logic shared libraries for ET"    1 )
-option( BUILD_MASTER         "Build master server"                         1 )
-option( BUILD_OWMAP          "Build Mapping tool"                          1 )
-option( USE_OPENAL           "Use OpenAL"                                  1 )
+option( BUILD_CLIENT                   "Build OpenWolf client"                                 ON  )
+option( BUILD_OLD_RENDERER             "Build old renderer library"                            ON  )
+option( BUILD_NEW_RENDERER             "Build new renderer library"                            ON  )
+option( BUILD_SERVER                   "Build OpenWolfded server"                              OFF )
+option( BUILD_AUTOUPDATE_SERVER        "Build OpenWolf AutoUpdate server"                      OFF )
+option( BUILD_GAME_SO_ET               "Build game logic shared libraries for ET"              ON  )
+option( BUILD_MASTER                   "Build master server"                                   ON  )
+option( BUILD_OWMAP                    "Build Mapping tool"                                    ON  )
+option( USE_OPENAL                     "Use OpenAL"                                            ON  )
 if( USE_OPENAL )
-  option( USE_OPENAL_DLOPEN  "Use dlopen to load OpenAL"                   1 )
-endif()
-option( USE_LLVM             "Use LLVM"                                    0 )
-option( USE_CPUINFO          "Use CPUInfo (if compilation fails, then disable this)" 1 )
-option( USE_CURSES           "Use the curses console"                      1 )
-option( USE_CODEC_VORBIS     "Compile with support for Vorbis"             1 )
+  option( USE_OPENAL_DLOPEN            "Use dlopen to load OpenAL"                             ON  )
+endif( )
+option( USE_CPUINFO                    "Use CPUInfo (if compilation fails, then disable this)" ON  )
+option( USE_CURSES                     "Use the curses console"                                ON  )
+option( USE_CODEC_VORBIS               "Compile with support for Vorbis"                       ON  )
 if( USE_CODEC_VORBIS )
-  option( USE_CIN_THEORA     "Compile with support for Theora"             1 )
+  option( USE_CIN_THEORA               "Compile with support for Theora"                       ON  )
 endif()
-option( USE_GLSL_OPTIMIZER   "Compile with GLSL Optimizer"                 0 )
-option( USE_MUMBLE           "Compile with support for Mumble"             1 )
-option( USE_PHYSICS          "Compile with Newton Physics"                 1 )
-option( USE_WEBP             "Compile with WebP loader"                    1 )
-option( USE_MYSQL            "Compile with MYSQL support"                  1 )
-option( USE_VOIP             "Compile with VOIP support"                   1 )
+option( USE_GLSL_OPTIMIZER             "Compile with GLSL Optimizer"                           OFF )
+option( USE_MUMBLE                     "Compile with support for Mumble"                       ON  )
+option( USE_PHYSICS                    "Compile with Newton Physics"                           ON  )
+option( USE_WEBP                       "Compile with WebP loader"                              ON  )
+option( USE_MYSQL                      "Compile with MYSQL support"                            ON  )
+option( USE_VOIP                       "Compile with VOIP support"                             ON  )
 if( USE_VOIP )
-  option( USE_INTERNAL_SPEEX "Use internal speex"                          0 )
+  option( USE_INTERNAL_SPEEX           "Use internal Speex"                                    OFF )
 endif()
-option( USE_CIN_XVID         "Encode videos with XViD"                     1 )
-option( USE_INTERNAL_CRYPTO  "Use internal crypto (nettle)"                0 )
-option( NO_UNTRUSTED_PLUGINS "Don't load native plugins from the user dir" 1 )
+option( USE_CIN_XVID                   "Encode videos with XViD"                               ON  )
+option( USE_INTERNAL_CRYPTO            "Use internal Crypto (Nettle)"                          OFF )
+option( NO_UNTRUSTED_PLUGINS           "Don't load native plugins from the user dir"           ON  )
 
 # Package info
 set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "OpenWolf client" )
@@ -123,7 +126,7 @@ set( RENDERERLIST
   ${MOUNT_DIR}/engine/renderer/tr_flares.c
   ${MOUNT_DIR}/engine/renderer/tr_font.c
   ${MOUNT_DIR}/engine/renderer/tr_image.c
-  ${MOUNT_DIR}/engine/rendererGL/tr_image_webp.c
+  ${MOUNT_DIR}/engine/renderer/tr_image_webp.c
   ${MOUNT_DIR}/engine/renderer/tr_init.c
   ${MOUNT_DIR}/engine/renderer/tr_light.c
   ${MOUNT_DIR}/engine/renderer/tr_main.c
@@ -200,9 +203,22 @@ set( SERVERLIST
   ${MOUNT_DIR}/engine/server/sv_world.c
 )
 
+set( COLLISIONMODEL
+  ${MOUNT_DIR}/engine/cm/CollisionModel_contacts.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_contents.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_debug.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_files.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_load.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_q3BSP.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_rotate.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_trace.cpp
+  ${MOUNT_DIR}/engine/cm/CollisionModel_translate.cpp
+)
+
 set( QCOMMONLIST
   ${MOUNT_DIR}/engine/asm/ftola.c
   ${MOUNT_DIR}/engine/asm/snapvector.c
+  ${MOUNT_DIR}/engine/qcommon/cm_api.cpp
   ${MOUNT_DIR}/engine/qcommon/cm_load.c
   ${MOUNT_DIR}/engine/qcommon/cm_trisoup.c
   ${MOUNT_DIR}/engine/qcommon/cm_patch.c
@@ -229,18 +245,6 @@ set( QCOMMONLIST
   ${MOUNT_DIR}/engine/qcommon/vm_x86.c
   ${MOUNT_DIR}/engine/qcommon/vm_interpreted.c
 )
-
-if( USE_LLVM )
-  set( QCOMMONLIST ${QCOMMONLIST} ${MOUNT_DIR}/engine/qcommon/vm_llvm.cpp )
-  add_definitions( -DUSE_LLVM -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS )
-  find_program(LLVM_CONFIG llvm-config)
-  execute_process(COMMAND ${LLVM_CONFIG} --libfiles
-  			    OUTPUT_VARIABLE LLVM_LIBS OUTPUT_STRIP_TRAILING_WHITESPACE)
-  execute_process(COMMAND ${LLVM_CONFIG} --includedir OUTPUT_VARIABLE LLVM_INCLUDE_DIR OUTPUT_STRIP_TRAILING_WHITESPACE)
-  execute_process(COMMAND ${LLVM_CONFIG} --version OUTPUT_VARIABLE LLVM_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
-  execute_process(COMMAND ${LLVM_CONFIG} --libdir OUTPUT_VARIABLE LLVM_LIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
-  separate_arguments(LLVM_LIBS)
-endif()
 
 if( USE_PHYSICS )
   set( QCOMMONLIST ${QCOMMONLIST} ${MOUNT_DIR}/engine/qcommon/cm_physics.cpp )
@@ -333,6 +337,13 @@ set( SDLLIST
 )
 
 set( BOTLIBLIST
+  ${MOUNT_DIR}/engine/botlib/l_struct.c
+  ${MOUNT_DIR}/engine/botlib/l_crc.c
+  ${MOUNT_DIR}/engine/botlib/l_libvar.c
+  ${MOUNT_DIR}/engine/botlib/l_log.c
+  ${MOUNT_DIR}/engine/botlib/l_memory.c
+  ${MOUNT_DIR}/engine/botlib/l_precomp.c
+  ${MOUNT_DIR}/engine/botlib/l_script.c
   ${MOUNT_DIR}/engine/botlib/be_aas_bspq3.c
   ${MOUNT_DIR}/engine/botlib/be_aas_cluster.c
   ${MOUNT_DIR}/engine/botlib/be_aas_debug.c
@@ -355,15 +366,57 @@ set( BOTLIBLIST
   ${MOUNT_DIR}/engine/botlib/be_ai_weight.c
   ${MOUNT_DIR}/engine/botlib/be_ea.c
   ${MOUNT_DIR}/engine/botlib/be_interface.c
-  ${MOUNT_DIR}/engine/botlib/l_crc.c
-  ${MOUNT_DIR}/engine/botlib/l_libvar.c
-  ${MOUNT_DIR}/engine/botlib/l_log.c
-  ${MOUNT_DIR}/engine/botlib/l_memory.c
-  ${MOUNT_DIR}/engine/botlib/l_precomp.c
-  ${MOUNT_DIR}/engine/botlib/l_script.c
-  ${MOUNT_DIR}/engine/botlib/l_struct.c
 )
 
+
+set( IDLIBLIST
+  ${MOUNT_DIR}/engine/idLib/math/Angles.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Simd.cpp
+  ${MOUNT_DIR}/engine/idLib/Base64.cpp
+  ${MOUNT_DIR}/engine/idLib/BitMsg.cpp
+  ${MOUNT_DIR}/engine/idLib/bv/Bounds.cpp
+  ${MOUNT_DIR}/engine/idLib/bv/Box.cpp
+  ${MOUNT_DIR}/engine/idLib/CmdArgs.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Complex.cpp
+  ${MOUNT_DIR}/engine/idLib/hashing/CRC32.cpp
+  ${MOUNT_DIR}/engine/idLib/Dict.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/DrawVert.cpp
+  ${MOUNT_DIR}/engine/idLib/bv/Frustum.cpp
+  ${MOUNT_DIR}/engine/idLib/containers/HashIndex.cpp
+  ${MOUNT_DIR}/engine/idLib/Heap.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/JointTransform.cpp
+  ${MOUNT_DIR}/engine/idLib/LangDict.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Lcp.cpp
+  ${MOUNT_DIR}/engine/idLib/Lexer.cpp
+  ${MOUNT_DIR}/engine/idLib/Lib.cpp
+  ${MOUNT_DIR}/engine/idLib/MapFile.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Math.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Matrix.cpp
+  ${MOUNT_DIR}/engine/idLib/hashing/MD4.cpp
+  ${MOUNT_DIR}/engine/idLib/hashing/MD5.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Math.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Ode.cpp
+  ${MOUNT_DIR}/engine/idLib/Parser.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Plane.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Pluecker.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Polynomial.cpp
+  ${MOUNT_DIR}/engine/idLib/precompiled.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Quat.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Rotation.cpp
+  ${MOUNT_DIR}/engine/idLib/bv/Sphere.cpp
+  ${MOUNT_DIR}/engine/idLib/Str.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/Surface.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/Surface_Patch.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/Surface_Polytope.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/Surface_SweptSpline.cpp
+  ${MOUNT_DIR}/engine/idLib/Sys_stubs.cpp
+  ${MOUNT_DIR}/engine/idLib/Timer.cpp
+  ${MOUNT_DIR}/engine/idLib/Token.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/TraceModel.cpp
+  ${MOUNT_DIR}/engine/idLib/math/Vector.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/Winding2D.cpp
+  ${MOUNT_DIR}/engine/idLib/geometry/Winding.cpp
+)
 
 set( QAGAMELIST
   ${GAME_DIR}/src/game/bg_animation.c
@@ -818,8 +871,8 @@ endif()
 if( BUILD_CLIENT )
   # Setup target client
   add_executable( client ${SERVERLIST} ${CLIENTLIST} ${SDLBASELIST}
-    ${CPUINFOLIST} ${SDLLIST} ${QCOMMONLIST} ${SHAREDLIST} ${CRYPTOLIST}
-    ${DATABASELIST} ${BOTLIBLIST} ${MOUNT_DIR}/engine/qcommon/dl_main_curl.c ${SPEEXLIST} )
+    ${CPUINFOLIST} ${SDLLIST} ${QCOMMONLIST} ${COLLISIONMODEL} ${SHAREDLIST} ${CRYPTOLIST}
+    ${DATABASELIST} ${BOTLIBLIST} ${IDLIBLIST} ${MOUNT_DIR}/engine/qcommon/dl_main_curl.c ${SPEEXLIST} )
   add_dependencies( client rendererGL )
   include_directories( ${MOUNT_DIR}/libs/cpuinfo ${NEWTON_INCLUDES} )
   target_link_libraries( client ${OS_LIBRARIES} ${NEWTON_LIBRARY} )
@@ -929,11 +982,6 @@ if( BUILD_CLIENT )
     include_directories( ${XVID_INCLUDE_DIR} )
     target_link_libraries( client ${XVID_LIBRARY} )
   endif()
-
-  if( USE_LLVM )
-    include_directories( ${LLVM_INCLUDE_DIR} )
-    target_link_libraries( client ${LLVM_LIBS} )
-  endif()
 endif()
 
 ################
@@ -969,7 +1017,7 @@ if( BUILD_SERVER )
     ${MOUNT_DIR}/engine/qcommon/dl_main_stubs.c )
   include_directories( ${MOUNT_DIR}/libs/cpuinfo ${NEWTON_INCLUDES} )
   target_link_libraries( server ${OS_LIBRARIES} ${BOTLIBLIST} ${NEWTON_LIBRARY} )
-  set_property( TARGET server APPEND PROPERTY COMPILE_DEFINITIONS DEDICATED COMPAT_ET BOTLIB BOTLIB_STATIC USE_CRYPTO )
+  set_property( TARGET server APPEND PROPERTY COMPILE_DEFINITIONS BOTLIB BOTLIB_STATIC DEDICATED COMPAT_ET USE_CRYPTO )
   set_target_properties( server PROPERTIES OUTPUT_NAME "OpenWolfded.${BUILD_ARCH}" PREFIX "" LINKER_LANGUAGE CXX )
   install( TARGETS server
     RUNTIME DESTINATION bin
@@ -1018,11 +1066,60 @@ if( BUILD_SERVER )
     include_directories( ${TINYXML_INCLUDE_DIRS} )
     target_link_libraries( server ${TINYXML_LIBRARIES} )
   endif()
+endif()
 
-  if( USE_LLVM )
-    include_directories( ${LLVM_INCLUDE_DIR} )
-    target_link_libraries( server ${LLVM_LIBS} )
+###########################
+# Build Autoupdate Server #
+###########################
+
+if( BUILD_AUTOUPDATE_SERVER )
+  # Setup the target Server
+  add_executable( server ${SERVERLIST} ${SDLBASELIST} ${CPUINFOLIST}
+    ${QCOMMONLIST} ${SHAREDLIST} ${DATABASELIST} ${CRYPTOLIST}
+    ${MOUNT_DIR}/engine/null/null_client.c
+    ${MOUNT_DIR}/engine/null/null_input.c ${MOUNT_DIR}/engine/null/null_snddma.c
+    ${MOUNT_DIR}/engine/qcommon/dl_main_stubs.c )
+  include_directories( ${MOUNT_DIR}/libs/cpuinfo ${NEWTON_INCLUDES} )
+  target_link_libraries( server ${OS_LIBRARIES} )
+  set_property( TARGET server APPEND PROPERTY COMPILE_DEFINITIONS DEDICATED COMPAT_ET BOTLIB BOTLIB_STATIC USE_CRYPTO UPDATE_SERVER )
+  set_target_properties( server PROPERTIES OUTPUT_NAME "OpenWolfupdateded.${BUILD_ARCH}" PREFIX "" LINKER_LANGUAGE CXX )
+  install( TARGETS server
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+  )
+  # The following section finds the REQUIRED dependencies and makes them available to the target
+    find_package( SDL REQUIRED )
+    find_package( GMP REQUIRED )
+    find_package( ZLIB REQUIRED )
+    find_package( CURL REQUIRED )
+
+    if( USE_INTERNAL_CRYPTO )
+      # BEFORE is required to prevent system headers from being used
+      include_directories( BEFORE ${MOUNT_DIR}/libs/nettle )
+    else()
+      find_package( Nettle REQUIRED )
+      include_directories( ${NETTLE_INCLUDE_DIRS} )
+      target_link_libraries( server ${NETTLE_LIBRARIES} )
+    endif()
+
+    include_directories( ${SDL_INCLUDE_DIR} ${GMP_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS} ${CURL_INCLUDE_DIRS} )
+    target_link_libraries( server ${SDL_LIBRARY} ${GMP_LIBRARIES} ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} )
+  # The following section finds the OPTIONAL dependencies and makes them available to the target
+  if( USE_MYSQL )
+    find_package( MySQL REQUIRED )
+    set_property( TARGET server APPEND PROPERTY COMPILE_DEFINITIONS ET_MYSQL )
+    target_link_libraries( server ${MYSQL_LIBRARIES} )
   endif()
+
+  if( USE_CURSES )
+    set( CURSES_NEED_NCURSES 1 ) # Tells FindCurses that ncurses is required
+    find_package( Curses REQUIRED )
+    set_property( TARGET server APPEND PROPERTY COMPILE_DEFINITIONS USE_CURSES )
+    include_directories( ${CURSES_INCLUDE_DIR} )
+    target_link_libraries( server ${CURSES_LIBRARIES} )
+  endif()
+
 endif()
 
 ################

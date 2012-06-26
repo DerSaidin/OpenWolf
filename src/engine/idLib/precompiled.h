@@ -292,7 +292,7 @@ public:
 #endif
 
 // id lib
-#include "../idlib/Lib.h"
+#include "Lib.h"
 
 //// framework
 //#include "../framework/BuildVersion.h"

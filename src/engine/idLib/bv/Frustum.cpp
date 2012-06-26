@@ -29,6 +29,8 @@ If you have questions concerning this license or the applicable additional terms
 #include "../precompiled.h"
 #pragma hdrstop
 
+#include "Frustum.h"
+
 //#define FRUSTUM_DEBUG
 
 /*
@@ -2044,8 +2046,6 @@ bool idFrustum::ProjectionBounds( const idBounds &bounds, idBounds &projectionBo
 	return ProjectionBounds( idBox( bounds, vec3_origin, mat3_identity ), projectionBounds );
 }
 
-#ifndef __linux__
-
 /*
 ============
 idFrustum::ProjectionBounds
@@ -2158,8 +2158,6 @@ bool idFrustum::ProjectionBounds( const idBox &box, idBounds &projectionBounds )
 
 	return true;
 }
-
-#endif
 
 /*
 ============
@@ -2841,3 +2839,4 @@ bool idFrustum::ClippedProjectionBounds( const idFrustum &frustum, const idBox &
 
 	return true;
 }
+

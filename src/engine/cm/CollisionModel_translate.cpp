@@ -40,7 +40,7 @@ Maryland 20850 USA.
 ===============================================================================
 */
 
-#include "../idlib/precompiled.h"
+#include "../idLib/precompiled.h"
 #pragma hdrstop
 
 #include "CollisionModel_local.h"

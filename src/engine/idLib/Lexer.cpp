@@ -32,7 +32,7 @@ If you have questions concerning this license or the applicable additional terms
 #define PUNCTABLE
 
 //longer punctuations first
-Punctuation_t default_punctuations[] = {
+Punctuation_t default_Punctuations[] = {
 	//binary operators
 	{">>=",P_RSHIFT_ASSIGN},
 	{"<<=",P_LSHIFT_ASSIGN},
@@ -107,7 +107,7 @@ Punctuation_t default_punctuations[] = {
 };
 
 int default_punctuationtable[256];
-int default_nextpunctuation[sizeof(default_punctuations) / sizeof(Punctuation_t)];
+int default_nextpunctuation[sizeof(default_Punctuations) / sizeof(Punctuation_t)];
 int default_setup;
 
 char idLexer::baseFolder[ 256 ];
@@ -122,14 +122,14 @@ void idLexer::CreatePunctuationTable( const Punctuation_t *punctuations ) {
 	const Punctuation_t *p, *newp;
 
 	//get memory for the table
-	if ( punctuations == default_punctuations ) {
+	if ( punctuations == default_Punctuations ) {
 		idLexer::punctuationtable = default_punctuationtable;
 		idLexer::nextpunctuation = default_nextpunctuation;
 		if ( default_setup ) {
 			return;
 		}
 		default_setup = true;
-		i = sizeof(default_punctuations) / sizeof(Punctuation_t);
+		i = sizeof(default_Punctuations) / sizeof(Punctuation_t);
 	}
 	else {
 		if ( !idLexer::punctuationtable || idLexer::punctuationtable == default_punctuationtable ) {
@@ -263,14 +263,14 @@ void idLexer::SetPunctuations( const Punctuation_t *p ) {
 		idLexer::CreatePunctuationTable( p );
 	}
 	else {
-		idLexer::CreatePunctuationTable( default_punctuations );
+		idLexer::CreatePunctuationTable( default_Punctuations );
 	}
 #endif //PUNCTABLE
 	if (p) {
 		idLexer::punctuations = p;
 	}
 	else {
-		idLexer::punctuations = default_punctuations;
+		idLexer::punctuations = default_Punctuations;
 	}
 }
 

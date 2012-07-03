@@ -912,7 +912,7 @@ void idCollisionModelManagerLocal::Translation( d3trace_t *results, const idVec3
 		//if ( session->rw ) {
 		//	session->rw->DebugArrow( colorRed, start, end, 1 );
 		//}
-		Com_Printf( "idCollisionModelManagerLocal::Translation: huge translation\n" );
+		Com_DPrintf( "idCollisionModelManagerLocal::Translation: huge translation\n" );
 		return;
 	}
 

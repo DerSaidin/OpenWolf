@@ -43,17 +43,17 @@ bool cm_useNew = qtrue;
 #endif
 void CM_LoadMap( const char *name, qboolean clientload, int *checksum ) {
 
-	if(cm_useNew) {
+	//if(cm_useNew) {
 		// load strictly collision detection related data from .cm file (or generate it)
 		idMath::Init();
 #ifndef USE_OLD_CM
 		newCM.LoadMap(name,clientload,checksum);
 #endif
-	} else {
+	//} else {
 		// load leafs, nodes, pvs, etc,
 		// used eg by serverside culling (SV_AddEntitiesVisibleFromPoint)
 		CM_LoadMapOLD(name,clientload,checksum);
-	}
+	//}
 
 }
 

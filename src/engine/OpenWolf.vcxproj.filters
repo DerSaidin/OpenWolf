@@ -102,9 +102,6 @@
     <Filter Include="Source Files\Qcommon">
       <UniqueIdentifier>{b853087f-2cd4-42cf-884a-31f22cca826b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\download">
-      <UniqueIdentifier>{ce19da42-1e46-416d-9ffa-22a91dd418b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Collision Model">
       <UniqueIdentifier>{8c0fa5cb-4e6d-42cf-a314-74214fed7508}</UniqueIdentifier>
     </Filter>
@@ -117,16 +114,19 @@
     <Filter Include="Source Files\CM\Header Files">
       <UniqueIdentifier>{e2c117eb-eda9-4eb1-9e5e-a11392c6bcac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Database\download">
+      <UniqueIdentifier>{ce19da42-1e46-416d-9ffa-22a91dd418b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="qcommon\dl_main.c">
-      <Filter>Source Files\download</Filter>
+      <Filter>Source Files\Database\download</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\dl_main_curl.c">
-      <Filter>Source Files\download</Filter>
+      <Filter>Source Files\Database\download</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\dl_main_stubs.c">
-      <Filter>Source Files\download</Filter>
+      <Filter>Source Files\Database\download</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\libnewton\include\dMath\dVector.cpp">
       <Filter>libs\Newton\dMath\Source Files</Filter>
@@ -617,10 +617,10 @@
       <Filter>main\ui</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\dl_local.h">
-      <Filter>Source Files\download</Filter>
+      <Filter>Source Files\Database\download</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\dl_public.h">
-      <Filter>Source Files\download</Filter>
+      <Filter>Source Files\Database\download</Filter>
     </ClInclude>
     <ClInclude Include="database\database.h">
       <Filter>Header Files</Filter>

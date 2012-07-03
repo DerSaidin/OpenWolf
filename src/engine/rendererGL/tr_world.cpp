@@ -803,6 +803,7 @@ BSPSurfaceCompare
 compare function for qsort()
 =================
 */
+#if defined(USE_BSP_CLUSTERSURFACE_MERGING)
 static int BSPSurfaceCompare(const void *a, const void *b)
 {
 	bspSurface_t   *aa, *bb;
@@ -832,7 +833,6 @@ static int BSPSurfaceCompare(const void *a, const void *b)
 R_UpdateClusterSurfaces()
 ===============
 */
-#if defined(USE_BSP_CLUSTERSURFACE_MERGING)
 static void R_UpdateClusterSurfaces()
 {
 	int             i, k, l;

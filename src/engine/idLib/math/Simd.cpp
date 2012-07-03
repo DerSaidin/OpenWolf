@@ -176,12 +176,21 @@ long saved_ebx = 0;
 	__asm xor eax, eax						\
 	__asm cpuid*/
 
-#define StartRecordTime( start )			\
-	start = time_in_millisec(); 
+#define StartRecordTime( start ) \
+{ \
+	LARGE_INTEGER li; \
+	QueryPerformanceCounter( &li ); \
+	start = (double ) li.LowPart + (double) 0xFFFFFFFF * li.HighPart; \
+	start *= 64; /* 50 MHz */ \
+}
 
-#define StopRecordTime( end )				\
-	end = time_in_millisec();
-
+#define StopRecordTime( end ) \
+{ \
+	LARGE_INTEGER li; \
+	QueryPerformanceCounter( &li ); \
+	end = (double ) li.LowPart + (double) 0xFFFFFFFF * li.HighPart; \
+	end *= 64; /* 50 MHz */ \
+}
 #elif MACOS_X
 
 #include <stdlib.h>

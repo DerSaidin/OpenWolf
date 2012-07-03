@@ -112,8 +112,12 @@ idCollisionModelManagerLocal::LoadProcBSP
   FIXME: if the nodes would be at the start of the .proc file it would speed things up considerably
 ================
 */
+
+#define PROC_FILE_EXT				"proc"
+#define	PROC_FILE_ID				"mapProcFile001"
+
 void idCollisionModelManagerLocal::LoadProcBSP( const char *name ) {
-#if 0
+#if 1
 	idStr filename;
 	idToken token;
 	idLexer *src;
@@ -140,6 +144,11 @@ void idCollisionModelManagerLocal::LoadProcBSP( const char *name ) {
 			break;
 		}
 
+		if ( token == "nodes" ) {
+			ParseProcNodes( src );
+			break;
+		}
+
 		if ( token == "model" ) {
 			src->SkipBracedSection();
 			continue;
@@ -153,11 +162,6 @@ void idCollisionModelManagerLocal::LoadProcBSP( const char *name ) {
 		if ( token == "interAreaPortals" ) {
 			src->SkipBracedSection();
 			continue;
-		}
-
-		if ( token == "nodes" ) {
-			ParseProcNodes( src );
-			break;
 		}
 
 		src->Error( "idCollisionModelManagerLocal::LoadProcBSP: bad token \"%s\"", token.c_str() );

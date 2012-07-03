@@ -44,7 +44,7 @@ extern cm_windingList_t *				cm_tmpList;
 extern idHashIndex *					cm_vertexHash;
 extern idHashIndex *					cm_edgeHash;
 
-extern idBounds						cm_modelBounds;
+extern idBounds							cm_modelBounds;
 extern int								cm_vertexShift;
 
 // load collision models from a Q3 BSP file
@@ -121,7 +121,7 @@ cm_model_t *idCollisionModelManagerLocal::CollisionModelForBSPSubModel( int inde
 	cm_model_t *model;
 	idPlane plane;
 	idBounds bounds;
-//	bool collisionSurface;
+	bool collisionSurface;
 	dsurface_t *surf;
 	idMaterial *surfShader = this->declManager_FindMaterial("defaultShader");
 
@@ -146,7 +146,7 @@ cm_model_t *idCollisionModelManagerLocal::CollisionModelForBSPSubModel( int inde
 		//if ( ! ( surf->shader->GetContentFlags() & CONTENTS_REMOVE_UTIL ) ) {
 		//	continue;
 		//}
-		//// if the model has a collision surface and this surface is not a collision surface
+		// if the model has a collision surface and this surface is not a collision surface
 		//if ( collisionSurface && !( surf->shader->GetSurfaceFlags() & SURF_COLLISION ) ) {
 		//	continue;
 		//}

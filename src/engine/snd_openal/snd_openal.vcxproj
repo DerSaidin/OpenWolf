@@ -345,12 +345,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="qal.c" />
-    <ClCompile Include="snd_al_buffers.c" />
-    <ClCompile Include="snd_al_main.c" />
-    <ClCompile Include="snd_al_music.c" />
-    <ClCompile Include="snd_al_sources.c" />
-    <ClCompile Include="snd_al_stream.c" />
+    <ClCompile Include="qal.cpp" />
+    <ClCompile Include="snd_al_buffers.cpp" />
+    <ClCompile Include="snd_al_main.cpp" />
+    <ClCompile Include="snd_al_music.cpp" />
+    <ClCompile Include="snd_al_sources.cpp" />
+    <ClCompile Include="snd_al_stream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qal.h" />

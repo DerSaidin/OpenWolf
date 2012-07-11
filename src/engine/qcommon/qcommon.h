@@ -1020,12 +1020,7 @@ void            Info_Print(const char *s);
 
 void            Com_BeginRedirect(char *buffer, int buffersize, void (*flush) (char *));
 void            Com_EndRedirect(void);
-// *INDENT-OFF*
-//int				QDECL Com_VPrintf(const char *fmt, va_list argptr) _attribute((format(printf, 1, 0)));	// conforms to vprintf prototype for print callback passing
-void			QDECL Com_Printf(const char *fmt, ...) _attribute((format(printf, 1, 2)));	// this one calls to Com_VPrintf now
-void			QDECL Com_DPrintf(const char *fmt, ...) _attribute((format(printf, 1, 2)));
-void			QDECL Com_Error(int code, const char *fmt, ...) _attribute((format(printf, 2, 3), noreturn));
-// *INDENT-ON*
+
 void            Com_Quit_f(void);
 int             Com_EventLoop(void);
 int             Com_Milliseconds(void);	// will be journaled properly
@@ -1181,6 +1176,9 @@ void            Com_Init(char *commandLine);
 void            Com_Frame(void);
 void            Com_Shutdown(qboolean badProfile);
 
+void			CL_ShutdownCGame( void );
+void			CL_ShutdownUI( void );
+void			SV_ShutdownGameProgs( void );
 
 /*
 ==============================================================
@@ -1204,7 +1202,7 @@ void            CL_Disconnect(qboolean showMainMenu);
 void            CL_Shutdown(void);
 void            CL_Frame(int msec);
 qboolean        CL_GameCommand(void);
-void            CL_KeyEvent(int key, qboolean down, unsigned time);
+void            CL_KeyEvent(int key, int down, unsigned time);
 
 void            CL_CharEvent(int key);
 
@@ -1375,7 +1373,7 @@ qboolean		Sys_RandomBytes( byte *string, int len );
 // the system console is shown when a dedicated server is running
 void            Sys_DisplaySystemConsole(qboolean show);
 
-cpuFeatures_t   Sys_GetProcessorFeatures( void );
+int				Sys_GetProcessorFeatures( void );
 
 void            Sys_ShowConsole( int level, qboolean quitOnClose );
 void            Sys_SetErrorText(const char *text);

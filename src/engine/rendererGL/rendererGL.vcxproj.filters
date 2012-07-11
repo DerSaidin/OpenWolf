@@ -159,12 +159,6 @@
     <ClCompile Include="tr_init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sys\sdl_gamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sys\sdl_glimp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\libs\jpeg\jaricom.c">
       <Filter>Libs\jpeg\Source Files</Filter>
     </ClCompile>
@@ -303,13 +297,19 @@
     <ClCompile Include="..\..\libs\jpeg\jutils.c">
       <Filter>Libs\jpeg\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\qcommon\q_shared.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\qcommon\q_math.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_image_webp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\qcommon\q_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\qcommon\q_shared.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\sdl_gamma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\sdl_glimp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

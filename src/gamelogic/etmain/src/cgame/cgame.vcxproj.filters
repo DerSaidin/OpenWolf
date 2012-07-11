@@ -167,10 +167,10 @@
     <ClCompile Include="cg_api.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.c">
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.c">
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

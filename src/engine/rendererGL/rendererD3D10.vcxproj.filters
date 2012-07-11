@@ -33,12 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sys\sdl_gamma.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sys\sdl_vid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_animation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -291,13 +285,19 @@
     <ClCompile Include="tr_decals.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\qcommon\q_math.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\qcommon\q_shared.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_sky.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\qcommon\q_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\qcommon\q_shared.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\sdl_gamma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\sdl_vid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

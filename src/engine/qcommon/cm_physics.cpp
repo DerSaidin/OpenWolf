@@ -35,9 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "dVector.h"
 #include "dMatrix.h"
 
-extern "C" {
 #include "../server/server.h"
-}
 
 #define METRES_PER_UNIT             32.0f
 #define UNITS_PER_METRE             (1.0f / METRES_PER_UNIT)
@@ -66,7 +64,7 @@ std::map<int, bspCmodel> bspModels;
 CMod_PhysicsInit
 =============
 */
-extern "C" void CMod_PhysicsInit() {
+void CMod_PhysicsInit() {
 	Com_Printf("----- Initializing Newton Physics Engine -----\n");
 	Com_Printf("Initialized with Newton Version %i.%i \n", NEWTON_MAJOR_VERSION, NEWTON_MINOR_VERSION);
 	Com_Printf("----------------------------------------------\n");
@@ -120,7 +118,7 @@ void FreeMemory (void *ptr, int sizeInBytes) {
 CMod_PhysicsClearBodies
 =============
 */
-extern "C" void CMod_PhysicsClearBodies() {
+void CMod_PhysicsClearBodies() {
 	for ( std::map<int, bspCmodel>::iterator it = bspModels.begin(); 
 		it != bspModels.end();
 		++it ) {
@@ -137,7 +135,7 @@ extern "C" void CMod_PhysicsClearBodies() {
 CMod_PhysicsShutdown
 =============
 */
-extern "C" void CMod_PhysicsShutdown() {
+void CMod_PhysicsShutdown() {
 	if ( g_world != NULL ) {
 		NewtonDestroy (g_world);
 		g_world = NULL;
@@ -149,7 +147,7 @@ extern "C" void CMod_PhysicsShutdown() {
 CMod_PhysicsAddBSPFace
 =============
 */
-extern "C" void CMod_PhysicsAddBSPFace(vec3_t vec[3]) {
+void CMod_PhysicsAddBSPFace(vec3_t vec[3]) {
 	VectorScale(vec[0], UNITS_PER_METRE, vec[0]);
 	VectorScale(vec[1], UNITS_PER_METRE, vec[1]);
 	VectorScale(vec[2], UNITS_PER_METRE, vec[2]);
@@ -162,7 +160,7 @@ extern "C" void CMod_PhysicsAddBSPFace(vec3_t vec[3]) {
 CMod_PhysicsBeginBSPCollisionTree
 =============
 */
-extern "C" void CMod_PhysicsBeginBSPCollisionTree() {
+void CMod_PhysicsBeginBSPCollisionTree() {
 	g_collision = NewtonCreateTreeCollision (g_world);
 	NewtonTreeCollisionBeginBuild (g_collision);
 }
@@ -172,7 +170,7 @@ extern "C" void CMod_PhysicsBeginBSPCollisionTree() {
 CMod_PhysicsEndBSPCollisionTree
 =============
 */
-extern "C" void CMod_PhysicsEndBSPCollisionTree() {
+void CMod_PhysicsEndBSPCollisionTree() {
 	dVector worldMin, worldMax;
 	
 	NewtonTreeCollisionEndBuild (g_collision, 1);
@@ -192,7 +190,7 @@ extern "C" void CMod_PhysicsEndBSPCollisionTree() {
 CMod_PhysicsInit
 =============
 */
-extern "C" void CMod_PhysicsUpdate( int time, float timestep ) {
+void CMod_PhysicsUpdate( int time, float timestep ) {
 	NewtonUpdate (g_world, timestep);
 }
 
@@ -239,21 +237,6 @@ static char *vtos(const vec3_t v) {
 	return s;
 }
 #endif
-
-/*
-=============
-TransposeMatrix
-=============
-*/
-void TransposeMatrix(vec3_t matrix[3], vec3_t transpose[3]) {
-	int i, j;
-
-	for(i = 0; i < 3; i++) {
-		for(j = 0; j < 3; j++) {
-			transpose[i][j] = matrix[j][i];
-		}
-	}
-}
 
 /*
 =============
@@ -305,7 +288,7 @@ static void PhysicsEntitySetTransform ( const NewtonBody* body, const dFloat* ma
 CMod_PhysicsAddStatic
 =============
 */
-extern "C" void CMod_PhysicsAddStatic(const sharedEntity_t * gEnt) {
+void CMod_PhysicsAddStatic(const sharedEntity_t * gEnt) {
 }
 
 /*
@@ -313,7 +296,7 @@ extern "C" void CMod_PhysicsAddStatic(const sharedEntity_t * gEnt) {
 CMod_PhysicsAddEntity
 =============
 */
-extern "C" void CMod_PhysicsAddEntity(sharedEntity_t * gEnt) {
+void CMod_PhysicsAddEntity(sharedEntity_t * gEnt) {
 	NewtonCollision* collision = NULL;
 	NewtonBody* body = NULL;
 
@@ -366,7 +349,7 @@ extern "C" void CMod_PhysicsAddEntity(sharedEntity_t * gEnt) {
 CMod_PhysicsAddBSPModel
 =============
 */
-extern "C" void CMod_PhysicsAddBSPModel(int index, int firstSurface, int numSurfaces) {
+void CMod_PhysicsAddBSPModel(int index, int firstSurface, int numSurfaces) {
 	bspCmodel newModel;
 	newModel.index = index;
 	newModel.firstSurface = firstSurface;
@@ -380,7 +363,7 @@ extern "C" void CMod_PhysicsAddBSPModel(int index, int firstSurface, int numSurf
 CMod_PhysicsBSPSurfaceIsModel
 =============
 */
-extern "C" int CMod_PhysicsBSPSurfaceIsModel ( int surfaceID ) {
+int CMod_PhysicsBSPSurfaceIsModel ( int surfaceID ) {
     for ( std::map<int, bspCmodel>::iterator it = bspModels.begin();
 		it != bspModels.end();
 		++it ) {
@@ -397,7 +380,7 @@ extern "C" int CMod_PhysicsBSPSurfaceIsModel ( int surfaceID ) {
 CMod_PhysicsAddFaceToModel
 =============
 */
-extern "C" void CMod_PhysicsAddFaceToModel(int modelIndex, int surface, vec3_t vec[3]) {       
+void CMod_PhysicsAddFaceToModel(int modelIndex, int surface, vec3_t vec[3]) {       
 	std::map<int, bspCmodel>::iterator it = bspModels.find (modelIndex);
 	if ( it == bspModels.end() ) {
 		return;

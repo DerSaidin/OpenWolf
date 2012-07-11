@@ -620,8 +620,8 @@
     <ClCompile Include="..\game\bg_campaign.c" />
     <ClCompile Include="..\game\bg_classes.c" />
     <ClCompile Include="..\game\bg_misc.c" />
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.c" />
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.c" />
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp" />
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp" />
     <ClCompile Include="ui_api.c" />
     <ClCompile Include="ui_atoms.c" />
     <ClCompile Include="ui_gameinfo.c" />

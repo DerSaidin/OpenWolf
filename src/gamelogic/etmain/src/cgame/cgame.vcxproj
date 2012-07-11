@@ -603,6 +603,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp" />
     <ClCompile Include="..\game\bg_animation.c" />
     <ClCompile Include="..\game\bg_animgroup.c" />
     <ClCompile Include="..\game\bg_campaign.c" />
@@ -653,8 +654,7 @@
     <ClCompile Include="cg_view.c" />
     <ClCompile Include="cg_weapons.c" />
     <ClCompile Include="cg_window.c" />
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.c" />
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.c" />
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp" />
     <ClCompile Include="..\ui\ui_shared.c" />
   </ItemGroup>
   <ItemGroup>

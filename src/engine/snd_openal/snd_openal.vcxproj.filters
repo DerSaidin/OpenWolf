@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="qal.c">
+    <ClCompile Include="snd_al_stream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="snd_al_buffers.c">
+    <ClCompile Include="snd_al_sources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="snd_al_main.c">
+    <ClCompile Include="snd_al_music.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="snd_al_music.c">
+    <ClCompile Include="snd_al_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="snd_al_sources.c">
+    <ClCompile Include="snd_al_buffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="snd_al_stream.c">
+    <ClCompile Include="qal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

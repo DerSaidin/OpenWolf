@@ -522,7 +522,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\openexr;..\..\libs\jpeg;..\..\libs\libpng;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;__WIN64__;WIN64;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_D3D10;USE_INTERNAL_JPEG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;__WIN64__;WIN64;_AMD64_;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_D3D10;USE_INTERNAL_JPEG</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -620,8 +620,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\qcommon\q_math.c" />
-    <ClCompile Include="..\qcommon\q_shared.c" />
+    <ClCompile Include="..\qcommon\q_math.cpp" />
+    <ClCompile Include="..\qcommon\q_shared.cpp" />
     <ClCompile Include="..\..\libs\jpeg\jaricom.c" />
     <ClCompile Include="..\..\libs\jpeg\jcapimin.c" />
     <ClCompile Include="..\..\libs\jpeg\jcapistd.c" />
@@ -669,8 +669,8 @@
     <ClCompile Include="..\..\libs\jpeg\jquant2.c" />
     <ClCompile Include="..\..\libs\jpeg\jutils.c" />
     <ClCompile Include="..\..\libs\openexr\half.cpp" />
-    <ClCompile Include="..\sys\sdl_gamma.c" />
-    <ClCompile Include="..\sys\sdl_vid.c" />
+    <ClCompile Include="..\sys\sdl_gamma.cpp" />
+    <ClCompile Include="..\sys\sdl_vid.cpp" />
     <ClCompile Include="tr_animation.c" />
     <ClCompile Include="tr_animation_mdm.c" />
     <ClCompile Include="tr_backend_d3d10.cpp" />

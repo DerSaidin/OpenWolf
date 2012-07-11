@@ -168,10 +168,10 @@
     <ClCompile Include="g_api.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.c">
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.c">
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -205,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="..\..\omnibot\et\g_etbot_interface.h">
       <Filter>omnibot</Filter>
-    </ClInclude>
-    <ClInclude Include="g_lua.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="surfaceflags.h">
       <Filter>Header Files</Filter>

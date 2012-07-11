@@ -24,17 +24,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "cm_local.h"
 
+void			CM_LoadMapOLD( const char *name, qboolean clientload, int *checksum );
+int				CM_PointContentsOLD( const vec3_t p, clipHandle_t model );
+int				CM_TransformedPointContentsOLD( const vec3_t p, clipHandle_t model, const vec3_t origin, const vec3_t angles );
+void			CM_BoxTraceOLD(trace_t * results, const vec3_t start, const vec3_t end, vec3_t mins, vec3_t maxs, clipHandle_t model, int brushmask, traceType_t type);
+void			CM_TransformedBoxTraceOLD(trace_t * results, const vec3_t start, const vec3_t end, vec3_t mins, vec3_t maxs, clipHandle_t model, int brushmask, const vec3_t origin, const vec3_t angles, traceType_t type);
+
 idCollisionModelManagerLocal newCM;
 
 #define USE_OLD_CM
-
-extern "C" {
-	void CM_LoadMapOLD( const char *name, bool clientload, int *checksum );
-	int CM_PointContentsOLD( const vec3_t p, clipHandle_t model );
-	int CM_TransformedPointContentsOLD( const vec3_t p, clipHandle_t model, const vec3_t origin, const vec3_t angles );
-	void CM_BoxTraceOLD(trace_t * results, const vec3_t start, const vec3_t end, vec3_t mins, vec3_t maxs, clipHandle_t model, int brushmask, traceType_t type);
-	void CM_TransformedBoxTraceOLD(trace_t * results, const vec3_t start, const vec3_t end, vec3_t mins, vec3_t maxs, clipHandle_t model, int brushmask, const vec3_t origin, const vec3_t angles, traceType_t type);
-}
 
 #ifdef USE_OLD_CM
 bool cm_useNew = qfalse;

@@ -105,6 +105,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -710,7 +711,7 @@ echo hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_AMD64_;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -761,6 +762,8 @@ echo hostname &gt; status-info/build-machine
       </DataExecutionPrevention>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
     </Link>
     <PreBuildEvent>
       <Command>svn status -u ./../ &gt; status-info/versions</Command>
@@ -777,6 +780,20 @@ echo hostname &gt; status-info/build-machine
     <PostBuildEvent>
       <Message>Generating Build Info</Message>
     </PostBuildEvent>
+    <MASM>
+      <EnableMASM51Compatibility>
+      </EnableMASM51Compatibility>
+      <AssembledCodeListingFile>$(IntDir)%(FileName).lst</AssembledCodeListingFile>
+      <AdditionalOptions>-D idx64=1 %(AdditionalOptions)</AdditionalOptions>
+    </MASM>
+    <CustomBuild>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+      <Outputs>
+      </Outputs>
+    </CustomBuild>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">
     <Midl>
@@ -1066,7 +1083,7 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="..\libs\nettle\nettle\sexp.c" />
     <ClCompile Include="..\libs\nettle\nettle\sexp2bignum.c" />
     <ClCompile Include="..\libs\nettle\nettle\sexp2rsa.c" />
-    <ClCompile Include="client\cin_ogm.c">
+    <ClCompile Include="client\cin_ogm.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
@@ -1076,7 +1093,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_avi.c">
+    <ClCompile Include="client\cl_avi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
@@ -1086,7 +1103,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_cgame.c">
+    <ClCompile Include="client\cl_cgame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1096,7 +1113,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_cin.c">
+    <ClCompile Include="client\cl_cin.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1106,7 +1123,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_console.c">
+    <ClCompile Include="client\cl_console.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1116,7 +1133,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_download.c">
+    <ClCompile Include="client\cl_download.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1126,7 +1143,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_input.c">
+    <ClCompile Include="client\cl_input.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1136,7 +1153,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_irc.c">
+    <ClCompile Include="client\cl_irc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1146,7 +1163,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_keys.c">
+    <ClCompile Include="client\cl_keys.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1156,7 +1173,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_main.c">
+    <ClCompile Include="client\cl_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1166,7 +1183,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_net_chan.c">
+    <ClCompile Include="client\cl_net_chan.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1176,7 +1193,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_parse.c">
+    <ClCompile Include="client\cl_parse.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1186,7 +1203,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_scrn.c">
+    <ClCompile Include="client\cl_scrn.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1196,7 +1213,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_text.c">
+    <ClCompile Include="client\cl_text.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1206,7 +1223,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_ui.c">
+    <ClCompile Include="client\cl_ui.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1216,12 +1233,12 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\libmumblelink.c">
+    <ClCompile Include="client\libmumblelink.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_adpcm.c">
+    <ClCompile Include="client\snd_adpcm.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1231,7 +1248,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_codec.c">
+    <ClCompile Include="client\snd_codec.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1241,7 +1258,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_codec_ogg.c">
+    <ClCompile Include="client\snd_codec_ogg.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1251,7 +1268,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_codec_wav.c">
+    <ClCompile Include="client\snd_codec_wav.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1261,7 +1278,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_dma.c">
+    <ClCompile Include="client\snd_dma.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1271,7 +1288,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_load.c">
+    <ClCompile Include="client\snd_load.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1281,7 +1298,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_mem.c">
+    <ClCompile Include="client\snd_mem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1291,7 +1308,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_mix.c">
+    <ClCompile Include="client\snd_mix.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1301,7 +1318,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\snd_wavelet.c">
+    <ClCompile Include="client\snd_wavelet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
@@ -1320,65 +1337,65 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="cm\CollisionModel_rotate.cpp" />
     <ClCompile Include="cm\CollisionModel_trace.cpp" />
     <ClCompile Include="cm\CollisionModel_translate.cpp" />
-    <ClCompile Include="database\db_main.c" />
-    <ClCompile Include="database\db_mysql.c" />
+    <ClCompile Include="database\db_main.cpp" />
+    <ClCompile Include="database\db_mysql.cpp" />
     <ClCompile Include="qcommon\cm_api.cpp" />
-    <ClCompile Include="qcommon\cm_load.c" />
-    <ClCompile Include="qcommon\cm_patch.c" />
+    <ClCompile Include="qcommon\cm_load.cpp" />
+    <ClCompile Include="qcommon\cm_patch.cpp" />
     <ClCompile Include="qcommon\cm_physics.cpp" />
-    <ClCompile Include="qcommon\cm_polylib.c" />
-    <ClCompile Include="qcommon\cm_test.c" />
-    <ClCompile Include="qcommon\cm_trace.c" />
-    <ClCompile Include="qcommon\cmd.c" />
-    <ClCompile Include="qcommon\cm_trisoup.c" />
-    <ClCompile Include="qcommon\common.c" />
-    <ClCompile Include="qcommon\crypto.c" />
-    <ClCompile Include="qcommon\cvar.c" />
-    <ClCompile Include="qcommon\files.c" />
-    <ClCompile Include="qcommon\htable.c" />
-    <ClCompile Include="qcommon\huffman.c" />
-    <ClCompile Include="qcommon\ioapi.c" />
-    <ClCompile Include="qcommon\md4.c" />
-    <ClCompile Include="qcommon\md5.c" />
-    <ClCompile Include="qcommon\msg.c" />
-    <ClCompile Include="qcommon\net_chan.c" />
-    <ClCompile Include="null\null_client.c">
+    <ClCompile Include="qcommon\cm_polylib.cpp" />
+    <ClCompile Include="qcommon\cm_test.cpp" />
+    <ClCompile Include="qcommon\cm_trace.cpp" />
+    <ClCompile Include="qcommon\cmd.cpp" />
+    <ClCompile Include="qcommon\cm_trisoup.cpp" />
+    <ClCompile Include="qcommon\common.cpp" />
+    <ClCompile Include="qcommon\crypto.cpp" />
+    <ClCompile Include="qcommon\cvar.cpp" />
+    <ClCompile Include="qcommon\files.cpp" />
+    <ClCompile Include="qcommon\htable.cpp" />
+    <ClCompile Include="qcommon\huffman.cpp" />
+    <ClCompile Include="qcommon\ioapi.cpp" />
+    <ClCompile Include="qcommon\md4.cpp" />
+    <ClCompile Include="qcommon\md5.cpp" />
+    <ClCompile Include="qcommon\msg.cpp" />
+    <ClCompile Include="qcommon\net_chan.cpp" />
+    <ClCompile Include="null\null_client.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="null\null_input.c">
+    <ClCompile Include="null\null_input.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="null\null_snddma.c">
+    <ClCompile Include="null\null_snddma.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="qcommon\net_http.c" />
-    <ClCompile Include="qcommon\net_ip.c" />
-    <ClCompile Include="qcommon\parse.c" />
-    <ClCompile Include="qcommon\q_math.c" />
-    <ClCompile Include="qcommon\q_shared.c" />
-    <ClCompile Include="server\sv_bot.c" />
-    <ClCompile Include="server\sv_ccmds.c" />
-    <ClCompile Include="server\sv_client.c" />
-    <ClCompile Include="server\sv_game.c" />
-    <ClCompile Include="server\sv_init.c" />
-    <ClCompile Include="server\sv_main.c" />
-    <ClCompile Include="server\sv_net_chan.c" />
-    <ClCompile Include="server\sv_snapshot.c" />
-    <ClCompile Include="server\sv_world.c" />
-    <ClCompile Include="qcommon\unzip.c" />
+    <ClCompile Include="qcommon\net_http.cpp" />
+    <ClCompile Include="qcommon\net_ip.cpp" />
+    <ClCompile Include="qcommon\parse.cpp" />
+    <ClCompile Include="qcommon\q_math.cpp" />
+    <ClCompile Include="qcommon\q_shared.cpp" />
+    <ClCompile Include="server\sv_bot.cpp" />
+    <ClCompile Include="server\sv_ccmds.cpp" />
+    <ClCompile Include="server\sv_client.cpp" />
+    <ClCompile Include="server\sv_game.cpp" />
+    <ClCompile Include="server\sv_init.cpp" />
+    <ClCompile Include="server\sv_main.cpp" />
+    <ClCompile Include="server\sv_net_chan.cpp" />
+    <ClCompile Include="server\sv_snapshot.cpp" />
+    <ClCompile Include="server\sv_world.cpp" />
+    <ClCompile Include="qcommon\unzip.cpp" />
     <ClCompile Include="qcommon\vm.c" />
     <ClCompile Include="qcommon\vm_interpreted.c" />
     <ClCompile Include="qcommon\vm_x86.c" />
-    <ClCompile Include="qcommon\dl_main.c">
+    <ClCompile Include="qcommon\dl_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1392,7 +1409,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="qcommon\dl_main_curl.c">
+    <ClCompile Include="qcommon\dl_main_curl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
@@ -1416,7 +1433,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="sys\con_curses.c">
+    <ClCompile Include="sys\con_curses.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
@@ -1424,9 +1441,9 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="sys\con_log.c" />
-    <ClCompile Include="sys\con_win32.c" />
-    <ClCompile Include="sys\sdl_input.c">
+    <ClCompile Include="sys\con_log.cpp" />
+    <ClCompile Include="sys\con_win32.cpp" />
+    <ClCompile Include="sys\sdl_input.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
@@ -1436,7 +1453,7 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="sys\sdl_snd.c">
+    <ClCompile Include="sys\sdl_snd.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
@@ -1446,10 +1463,10 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="sys\sys_main.c" />
-    <ClCompile Include="sys\sys_sysinfo.c" />
-    <ClCompile Include="sys\sys_win32.c" />
-    <ClCompile Include="sys\sys_win32_con.c">
+    <ClCompile Include="sys\sys_main.cpp" />
+    <ClCompile Include="sys\sys_sysinfo.cpp" />
+    <ClCompile Include="sys\sys_win32.cpp" />
+    <ClCompile Include="sys\sys_win32_con.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1459,9 +1476,9 @@ echo hostname &gt; status-info/build-machine
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\etmain\src\game\bg_public.h" />
-    <ClInclude Include="..\gamelogic\etmain\src\botai\botai.h" />
-    <ClInclude Include="..\gamelogic\etmain\src\game\botlib.h" />
+    <ClInclude Include="..\gamelogic\etmain\src\game\bg_public.h" />
+    <ClInclude Include="botlib\botai.h" />
+    <ClInclude Include="botlib\botlib.h" />
     <ClInclude Include="..\libs\libnewton\include\dContainers\dBaseHierarchy.h" />
     <ClInclude Include="..\libs\libnewton\include\dContainers\dContainersStdAfx.h" />
     <ClInclude Include="..\libs\libnewton\include\dContainers\dCRC.h" />
@@ -1507,9 +1524,6 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="qcommon\htable.h" />
     <ClInclude Include="qcommon\ioapi.h" />
     <ClInclude Include="qcommon\md4.h" />
-    <ClInclude Include="qcommon\vm_llvm.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="client\client.h" />
     <ClInclude Include="qcommon\cm_local.h" />
     <ClInclude Include="qcommon\cm_patch.h" />
@@ -1739,7 +1753,6 @@ echo hostname &gt; status-info/build-machine
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="asm\vm_x86_64.asm">
-      <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assembling...</Message>
@@ -1762,6 +1775,19 @@ echo hostname &gt; status-info/build-machine
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">Assembling...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
+      <GeneratePreprocessedSourceListing Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </GeneratePreprocessedSourceListing>
+      <ListAllAvailableInformation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ListAllAvailableInformation>
+      <AddFirstPassListing Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </AddFirstPassListing>
+      <EnableAssemblyGeneratedCodeListing Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EnableAssemblyGeneratedCodeListing>
+      <AssembledCodeListingFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </AssembledCodeListingFile>
+      <EnableMASM51Compatibility Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EnableMASM51Compatibility>
+      <FileType>Document</FileType>
     </CustomBuild>
     <None Include="status-info\build-config" />
     <None Include="status-info\build-machine" />
@@ -1804,5 +1830,6 @@ echo hostname &gt; status-info/build-machine
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
   </ImportGroup>
 </Project>

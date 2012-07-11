@@ -45,10 +45,10 @@ extern "C" {
 #define PRODUCT_NAME            "OpenWolf"
 #define PRODUCT_NAME_UPPPER     "OpenWolf" // Case, No spaces
 #define PRODUCT_NAME_LOWER      "OpenWolf" // No case, No spaces
-#define PRODUCT_VERSION         "0.2.3"
+#define PRODUCT_VERSION         "0.3.0"
 
 #define ENGINE_NAME             "OpenWolf Engine"
-#define ENGINE_VERSION          "0.1.8"
+#define ENGINE_VERSION          "0.2.5"
 
 
 #ifdef SVN_VERSION
@@ -64,7 +64,7 @@ extern "C" {
 #define CLIENT_WINDOW_MIN_TITLE PRODUCT_NAME_LOWER
 #define GAMENAME_FOR_MASTER		PRODUCT_NAME_UPPPER
 
-#define CONFIG_NAME     "etconfig.cfg"
+#define CONFIG_NAME     "owconfig.cfg"
 
 #define LOCALIZATION_SUPPORT
 
@@ -1318,25 +1318,7 @@ char    *COM_Parse( char **data_p );
 char           *COM_Parse2(char **data_p);
 char           *COM_ParseExt2(char **data_p, qboolean allowLineBreak);
 
-
-char *COM_ParseExt3( const char **data_p, qboolean allowLineBreaks );
-int SWITCHSTRING( const char* s );
-float QDECL fatof( const char * );
-
-//
-//	this stuff allows strings to be used in switch cases.  its not that pretty but.. :)
-//
-//	case( SWITCHSTRING( "ATest" ) )
-//	{
-//		case CS( 'a', 't', 'e', 's' ):
-//			break;
-//	}
-//
-//
-#define UPPER(c) ((c)&~0x20)
-#define CS(c0,c1,c2,c3) ( (UPPER(c3)<<24) + (UPPER(c2)<<16) + (UPPER(c1)<<8) + UPPER(c0) )
-extern int SWITCHSTRING( const char* s );
-
+float	QDECL fatof( const char * );
 
 char    *COM_ParseExt( char **data_p, qboolean allowLineBreak );
 int     COM_Compress( char *data_p );

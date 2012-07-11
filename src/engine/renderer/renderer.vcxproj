@@ -364,8 +364,8 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\qcommon\q_math.c" />
-    <ClCompile Include="..\qcommon\q_shared.c" />
+    <ClCompile Include="..\qcommon\q_math.cpp" />
+    <ClCompile Include="..\qcommon\q_shared.cpp" />
     <ClCompile Include="..\..\libs\jpeg\jaricom.c" />
     <ClCompile Include="..\..\libs\jpeg\jcapimin.c" />
     <ClCompile Include="..\..\libs\jpeg\jcapistd.c" />
@@ -412,8 +412,8 @@
     <ClCompile Include="..\..\libs\jpeg\jquant1.c" />
     <ClCompile Include="..\..\libs\jpeg\jquant2.c" />
     <ClCompile Include="..\..\libs\jpeg\jutils.c" />
-    <ClCompile Include="..\sys\sdl_gamma.c" />
-    <ClCompile Include="..\sys\sdl_glimp.c" />
+    <ClCompile Include="..\sys\sdl_gamma.cpp" />
+    <ClCompile Include="..\sys\sdl_glimp.cpp" />
     <ClCompile Include="tr_animation.c" />
     <ClCompile Include="tr_animation_mdm.c" />
     <ClCompile Include="tr_animation_mds.c" />

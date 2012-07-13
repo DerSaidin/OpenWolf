@@ -1276,10 +1276,6 @@ void IN_Frame( void )
 		// Window not got focus
 		IN_DeactivateMouse( );
 	}
-	else if( com_minimized->integer  ) {
-		// minimized
-		IN_DeactivateMouse();
-	}
 	else
 		IN_ActivateMouse( );
 

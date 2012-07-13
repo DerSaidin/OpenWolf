@@ -247,9 +247,17 @@ Sys_LowPhysicalMemory
 ==================
 */
 qboolean Sys_LowPhysicalMemory( void ) {
+#if defined (__WIN64__)
+	MEMORYSTATUSEX stat;
+	GlobalMemoryStatusEx (&stat);
+
+	return (stat.ullTotalPhys <= MEM_THRESHOLD) ? qtrue : qfalse;
+#else
 	MEMORYSTATUS stat;
 	GlobalMemoryStatus (&stat);
+
 	return (stat.dwTotalPhys <= MEM_THRESHOLD) ? qtrue : qfalse;
+#endif
 }
 
 /*

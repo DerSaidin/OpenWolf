@@ -422,7 +422,7 @@
     <Link>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
-      <AdditionalDependencies>opengl32.lib;winmm.lib;libpng.lib;zlibwapi.lib;freetype.lib;mesaglsl2-win64.lib;libwebp_a.lib;mesaglsl2-win64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;libpng.lib;zlibwapi.lib;freetype.lib;libwebp_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\libs\libpng\libs\win64;..\..\libs\zlibwapi\lib\x64;..\..\libs\freetype\lib\x64;..\..\libs\glsl-optimizer\lib\x64\release;..\..\libs\libwebp\Lib\x64\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>

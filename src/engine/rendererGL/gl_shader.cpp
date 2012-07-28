@@ -59,6 +59,7 @@ GLShader_debugShadowMap                  *gl_debugShadowMapShader = NULL;
 
 //Dushan
 GLShader_liquid                          *gl_liquidShader = NULL;
+GLShader_rotoscope                       *gl_rotoscopeShader = NULL;
 
 bool GLCompileMacro_USE_VERTEX_SKINNING::HasConflictingMacros( int permutation, const std::vector< GLCompileMacro * > &macros ) const
 {
@@ -2609,4 +2610,25 @@ void GLShader_liquid::SetShaderProgramUniforms( shaderProgram_t * shaderProgram 
 	glUniform1i( shaderProgram->u_PortalMap, 1 );
 	glUniform1i( shaderProgram->u_DepthMap, 2 );
 	glUniform1i( shaderProgram->u_NormalMap, 3 );
+}
+
+//Dushan
+GLShader_rotoscope::GLShader_rotoscope() :
+	GLShader( "rotoscope", ATTR_POSITION | ATTR_TEXCOORD ),
+	u_ModelViewProjectionMatrix( this ),
+	u_BlurMagnitude( this )
+{
+	CompilePermutations();
+}
+
+void GLShader_rotoscope::SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram )
+{
+	shaderProgram->u_ColorMap = glGetUniformLocation(shaderProgram->program, "u_ColorMap");
+	shaderProgram->u_BlurMagnitude = glGetUniformLocation(shaderProgram->program, "u_BlurMagnitude");
+}
+
+void GLShader_rotoscope::SetShaderProgramUniforms( shaderProgram_t * shaderProgram )
+{
+	glUniform1i( shaderProgram->u_ColorMap, 0 );
+	glUniform1i( shaderProgram->u_BlurMagnitude, 1 );
 }

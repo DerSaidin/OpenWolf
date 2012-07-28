@@ -978,23 +978,10 @@ void GLSL_InitGPUShaders(void)
 	// liquid post process effect
 	gl_liquidShader = new GLShader_liquid();
 
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
-
 	// rotoscope post process effect
-	GLSL_InitGPUShader(&tr.rotoscopeShader, "rotoscope", ATTR_POSITION | ATTR_TEXCOORD, qtrue, qtrue);
- 
-	tr.rotoscopeShader.u_ColorMap = glGetUniformLocationARB(tr.rotoscopeShader.program, "u_ColorMap");
-	tr.rotoscopeShader.u_BlurMagnitude = glGetUniformLocationARB(tr.rotoscopeShader.program, "u_BlurMagnitude");
-	tr.rotoscopeShader.u_ModelViewProjectionMatrix = glGetUniformLocationARB(tr.rotoscopeShader.program, "u_ModelViewProjectionMatrix");
- 
-	glUseProgramObjectARB(tr.rotoscopeShader.program);
-	glUniform1iARB(tr.rotoscopeShader.u_ColorMap, 0);
-	glUseProgramObjectARB(0);
- 
-	GLSL_ValidateProgram(tr.rotoscopeShader.program);
-	GLSL_ShowProgramUniforms(tr.rotoscopeShader.program);
-	GL_CheckErrors();
- 
+	gl_rotoscopeShader = new GLShader_rotoscope();
+
+#if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	// cubemap refraction for abitrary polygons
 	GLSL_InitGPUShader(&tr.refractionShader_C, "refraction_C", ATTR_POSITION | ATTR_NORMAL, qtrue, qtrue);
  
@@ -1203,6 +1190,12 @@ void GLSL_ShutdownGPUShaders(void)
 		gl_forwardLightingShader_directionalSun = NULL;
 	}
 
+	if(gl_rotoscopeShader)
+	{
+		delete gl_rotoscopeShader;
+		gl_rotoscopeShader = NULL;
+	}
+
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
 
 #ifdef VOLUMETRIC_LIGHTING
@@ -1223,12 +1216,6 @@ void GLSL_ShutdownGPUShaders(void)
 	{
 		glDeleteObjectARB(tr.dispersionShader_C.program);
 		Com_Memset(&tr.dispersionShader_C, 0, sizeof(shaderProgram_t));
-	}
-
-	if(tr.rotoscopeShader.program)
-	{
-		glDeleteObjectARB(tr.rotoscopeShader.program);
-		Com_Memset(&tr.rotoscopeShader, 0, sizeof(shaderProgram_t));
 	}
 
 #endif // #if !defined(GLSL_COMPILE_STARTUP_ONLY)

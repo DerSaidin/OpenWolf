@@ -2724,6 +2724,40 @@ public:
 	}
 };
 
+class u_BlurMagnitude :
+	GLUniform
+{
+public:
+	u_BlurMagnitude( GLShader *shader ) :
+		GLUniform( shader )
+	{
+	}
+
+	const char *GetName() const
+	{
+		return "u_BlurMagnitude";
+	}
+
+	void                            UpdateShaderProgramUniformLocation( shaderProgram_t *shaderProgram ) const
+	{
+		shaderProgram->u_NormalScale = glGetUniformLocation( shaderProgram->program, GetName() );
+	}
+
+	void SetUniform_BlurMargnitudeValue( float value )
+	{
+		shaderProgram_t *program = _shader->GetProgram();
+
+#if defined( LOG_GLSL_UNIFORMS )
+		if ( r_logFile->integer )
+		{
+			GLimp_LogComment(va("--- SetUniform_BlurMargnitudeValue( program = %s, value = %f ) ---\n", program->name, value));
+		}
+#endif
+
+		glUniform1f(program->u_BlurMagnitude, value);
+	}
+};
+
 class u_NormalScale :
 	GLUniform
 {
@@ -3402,6 +3436,17 @@ public:
 	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
 };
 
+class GLShader_rotoscope :
+	public GLShader,
+	public u_ModelViewProjectionMatrix,
+	public u_BlurMagnitude
+{
+public:
+	GLShader_rotoscope();
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
+
 extern GLShader_generic                         *gl_genericShader;
 extern GLShader_lightMapping                    *gl_lightMappingShader;
 extern GLShader_vertexLighting_DBS_entity       *gl_vertexLightingShader_DBS_entity;
@@ -3429,6 +3474,7 @@ extern GLShader_blurY                           *gl_blurYShader;
 extern GLShader_debugShadowMap                  *gl_debugShadowMapShader;
 //Dushan
 extern GLShader_liquid                          *gl_liquidShader;
+extern GLShader_rotoscope                       *gl_rotoscopeShader;
 
 
 #ifdef USE_GLSL_OPTIMIZER

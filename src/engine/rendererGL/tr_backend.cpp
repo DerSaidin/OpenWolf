@@ -6848,10 +6848,9 @@ void RB_RenderBloom()
 
 void RB_RenderRotoscope(void)
 {
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	matrix_t        ortho;
 
-	GLimp_LogComment("--- RB_CameraPostFX ---\n");
+	GLimp_LogComment("--- RB_RenderRotoscope ---\n");
 
 	if((backEnd.refdef.rdflags & RDF_NOWORLDMODEL) || !r_rotoscope->integer || backEnd.viewParms.isPortal)
 		return;
@@ -6869,10 +6868,16 @@ void RB_RenderRotoscope(void)
 	GL_Cull(CT_TWO_SIDED);
 
 	// enable shader, set arrays
-	GL_BindProgram(&tr.rotoscopeShader);
+	gl_rotoscopeShader->BindProgram();
 
-	GLSL_SetUniform_ModelViewProjectionMatrix(&tr.rotoscopeShader, glState.modelViewProjectionMatrix[glState.stackIndex]);
-	glUniform1fARB(tr.rotoscopeShader.u_BlurMagnitude, r_bloomBlur->value);
+	gl_rotoscopeShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
+	gl_rotoscopeShader->SetUniform_BlurMargnitudeValue(r_bloomBlur->value);
+
+
+
+
+
+	//glUniform1f(tr.rotoscopeShader.u_BlurMagnitude, r_bloomBlur->value);
 
 	GL_SelectTexture(0);
 	GL_Bind(tr.currentRenderImage);
@@ -6885,7 +6890,6 @@ void RB_RenderRotoscope(void)
 	GL_PopMatrix();
 
 	GL_CheckErrors();
-#endif
 }
 
 void RB_CameraPostFX(void)

@@ -10262,7 +10262,7 @@ static void RB_RenderView(void)
 
 		GL_CheckErrors();
 
-		//RB_RenderDrawSurfacesIntoGeometricBuffer();
+		RB_RenderDrawSurfacesIntoGeometricBuffer();
 
 		if(r_speeds->integer == RSPEEDS_SHADING_TIMES)
 		{

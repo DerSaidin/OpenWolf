@@ -132,7 +132,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">..\..\..\bin\win64\release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Output\Release\RendererGL3\x86\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">..\..\Output\Release\RendererGL3\x86\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Output\Release\RendererD3D\x64\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Output\Release\RendererGL3\x64\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">..\..\Output\Release\RendererD3D\x64\</IntDir>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
@@ -564,8 +564,8 @@
     <ClCompile Include="..\..\libs\openexr\half.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gl_shader.h" />
     <ClInclude Include="..\qcommon\q_shared.h" />
+    <ClInclude Include="gl_shader.h" />
     <ClInclude Include="tr_image.h" />
     <ClInclude Include="tr_local.h" />
     <ClInclude Include="tr_model_skel.h" />

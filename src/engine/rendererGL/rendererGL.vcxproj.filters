@@ -33,9 +33,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gl_shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_animation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -312,11 +309,11 @@
     <ClCompile Include="..\sys\sdl_glimp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gl_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gl_shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tr_model_skel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -372,6 +369,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\qcommon\q_shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

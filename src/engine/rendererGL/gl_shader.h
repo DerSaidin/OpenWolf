@@ -3447,6 +3447,18 @@ public:
 	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
 };
 
+class GLShader_bloom :
+	public GLShader,
+	public u_ModelViewProjectionMatrix,
+	public u_ColorMap,
+	public u_BlurMagnitude
+{
+public:
+	GLShader_bloom();
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
+
 extern GLShader_generic                         *gl_genericShader;
 extern GLShader_lightMapping                    *gl_lightMappingShader;
 extern GLShader_vertexLighting_DBS_entity       *gl_vertexLightingShader_DBS_entity;
@@ -3475,6 +3487,7 @@ extern GLShader_debugShadowMap                  *gl_debugShadowMapShader;
 //Dushan
 extern GLShader_liquid                          *gl_liquidShader;
 extern GLShader_rotoscope                       *gl_rotoscopeShader;
+extern GLShader_bloom                           *gl_bloomShader;
 
 
 #ifdef USE_GLSL_OPTIMIZER

@@ -981,6 +981,9 @@ void GLSL_InitGPUShaders(void)
 	// rotoscope post process effect
 	gl_rotoscopeShader = new GLShader_rotoscope();
 
+	// bloom post process effects
+	gl_bloomShader = new GLShader_bloom();
+
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	// cubemap refraction for abitrary polygons
 	GLSL_InitGPUShader(&tr.refractionShader_C, "refraction_C", ATTR_POSITION | ATTR_NORMAL, qtrue, qtrue);
@@ -1219,6 +1222,12 @@ void GLSL_ShutdownGPUShaders(void)
 	}
 
 #endif // #if !defined(GLSL_COMPILE_STARTUP_ONLY)
+
+	if(gl_bloomShader)
+	{
+		delete gl_bloomShader;
+		gl_bloomShader = NULL;
+	}
 
 	if(gl_reflectionShader)
 	{

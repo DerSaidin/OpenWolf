@@ -6749,6 +6749,12 @@ void RB_RenderBloom()
 
 
 		// render bloom in multiple passes
+#if 1
+		gl_bloomShader->BindProgram();
+
+		gl_bloomShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
+		gl_bloomShader->SetUniform_BlurMargnitudeValue(r_bloomBlur->value);
+#endif
 		for(i = 0; i < 2; i++)
 		{
 			for(j = 0; j < r_bloomPasses->integer; j++)

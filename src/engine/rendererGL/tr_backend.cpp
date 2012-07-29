@@ -8401,7 +8401,7 @@ void RB_RenderEntityOcclusionQueries()
 //
 // ================================================================================================
 
-#if 0
+#if 1
 void RB_RenderBspOcclusionQueries()
 {
 	GLimp_LogComment("--- RB_RenderBspOcclusionQueries ---\n");
@@ -8412,31 +8412,37 @@ void RB_RenderBspOcclusionQueries()
 		bspNode_t      *node;
 		link_t		   *l, *next, *sentinel;
 
-		GL_BindProgram(&tr.genericShader);
+		gl_genericShader->BindProgram();
 		GL_Cull(CT_TWO_SIDED);
 
 		GL_LoadProjectionMatrix(backEnd.viewParms.projectionMatrix);
 
 		// set uniforms
-		GLSL_SetUniform_TCGen_Environment(&tr.genericShader,  qfalse);
-		GLSL_SetUniform_ColorGen(&tr.genericShader, CGEN_VERTEX);
-		GLSL_SetUniform_AlphaGen(&tr.genericShader, AGEN_VERTEX);
+		gl_genericShader->SetUniform_ColorModulate(CGEN_CONST, AGEN_CONST);
+		gl_genericShader->SetUniform_Color(colorBlue);
+
+		GL_LoadProjectionMatrix(backEnd.viewParms.projectionMatrix);
+
+		// set uniforms
+		gl_genericShader->SetTCGenEnvironment(qfalse);
+		gl_genericShader->SetUniform_ColorModulate(CGEN_CONST, AGEN_CONST);
+		gl_genericShader->SetUniform_Color(colorBlue);
 		if(glConfig2.vboVertexSkinningAvailable)
 		{
-			GLSL_SetUniform_VertexSkinning(&tr.genericShader, qfalse);
+			gl_genericShader->SetVertexSkinning(qfalse);
 		}
-		GLSL_SetUniform_DeformGen(&tr.genericShader, DGEN_NONE);
-		GLSL_SetUniform_AlphaTest(&tr.genericShader, 0);
+		gl_genericShader->SetUniform_DeformParms(tess.surfaceShader->deforms, tess.surfaceShader->numDeforms);
+		gl_genericShader->SetUniform_AlphaTest(0);
 
 		// set up the transformation matrix
 		backEnd.orientation = backEnd.viewParms.world;
 		GL_LoadModelViewMatrix(backEnd.orientation.modelViewMatrix);
-		GLSL_SetUniform_ModelViewProjectionMatrix(&tr.genericShader, glState.modelViewProjectionMatrix[glState.stackIndex]);
+		gl_genericShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
 
 		// bind u_ColorMap
 		GL_SelectTexture(0);
 		GL_Bind(tr.whiteImage);
-		GLSL_SetUniform_ColorTextureMatrix(&tr.genericShader, matrixIdentity);
+		gl_genericShader->SetUniform_ColorTextureMatrix(matrixIdentity);
 
 		// don't write to the color buffer or depth buffer
 		GL_State(GLS_COLORMASK_BITS);
@@ -8489,7 +8495,7 @@ void RB_CollectBspOcclusionQueries()
 
 	if(glConfig2.occlusionQueryBits && glConfig.driverType != GLDRV_MESA && r_dynamicBspOcclusionCulling->integer)
 	{
-		//int             j;
+		int             j;
 		bspNode_t      *node;
 		link_t		   *l, *next, *sentinel;
 
@@ -8531,7 +8537,7 @@ void RB_CollectBspOcclusionQueries()
 
 					if(available)
 					{
-						node->issueOcclusionQuery = qfalse;
+						node->issueOcclusionQuery[j] = qfalse;
 						avCount++;
 
 						//if(//avCount % oc)
@@ -10272,7 +10278,7 @@ static void RB_RenderView(void)
 
 		GL_CheckErrors();
 
-		RB_RenderDrawSurfacesIntoGeometricBuffer();
+		//RB_RenderDrawSurfacesIntoGeometricBuffer();
 
 		if(r_speeds->integer == RSPEEDS_SHADING_TIMES)
 		{
@@ -10402,7 +10408,7 @@ static void RB_RenderView(void)
 		GL_CheckErrors();
 
 		// render bloom post process effect
-		//RB_RenderBloom();
+		RB_RenderBloom();
 
 		// copy offscreen rendered scene to the current OpenGL context
 		RB_RenderDeferredShadingResultToFrameBuffer();

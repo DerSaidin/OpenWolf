@@ -61,6 +61,7 @@ GLShader_debugShadowMap                  *gl_debugShadowMapShader = NULL;
 GLShader_liquid                          *gl_liquidShader = NULL;
 GLShader_rotoscope                       *gl_rotoscopeShader = NULL;
 GLShader_bloom                           *gl_bloomShader = NULL;
+GLShader_refraction                      *gl_refractionShader = NULL;
 
 bool GLCompileMacro_USE_VERTEX_SKINNING::HasConflictingMacros( int permutation, const std::vector< GLCompileMacro * > &macros ) const
 {
@@ -2592,7 +2593,8 @@ GLShader_liquid::GLShader_liquid() :
 	u_FresnelPower ( this ),
 	u_FresnelScale ( this ),
 	u_FresnelBias ( this ),
-	u_NormalScale ( this )
+	u_NormalScale ( this ),
+	GLCompileMacro_USE_PARALLAX_MAPPING ( this )
 {
 	CompilePermutations();
 }
@@ -2656,4 +2658,34 @@ void GLShader_bloom::SetShaderProgramUniforms( shaderProgram_t * shaderProgram )
 	glUniform1i( shaderProgram->u_ColorMap, 0 );
 	glUniform1i( shaderProgram->u_ContrastMap, 1 );
 	glUniform1i( shaderProgram->u_BlurMagnitude, 2 );
+}
+
+GLShader_refraction::GLShader_refraction() :
+	GLShader ("refraction", "refraction_C", ATTR_POSITION | ATTR_NORMAL),
+	u_ColorMap( this ),
+	u_ViewOrigin( this ),
+	u_RefractionIndex ( this ),
+	u_FresnelPower ( this ),
+	u_FresnelScale ( this ),
+	u_FresnelBias ( this ),
+	u_ModelMatrix( this ),
+	u_ModelViewProjectionMatrix ( this ),
+	u_BoneMatrix( this ),
+	GLCompileMacro_USE_VERTEX_SKINNING( this )
+{
+		CompilePermutations();
+}
+
+void GLShader_refraction::BuildShaderVertexLibNames( std::string& vertexInlines )
+{
+	vertexInlines += "vertexSkinning ";
+}
+
+void GLShader_refraction::SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram )
+{
+}
+
+void GLShader_refraction::SetShaderProgramUniforms( shaderProgram_t * shaderProgram )
+{
+	glUniform1i(shaderProgram->u_ColorMap, 0);
 }

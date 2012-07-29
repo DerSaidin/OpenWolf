@@ -984,32 +984,10 @@ void GLSL_InitGPUShaders(void)
 	// bloom post process effects
 	gl_bloomShader = new GLShader_bloom();
 
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	// cubemap refraction for abitrary polygons
-	GLSL_InitGPUShader(&tr.refractionShader_C, "refraction_C", ATTR_POSITION | ATTR_NORMAL, qtrue, qtrue);
- 
-	tr.refractionShader_C.u_ColorMap = glGetUniformLocationARB(tr.refractionShader_C.program, "u_ColorMap");
-	tr.refractionShader_C.u_ViewOrigin = glGetUniformLocationARB(tr.refractionShader_C.program, "u_ViewOrigin");
-	tr.refractionShader_C.u_RefractionIndex = glGetUniformLocationARB(tr.refractionShader_C.program, "u_RefractionIndex");
-	tr.refractionShader_C.u_FresnelPower = glGetUniformLocationARB(tr.refractionShader_C.program, "u_FresnelPower");
-	tr.refractionShader_C.u_FresnelScale = glGetUniformLocationARB(tr.refractionShader_C.program, "u_FresnelScale");
-	tr.refractionShader_C.u_FresnelBias = glGetUniformLocationARB(tr.refractionShader_C.program, "u_FresnelBias");
-	tr.refractionShader_C.u_ModelMatrix = glGetUniformLocationARB(tr.refractionShader_C.program, "u_ModelMatrix");
-	tr.refractionShader_C.u_ModelViewProjectionMatrix =
-	glGetUniformLocationARB(tr.refractionShader_C.program, "u_ModelViewProjectionMatrix");
-	if(glConfig2.vboVertexSkinningAvailable) {
-		tr.refractionShader_C.u_VertexSkinning = glGetUniformLocationARB(tr.refractionShader_C.program, "u_VertexSkinning");
-		tr.refractionShader_C.u_BoneMatrix = glGetUniformLocationARB(tr.refractionShader_C.program, "u_BoneMatrix");
-	}
- 
-	glUseProgramObjectARB(tr.refractionShader_C.program);
-	glUniform1iARB(tr.refractionShader_C.u_ColorMap, 0);
-	glUseProgramObjectARB(0);
- 
-	GLSL_ValidateProgram(tr.refractionShader_C.program);
-	GLSL_ShowProgramUniforms(tr.refractionShader_C.program);
-	GL_CheckErrors();
- 
+	gl_refractionShader = new GLShader_refraction();
+
+#if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	// cubemap dispersion for abitrary polygons
 	GLSL_InitGPUShader(&tr.dispersionShader_C, "dispersion_C", ATTR_POSITION | ATTR_NORMAL, qtrue, qtrue);
  
@@ -1199,6 +1177,12 @@ void GLSL_ShutdownGPUShaders(void)
 		gl_rotoscopeShader = NULL;
 	}
 
+	if(gl_refractionShader)
+	{
+		delete gl_refractionShader;
+		gl_refractionShader = NULL;
+	}
+
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
 
 #ifdef VOLUMETRIC_LIGHTING
@@ -1209,12 +1193,6 @@ void GLSL_ShutdownGPUShaders(void)
 	}
 #endif
 
-	if(tr.refractionShader_C.program)
-	{
-		glDeleteObjectARB(tr.refractionShader_C.program);
-		Com_Memset(&tr.refractionShader_C, 0, sizeof(shaderProgram_t));
-	}
- 
 	if(tr.dispersionShader_C.program)
 	{
 		glDeleteObjectARB(tr.dispersionShader_C.program);
@@ -3421,35 +3399,36 @@ static void Render_reflection_CB(int stage)
 
 static void Render_refraction_C(int stage)
 {
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
-	vec3_t viewOrigin;
-	shaderStage_t *pStage = tess.surfaceStages[stage];
+	vec3_t			viewOrigin;
+	shaderStage_t	*pStage = tess.surfaceStages[stage];
  
 	GLimp_LogComment("--- Render_refraction_C ---\n");
  
 	GL_State(pStage->stateBits);
  
 	// enable shader, set arrays
-	GL_BindProgram(&tr.refractionShader_C);
-	GL_VertexAttribsState(tr.refractionShader_C.attribs);
+	gl_refractionShader->BindProgram();
+	GL_VertexAttribsState(ATTR_POSITION | ATTR_NORMAL);
  
 	// set uniforms
 	VectorCopy(backEnd.viewParms.orientation.origin, viewOrigin); // in world space
-	GLSL_SetUniform_ViewOrigin(&tr.refractionShader_C, viewOrigin);
-	GLSL_SetUniform_RefractionIndex(&tr.refractionShader_C, RB_EvalExpression(&pStage->refractionIndexExp, 1.0));
-	glUniform1fARB(tr.refractionShader_C.u_FresnelPower, RB_EvalExpression(&pStage->fresnelPowerExp, 2.0));
-	glUniform1fARB(tr.refractionShader_C.u_FresnelScale, RB_EvalExpression(&pStage->fresnelScaleExp, 2.0));
-	glUniform1fARB(tr.refractionShader_C.u_FresnelBias, RB_EvalExpression(&pStage->fresnelBiasExp, 1.0));
+
+	gl_refractionShader->SetUniform_ViewOrigin(viewOrigin);
+	gl_refractionShader->SetUniform_RefractionIndex(RB_EvalExpression(&pStage->refractionIndexExp, 1.0));
+	gl_refractionShader->SetUniform_FresnelPowerValue(RB_EvalExpression(&pStage->fresnelPowerExp, 2.0));
+	gl_refractionShader->SetUniform_FresnelScaleValue(RB_EvalExpression(&pStage->fresnelScaleExp, 2.0));
+	gl_refractionShader->SetUniform_FresnelBiasValue(RB_EvalExpression(&pStage->fresnelBiasExp, 1.0));
  
-	GLSL_SetUniform_ModelMatrix(&tr.refractionShader_C, backEnd.orientation.transformMatrix);
-	GLSL_SetUniform_ModelViewProjectionMatrix(&tr.refractionShader_C, glState.modelViewProjectionMatrix[glState.stackIndex]);
+	gl_refractionShader->SetUniform_ModelMatrix(backEnd.orientation.transformMatrix);
+	gl_refractionShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
  
 	if(glConfig2.vboVertexSkinningAvailable)
 	{
-		GLSL_SetUniform_VertexSkinning(&tr.refractionShader_C, tess.vboVertexSkinning);
+		gl_refractionShader->SetVertexSkinning(tess.vboVertexSkinning);
  
-		if(tess.vboVertexSkinning)
-			glUniformMatrix4fvARB(tr.refractionShader_C.u_BoneMatrix, MAX_BONES, GL_FALSE, &tess.boneMatrices[0][0]);
+		if(tess.vboVertexSkinning) {
+			gl_refractionShader->SetUniform_BoneMatrix(MAX_BONES, tess.boneMatrices);
+		}
 	}
  
 	// bind u_ColorMap
@@ -3459,7 +3438,6 @@ static void Render_refraction_C(int stage)
 	Tess_DrawElements();
  
 	GL_CheckErrors();
-#endif
 }
 
 static void Render_dispersion_C(int stage)

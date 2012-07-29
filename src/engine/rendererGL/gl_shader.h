@@ -3428,7 +3428,8 @@ class GLShader_liquid :
 	public u_FresnelPower,
 	public u_FresnelScale,
 	public u_FresnelBias,
-	public u_NormalScale
+	public u_NormalScale,
+	public GLCompileMacro_USE_PARALLAX_MAPPING
 {
 public:
 	GLShader_liquid();
@@ -3455,6 +3456,26 @@ class GLShader_bloom :
 {
 public:
 	GLShader_bloom();
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
+
+class GLShader_refraction :
+	public GLShader,
+	public u_ColorMap,
+	public u_ViewOrigin,
+	public u_RefractionIndex ,
+	public u_FresnelPower ,
+	public u_FresnelScale ,
+	public u_FresnelBias ,
+	public u_ModelMatrix,
+	public u_ModelViewProjectionMatrix ,
+	public u_BoneMatrix,
+	public GLCompileMacro_USE_VERTEX_SKINNING
+{
+public:
+	GLShader_refraction();
+	void BuildShaderVertexLibNames( std::string& vertexInlines );
 	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
 	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
 };
@@ -3488,7 +3509,7 @@ extern GLShader_debugShadowMap                  *gl_debugShadowMapShader;
 extern GLShader_liquid                          *gl_liquidShader;
 extern GLShader_rotoscope                       *gl_rotoscopeShader;
 extern GLShader_bloom                           *gl_bloomShader;
-
+extern GLShader_refraction                      *gl_refractionShader;
 
 #ifdef USE_GLSL_OPTIMIZER
 extern struct glslopt_ctx *s_glslOptimizer;

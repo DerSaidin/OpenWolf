@@ -424,7 +424,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\..\src\libs\mysql\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\libs\mysql\include;..\..\..\..\libs\libnewton\include;..\..\..\..\libs\libnewton\include\dContainers;..\..\..\..\libs\libnewton\include\dMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -432,7 +432,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>winmm.lib;libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;libmysql.lib;newton.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\game.def</ModuleDefinitionFile>
@@ -445,7 +445,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>..\..\..\..\libs\mysql\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\..\libs\mysql\lib\win32;..\..\..\..\libs\libnewton\libs\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
@@ -535,7 +535,7 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\..\src\libs\mysql\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\..\libs\mysql\include;..\..\..\..\libs\libnewton\include;..\..\..\..\libs\libnewton\include\dContainers;..\..\..\..\libs\libnewton\include\dMath;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -543,7 +543,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>winmm.lib;libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;libmysql.lib;newton.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\game.def</ModuleDefinitionFile>
@@ -556,7 +556,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>..\..\..\..\libs\mysql\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\..\libs\mysql\lib\win64;..\..\..\..\libs\libnewton\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
@@ -625,6 +625,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dBaseHierarchy.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dContainersStdAfx.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dCRC.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dRefCounter.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dTree.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dMathDefines.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dMatrix.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dQuaternion.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dStdAfxMath.cpp" />
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dVector.cpp" />
     <ClCompile Include="..\..\omnibot\common\BotLoadLibrary.cpp" />
     <ClCompile Include="..\..\omnibot\et\g_etbot_interface.cpp" />
     <ClCompile Include="bg_animation.c" />
@@ -683,6 +693,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\engine\server\g_api.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dBaseHierarchy.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dContainersStdAfx.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dCRC.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dList.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dRefCounter.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dTree.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dMathDefines.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dMatrix.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dQuaternion.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dStdAfxMath.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dVector.h" />
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\Newton.h" />
     <ClInclude Include="..\..\omnibot\et\g_etbot_interface.h" />
     <ClInclude Include="bg_local.h" />
     <ClInclude Include="bg_public.h" />

@@ -16,6 +16,30 @@
     <Filter Include="omnibot">
       <UniqueIdentifier>{f3b31b02-6cab-4bdc-b5ff-65e8a1130c4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{471594cf-7206-42ca-9d6c-aac64ca376a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton">
+      <UniqueIdentifier>{0a0f2730-e597-49bc-bb4e-9392051babdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton\dContainers">
+      <UniqueIdentifier>{54ed53f7-1f5e-463b-a0ce-345b29b2b074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton\dContainers\Header Files">
+      <UniqueIdentifier>{71576ad1-2edd-437e-af40-8319b41fd44f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton\dContainers\Source Files">
+      <UniqueIdentifier>{f7de9ca1-6936-484a-8d73-f62e1a965948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton\dMath">
+      <UniqueIdentifier>{3182e1a9-ce22-4376-a26d-92769d10e8ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton\dMath\Header Files">
+      <UniqueIdentifier>{4b446898-7d2c-45aa-924d-c9f29d25c029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\Newton\dMath\Source Files">
+      <UniqueIdentifier>{623a3501-2e87-45bc-bd77-0c2578ae472a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bg_animation.c">
@@ -174,6 +198,36 @@
     <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dBaseHierarchy.cpp">
+      <Filter>libs\Newton\dContainers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dContainersStdAfx.cpp">
+      <Filter>libs\Newton\dContainers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dCRC.cpp">
+      <Filter>libs\Newton\dContainers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dRefCounter.cpp">
+      <Filter>libs\Newton\dContainers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dContainers\dTree.cpp">
+      <Filter>libs\Newton\dContainers\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dMathDefines.cpp">
+      <Filter>libs\Newton\dMath\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dMatrix.cpp">
+      <Filter>libs\Newton\dMath\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dQuaternion.cpp">
+      <Filter>libs\Newton\dMath\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dStdAfxMath.cpp">
+      <Filter>libs\Newton\dMath\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\libs\libnewton\include\dMath\dVector.cpp">
+      <Filter>libs\Newton\dMath\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bg_local.h">
@@ -214,6 +268,42 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\engine\server\g_api.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\Newton.h">
+      <Filter>libs\Newton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dBaseHierarchy.h">
+      <Filter>libs\Newton\dContainers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dContainersStdAfx.h">
+      <Filter>libs\Newton\dContainers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dCRC.h">
+      <Filter>libs\Newton\dContainers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dList.h">
+      <Filter>libs\Newton\dContainers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dRefCounter.h">
+      <Filter>libs\Newton\dContainers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dContainers\dTree.h">
+      <Filter>libs\Newton\dContainers\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dMathDefines.h">
+      <Filter>libs\Newton\dMath\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dMatrix.h">
+      <Filter>libs\Newton\dMath\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dQuaternion.h">
+      <Filter>libs\Newton\dMath\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dStdAfxMath.h">
+      <Filter>libs\Newton\dMath\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\libs\libnewton\include\dMath\dVector.h">
+      <Filter>libs\Newton\dMath\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

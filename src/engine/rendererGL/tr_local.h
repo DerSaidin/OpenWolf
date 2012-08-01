@@ -364,7 +364,7 @@ typedef struct trRefLight_s
 	float           depthFar;
 	qboolean        noDepthBoundsTest;
 
-	qboolean		clipsNearPlane;
+	bool			clipsNearPlane;
 
 	qboolean        noOcclusionQueries;
 	uint32_t        occlusionQueryObject;
@@ -394,7 +394,7 @@ typedef struct trRefLight_s
 	uint16_t        numInteractions;	// total interactions
 	uint16_t        numShadowOnlyInteractions;
 	uint16_t        numLightOnlyInteractions;
-	qboolean        noSort;		// don't sort interactions by material
+	bool	        noSort;		// don't sort interactions by material
 
 	link_t			leafs;
 
@@ -5220,6 +5220,8 @@ void            RE_RegisterFont(const char *fontName, int pointSize, fontInfo_t 
 void			RE_RenderToTexture(int textureid, int x, int y, int w, int h);
 void			RE_Finish(void);
 
+void			LoadRGBEToFloats(const char *name, float **pic, int *width, int *height, qboolean doGamma, qboolean toneMap, qboolean compensate);
+void			LoadRGBEToHalfs(const char *name, unsigned short ** halfImage, int *width, int *height);
 
 #if defined(__cplusplus)
 }

@@ -207,9 +207,6 @@
     <ClInclude Include="geometry\Winding2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\qcommon\q_math.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="math\Angles.cpp" />
     <ClCompile Include="Base64.cpp" />
     <ClCompile Include="BitMsg.cpp" />

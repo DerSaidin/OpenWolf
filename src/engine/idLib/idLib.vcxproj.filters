@@ -380,8 +380,5 @@
     <ClCompile Include="geometry\Winding2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\qcommon\q_math.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

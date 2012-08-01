@@ -347,7 +347,7 @@
     <Link>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
-      <AdditionalDependencies>opengl32.lib;winmm.lib;libpng.lib;zlibwapi.lib;freetype.lib;mesaglsl2-win32.lib;libwebp_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;libpng.lib;zlibwapi.lib;freetype.lib;libwebp_a.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\libs\libpng\libs\win32;..\..\libs\zlibwapi\lib\x32;..\..\libs\freetype\lib;..\..\libs\glsl-optimizer\lib\x86\release;..\..\libs\libwebp\Lib\x86\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
@@ -520,46 +520,46 @@
     <ClCompile Include="..\sys\sdl_gamma.cpp" />
     <ClCompile Include="..\sys\sdl_glimp.cpp" />
     <ClCompile Include="gl_shader.cpp" />
-    <ClCompile Include="tr_animation.c" />
-    <ClCompile Include="tr_animation_mdm.c" />
+    <ClCompile Include="tr_animation.cpp" />
+    <ClCompile Include="tr_animation_mdm.cpp" />
     <ClCompile Include="tr_backend.cpp" />
-    <ClCompile Include="tr_bsp.c" />
-    <ClCompile Include="tr_cmds.c" />
-    <ClCompile Include="tr_curve.c" />
-    <ClCompile Include="tr_decals.c" />
-    <ClCompile Include="tr_fbo.c" />
-    <ClCompile Include="tr_flares.c" />
-    <ClCompile Include="tr_fog.c" />
-    <ClCompile Include="tr_font.c" />
-    <ClCompile Include="tr_image.c" />
-    <ClCompile Include="tr_image_dds.c" />
+    <ClCompile Include="tr_bsp.cpp" />
+    <ClCompile Include="tr_cmds.cpp" />
+    <ClCompile Include="tr_curve.cpp" />
+    <ClCompile Include="tr_decals.cpp" />
+    <ClCompile Include="tr_fbo.cpp" />
+    <ClCompile Include="tr_flares.cpp" />
+    <ClCompile Include="tr_fog.cpp" />
+    <ClCompile Include="tr_font.cpp" />
+    <ClCompile Include="tr_image.cpp" />
+    <ClCompile Include="tr_image_dds.cpp" />
     <ClCompile Include="tr_image_exr.cpp" />
-    <ClCompile Include="tr_image_jpg.c" />
-    <ClCompile Include="tr_image_png.c" />
-    <ClCompile Include="tr_image_tga.c" />
-    <ClCompile Include="tr_image_webp.c" />
+    <ClCompile Include="tr_image_jpg.cpp" />
+    <ClCompile Include="tr_image_png.cpp" />
+    <ClCompile Include="tr_image_tga.cpp" />
+    <ClCompile Include="tr_image_webp.cpp" />
     <ClCompile Include="tr_init.cpp" />
-    <ClCompile Include="tr_light.c" />
-    <ClCompile Include="tr_main.c" />
-    <ClCompile Include="tr_marks.c" />
-    <ClCompile Include="tr_mesh.c" />
-    <ClCompile Include="tr_model.c" />
-    <ClCompile Include="tr_model_md3.c" />
-    <ClCompile Include="tr_model_md5.c" />
-    <ClCompile Include="tr_model_mdc.c" />
-    <ClCompile Include="tr_model_mdm.c" />
-    <ClCompile Include="tr_model_psk.c" />
-    <ClCompile Include="tr_model_skel.c" />
-    <ClCompile Include="tr_noise.c" />
-    <ClCompile Include="tr_scene.c" />
+    <ClCompile Include="tr_light.cpp" />
+    <ClCompile Include="tr_main.cpp" />
+    <ClCompile Include="tr_marks.cpp" />
+    <ClCompile Include="tr_mesh.cpp" />
+    <ClCompile Include="tr_model.cpp" />
+    <ClCompile Include="tr_model_md3.cpp" />
+    <ClCompile Include="tr_model_md5.cpp" />
+    <ClCompile Include="tr_model_mdc.cpp" />
+    <ClCompile Include="tr_model_mdm.cpp" />
+    <ClCompile Include="tr_model_psk.cpp" />
+    <ClCompile Include="tr_model_skel.cpp" />
+    <ClCompile Include="tr_noise.cpp" />
+    <ClCompile Include="tr_scene.cpp" />
     <ClCompile Include="tr_shade.cpp" />
-    <ClCompile Include="tr_shade_calc.c" />
-    <ClCompile Include="tr_shader.c" />
-    <ClCompile Include="tr_shadows.c" />
-    <ClCompile Include="tr_skin.c" />
+    <ClCompile Include="tr_shade_calc.cpp" />
+    <ClCompile Include="tr_shader.cpp" />
+    <ClCompile Include="tr_shadows.cpp" />
+    <ClCompile Include="tr_skin.cpp" />
     <ClCompile Include="tr_sky.cpp" />
-    <ClCompile Include="tr_surface.c" />
-    <ClCompile Include="tr_vbo.c" />
+    <ClCompile Include="tr_surface.cpp" />
+    <ClCompile Include="tr_vbo.cpp" />
     <ClCompile Include="tr_world.cpp" />
     <ClCompile Include="..\..\libs\openexr\half.cpp" />
   </ItemGroup>

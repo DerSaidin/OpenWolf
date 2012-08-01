@@ -33,118 +33,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tr_animation.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_animation_mdm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_backend.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_bsp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_cmds.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_curve.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_decals.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_fbo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_flares.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_fog.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_font.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_image.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_image_dds.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tr_image_exr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_image_jpg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_image_png.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_image_tga.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_light.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_marks.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_mesh.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model_md3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model_md5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model_mdc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model_mdm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model_psk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_model_skel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_noise.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_scene.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_shade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_shade_calc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_shader.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_shadows.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_skin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_sky.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tr_vbo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tr_world.cpp">
@@ -294,9 +192,6 @@
     <ClCompile Include="..\..\libs\jpeg\jutils.c">
       <Filter>Libs\jpeg\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_image_webp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\qcommon\q_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -310,6 +205,111 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gl_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_animation_mdm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_bsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_cmds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_curve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_decals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_fbo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_fog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_flares.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_image_dds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_image_jpg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_image_png.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_image_tga.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_image_webp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_marks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_md3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_mdc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_mdm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_psk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_skel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_noise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_shade_calc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_shadows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_skin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_surface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_vbo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

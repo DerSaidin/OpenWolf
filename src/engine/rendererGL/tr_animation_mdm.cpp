@@ -504,7 +504,7 @@ void R_MDM_AddAnimSurfaces(trRefEntity_t * ent)
 	mdmSurfaceIntern_t   *mdmSurface;
 	shader_t       *shader = 0;
 	int             i, fogNum;
-	qboolean        personalModel;
+	bool	        personalModel;
 
 	// don't add third_person objects if not in a portal
 	personalModel = (ent->e.renderfx & RF_THIRD_PERSON) && !tr.viewParms.isPortal;
@@ -513,7 +513,7 @@ void R_MDM_AddAnimSurfaces(trRefEntity_t * ent)
 
 	// cull the entire model if merged bounding box of both frames
 	// is outside the view frustum.
-	ent->cull = R_CullModel(ent);
+	ent->cull = (cullResult_t)R_CullModel(ent);
 	if(ent->cull == CULL_OUT)
 	{
 		return;
@@ -546,7 +546,7 @@ void R_MDM_AddAnimSurfaces(trRefEntity_t * ent)
 			// don't add third_person objects if not viewing through a portal
 			if(!personalModel)
 			{
-				R_AddDrawSurf((void *)vboSurface, shader, -1, fogNum);
+				R_AddDrawSurf((surfaceType_t*)vboSurface, shader, -1, fogNum);
 			}
 		}
 	}
@@ -559,7 +559,7 @@ void R_MDM_AddAnimSurfaces(trRefEntity_t * ent)
 			// don't add third_person objects if not viewing through a portal
 			if(!personalModel)
 			{
-				R_AddDrawSurf((void *)mdmSurface, shader, -1, fogNum);
+				R_AddDrawSurf((surfaceType_t*)mdmSurface, shader, -1, fogNum);
 			}
 		}
 	}
@@ -578,7 +578,7 @@ void R_AddMDMInteractions(trRefEntity_t * ent, trRefLight_t * light)
 	mdmSurfaceIntern_t *mdmSurface = 0;
 	shader_t       *shader = 0;
 	int             lod;
-	qboolean        personalModel;
+	bool	        personalModel;
 	byte            cubeSideBits;
 	interactionType_t iaType = IA_DEFAULT;
 
@@ -654,7 +654,7 @@ void R_AddMDMInteractions(trRefEntity_t * ent, trRefLight_t * light)
 			// don't add third_person objects if not viewing through a portal
 			if(!personalModel)
 			{
-				R_AddLightInteraction(light, (void *)vboSurface, shader, cubeSideBits, iaType);
+				R_AddLightInteraction(light, (surfaceType_t*)vboSurface, shader, cubeSideBits, iaType);
 				tr.pc.c_dlightSurfaces++;
 			}
 		}
@@ -674,7 +674,7 @@ void R_AddMDMInteractions(trRefEntity_t * ent, trRefLight_t * light)
 			// don't add third_person objects if not viewing through a portal
 			if(!personalModel)
 			{
-				R_AddLightInteraction(light, (void *)mdmSurface, shader, cubeSideBits, iaType);
+				R_AddLightInteraction(light, (surfaceType_t*)mdmSurface, shader, cubeSideBits, iaType);
 				tr.pc.c_dlightSurfaces++;
 			}
 		}

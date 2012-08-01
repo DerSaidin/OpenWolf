@@ -343,7 +343,7 @@ typedef struct
 	float           density;	// 0.0-1.0
 	qboolean        registered;	// has this fog been set up?
 	qboolean        drawsky;	// draw skybox
-	qboolean        clearscreen;	// clear the GL color buffer
+	bool	        clearscreen;	// clear the GL color buffer
 } glfog_t;
 
 //----(SA)  end

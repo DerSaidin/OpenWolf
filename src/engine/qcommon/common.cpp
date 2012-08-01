@@ -2227,7 +2227,7 @@ static void Com_DetectSSE(void)
 #if !idx64
 	cpuFeatures_t feat;
 	
-	feat = Sys_GetProcessorFeatures();
+	feat = (cpuFeatures_t)Sys_GetProcessorFeatures();
 
 	if(feat & CF_SSE)
 	{

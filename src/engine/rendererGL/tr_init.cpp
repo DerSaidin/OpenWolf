@@ -1068,7 +1068,7 @@ void GL_SetDefaultState(void)
 
 	GL_CheckErrors();
 
-	glVertexAttrib4fARB(ATTR_INDEX_COLOR, 1, 1, 1, 1);
+	glVertexAttrib4f(ATTR_INDEX_COLOR, 1, 1, 1, 1);
 
 	GL_CheckErrors();
 
@@ -1111,10 +1111,10 @@ void GL_SetDefaultState(void)
 	glState.vertexAttribPointersSet = 0;
 
 	glState.currentProgram = 0;
-	glUseProgramObjectARB(0);
+	glUseProgram(0);
 
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glState.currentVBO = NULL;
 	glState.currentIBO = NULL;
 
@@ -1122,7 +1122,7 @@ void GL_SetDefaultState(void)
 
 	// the vertex array is always enabled, but the color and texture
 	// arrays are enabled and disabled around the compiled vertex array call
-	glEnableVertexAttribArrayARB(ATTR_INDEX_POSITION);
+	glEnableVertexAttribArray(ATTR_INDEX_POSITION);
 
 	/*
 	   OpenGL 3.0 spec: E.1. PROFILES AND DEPRECATED FEATURES OF OPENGL 3.0 405
@@ -2068,7 +2068,7 @@ qboolean R_Init(void)
 #if !defined(USE_D3D10)
 	if(glConfig2.occlusionQueryBits && glConfig.driverType != GLDRV_MESA)
 	{
-		glGenQueriesARB(MAX_OCCLUSION_QUERIES, tr.occlusionQueryObjects);
+		glGenQueries(MAX_OCCLUSION_QUERIES, tr.occlusionQueryObjects);
 	}
 
 	GL_CheckErrors();
@@ -2129,7 +2129,7 @@ void RE_Shutdown(qboolean destroyWindow)
 #if !defined(USE_D3D10)
 		if(glConfig2.occlusionQueryBits && glConfig.driverType != GLDRV_MESA)
 		{
-			glDeleteQueriesARB(MAX_OCCLUSION_QUERIES, tr.occlusionQueryObjects);
+			glDeleteQueries(MAX_OCCLUSION_QUERIES, tr.occlusionQueryObjects);
 
 			if(tr.world)
 			{
@@ -2141,7 +2141,7 @@ void RE_Shutdown(qboolean destroyWindow)
 				{
 					node = &tr.world->nodes[j];
 
-					glDeleteQueriesARB(MAX_VIEWS, node->occlusionQueryObjects);
+					glDeleteQueries(MAX_VIEWS, node->occlusionQueryObjects);
 				}
 
 				/*
@@ -2149,7 +2149,7 @@ void RE_Shutdown(qboolean destroyWindow)
 				{
 					light = &tr.world->lights[j];
 
-					glDeleteQueriesARB(MAX_VIEWS, light->occlusionQueryObjects);
+					glDeleteQueries(MAX_VIEWS, light->occlusionQueryObjects);
 				}
 				*/
 			}

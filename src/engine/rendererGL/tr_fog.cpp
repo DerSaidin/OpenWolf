@@ -432,7 +432,7 @@ void R_SetFrameFog()
 			tr.glfogsettings[FOG_CURRENT].registered = qtrue;
 
 			// if either fog in the transition clears the screen, clear the background this frame to avoid hall of mirrors
-			tr.glfogsettings[FOG_CURRENT].clearscreen = (tr.glfogsettings[FOG_TARGET].clearscreen ||
+			tr.glfogsettings[FOG_CURRENT].clearscreen = (qboolean)(tr.glfogsettings[FOG_TARGET].clearscreen ||
 													  tr.glfogsettings[FOG_LAST].clearscreen);
 		}
 #endif

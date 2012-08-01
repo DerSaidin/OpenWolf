@@ -343,7 +343,7 @@ typedef struct
 	float           density;	// 0.0-1.0
 	qboolean        registered;	// has this fog been set up?
 	qboolean        drawsky;	// draw skybox
-	bool	        clearscreen;	// clear the GL color buffer
+	qboolean        clearscreen;	// clear the GL color buffer
 } glfog_t;
 
 //----(SA)  end
@@ -544,6 +544,7 @@ typedef struct
 	qboolean        framebufferMixedFormatsAvailable;
 
 	qboolean        generateMipmapAvailable;
+	qboolean        vertexBufferObjectAvailable;
 } glconfig2_t;
 // XreaL END
 

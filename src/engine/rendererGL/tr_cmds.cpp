@@ -565,7 +565,7 @@ void RE_BeginFrame(stereoFrame_t stereoFrame)
 
 #if defined(USE_D3D10)
 	// draw buffer stuff
-	cmd = R_GetCommandBuffer(sizeof(*cmd));
+	cmd = (drawBufferCommand_t*)R_GetCommandBuffer(sizeof(*cmd));
 	if(!cmd)
 	{
 		return;

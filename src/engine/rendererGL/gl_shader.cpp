@@ -515,6 +515,7 @@ std::string     GLShader::BuildGPUShaderText( const char *mainShaderName,
 				          va( "#ifndef r_DebugShadowMaps\n#define r_DebugShadowMaps %i\n#endif\n", r_debugShadowMaps->integer ) );
 			}
 
+			/*
 			if(r_softShadows->integer == 1)
 			{
 			        Q_strcat(bufferExtra, sizeof(bufferExtra), "#ifndef PCF_2X2\n#define PCF_2X2 1\n#endif\n");
@@ -535,7 +536,7 @@ std::string     GLShader::BuildGPUShaderText( const char *mainShaderName,
 			{
 			        Q_strcat(bufferExtra, sizeof(bufferExtra), "#ifndef PCF_6X6\n#define PCF_6X6 1\n#endif\n");
 			}
-
+			*/
 			if ( r_softShadows->integer == 6 )
 			{
 				Q_strcat( bufferExtra, sizeof( bufferExtra ), "#ifndef PCSS\n#define PCSS 1\n#endif\n" );

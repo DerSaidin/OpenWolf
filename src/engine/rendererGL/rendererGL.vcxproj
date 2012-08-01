@@ -569,7 +569,7 @@
     <ClInclude Include="tr_image.h" />
     <ClInclude Include="tr_local.h" />
     <ClInclude Include="tr_model_skel.h" />
-    <ClInclude Include="..\renderer\tr_types.h" />
+    <ClInclude Include="tr_types.h" />
     <ClInclude Include="..\..\libs\jpeg-6\jchuff.h" />
     <ClInclude Include="..\..\libs\jpeg\jconfig.h" />
     <ClInclude Include="..\..\libs\jpeg\jdct.h" />

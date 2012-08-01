@@ -365,13 +365,13 @@
     <ClInclude Include="tr_local.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\renderer\tr_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\qcommon\q_shared.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gl_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tr_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

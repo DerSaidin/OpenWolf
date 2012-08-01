@@ -36,8 +36,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #endif
 
 #if defined(USE_D3D10)
+extern "C++" {
 #include <d3d10.h>
 #include <d3dx10.h>
+}
 #include <SDL.h>
 #include <SDL_syswm.h>
 #include <SDL_thread.h>
@@ -86,7 +88,7 @@ extern "C" {
 typedef enum
 {
 	DS_DISABLED,				// traditional Doom 3 style rendering
-	DS_STANDARD,				// deferred rendering like in Stalker
+	DS_STANDARD					// deferred rendering like in Stalker
 } deferredShading_t;
 
 typedef enum
@@ -2959,7 +2961,7 @@ typedef struct bspNode_s
 	vec3_t			origin;		// center of the bounding box
 	struct bspNode_s *parent;
 
-	qboolean		visible[MAX_VIEWS];
+	bool			visible[MAX_VIEWS];
 	int				lastVisited[MAX_VIEWS];
 	int				lastQueried[MAX_VIEWS];
 	qboolean		issueOcclusionQuery[MAX_VIEWS];

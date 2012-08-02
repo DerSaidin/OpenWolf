@@ -178,7 +178,7 @@ void R_CreateFBOColorBuffer(FBO_t * fbo, int format, int index)
 
 	fbo->colorFormat = format;
 
-	absent = fbo->colorBuffers[index] = 0;
+	absent = fbo->colorBuffers[index] == 0;
 	if(absent)
 		glGenRenderbuffersEXT(1, &fbo->colorBuffers[index]);
 
@@ -214,7 +214,7 @@ void R_CreateFBODepthBuffer(FBO_t * fbo, int format)
 
 	fbo->depthFormat = format;
 
-	absent = fbo->depthBuffer = 0;
+	absent = fbo->depthBuffer == 0;
 	if(absent)
 		glGenRenderbuffersEXT(1, &fbo->depthBuffer);
 
@@ -251,7 +251,7 @@ void R_CreateFBOStencilBuffer(FBO_t * fbo, int format)
 
 	fbo->stencilFormat = format;
 
-	absent = fbo->stencilBuffer = 0;
+	absent = fbo->stencilBuffer == 0;
 	if(absent)
 		glGenRenderbuffersEXT(1, &fbo->stencilBuffer);
 
@@ -286,7 +286,7 @@ void R_CreateFBOPackedDepthStencilBuffer(FBO_t * fbo, int format)
 
 	fbo->packedDepthStencilFormat = format;
 
-	absent = fbo->packedDepthStencilBuffer = 0;
+	absent = fbo->packedDepthStencilBuffer == 0;
 	if(absent)
 		glGenRenderbuffersEXT(1, &fbo->packedDepthStencilBuffer);
 

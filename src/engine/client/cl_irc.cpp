@@ -2203,7 +2203,7 @@ CL_IRCSetup
 ==================
 */
 void CL_OW_IRCSetup(void) {
-	cl_IRC_connect_at_startup = Cvar_Get( "cl_IRC_connect_at_startup" , "1" , CVAR_ARCHIVE );
+	cl_IRC_connect_at_startup = Cvar_Get( "cl_IRC_connect_at_startup" , "0" , CVAR_ARCHIVE );
 	cl_IRC_server = Cvar_Get( "cl_IRC_server" , "irc.freenode.org" , CVAR_ARCHIVE );
 	cl_IRC_channel = Cvar_Get( "cl_IRC_channel" , "openwolf" , CVAR_ARCHIVE );
 	cl_IRC_port = Cvar_Get( "cl_IRC_port" , "6667" , CVAR_ARCHIVE );

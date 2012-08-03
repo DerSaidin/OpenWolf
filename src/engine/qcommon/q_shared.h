@@ -45,10 +45,10 @@ extern "C" {
 #define PRODUCT_NAME            "OpenWolf"
 #define PRODUCT_NAME_UPPPER     "OpenWolf" // Case, No spaces
 #define PRODUCT_NAME_LOWER      "OpenWolf" // No case, No spaces
-#define PRODUCT_VERSION         "0.3.0"
+#define PRODUCT_VERSION         "0.3.7"
 
 #define ENGINE_NAME             "OpenWolf Engine"
-#define ENGINE_VERSION          "0.2.5"
+#define ENGINE_VERSION          "0.4.0"
 
 
 #ifdef SVN_VERSION

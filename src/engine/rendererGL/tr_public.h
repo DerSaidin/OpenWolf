@@ -38,7 +38,7 @@ Maryland 20850 USA.
 
 #include "tr_types.h"
 
-#define REF_API_VERSION     10
+#define REF_API_VERSION     11
 
 // *INDENT-OFF*
 

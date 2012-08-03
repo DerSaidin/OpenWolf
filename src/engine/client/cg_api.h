@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../qcommon/q_shared.h"
 #include "../rendererGL/tr_types.h"
 
-#define CGAME_IMPORT_API_VERSION 3
+#define CGAME_IMPORT_API_VERSION 4
 #define CAM_PRIMARY 0
 
 

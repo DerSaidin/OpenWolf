@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "../qcommon/q_shared.h"
 #include "../rendererGL/tr_types.h"
 
-#define UI_API_VERSION  4
+#define UI_API_VERSION  5
 
 typedef enum {
 	UI_ERROR,

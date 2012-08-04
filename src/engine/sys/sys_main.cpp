@@ -754,6 +754,7 @@ void Sys_SigHandler( int signal ) {
 	if( signalcaught ) {
 		VM_Forced_Unload_Start();
 		Com_Printf("DOUBLE SIGNAL FAULT: Received signal %d: \"%s\", exiting...\n", signal, SignalToString(signal));
+		exit(1);
 	} else {
 		signalcaught = qtrue;
 #ifndef DEDICATED

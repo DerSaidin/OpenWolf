@@ -174,7 +174,7 @@ qboolean BotLibSetup(char *str)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-extern define_t *globaldefines;
+define_t *globaldefines;
 int Export_BotLibSetup(qboolean singleplayer)
 {
 	int             errnum;

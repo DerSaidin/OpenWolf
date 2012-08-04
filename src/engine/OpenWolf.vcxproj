@@ -714,7 +714,7 @@ echo hostname &gt; status-info/build-machine
       <PreprocessorDefinitions>WIN32;_AMD64_;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>
       </FunctionLevelLinking>

@@ -6876,7 +6876,7 @@ void RB_RenderRotoscope(void)
 	// enable shader, set arrays
 	gl_rotoscopeShader->BindProgram();
 	gl_rotoscopeShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
-	gl_rotoscopeShader->SetUniform_BlurMargnitudeValue(r_bloomBlur->value);
+	gl_rotoscopeShader->SetUniform_BlurMargnitudeValue(r_rotoscopeBlur->value);
 
 	GL_SelectTexture(0);
 	GL_Bind(tr.currentRenderImage);

@@ -2740,7 +2740,7 @@ public:
 
 	void                            UpdateShaderProgramUniformLocation( shaderProgram_t *shaderProgram ) const
 	{
-		shaderProgram->u_NormalScale = glGetUniformLocation( shaderProgram->program, GetName() );
+		shaderProgram->u_BlurMagnitude = glGetUniformLocation( shaderProgram->program, GetName() );
 	}
 
 	void SetUniform_BlurMargnitudeValue( float value )

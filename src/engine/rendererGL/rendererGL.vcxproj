@@ -171,7 +171,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\glew\include;..\..\libs\openexr;..\..\libs\jpeg;..\..\libs\libpng;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\libwebp\Include;..\..\libs\glsl-optimizer\src\glsl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_XREAL_RENDERER;USE_HTTP;USE_WEBP;USE_INTERNAL_JPEG;USE_GLSL_OPTIMIZER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;BUILD_FREETYPE;FT_FREETYPE_H;USE_XREAL_RENDERER;USE_HTTP;USE_WEBP;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -193,7 +193,7 @@
     </Lib>
     <Link>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalDependencies>opengl32.lib;winmm.lib;libpng.lib;zlibwapi.lib;freetype.lib;mesaglsl2-win32.lib;libwebp_a_debug.lib;mesaglsl2-win32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;winmm.lib;libpng.lib;zlibwapi.lib;freetype.lib;libwebp_a_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>rendererGL.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>..\..\libs\libpng\libs\win32;..\..\libs\zlibwapi\lib\x32;..\..\libs\freetype\lib;..\..\libs\glsl-optimizer\lib\x86\debug;..\..\libs\libwebp\Lib\x86\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmt</IgnoreSpecificDefaultLibraries>

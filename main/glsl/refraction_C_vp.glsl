@@ -34,9 +34,11 @@ varying vec3		var_Normal;
 
 void	main()
 {
-#if defined(USE_VERTEX_SKINNING)
 	vec4 vertex;
 	vec3 normal;
+	vec4 position;
+	
+#if defined(USE_VERTEX_SKINNING)
 
 	VertexSkinning_P_N(attr_Position, attr_Normal, position, normal);
 

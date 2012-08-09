@@ -187,7 +187,11 @@ Sys_ConsoleInput
 Handle new console input
 =================
 */
-#if !defined (_WIN32)
+#if defined (_WIN32) && defined (_DEBUG)
+char *Sys_ConsoleInput(void) {
+	return CON_Input( );
+}
+#elif defined (__linux__)
 char *Sys_ConsoleInput(void) {
 	return CON_Input( );
 }
@@ -273,7 +277,7 @@ Sys_Quit
 */
 void Sys_Quit( void ) {
 	Sys_Exit( 0 );
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	Sys_DestroyConsole();
 #endif
 }
@@ -314,13 +318,13 @@ int Sys_GetProcessorFeatures( void )
 Sys_Init
 =================
 */
-#if defined _WIN32
+#if defined _WIN32 && !defined (_DEBUG)
 extern void Sys_ClearViewlog_f( void );
 #endif
 
 void Sys_Init(void) {
 	Cmd_AddCommand( "in_restart", Sys_In_Restart_f );
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	Cmd_AddCommand( "clearviewlog", Sys_ClearViewlog_f );
 
 	Sys_PrintCpuInfo();
@@ -438,7 +442,7 @@ Sys_Print
 =================
 */
 void Sys_Print( const char *msg ) {
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	Conbuf_AppendText( msg );
 #else
 	CON_LogWrite( msg );
@@ -454,7 +458,7 @@ Sys_Error
 void Sys_Error( const char *error, ... ) {
 	va_list argptr;
 	char    string[4096];
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	MSG		msg;
 #endif
 
@@ -462,7 +466,7 @@ void Sys_Error( const char *error, ... ) {
 	Q_vsnprintf (string, sizeof(string), error, argptr);
 	va_end (argptr);
 
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	Conbuf_AppendText( string );
 	Conbuf_AppendText( "\n" );
 #else
@@ -471,7 +475,7 @@ void Sys_Error( const char *error, ... ) {
 	Sys_Print( "\n" );
 #endif
 
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	Sys_SetErrorText( string );
 	Sys_ShowConsole( 1, qtrue );
 

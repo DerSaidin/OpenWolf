@@ -181,8 +181,8 @@ void UI_DrawLoadPanel(qboolean forcerefresh, qboolean ownerdraw, qboolean uihack
 
 	if(!bg_loadscreeninited)
 	{
-		trap_R_RegisterFont("ariblk.ttf", 27, &bg_loadscreenfont1);
-		trap_R_RegisterFont("courbd.ttf", 30, &bg_loadscreenfont2);
+		trap_R_RegisterFont("ariblk", 27, &bg_loadscreenfont1);
+		trap_R_RegisterFont("courbd", 30, &bg_loadscreenfont2);
 
 		BG_PanelButtonsSetup(loadpanelButtons);
 

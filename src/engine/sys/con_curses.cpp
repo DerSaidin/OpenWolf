@@ -579,7 +579,7 @@ CON_Print
 void CON_Print(const char *msg)
 {
 	int col;
-	qboolean scroll = (lastline > scrollline && lastline <= scrollline + LOG_LINES);
+	bool scroll = (lastline > scrollline && lastline <= scrollline + LOG_LINES);
 
 	if (!curses_on) {
 		CON_Print_tty(msg);

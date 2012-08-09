@@ -2054,9 +2054,9 @@ static void CG_RegisterGraphics(void)
 	// medic icon for commandmap
 	cgs.media.medicIcon = trap_R_RegisterShaderNoMip("sprites/voiceMedic");
 
-	trap_R_RegisterFont("ariblk.ttf", 27, &cgs.media.limboFont1);
-	trap_R_RegisterFont("ariblk.ttf", 16, &cgs.media.limboFont1_lo);
-	trap_R_RegisterFont("courbd.ttf", 30, &cgs.media.limboFont2);
+	trap_R_RegisterFont("ariblk", 27, &cgs.media.limboFont1);
+	trap_R_RegisterFont("ariblk", 16, &cgs.media.limboFont1_lo);
+	trap_R_RegisterFont("courbd", 30, &cgs.media.limboFont2);
 
 	cgs.media.medal_back = trap_R_RegisterShaderNoMip("gfx/limbo/medal_back");
 

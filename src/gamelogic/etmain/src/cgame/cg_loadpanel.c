@@ -279,8 +279,8 @@ void CG_DrawConnectScreen(qboolean interactive, qboolean forcerefresh)
 	{
 		trap_Cvar_Set("ui_connecting", "0");
 
-		DC->registerFont("ariblk.ttf", 27, &bg_loadscreenfont1);
-		DC->registerFont("courbd.ttf", 30, &bg_loadscreenfont2);
+		DC->registerFont("ariblk", 27, &bg_loadscreenfont1);
+		DC->registerFont("courbd", 30, &bg_loadscreenfont2);
 
 		bg_axispin = DC->registerShaderNoMip("gfx/loading/pin_axis");
 		bg_alliedpin = DC->registerShaderNoMip("gfx/loading/pin_allied");

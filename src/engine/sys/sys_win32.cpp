@@ -905,7 +905,7 @@ void Sys_QueEvent( int time, sysEventType_t type, int value, int value2, int ptr
 WinMain
 ==================
 */
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 WinVars_t g_wv;
 static char sys_cmdline[MAX_STRING_CHARS];
 int totalMsec, countMsec;
@@ -961,7 +961,7 @@ int Win_Main( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 
 	// hide the early console since we've reached the point where we
 	// have a working graphics subsystems
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 	if ( !com_dedicated->integer && !com_viewlog->integer ) {
 		Sys_ShowConsole( 0, qfalse );
 	}
@@ -1021,7 +1021,7 @@ qboolean Sys_IsNumLockDown(void) {
 ======================
 */
 
-#if defined (_WIN32)
+#if defined (_WIN32) && !defined (_DEBUG)
 #include <DbgHelp.h>
 
 typedef struct {

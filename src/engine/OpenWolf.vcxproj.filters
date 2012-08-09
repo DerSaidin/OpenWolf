@@ -102,26 +102,20 @@
     <Filter Include="Source Files\Qcommon">
       <UniqueIdentifier>{b853087f-2cd4-42cf-884a-31f22cca826b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\download">
+      <UniqueIdentifier>{ce19da42-1e46-416d-9ffa-22a91dd418b0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Collision Model">
       <UniqueIdentifier>{8c0fa5cb-4e6d-42cf-a314-74214fed7508}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\CM">
-      <UniqueIdentifier>{e0e56986-124e-4a2b-ae1a-e2382c76e968}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\CM\Source Files">
-      <UniqueIdentifier>{a16f4dc6-af21-48ca-baba-b7b6f209dc39}</UniqueIdentifier>
+      <UniqueIdentifier>{7198ac1a-94d6-4867-8261-23b305d8453e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\CM\Header Files">
-      <UniqueIdentifier>{e2c117eb-eda9-4eb1-9e5e-a11392c6bcac}</UniqueIdentifier>
+      <UniqueIdentifier>{ad29f470-6e9e-4a8a-87ff-3064c7f5e053}</UniqueIdentifier>
     </Filter>
-    <Filter Include="download">
-      <UniqueIdentifier>{ce19da42-1e46-416d-9ffa-22a91dd418b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="download\Header Files">
-      <UniqueIdentifier>{e316cd82-f419-41b7-8a15-f773668e0435}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="download\Source Files">
-      <UniqueIdentifier>{873e4742-396f-4a6f-8bbe-f7698655c000}</UniqueIdentifier>
+    <Filter Include="Source Files\CM\Source Files">
+      <UniqueIdentifier>{194ab20f-58a2-4712-a202-c35f9fcbef05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -317,6 +311,231 @@
     <ClCompile Include="qcommon\cm_physics.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
+    <ClCompile Include="client\snd_wavelet.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_mix.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_mem.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_load.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_dma.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_codec_wav.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_codec_ogg.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_codec.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\snd_adpcm.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\libmumblelink.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_ui.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_text.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_scrn.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_parse.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_main.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_keys.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_irc.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_input.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_download.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_console.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_cin.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_cgame.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_avi.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cin_ogm.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cm_load.cpp">
+      <Filter>Source Files\Collision Model</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cm_patch.cpp">
+      <Filter>Source Files\Collision Model</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cm_polylib.cpp">
+      <Filter>Source Files\Collision Model</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cm_test.cpp">
+      <Filter>Source Files\Collision Model</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cm_trisoup.cpp">
+      <Filter>Source Files\Collision Model</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cm_trace.cpp">
+      <Filter>Source Files\Collision Model</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\con_curses.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\con_log.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\con_win32.cpp">
+      <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="database\db_main.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\db_mysql.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\dl_main.cpp">
+      <Filter>Source Files\download</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\dl_main_curl.cpp">
+      <Filter>Source Files\download</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\dl_main_stubs.cpp">
+      <Filter>Source Files\download</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\net_chan.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\net_http.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\net_ip.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="null\null_client.cpp">
+      <Filter>Source Files\NULL</Filter>
+    </ClCompile>
+    <ClCompile Include="null\null_snddma.cpp">
+      <Filter>Source Files\NULL</Filter>
+    </ClCompile>
+    <ClCompile Include="null\null_input.cpp">
+      <Filter>Source Files\NULL</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cmd.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\common.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\crypto.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\cvar.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\files.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\htable.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\huffman.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\ioapi.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\md4.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\md5.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\msg.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\parse.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\q_math.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\q_shared.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\unzip.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sdl_input.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sdl_snd.cpp">
+      <Filter>Source Files\SDL</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_bot.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_ccmds.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_client.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_init.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_game.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_main.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_net_chan.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_snapshot.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="server\sv_world.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sys_sysinfo.cpp">
+      <Filter>Source Files\SYS</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sys_main.cpp">
+      <Filter>Source Files\SYS</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sys_win32.cpp">
+      <Filter>Source Files\SYS</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_net_chan.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\sys_win32_con.cpp">
+      <Filter>Source Files\SYS</Filter>
+    </ClCompile>
     <ClCompile Include="cm\CollisionModel_contacts.cpp">
       <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
@@ -347,244 +566,94 @@
     <ClCompile Include="qcommon\cm_api.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
-    <ClCompile Include="sys\sys_win32_con.cpp">
-      <Filter>Source Files\SYS</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\sys_win32.cpp">
-      <Filter>Source Files\SYS</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\sys_sysinfo.cpp">
-      <Filter>Source Files\SYS</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\sys_main.cpp">
-      <Filter>Source Files\SYS</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_wavelet.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_mix.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_load.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_mem.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_dma.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_codec_wav.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_codec_ogg.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_load.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_patch.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_polylib.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_test.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_trace.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_trisoup.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\con_curses.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\con_log.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\con_win32.cpp">
-      <Filter>Source Files\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_codec.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\snd_adpcm.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="client\libmumblelink.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_world.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_snapshot.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_net_chan.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_main.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_init.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_game.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_client.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_ccmds.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="server\sv_bot.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\sdl_snd.cpp">
-      <Filter>Source Files\SDL</Filter>
-    </ClCompile>
-    <ClCompile Include="sys\sdl_input.cpp">
-      <Filter>Source Files\SDL</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\unzip.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\q_shared.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\q_math.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\parse.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\msg.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\md5.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\md4.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\ioapi.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\huffman.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\htable.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\files.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cvar.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\crypto.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\common.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cmd.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="null\null_client.cpp">
-      <Filter>Source Files\NULL</Filter>
-    </ClCompile>
-    <ClCompile Include="null\null_snddma.cpp">
-      <Filter>Source Files\NULL</Filter>
-    </ClCompile>
-    <ClCompile Include="null\null_input.cpp">
-      <Filter>Source Files\NULL</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\net_ip.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\net_chan.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\net_http.cpp">
-      <Filter>Source Files\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="database\db_mysql.cpp">
-      <Filter>Source Files\Database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\db_main.cpp">
-      <Filter>Source Files\Database</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_ui.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_text.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_scrn.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_parse.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_net_chan.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_main.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_keys.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_irc.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_input.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_download.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_cin.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_console.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_cgame.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_avi.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cin_ogm.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\dl_main.cpp">
-      <Filter>download\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\dl_main_stubs.c">
-      <Filter>download\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\dl_main_curl.cpp">
-      <Filter>download\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\vm_x86.c">
-      <Filter>Source Files\VM</Filter>
-    </ClCompile>
     <ClCompile Include="qcommon\vm.c">
       <Filter>Source Files\VM</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\vm_interpreted.c">
       <Filter>Source Files\VM</Filter>
     </ClCompile>
+    <ClCompile Include="qcommon\vm_x86.c">
+      <Filter>Source Files\VM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="qcommon\cm_local.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\cm_patch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\cm_polylib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\cm_public.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\keys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\qcommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\qfiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="server\server.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\unzip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\vm_local.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\etmain\ui\menudef.h">
       <Filter>main\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\dl_local.h">
+      <Filter>Source Files\download</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\dl_public.h">
+      <Filter>Source Files\download</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\libmumblelink.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\sys_loadlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\sys_local.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\md4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\ioapi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\vm_llvm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\htable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\sys_win32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\ui_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\cg_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="server\g_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\q_platform.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\libnewton\include\Newton.h">
       <Filter>libs\Newton</Filter>
@@ -622,99 +691,6 @@
     <ClInclude Include="..\libs\libnewton\include\dContainers\dTree.h">
       <Filter>libs\Newton\dContainers\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\libs\nettle\nettle\bignum.h">
-      <Filter>libs\Nettle\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libs\nettle\nettle\rsa.h">
-      <Filter>libs\Nettle\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libs\nettle\nettle\sexp.h">
-      <Filter>libs\Nettle\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libs\nettle\nettle\buffer.h">
-      <Filter>libs\Nettle\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libs\libspeex\libspeex\config.h">
-      <Filter>libs\Speex\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libs\mpir\include\gmp.h">
-      <Filter>libs\MPIR\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cm\CollisionModel.h">
-      <Filter>Source Files\CM\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cm\CollisionModel_local.h">
-      <Filter>Source Files\CM\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gamelogic\etmain\src\game\bg_public.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="botlib\botai.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="botlib\botlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\cg_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\client.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\cm_local.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\cm_patch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\cm_polylib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\cm_public.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\crypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="server\g_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\htable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\ioapi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\etmain\src\ui\keycodes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\keys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\libmumblelink.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\md4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\q_platform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\q_shared.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\qcommon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\qfiles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="server\server.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="client\snd_api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -727,32 +703,53 @@
     <ClInclude Include="client\snd_public.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="qcommon\q_shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\nettle\nettle\bignum.h">
+      <Filter>libs\Nettle\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\nettle\nettle\rsa.h">
+      <Filter>libs\Nettle\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\nettle\nettle\sexp.h">
+      <Filter>libs\Nettle\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qcommon\crypto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\nettle\nettle\buffer.h">
+      <Filter>libs\Nettle\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\libspeex\libspeex\config.h">
+      <Filter>libs\Speex\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="qcommon\surfaceflags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sys\sys_loadlib.h">
+    <ClInclude Include="..\libs\mpir\include\gmp.h">
+      <Filter>libs\MPIR\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="botlib\botai.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sys\sys_local.h">
+    <ClInclude Include="botlib\botlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sys\sys_win32.h">
+    <ClInclude Include="cm\CollisionModel.h">
+      <Filter>Source Files\CM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cm\CollisionModel_local.h">
+      <Filter>Source Files\CM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gamelogic\etmain\src\game\bg_public.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="client\ui_api.h">
+    <ClInclude Include="..\gamelogic\etmain\src\ui\keycodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="qcommon\unzip.h">
+    <ClInclude Include="client\client.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\vm_local.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\dl_local.h">
-      <Filter>download\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\dl_public.h">
-      <Filter>download\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1594,7 +1594,6 @@ static void RB_RenderOpaqueSurfacesIntoDepth(bool onlyWorld)
 
 
 // *INDENT-OFF*
-#ifdef VOLUMETRIC_LIGHTING
 static void Render_lightVolume(interaction_t * ia)
 {
 	int             j;
@@ -1673,12 +1672,12 @@ static void Render_lightVolume(interaction_t * ia)
 			vec3_t          viewOrigin;
 			vec3_t          lightOrigin;
 			vec4_t          lightColor;
-			qboolean		shadowCompare;
+			bool			shadowCompare;
 
 			GLimp_LogComment("--- Render_lightVolume_omni ---\n");
 
 			// enable shader, set arrays
-			GL_BindProgram(&tr.lightVolumeShader_omni);
+			gl_volumetricLightingShader->BindProgram();
 			//GL_VertexAttribsState(tr.lightVolumeShader_omni.attribs);
 			GL_Cull(CT_TWO_SIDED);
 			GL_State(GLS_DEPTHTEST_DISABLE | GLS_SRCBLEND_ONE | GLS_DSTBLEND_ONE);
@@ -1693,20 +1692,20 @@ static void Render_lightVolume(interaction_t * ia)
 
 			shadowCompare = (r_shadows->integer >= SHADOWING_ESM16 && !light->l.noShadows && light->shadowLOD >= 0);
 
-			GLSL_SetUniform_ViewOrigin(&tr.lightVolumeShader_omni, viewOrigin);
-			GLSL_SetUniform_LightOrigin(&tr.lightVolumeShader_omni, lightOrigin);
-			GLSL_SetUniform_LightColor(&tr.lightVolumeShader_omni, lightColor);
-			GLSL_SetUniform_LightRadius(&tr.lightVolumeShader_omni, light->sphereRadius);
-			GLSL_SetUniform_LightScale(&tr.lightVolumeShader_omni, light->l.scale);
-			GLSL_SetUniform_LightAttenuationMatrix(&tr.lightVolumeShader_omni, light->attenuationMatrix2);
+			gl_volumetricLightingShader->SetUniform_ViewOrigin(viewOrigin);
+			gl_volumetricLightingShader->SetUniform_LightOrigin(lightOrigin);
+			gl_volumetricLightingShader->SetUniform_LightColor(lightColor);
+			gl_volumetricLightingShader->SetUniform_LightRadius(light->sphereRadius);
+			gl_volumetricLightingShader->SetUniform_LightScale(light->l.scale);
+			gl_volumetricLightingShader->SetUniform_LightAttenuationMatrix(light->attenuationMatrix2);
 
-			// FIXME GLSL_SetUniform_ShadowMatrix(&tr.lightVolumeShader_omni, light->attenuationMatrix);
-			GLSL_SetUniform_ShadowCompare(&tr.lightVolumeShader_omni, shadowCompare);
+			// FIXME  gl_volumetricLightingShader->SetUniform_ShadowMatrix(light->attenuationMatrix);
+			gl_volumetricLightingShader->SetUniform_ShadowCompare(shadowCompare);
 
-			GLSL_SetUniform_ModelViewProjectionMatrix(&tr.lightVolumeShader_omni, glState.modelViewProjectionMatrix[glState.stackIndex]);
-			GLSL_SetUniform_UnprojectMatrix(&tr.lightVolumeShader_omni, backEnd.viewParms.unprojectionMatrix);
+			gl_volumetricLightingShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
+			gl_volumetricLightingShader->SetUniform_UnprojectMatrix(backEnd.viewParms.unprojectionMatrix);
 
-			//GLSL_SetUniform_PortalClipping(&tr.lightVolumeShader_omni, backEnd.viewParms.isPortal);
+			//gl_volumetricLightingShader->SetUniform_PortalClipping(&tr.lightVolumeShader_omni, backEnd.viewParms.isPortal);
 
 			// bind u_DepthMap
 			GL_SelectTexture(0);
@@ -1755,7 +1754,6 @@ static void Render_lightVolume(interaction_t * ia)
 
 	GL_PopMatrix();
 }
-#endif
 // *INDENT-ON*
 
 
@@ -2134,13 +2132,11 @@ static void RB_RenderInteractions()
 			// draw the contents of the last shader batch
 			Tess_End();
 
-#ifdef VOLUMETRIC_LIGHTING
 			// draw the light volume if needed
 			if(light->shader->volumetricLight)
 			{
 				Render_lightVolume(ia);
 			}
-#endif
 
 			if(iaCount < (backEnd.viewParms.numInteractions - 1))
 			{
@@ -3376,13 +3372,11 @@ static void RB_RenderInteractionsShadowMapped()
 			}
 			else
 			{
-#ifdef VOLUMETRIC_LIGHTING
 				// draw the light volume if needed
 				if(light->shader->volumetricLight)
 				{
 					Render_lightVolume(ia);
 				}
-#endif
 
 				if(iaCount < (backEnd.viewParms.numInteractions - 1))
 				{
@@ -6290,13 +6284,11 @@ static void RB_RenderInteractionsDeferredShadowMapped()
 			}
 			else
 			{
-#ifdef VOLUMETRIC_LIGHTING
 				// draw the light volume if needed
 				if(light->shader->volumetricLight)
 				{
 					Render_lightVolume(ia);
 				}
-#endif
 
 				if(iaCount < (backEnd.viewParms.numInteractions - 1))
 				{

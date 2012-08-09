@@ -2792,6 +2792,49 @@ public:
 	}
 };
 
+class u_ShadowCompare :
+	GLUniform
+{
+public:
+	u_ShadowCompare( GLShader *shader ) :
+		GLUniform( shader )
+	{
+	}
+
+	const char *GetName() const
+	{
+		return "u_ShadowCompare";
+	}
+
+	void                            UpdateShaderProgramUniformLocation( shaderProgram_t *shaderProgram ) const
+	{
+		shaderProgram->u_ShadowCompare = glGetUniformLocation( shaderProgram->program, GetName() );
+	}
+
+	void SetUniform_ShadowCompare(float value)
+	{
+		shaderProgram_t *program = _shader->GetProgram();
+
+#if defined( USE_UNIFORM_FIREWALL )
+	if(program->t_ShadowTexelSize == value)
+		return;
+
+	program->t_ShadowTexelSize = value;
+#endif
+
+#if defined( LOG_GLSL_UNIFORMS )
+
+		if ( r_logFile->integer )
+		{
+			GLimp_LogComment( va( "--- SetUniform_ShadowTexelSize( program = %s, value = %f ) ---\n", program->name, value));
+		}
+
+#endif
+
+		glUniform1f(program->u_ShadowCompare, value);
+	}
+};
+
 class GLShader_generic :
 	public GLShader,
 	public u_ColorMap,
@@ -3480,6 +3523,52 @@ public:
 	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
 };
 
+class GLShader_depthToColor :
+	public GLShader,
+	public u_ModelViewProjectionMatrix,
+	public u_BoneMatrix,
+	public GLCompileMacro_USE_VERTEX_SKINNING
+{
+public:
+	GLShader_depthToColor();
+	void BuildShaderVertexLibNames( std::string& vertexInlines );
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
+
+class GLShader_volumetricFog :
+	public GLShader,
+	public u_ViewOrigin,
+	public u_FogDensity,
+	public u_FogColor,
+	public u_UnprojectMatrix,
+	public u_ModelViewProjectionMatrix
+{
+public:
+	GLShader_volumetricFog();
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
+
+class GLShader_volumetricLighting :
+	public GLShader,
+	public u_ViewOrigin,
+	public u_LightOrigin,
+	public u_LightColor,
+	public u_LightRadius,
+	public u_LightScale,
+	public u_LightAttenuationMatrix,
+	public u_ShadowCompare,
+	public u_ModelViewProjectionMatrix,
+	public u_UnprojectMatrix
+{
+public:
+	GLShader_volumetricLighting();
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
+
+
 extern GLShader_generic                         *gl_genericShader;
 extern GLShader_lightMapping                    *gl_lightMappingShader;
 extern GLShader_vertexLighting_DBS_entity       *gl_vertexLightingShader_DBS_entity;
@@ -3510,6 +3599,9 @@ extern GLShader_liquid                          *gl_liquidShader;
 extern GLShader_rotoscope                       *gl_rotoscopeShader;
 extern GLShader_bloom                           *gl_bloomShader;
 extern GLShader_refraction                      *gl_refractionShader;
+extern GLShader_depthToColor                    *gl_depthToColorShader;
+extern GLShader_volumetricFog                   *gl_volumetricFogShader;
+extern GLShader_volumetricLighting              *gl_volumetricLightingShader;
 
 #ifdef USE_GLSL_OPTIMIZER
 extern struct glslopt_ctx *s_glslOptimizer;

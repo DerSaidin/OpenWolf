@@ -1589,11 +1589,11 @@ void R_Register(void)
 
 	r_wrapAroundLighting = ri.Cvar_Get( "r_wrapAroundLighting", "0.7", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
 	r_halfLambertLighting = ri.Cvar_Get( "r_halfLambertLighting", "1", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_rimLighting = ri.Cvar_Get("r_rimLighting", "0", CVAR_ARCHIVE | CVAR_LATCH);
+	r_rimLighting = ri.Cvar_Get("r_rimLighting", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
 	r_rimExponent = ri.Cvar_Get("r_rimExponent", "3", CVAR_CHEAT);
 	AssertCvarRange(r_rimExponent, 0.5, 8.0, qfalse);
 
-	r_drawBuffer = ri.Cvar_Get("r_drawBuffer", "GL_ByACK", CVAR_CHEAT);
+	r_drawBuffer = ri.Cvar_Get("r_drawBuffer", "GL_BACK", CVAR_CHEAT);
 	r_lockpvs = ri.Cvar_Get("r_lockpvs", "0", CVAR_CHEAT);
 	r_noportals = ri.Cvar_Get("r_noportals", "0", CVAR_CHEAT);
 

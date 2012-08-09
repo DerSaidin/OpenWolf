@@ -871,26 +871,6 @@ void GLSL_InitGPUShaders(void)
 
 
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
-
-	// depth to color encoding
-	GLSL_InitGPUShader(&tr.depthToColorShader, "depthToColor", ATTR_POSITION, qtrue, qtrue);
-
-	tr.depthToColorShader.u_ModelViewProjectionMatrix =
-		glGetUniformLocation(tr.depthToColorShader.program, "u_ModelViewProjectionMatrix");
-	if(glConfig2.vboVertexSkinningAvailable)
-	{
-		tr.depthToColorShader.u_VertexSkinning = glGetUniformLocation(tr.depthToColorShader.program, "u_VertexSkinning");
-		tr.depthToColorShader.u_BoneMatrix = glGetUniformLocation(tr.depthToColorShader.program, "u_BoneMatrix");
-	}
-
-	glUseProgramObject(tr.depthToColorShader.program);
-	//glUniform1i(tr.depthToColorShader.u_ColorMap, 0);
-	glUseProgramObject(0);
-
-	GLSL_ValidateProgram(tr.depthToColorShader.program);
-	GLSL_ShowProgramUniforms(tr.depthToColorShader.program);
-	GL_CheckErrors();
-
 	// UT3 style player shadowing
 	GLSL_InitGPUShader(&tr.deferredShadowingShader_proj, "deferredShadowing_proj", ATTR_POSITION, true, true);
 
@@ -940,46 +920,8 @@ void GLSL_InitGPUShaders(void)
 	// shadowmap distance compression
 	gl_shadowFillShader = new GLShader_shadowFill();
 
-	
-
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
-
-#ifdef VOLUMETRIC_LIGHTING
 	// volumetric lighting
-	GLSL_InitGPUShader(&tr.lightVolumeShader_omni, "lightVolume_omni", ATTR_POSITION, qtrue, qtrue);
-
-	tr.lightVolumeShader_omni.u_DepthMap =
-		glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_DepthMap");
-	tr.lightVolumeShader_omni.u_AttenuationMapXY =
-		glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_AttenuationMapXY");
-	tr.lightVolumeShader_omni.u_AttenuationMapZ =
-		glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_AttenuationMapZ");
-	tr.lightVolumeShader_omni.u_ShadowMap = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_ShadowMap");
-	tr.lightVolumeShader_omni.u_ViewOrigin = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_ViewOrigin");
-	tr.lightVolumeShader_omni.u_LightOrigin = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_LightOrigin");
-	tr.lightVolumeShader_omni.u_LightColor = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_LightColor");
-	tr.lightVolumeShader_omni.u_LightRadius = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_LightRadius");
-	tr.lightVolumeShader_omni.u_LightScale = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_LightScale");
-	tr.lightVolumeShader_omni.u_LightAttenuationMatrix =
-		glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_LightAttenuationMatrix");
-	tr.lightVolumeShader_omni.u_ShadowCompare = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_ShadowCompare");
-	tr.lightVolumeShader_omni.u_ModelViewProjectionMatrix =
-		glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_ModelViewProjectionMatrix");
-	tr.lightVolumeShader_omni.u_UnprojectMatrix = glGetUniformLocation(tr.lightVolumeShader_omni.program, "u_UnprojectMatrix");
-
-	glUseProgramObject(tr.lightVolumeShader_omni.program);
-	glUniform1i(tr.lightVolumeShader_omni.u_DepthMap, 0);
-	glUniform1i(tr.lightVolumeShader_omni.u_AttenuationMapXY, 1);
-	glUniform1i(tr.lightVolumeShader_omni.u_AttenuationMapZ, 2);
-	glUniform1i(tr.lightVolumeShader_omni.u_ShadowMap, 3);
-	glUseProgramObject(0);
-
-	GLSL_ValidateProgram(tr.lightVolumeShader_omni.program);
-	GLSL_ShowProgramUniforms(tr.lightVolumeShader_omni.program);
-	GL_CheckErrors();
-#endif
-
-#endif // #if !defined(GLSL_COMPILE_STARTUP_ONLY)
+	gl_volumetricLightingShader = new GLShader_volumetricLighting();
 
 	// bumped cubemap reflection for abitrary polygons ( EMBM )
 	gl_reflectionShader = new GLShader_reflection();
@@ -1031,6 +973,12 @@ void GLSL_InitGPUShaders(void)
 	// cubemap refraction for abitrary polygons
 	gl_refractionShader = new GLShader_refraction();
 
+	// depth to color encoding
+	gl_depthToColorShader = new GLShader_depthToColor();
+
+	// volumetric fog post process effect
+	gl_volumetricLightingShader = new GLShader_volumetricLighting();
+
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	// cubemap dispersion for abitrary polygons
 	GLSL_InitGPUShader(&tr.dispersionShader_C, "dispersion_C", ATTR_POSITION | ATTR_NORMAL, qtrue, qtrue);
@@ -1055,29 +1003,6 @@ void GLSL_InitGPUShaders(void)
  
 	GLSL_ValidateProgram(tr.dispersionShader_C.program);
 	GLSL_ShowProgramUniforms(tr.dispersionShader_C.program);
-	GL_CheckErrors();
-
-	// volumetric fog post process effect
-	GLSL_InitGPUShader(&tr.volumetricFogShader, "volumetricFog", ATTR_POSITION, qtrue, qtrue);
-
-	tr.volumetricFogShader.u_DepthMap = glGetUniformLocation(tr.volumetricFogShader.program, "u_DepthMap");
-	tr.volumetricFogShader.u_DepthMapBack = glGetUniformLocation(tr.volumetricFogShader.program, "u_DepthMapBack");
-	tr.volumetricFogShader.u_DepthMapFront = glGetUniformLocation(tr.volumetricFogShader.program, "u_DepthMapFront");
-	tr.volumetricFogShader.u_ViewOrigin = glGetUniformLocation(tr.volumetricFogShader.program, "u_ViewOrigin");
-	tr.volumetricFogShader.u_FogDensity = glGetUniformLocation(tr.volumetricFogShader.program, "u_FogDensity");
-	tr.volumetricFogShader.u_FogColor = glGetUniformLocation(tr.volumetricFogShader.program, "u_FogColor");
-	tr.volumetricFogShader.u_UnprojectMatrix = glGetUniformLocation(tr.volumetricFogShader.program, "u_UnprojectMatrix");
-	tr.volumetricFogShader.u_ModelViewProjectionMatrix =
-		glGetUniformLocation(tr.volumetricFogShader.program, "u_ModelViewProjectionMatrix");
-
-	glUseProgramObject(tr.volumetricFogShader.program);
-	glUniform1i(tr.volumetricFogShader.u_DepthMap, 0);
-	glUniform1i(tr.volumetricFogShader.u_DepthMapBack, 1);
-	glUniform1i(tr.volumetricFogShader.u_DepthMapFront, 2);
-	glUseProgramObject(0);
-
-	GLSL_ValidateProgram(tr.volumetricFogShader.program);
-	GLSL_ShowProgramUniforms(tr.volumetricFogShader.program);
 	GL_CheckErrors();
 
 #ifdef EXPERIMENTAL
@@ -1181,15 +1106,11 @@ void GLSL_ShutdownGPUShaders(void)
 		gl_deferredLightingShader_omniXYZ = NULL;
 	}
 
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
-
-	if(tr.depthToColorShader.program)
+	if(gl_depthToColorShader)
 	{
-		glDeleteObject(tr.depthToColorShader.program);
-		Com_Memset(&tr.depthToColorShader, 0, sizeof(shaderProgram_t));
+		delete gl_depthToColorShader;
+		gl_depthToColorShader = NULL;
 	}
-
-#endif // #if !defined(GLSL_COMPILE_STARTUP_ONLY)
 
 	if(gl_shadowFillShader)
 	{
@@ -1228,14 +1149,6 @@ void GLSL_ShutdownGPUShaders(void)
 	}
 
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
-
-#ifdef VOLUMETRIC_LIGHTING
-	if(tr.lightVolumeShader_omni.program)
-	{
-		glDeleteObject(tr.lightVolumeShader_omni.program);
-		Com_Memset(&tr.lightVolumeShader_omni, 0, sizeof(shaderProgram_t));
-	}
-#endif
 
 	if(tr.dispersionShader_C.program)
 	{
@@ -1341,13 +1254,20 @@ void GLSL_ShutdownGPUShaders(void)
 		gl_liquidShader = NULL;
 	}
 
+	if(gl_volumetricFogShader)
+	{
+		delete gl_volumetricFogShader;
+		gl_volumetricFogShader = NULL;
+	}
+
+	if(gl_volumetricLightingShader)
+	{
+		delete gl_volumetricLightingShader;
+		gl_volumetricLightingShader = NULL;
+	}
+
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
 
-	if(tr.volumetricFogShader.program)
-	{
-		glDeleteObject(tr.volumetricFogShader.program);
-		Com_Memset(&tr.volumetricFogShader, 0, sizeof(shaderProgram_t));
-	}
 #ifdef EXPERIMENTAL
 	if(tr.screenSpaceAmbientOcclusionShader.program)
 	{
@@ -3456,6 +3376,8 @@ static void Render_refraction_C(int stage)
  
 	GL_State(pStage->stateBits);
  
+	gl_refractionShader->SetVertexSkinning(glConfig2.vboVertexSkinningAvailable && tess.vboVertexSkinning);
+
 	// enable shader, set arrays
 	gl_refractionShader->BindProgram();
 	GL_VertexAttribsState(ATTR_POSITION | ATTR_NORMAL);
@@ -3897,6 +3819,9 @@ static void Render_liquid(int stage)
 
 	GL_State(pStage->stateBits);
 
+	// choose right shader program ----------------------------------
+	gl_liquidShader->SetParallaxMapping(r_parallaxMapping->integer && tess.surfaceShader->parallax);
+
 	// enable shader, set arrays
 	gl_liquidShader->BindProgram();
 	GL_VertexAttribsState(ATTR_POSITION | ATTR_TEXCOORD | ATTR_TANGENT | ATTR_BINORMAL | ATTR_NORMAL | ATTR_COLOR
@@ -4135,12 +4060,9 @@ static void Render_fog()
 	GL_CheckErrors();
 }
 
-
-
 // see Fog Polygon Volumes documentation by Nvidia for further information
 static void Render_volumetricFog()
 {
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	vec3_t          viewOrigin;
 	float           fogDensity;
 	vec3_t          fogColor;
@@ -4185,22 +4107,21 @@ static void Render_volumetricFog()
 								   GL_NEAREST);
 		}
 
+		gl_depthToColorShader->SetVertexSkinning(glConfig2.vboVertexSkinningAvailable && tess.vboVertexSkinning);
+
 		// setup shader with uniforms
-		GL_BindProgram(&tr.depthToColorShader);
-		GL_VertexAttribsState(tr.depthToColorShader.attribs);
+		gl_depthToColorShader->BindProgram();
+		GL_VertexAttribsState(ATTR_POSITION | ATTR_NORMAL);
 		GL_State(0);//GLS_SRCBLEND_ONE | GLS_DSTBLEND_ONE);
 
-		GLSL_SetUniform_ModelViewProjectionMatrix(&tr.depthToColorShader, glState.modelViewProjectionMatrix[glState.stackIndex]);
+		gl_depthToColorShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
 
 		// Tr3B: might be cool for ghost player effects
 		if(glConfig2.vboVertexSkinningAvailable)
 		{
-			GLSL_SetUniform_VertexSkinning(&tr.depthToColorShader, tess.vboVertexSkinning);
-
 			if(tess.vboVertexSkinning)
-				glUniformMatrix4fv(tr.depthToColorShader.u_BoneMatrix, MAX_BONES, GL_FALSE, &tess.boneMatrices[0][0]);
+				gl_depthToColorShader->SetUniform_BoneMatrix(MAX_BONES, tess.boneMatrices);
 		}
-
 
 		// render back faces
 		R_BindFBO(tr.occlusionRenderFBO);
@@ -4220,14 +4141,9 @@ static void Render_volumetricFog()
 
 		R_BindFBO(previousFBO);
 
-
-
-
-
-
 		// enable shader, set arrays
-		GL_BindProgram(&tr.volumetricFogShader);
-		GL_VertexAttribsState(tr.volumetricFogShader.attribs);
+		gl_volumetricFogShader->BindProgram();
+		GL_VertexAttribsState(ATTR_POSITION);
 
 		//GL_State(GLS_DEPTHTEST_DISABLE);	// | GLS_DEPTHMASK_TRUE);
 		//GL_State(GLS_DEPTHTEST_DISABLE | GLS_SRCBLEND_ZERO | GLS_DSTBLEND_ONE_MINUS_SRC_COLOR);
@@ -4244,12 +4160,12 @@ static void Render_volumetricFog()
 			VectorCopy(tess.surfaceShader->fogParms.color, fogColor);
 		}
 
-		GLSL_SetUniform_ModelViewProjectionMatrix(&tr.volumetricFogShader, glState.modelViewProjectionMatrix[glState.stackIndex]);
-		GLSL_SetUniform_UnprojectMatrix(&tr.volumetricFogShader, backEnd.viewParms.unprojectionMatrix);
+		gl_volumetricFogShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
+		gl_volumetricFogShader->SetUniform_UnprojectMatrix(backEnd.viewParms.unprojectionMatrix);
 
-		GLSL_SetUniform_ViewOrigin(&tr.volumetricFogShader, viewOrigin);
-		glUniform1f(tr.volumetricFogShader.u_FogDensity, fogDensity);
-		glUniform3f(tr.volumetricFogShader.u_FogColor, fogColor[0], fogColor[1], fogColor[2]);
+		gl_volumetricFogShader->SetUniform_ViewOrigin(viewOrigin);
+		gl_volumetricFogShader->SetUniform_FogDensityValue(fogDensity);
+		gl_volumetricFogShader->SetUniform_FogColorValue(fogColor[0], fogColor[1], fogColor[2]);
 
 		// bind u_DepthMap
 		GL_SelectTexture(0);
@@ -4281,7 +4197,6 @@ static void Render_volumetricFog()
 	}
 
 	GL_CheckErrors();
-#endif
 }
 
 /*

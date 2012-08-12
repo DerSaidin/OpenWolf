@@ -50,7 +50,7 @@ void RB_Fog(glfog_t * curfog)
 
 	GLimp_LogComment("--- RB_Fog() ---\n");
 
-#if 0
+#if 1
 	if(!r_wolfFog->integer)
 	{
 		RB_FogOff();
@@ -70,11 +70,19 @@ void RB_Fog(glfog_t * curfog)
 	}
 	if(!curfog->hint)
 	{
+#if defined(USE_D3D10)
+	// TODO
+#else
 		curfog->hint = GL_DONT_CARE;
+#endif
 	}
 	if(!curfog->mode)
 	{
+#if defined(USE_D3D10)
+	// TODO
+#else
 		curfog->mode = GL_LINEAR;
+#endif
 	}
 	//----(SA)  end
 
@@ -84,37 +92,65 @@ void RB_Fog(glfog_t * curfog)
 	// only send changes if necessary
 
 //  if(curfog->mode != setfog.mode || !setfog.registered) {
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glFogi(GL_FOG_MODE, curfog->mode);
+#endif
 //      setfog.mode = curfog->mode;
 //  }
 //  if(curfog->color[0] != setfog.color[0] || curfog->color[1] != setfog.color[1] || curfog->color[2] != setfog.color[2] || !setfog.registered) {
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glFogfv(GL_FOG_COLOR, curfog->color);
+#endif
 //      VectorCopy(setfog.color, curfog->color);
 //  }
 //  if(curfog->density != setfog.density || !setfog.registered) {
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glFogf(GL_FOG_DENSITY, curfog->density);
+#endif
 //      setfog.density = curfog->density;
 //  }
 //  if(curfog->hint != setfog.hint || !setfog.registered) {
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glHint(GL_FOG_HINT, curfog->hint);
+#endif
 //      setfog.hint = curfog->hint;
 //  }
 //  if(curfog->start != setfog.start || !setfog.registered) {
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glFogf(GL_FOG_START, curfog->start);
+#endif
 //      setfog.start = curfog->start;
 //  }
 
 	if(r_zfar->value)
 	{							// (SA) allow override for helping level designers test fog distances
 //      if(setfog.end != r_zfar->value || !setfog.registered) {
+#if defined(USE_D3D10)
+		// TODO
+#else
 		glFogf(GL_FOG_END, r_zfar->value);
+#endif
 //          setfog.end = r_zfar->value;
 //      }
 	}
 	else
 	{
 //      if(curfog->end != setfog.end || !setfog.registered) {
+#if defined(USE_D3D10)
+		// TODO
+#else
 		glFogf(GL_FOG_END, curfog->end);
+#endif
 //          setfog.end = curfog->end;
 //      }
 	}
@@ -123,13 +159,20 @@ void RB_Fog(glfog_t * curfog)
 	// NV fog mode
 	if(glConfig.NVFogAvailable)
 	{
+#if defined(USE_D3D10)
+	// TODO
+#else
 		glFogi(GL_FOG_DISTANCE_MODE_NV, glConfig.NVFogMode);
+#endif
 	}
 // end
 
 	setfog.registered = qtrue;
-
+#if defined(USE_D3D10)
+	// TODO
+#else
 	GL_ClearColor(curfog->color[0], curfog->color[1], curfog->color[2], curfog->color[3]);
+#endif
 #endif
 }
 
@@ -137,13 +180,17 @@ void RB_FogOff()
 {
 	GLimp_LogComment("--- RB_FogOff() ---\n");
 
-#if 0
+#if 1
 	if(!fogIsOn)
 	{
 		return;
 	}
 
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glDisable(GL_FOG);
+#endif
 	fogIsOn = qfalse;
 #endif
 }
@@ -152,7 +199,7 @@ void RB_FogOn()
 {
 	GLimp_LogComment("--- RB_FogOn() ---\n");
 
-#if 0
+#if 1
 	if(fogIsOn)
 	{
 		return;
@@ -176,6 +223,7 @@ void RB_FogOn()
 	if(backEnd.refdef.rdflags & RDF_SKYBOXPORTAL)
 	{							
 		// don't force world fog on portal sky
+
 		if(!(tr.glfogsettings[FOG_PORTALVIEW].registered))
 		{
 			return;
@@ -186,7 +234,11 @@ void RB_FogOn()
 		return;
 	}
 
+#if defined(USE_D3D10)
+	// TODO
+#else
 	glEnable(GL_FOG);
+#endif
 	fogIsOn = qtrue;
 #endif
 }
@@ -327,12 +379,10 @@ void R_SetFrameFog()
 				tr.world->globalTransStartFog[2] +
 				((tr.world->globalTransEndFog[2] - tr.world->globalTransStartFog[2]) * lerpPos);
 
-			/*
 			tr.world->fogs[tr.world->globalFog].fogParms.colorInt =
 				ColorBytes4(tr.world->fogs[tr.world->globalFog].fogParms.color[0] * tr.identityLight,
 							tr.world->fogs[tr.world->globalFog].fogParms.color[1] * tr.identityLight,
 							tr.world->fogs[tr.world->globalFog].fogParms.color[2] * tr.identityLight, 1.0);
-			*/
 
 			tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque =
 				tr.world->globalTransStartFog[3] +
@@ -345,11 +395,10 @@ void R_SetFrameFog()
 			// transition complete
 			VectorCopy(tr.world->globalTransEndFog, tr.world->fogs[tr.world->globalFog].fogParms.color);
 			
-			/*
 			tr.world->fogs[tr.world->globalFog].fogParms.colorInt =
 				ColorBytes4(tr.world->globalTransEndFog[0] * tr.identityLight, tr.world->globalTransEndFog[1] * tr.identityLight,
 							tr.world->globalTransEndFog[2] * tr.identityLight, 1.0);
-			*/
+
 			tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque = tr.world->globalTransEndFog[3];
 			tr.world->fogs[tr.world->globalFog].tcScale =
 				1.0f / (tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque * 8);
@@ -509,11 +558,11 @@ void RE_SetGlobalFog(qboolean restore, int duration, float r, float g, float b, 
 		else
 		{
 			VectorCopy(tr.world->globalOriginalFog, tr.world->fogs[tr.world->globalFog].fogParms.color);
-			/*
+
 			tr.world->fogs[tr.world->globalFog].fogParms.colorInt =
 				ColorBytes4(tr.world->globalOriginalFog[0] * tr.identityLight, tr.world->globalOriginalFog[1] * tr.identityLight,
 							tr.world->globalOriginalFog[2] * tr.identityLight, 1.0);
-			*/
+
 			tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque = tr.world->globalOriginalFog[3];
 			tr.world->fogs[tr.world->globalFog].tcScale =
 				1.0f / (tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque);
@@ -535,11 +584,11 @@ void RE_SetGlobalFog(qboolean restore, int duration, float r, float g, float b, 
 		else
 		{
 			VectorSet(tr.world->fogs[tr.world->globalFog].fogParms.color, r, g, b);
-			/*
+
 			tr.world->fogs[tr.world->globalFog].fogParms.colorInt = ColorBytes4(r * tr.identityLight,
 																						g * tr.identityLight,
 																						b * tr.identityLight, 1.0);
-																						*/
+
 			tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque = depthForOpaque < 1 ? 1 : depthForOpaque;
 			tr.world->fogs[tr.world->globalFog].tcScale =
 				1.0f / (tr.world->fogs[tr.world->globalFog].fogParms.depthForOpaque);

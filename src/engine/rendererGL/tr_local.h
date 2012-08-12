@@ -1097,6 +1097,7 @@ typedef struct
 {
 	vec3_t          color;
 	float           depthForOpaque;
+	unsigned        colorInt;	// in packed byte format
 	float			density;
 } fogParms_t;
 
@@ -1358,10 +1359,12 @@ enum
 				ATTR_COLOR// |
 
 #if !defined(COMPAT_Q3A) && !defined(COMPAT_ET)
+				|
 				ATTR_PAINTCOLOR |
-				ATTR_LIGHTDIRECTION |
+				ATTR_LIGHTDIRECTION
 #endif
 
+				//|
 				//ATTR_BONE_INDEXES |
 				//ATTR_BONE_WEIGHTS
 };

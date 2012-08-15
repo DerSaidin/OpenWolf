@@ -586,7 +586,8 @@ R_InitVBOs
 */
 void R_InitVBOs( void )
 {
-	int  dataSize;
+	int             dataSize;
+	byte           *data;
 
 	ri.Printf( PRINT_ALL, "------- R_InitVBOs -------\n" );
 
@@ -594,8 +595,10 @@ void R_InitVBOs( void )
 	Com_InitGrowList( &tr.ibos, 100 );
 
 	dataSize = sizeof( vec4_t ) * SHADER_MAX_VERTEXES * 11;
+	data = (byte*)Com_Allocate(dataSize);
+	memset(data, 0, dataSize);
 
-	tess.vbo = R_CreateVBO( "tessVertexArray_VBO", NULL, dataSize, VBO_USAGE_DYNAMIC );
+	tess.vbo = R_CreateVBO( "tessVertexArray_VBO", data, dataSize, VBO_USAGE_DYNAMIC );
 #if !defined(USE_D3D10)
 	tess.vbo->ofsXYZ = 0;
 	tess.vbo->ofsTexCoords = tess.vbo->ofsXYZ + sizeof( tess.xyz );
@@ -616,9 +619,15 @@ void R_InitVBOs( void )
 	tess.vbo->sizeNormals = sizeof( tess.normals );
 #endif
 
-	dataSize = sizeof( tess.indexes );
+	Com_Dealloc(data);
 
-	tess.ibo = R_CreateIBO( "tessVertexArray_IBO", NULL, dataSize, VBO_USAGE_DYNAMIC );
+	dataSize = sizeof(tess.indexes);
+	data = (byte*)Com_Allocate(dataSize);
+	memset(data, 0, dataSize);
+
+	tess.ibo = R_CreateIBO("tessVertexArray_IBO", data, dataSize, VBO_USAGE_DYNAMIC);
+
+	Com_Dealloc(data);
 
 	R_InitUnitCubeVBO();
 

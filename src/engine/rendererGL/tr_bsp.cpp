@@ -1445,7 +1445,9 @@ static void ParseFace(dsurface_t * ds, drawVert_t * verts, bspSurface_t * surf, 
 		}
 	}
 
+#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 	R_CalcSurfaceTriangleNeighbors(numTriangles, cv->triangles);
+#endif
 	R_CalcSurfaceTrianglePlanes(numTriangles, cv->triangles, cv->verts);
 
 	// take the plane information from the lightmap vector
@@ -1796,7 +1798,9 @@ static void ParseTriSurf(dsurface_t * ds, drawVert_t * verts, bspSurface_t * sur
 		AddPointToBounds(cv->verts[tri->indexes[2]].xyz, cv->bounds[0], cv->bounds[1]);
 	}
 
+#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 	R_CalcSurfaceTriangleNeighbors(numTriangles, cv->triangles);
+#endif
 	R_CalcSurfaceTrianglePlanes(numTriangles, cv->triangles, cv->verts);
 
 	// Tr3B - calc tangent spaces
@@ -2810,7 +2814,9 @@ static void CopyVert(const srfVert_t * in, srfVert_t * out)
 		out->tangent[j] = in->tangent[j];
 		out->binormal[j] = in->binormal[j];
 		out->normal[j] = in->normal[j];
+#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 		out->lightDirection[j] = in->lightDirection[j];
+#endif
 	}
 
 	for(j = 0; j < 2; j++)
@@ -2821,7 +2827,9 @@ static void CopyVert(const srfVert_t * in, srfVert_t * out)
 
 	for(j = 0; j < 4; j++)
 	{
+#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 		out->paintColor[j] = in->paintColor[j];
+#endif
 		out->lightColor[j] = in->lightColor[j];
 	}
 
@@ -2927,7 +2935,7 @@ static qboolean CompareShadowVert(const srfVert_t * v1, const srfVert_t * v2)
 	return qtrue;
 }*/
 
-static qboolean CompareShadowVolumeVert(const srfVert_t * v1, const srfVert_t * v2)
+/*static qboolean CompareShadowVolumeVert(const srfVert_t * v1, const srfVert_t * v2)
 {
 	int             i;
 
@@ -2939,7 +2947,7 @@ static qboolean CompareShadowVolumeVert(const srfVert_t * v1, const srfVert_t * 
 	}
 
 	return qtrue;
-}
+}*/
 
 /*static qboolean CompareWorldVertSmoothNormal(const srfVert_t * v1, const srfVert_t * v2)
 {
@@ -2958,7 +2966,7 @@ static qboolean CompareShadowVolumeVert(const srfVert_t * v1, const srfVert_t * 
 remove duplicated / redundant vertices from a batch of vertices
 return the new number of vertices
 */
-static int OptimizeVertices(int numVerts, srfVert_t * verts, int numTriangles, srfTriangle_t * triangles, srfVert_t * outVerts,
+/*static int OptimizeVertices(int numVerts, srfVert_t * verts, int numTriangles, srfTriangle_t * triangles, srfVert_t * outVerts,
 							qboolean(*CompareVert) (const srfVert_t * v1, const srfVert_t * v2))
 {
 	srfTriangle_t  *tri;
@@ -3185,7 +3193,7 @@ static int OptimizeVertices(int numVerts, srfVert_t * verts, int numTriangles, s
 		}
 		return numVerts;
 	}
-}
+}*/
 
 /*static void OptimizeTriangles(int numVerts, srfVert_t * verts, int numTriangles, srfTriangle_t * triangles,
 							  qboolean(*compareVert) (const srfVert_t * v1, const srfVert_t * v2))
@@ -3409,7 +3417,7 @@ static void R_LoadAreaPortals(const char *bspName)
 	ri.Printf(PRINT_ALL, "...loading %i area portals\n", numAreaPortals);
 
 	s_worldData.numAreaPortals = numAreaPortals;
-	s_worldData.areaPortals = ri.Hunk_Alloc(numAreaPortals * sizeof(*s_worldData.areaPortals), h_low);
+	s_worldData.areaPortals = (bspAreaPortal_t*)ri.Hunk_Alloc(numAreaPortals * sizeof(*s_worldData.areaPortals), h_low);
 
 	for(i = 0, ap = s_worldData.areaPortals; i < numAreaPortals; i++, ap++)
 	{
@@ -3494,7 +3502,7 @@ static void R_CreateAreas()
 	numAreas = maxArea + 1;
 
 	s_worldData.numAreas = numAreas;
-	s_worldData.areas = ri.Hunk_Alloc(numAreas * sizeof(*s_worldData.areas), h_low);
+	s_worldData.areas = (bspArea_t*)ri.Hunk_Alloc(numAreas * sizeof(*s_worldData.areas), h_low);
 
 	// reset surfaces' viewCount
 	for(i = 0, surface = s_worldData.surfaces; i < s_worldData.numSurfaces; i++, surface++)
@@ -3543,7 +3551,7 @@ static void R_CreateAreas()
 
 		// move area surfaces list to hunk
 		area->numMarkSurfaces = areaSurfaces.currentElements;
-		area->markSurfaces = ri.Hunk_Alloc(area->numMarkSurfaces * sizeof(*area->markSurfaces), h_low);
+		area->markSurfaces = (bspSurface_t**)ri.Hunk_Alloc(area->numMarkSurfaces * sizeof(*area->markSurfaces), h_low);
 
 		for(j = 0; j < area->numMarkSurfaces; j++)
 		{
@@ -3589,7 +3597,7 @@ static void R_CreateVBOWorldSurfaces()
 	growList_t      vboSurfaces;
 	srfVBOMesh_t   *vboSurf;
 
-	if(!glConfig.vertexBufferObjectAvailable)
+	if(!glConfig2.vertexBufferObjectAvailable)
 		return;
 
 	for(a = 0, area = s_worldData.areas; a < s_worldData.numAreas; a++, area++)
@@ -3617,7 +3625,7 @@ static void R_CreateVBOWorldSurfaces()
 			continue;
 
 		// build interaction caches list
-		surfacesSorted = ri.Hunk_AllocateTempMemory(numSurfaces * sizeof(surfacesSorted[0]));
+		surfacesSorted = (bspSurface_t**)ri.Hunk_AllocateTempMemory(numSurfaces * sizeof(surfacesSorted[0]));
 
 		numSurfaces = 0;
 		for(k = 0; k < area->numMarkSurfaces; k++)
@@ -3708,7 +3716,7 @@ static void R_CreateVBOWorldSurfaces()
 						  numTriangles);
 
 				// create surface
-				vboSurf = ri.Hunk_Alloc(sizeof(*vboSurf), h_low);
+				vboSurf = (srfVBOMesh_t*)ri.Hunk_Alloc(sizeof(*vboSurf), h_low);
 				Com_AddToGrowList(&vboSurfaces, vboSurf);
 
 				vboSurf->surfaceType = SF_VBO_MESH;
@@ -3719,11 +3727,11 @@ static void R_CreateVBOWorldSurfaces()
 				vboSurf->lightmapNum = lightmapNum;
 
 				// create arrays
-				verts = ri.Hunk_AllocateTempMemory(numVerts * sizeof(srfVert_t));
-				optimizedVerts = ri.Hunk_AllocateTempMemory(numVerts * sizeof(srfVert_t));
+				verts = (srfVert_t*)ri.Hunk_AllocateTempMemory(numVerts * sizeof(srfVert_t));
+				optimizedVerts = (srfVert_t*)ri.Hunk_AllocateTempMemory(numVerts * sizeof(srfVert_t));
 				numVerts = 0;
 
-				triangles = ri.Hunk_AllocateTempMemory(numTriangles * sizeof(srfTriangle_t));
+				triangles = (srfTriangle_t*)ri.Hunk_AllocateTempMemory(numTriangles * sizeof(srfTriangle_t));
 				numTriangles = 0;
 
 				ClearBounds(vboSurf->bounds[0], vboSurf->bounds[1]);
@@ -3874,9 +3882,9 @@ static void R_CreateVBOWorldSurfaces()
 
 				vboSurf->vbo = R_CreateVBO2(va("staticWorldMesh_vertices %i", vboSurfaces.currentElements), numVerts, optimizedVerts,
 									   ATTR_POSITION | ATTR_TEXCOORD | ATTR_LIGHTCOORD | ATTR_TANGENT | ATTR_BINORMAL | ATTR_NORMAL
-									   | ATTR_COLOR);
+									   | ATTR_COLOR, VBO_USAGE_STATIC);
 
-				vboSurf->ibo = R_CreateIBO2(va("staticWorldMesh_indices %i", vboSurfaces.currentElements), numTriangles, triangles);
+				vboSurf->ibo = R_CreateIBO2(va("staticWorldMesh_indices %i", vboSurfaces.currentElements), numTriangles, triangles, VBO_USAGE_STATIC);
 
 				ri.Hunk_FreeTempMemory(triangles);
 				ri.Hunk_FreeTempMemory(optimizedVerts);
@@ -3888,7 +3896,7 @@ static void R_CreateVBOWorldSurfaces()
 
 		// move VBO surfaces list to hunk
 		area->numVBOSurfaces = vboSurfaces.currentElements;
-		area->vboSurfaces = ri.Hunk_Alloc(area->numVBOSurfaces * sizeof(*area->vboSurfaces), h_low);
+		area->vboSurfaces = (srfVBOMesh_t**)ri.Hunk_Alloc(area->numVBOSurfaces * sizeof(*area->vboSurfaces), h_low);
 
 		for(i = 0; i < area->numVBOSurfaces; i++)
 		{
@@ -3937,7 +3945,7 @@ static void R_CreateClusters()
 		numClusters++;
 
 		s_worldData.numClusters = numClusters;
-		s_worldData.clusters = ri.Hunk_Alloc((numClusters + 1) * sizeof(*s_worldData.clusters), h_low);	// + supercluster
+		s_worldData.clusters = (bspCluster_t*)ri.Hunk_Alloc((numClusters + 1) * sizeof(*s_worldData.clusters), h_low);	// + supercluster
 
 		// reset surfaces' viewCount
 		for(i = 0, surface = s_worldData.surfaces; i < s_worldData.numSurfaces; i++, surface++)
@@ -4023,7 +4031,7 @@ static void R_CreateClusters()
 
 			// move cluster surfaces list to hunk
 			cluster->numMarkSurfaces = clusterSurfaces.currentElements;
-			cluster->markSurfaces = ri.Hunk_Alloc(cluster->numMarkSurfaces * sizeof(*cluster->markSurfaces), h_low);
+			cluster->markSurfaces = (bspSurface_t**)ri.Hunk_Alloc(cluster->numMarkSurfaces * sizeof(*cluster->markSurfaces), h_low);
 
 			for(j = 0; j < cluster->numMarkSurfaces; j++)
 			{
@@ -4040,7 +4048,7 @@ static void R_CreateClusters()
 		numClusters = 0;
 
 		s_worldData.numClusters = numClusters;
-		s_worldData.clusters = ri.Hunk_Alloc((numClusters + 1) * sizeof(*s_worldData.clusters), h_low);	// + supercluster
+		s_worldData.clusters = (bspCluster_t*)ri.Hunk_Alloc((numClusters + 1) * sizeof(*s_worldData.clusters), h_low);	// + supercluster
 	}
 
 	// create a super cluster that will be always used when no view cluster can be found
@@ -4053,7 +4061,7 @@ static void R_CreateClusters()
 
 	cluster = &s_worldData.clusters[numClusters];
 	cluster->numMarkSurfaces = clusterSurfaces.currentElements;
-	cluster->markSurfaces = ri.Hunk_Alloc(cluster->numMarkSurfaces * sizeof(*cluster->markSurfaces), h_low);
+	cluster->markSurfaces = (bspSurface_t**)ri.Hunk_Alloc(cluster->numMarkSurfaces * sizeof(*cluster->markSurfaces), h_low);
 
 	for(j = 0; j < cluster->numMarkSurfaces; j++)
 	{
@@ -6148,69 +6156,69 @@ void R_LoadEntities(lump_t * l)
 			// check for origin
 			else if(!Q_stricmp(keyname, "origin") || !Q_stricmp(keyname, "light_origin"))
 			{
-				sscanf(value, "%f %f %f", &light->l.origin[0], &light->l.origin[1], &light->l.origin[2]);
+				//sscanf(value, "%f %f %f", &light->l.origin[0], &light->l.origin[1], &light->l.origin[2]);
 				s = &value[0];
-				//COM_Parse1DMatrix(&s, 3, light->l.origin, qfalse);
+				Parse1DMatrix(&s, 3, light->l.origin, qfalse);
 			}
 			// check for center
 			else if(!Q_stricmp(keyname, "light_center"))
 			{
-				sscanf(value, "%f %f %f", &light->l.center[0], &light->l.center[1], &light->l.center[2]);
+				//sscanf(value, "%f %f %f", &light->l.center[0], &light->l.center[1], &light->l.center[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.center, qfalse);
+				Parse1DMatrix(&s, 3, light->l.center, qfalse);
 			}
 			// check for color
 			else if(!Q_stricmp(keyname, "_color"))
 			{
-				sscanf(value, "%f %f %f", &light->l.color[0], &light->l.color[1], &light->l.color[2]);
+				//sscanf(value, "%f %f %f", &light->l.color[0], &light->l.color[1], &light->l.color[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.color, qfalse);
+				Parse1DMatrix(&s, 3, light->l.color, qfalse);
 			}
 			// check for radius
 			else if(!Q_stricmp(keyname, "light_radius"))
 			{
-				sscanf(value, "%f %f %f", &light->l.radius[0], &light->l.radius[1], &light->l.radius[2]);
+				//sscanf(value, "%f %f %f", &light->l.radius[0], &light->l.radius[1], &light->l.radius[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.radius, qfalse);
+				Parse1DMatrix(&s, 3, light->l.radius, qfalse);
 			}
 			// check for light_target
 			else if(!Q_stricmp(keyname, "light_target"))
 			{
-				sscanf(value, "%f %f %f", &light->l.projTarget[0], &light->l.projTarget[1], &light->l.projTarget[2]);
+				//sscanf(value, "%f %f %f", &light->l.projTarget[0], &light->l.projTarget[1], &light->l.projTarget[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.projTarget, qfalse);
+				Parse1DMatrix(&s, 3, light->l.projTarget, qfalse);
 				light->l.rlType = RL_PROJ;
 			}
 			// check for light_right
 			else if(!Q_stricmp(keyname, "light_right"))
 			{
-				sscanf(value, "%f %f %f", &light->l.projRight[0], &light->l.projRight[1], &light->l.projRight[2]);
+				//sscanf(value, "%f %f %f", &light->l.projRight[0], &light->l.projRight[1], &light->l.projRight[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.projRight, qfalse);
+				Parse1DMatrix(&s, 3, light->l.projRight, qfalse);
 				light->l.rlType = RL_PROJ;
 			}
 			// check for light_up
 			else if(!Q_stricmp(keyname, "light_up"))
 			{
-				sscanf(value, "%f %f %f", &light->l.projUp[0], &light->l.projUp[1], &light->l.projUp[2]);
+				//sscanf(value, "%f %f %f", &light->l.projUp[0], &light->l.projUp[1], &light->l.projUp[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.projUp, qfalse);
+				Parse1DMatrix(&s, 3, light->l.projUp, qfalse);
 				light->l.rlType = RL_PROJ;
 			}
 			// check for light_start
 			else if(!Q_stricmp(keyname, "light_start"))
 			{
-				sscanf(value, "%f %f %f", &light->l.projStart[0], &light->l.projStart[1], &light->l.projStart[2]);
+				//sscanf(value, "%f %f %f", &light->l.projStart[0], &light->l.projStart[1], &light->l.projStart[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.projStart, qfalse);
+				Parse1DMatrix(&s, 3, light->l.projStart, qfalse);
 				light->l.rlType = RL_PROJ;
 			}
 			// check for light_end
 			else if(!Q_stricmp(keyname, "light_end"))
 			{
-				sscanf(value, "%f %f %f", &light->l.projEnd[0], &light->l.projEnd[1], &light->l.projEnd[2]);
+				//sscanf(value, "%f %f %f", &light->l.projEnd[0], &light->l.projEnd[1], &light->l.projEnd[2]);
 				s = &value[0];
-				//Com_Parse1DMatrix(&s, 3, light->l.projEnd, qfalse);
+				Parse1DMatrix(&s, 3, light->l.projEnd, qfalse);
 				light->l.rlType = RL_PROJ;
 			}
 			// check for radius
@@ -8144,30 +8152,29 @@ static void R_CalcInteractionCubeSideBits(trRefLight_t * light)
 		return;
 
 	/*
-	   if(glConfig.vertexBufferObjectAvailable && r_vboLighting->integer)
-	   {
-	   srfVBOLightMesh_t *srf;
+	if(glConfig2.vertexBufferObjectAvailable && r_vboLighting->integer)
+	{
+	   srfVBOMesh_s *srf;
 
 	   for(iaCache = light->firstInteractionCache; iaCache; iaCache = iaCache->next)
 	   {
-	   if(iaCache->redundant)
-	   continue;
+		   if(iaCache->redundant) {
+			   continue;
+		   }
 
-	   if(!iaCache->vboLightMesh)
-	   continue;
+		   if(!iaCache->vboLightMesh) {
+			   continue;
+			   }
 
-	   srf = iaCache->vboLightMesh;
+		   srf = iaCache->vboLightMesh;
 
-	   VectorCopy(srf->bounds[0], localBounds[0]);
-	   VectorCopy(srf->bounds[1], localBounds[1]);
+		   VectorCopy(srf->bounds[0], localBounds[0]);
+		   VectorCopy(srf->bounds[1], localBounds[1]);
 
-	   light->shadowLOD = 0;    // important for R_CalcLightCubeSideBits
-	   iaCache->cubeSideBits = R_CalcLightCubeSideBits(light, localBounds);
+		   light->shadowLOD = 0;    // important for R_CalcLightCubeSideBits
+		   iaCache->cubeSideBits = R_CalcLightCubeSideBits(light, localBounds);
 	   }
-	   }
-	   else
-	 */
-	{
+	} else */ {
 		for(iaCache = light->firstInteractionCache; iaCache; iaCache = iaCache->next)
 		{
 			surface = iaCache->surface;

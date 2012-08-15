@@ -869,60 +869,12 @@ void GLSL_InitGPUShaders(void)
 		gl_forwardLightingShader_directionalSun = new GLShader_forwardLighting_directionalSun();
 	}
 
-
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
-	// UT3 style player shadowing
-	GLSL_InitGPUShader(&tr.deferredShadowingShader_proj, "deferredShadowing_proj", ATTR_POSITION, true, true);
-
-	tr.deferredShadowingShader_proj.u_DepthMap =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_DepthMap");
-	tr.deferredShadowingShader_proj.u_AttenuationMapXY =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_AttenuationMapXY");
-	tr.deferredShadowingShader_proj.u_AttenuationMapZ =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_AttenuationMapZ");
-	tr.deferredShadowingShader_proj.u_ShadowMap =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_ShadowMap");
-	tr.deferredShadowingShader_proj.u_LightOrigin =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_LightOrigin");
-	tr.deferredShadowingShader_proj.u_LightColor =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_LightColor");
-	tr.deferredShadowingShader_proj.u_LightRadius =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_LightRadius");
-	tr.deferredShadowingShader_proj.u_LightAttenuationMatrix =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_LightAttenuationMatrix");
-	tr.deferredShadowingShader_proj.u_ShadowMatrix =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_ShadowMatrix");
-	tr.deferredShadowingShader_proj.u_ShadowCompare =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_ShadowCompare");
-	tr.deferredShadowingShader_proj.u_PortalClipping =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_PortalClipping");
-	tr.deferredShadowingShader_proj.u_PortalPlane =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_PortalPlane");
-	tr.deferredShadowingShader_proj.u_ModelViewProjectionMatrix =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_ModelViewProjectionMatrix");
-	tr.deferredShadowingShader_proj.u_UnprojectMatrix =
-		glGetUniformLocation(tr.deferredShadowingShader_proj.program, "u_UnprojectMatrix");
-
-	glUseProgramObject(tr.deferredShadowingShader_proj.program);
-	glUniform1i(tr.deferredShadowingShader_proj.u_DepthMap, 0);
-	glUniform1i(tr.deferredShadowingShader_proj.u_AttenuationMapXY, 1);
-	glUniform1i(tr.deferredShadowingShader_proj.u_AttenuationMapZ, 2);
-	glUniform1i(tr.deferredShadowingShader_proj.u_ShadowMap, 3);
-	glUseProgramObject(0);
-
-	GLSL_ValidateProgram(tr.deferredShadowingShader_proj.program);
-	GLSL_ShowProgramUniforms(tr.deferredShadowingShader_proj.program);
-	GL_CheckErrors();
-
-#endif // #if !defined(GLSL_COMPILE_STARTUP_ONLY)
-
-
 	// shadowmap distance compression
 	gl_shadowFillShader = new GLShader_shadowFill();
 
 	// volumetric lighting
 	gl_volumetricLightingShader = new GLShader_volumetricLighting();
-
+	
 	// bumped cubemap reflection for abitrary polygons ( EMBM )
 	gl_reflectionShader = new GLShader_reflection();
 
@@ -977,34 +929,12 @@ void GLSL_InitGPUShaders(void)
 	gl_depthToColorShader = new GLShader_depthToColor();
 
 	// volumetric fog post process effect
-	gl_volumetricLightingShader = new GLShader_volumetricLighting();
+	gl_volumetricFogShader = new GLShader_volumetricFog();
+
+	// cubemap dispersion for abitrary polygons
+	gl_dispersionShader = new GLShader_dispersion();
 
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
-	// cubemap dispersion for abitrary polygons
-	GLSL_InitGPUShader(&tr.dispersionShader_C, "dispersion_C", ATTR_POSITION | ATTR_NORMAL, qtrue, qtrue);
- 
-	tr.dispersionShader_C.u_ColorMap = glGetUniformLocation(tr.dispersionShader_C.program, "u_ColorMap");
-	tr.dispersionShader_C.u_ViewOrigin = glGetUniformLocation(tr.dispersionShader_C.program, "u_ViewOrigin");
-	tr.dispersionShader_C.u_EtaRatio = glGetUniformLocation(tr.dispersionShader_C.program, "u_EtaRatio");
-	tr.dispersionShader_C.u_FresnelPower = glGetUniformLocation(tr.dispersionShader_C.program, "u_FresnelPower");
-	tr.dispersionShader_C.u_FresnelScale = glGetUniformLocation(tr.dispersionShader_C.program, "u_FresnelScale");
-	tr.dispersionShader_C.u_FresnelBias = glGetUniformLocation(tr.dispersionShader_C.program, "u_FresnelBias");
-	tr.dispersionShader_C.u_ModelMatrix = glGetUniformLocation(tr.dispersionShader_C.program, "u_ModelMatrix");
-	tr.dispersionShader_C.u_ModelViewProjectionMatrix =
-	glGetUniformLocation(tr.dispersionShader_C.program, "u_ModelViewProjectionMatrix");
-	if(glConfig2.vboVertexSkinningAvailable) {
-		tr.dispersionShader_C.u_VertexSkinning = glGetUniformLocation(tr.dispersionShader_C.program, "u_VertexSkinning");
-		tr.dispersionShader_C.u_BoneMatrix = glGetUniformLocation(tr.dispersionShader_C.program, "u_BoneMatrix");
-	}
- 
-	glUseProgramObject(tr.dispersionShader_C.program);
-	glUniform1i(tr.dispersionShader_C.u_ColorMap, 0);
-	glUseProgramObject(0);
- 
-	GLSL_ValidateProgram(tr.dispersionShader_C.program);
-	GLSL_ShowProgramUniforms(tr.dispersionShader_C.program);
-	GL_CheckErrors();
-
 #ifdef EXPERIMENTAL
 	// screen space ambien occlusion post process effect
 	GLSL_InitGPUShader(&tr.screenSpaceAmbientOcclusionShader, "screenSpaceAmbientOcclusion", ATTR_POSITION, qtrue, qtrue);
@@ -1264,6 +1194,12 @@ void GLSL_ShutdownGPUShaders(void)
 	{
 		delete gl_volumetricLightingShader;
 		gl_volumetricLightingShader = NULL;
+	}
+
+	if(gl_dispersionShader)
+	{
+		delete gl_dispersionShader;
+		gl_dispersionShader = NULL;
 	}
 
 #if !defined(GLSL_COMPILE_STARTUP_ONLY)
@@ -3414,7 +3350,6 @@ static void Render_refraction_C(int stage)
 
 static void Render_dispersion_C(int stage)
 {
-#if !defined(GLSL_COMPILE_STARTUP_ONLY)
 	vec3_t          viewOrigin;
 	shaderStage_t  *pStage = tess.surfaceStages[stage];
 	float           eta;
@@ -3425,29 +3360,28 @@ static void Render_dispersion_C(int stage)
 	GL_State(pStage->stateBits);
 
 	// enable shader, set arrays
-	GL_BindProgram(&tr.dispersionShader_C);
-	GL_VertexAttribsState(tr.dispersionShader_C.attribs);
+	gl_dispersionShader->SetVertexSkinning(glConfig2.vboVertexSkinningAvailable && tess.vboVertexSkinning);
+
+	gl_dispersionShader->BindProgram();
+	GL_VertexAttribsState(ATTR_POSITION | ATTR_NORMAL);
 
 	// set uniforms
 	VectorCopy(backEnd.viewParms.orientation.origin, viewOrigin);	// in world space
 	eta = RB_EvalExpression(&pStage->etaExp, (float)1.1);
 	etaDelta = RB_EvalExpression(&pStage->etaDeltaExp, (float)-0.02);
 
-	GLSL_SetUniform_ViewOrigin(&tr.dispersionShader_C, viewOrigin);
-	glUniform3f(tr.dispersionShader_C.u_EtaRatio, eta, eta + etaDelta, eta + (etaDelta * 2));
-	glUniform1f(tr.dispersionShader_C.u_FresnelPower, RB_EvalExpression(&pStage->fresnelPowerExp, 2.0f));
-	glUniform1f(tr.dispersionShader_C.u_FresnelScale, RB_EvalExpression(&pStage->fresnelScaleExp, 2.0f));
-	glUniform1f(tr.dispersionShader_C.u_FresnelBias, RB_EvalExpression(&pStage->fresnelBiasExp, 1.0f));
+	gl_dispersionShader->SetUniform_ViewOrigin(viewOrigin);
+	gl_dispersionShader->SetUniform_EtaRatioValue(eta, eta + etaDelta, eta + (etaDelta * 2));
+	gl_dispersionShader->SetUniform_FresnelPowerValue(RB_EvalExpression(&pStage->fresnelPowerExp, 2.0f));
+	gl_dispersionShader->SetUniform_FresnelScaleValue(RB_EvalExpression(&pStage->fresnelScaleExp, 2.0f));
+	gl_dispersionShader->SetUniform_FresnelBiasValue(RB_EvalExpression(&pStage->fresnelBiasExp, 1.0f));
 
-	GLSL_SetUniform_ModelMatrix(&tr.dispersionShader_C, backEnd.orientation.transformMatrix);
-	GLSL_SetUniform_ModelViewProjectionMatrix(&tr.dispersionShader_C, glState.modelViewProjectionMatrix[glState.stackIndex]);
+	gl_dispersionShader->SetUniform_ModelMatrix(backEnd.orientation.transformMatrix);
+	gl_dispersionShader->SetUniform_ModelViewProjectionMatrix(glState.modelViewProjectionMatrix[glState.stackIndex]);
 
-	if(glConfig2.vboVertexSkinningAvailable)
+	if(glConfig2.vboVertexSkinningAvailable && tess.vboVertexSkinning)
 	{
-		GLSL_SetUniform_VertexSkinning(&tr.dispersionShader_C, tess.vboVertexSkinning);
-
-		if(tess.vboVertexSkinning)
-			glUniformMatrix4fv(tr.dispersionShader_C.u_BoneMatrix, MAX_BONES, GL_FALSE, &tess.boneMatrices[0][0]);
+		gl_dispersionShader->SetUniform_BoneMatrix(MAX_BONES, tess.boneMatrices);
 	}
 
 	// bind u_ColorMap
@@ -3457,7 +3391,6 @@ static void Render_dispersion_C(int stage)
 	Tess_DrawElements();
 
 	GL_CheckErrors();
-#endif
 }
 
 static void Render_skybox(int stage)

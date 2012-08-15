@@ -2706,9 +2706,12 @@ typedef struct
 	vec3_t          tangent;
 	vec3_t          binormal;
 	vec3_t          normal;
-	vec4_t          paintColor;
 	vec4_t          lightColor;
+	
+#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
+	vec4_t          paintColor;
 	vec3_t          lightDirection;
+#endif
 
 #if DEBUG_OPTIMIZEVERTICES
 	unsigned int    id;
@@ -3771,9 +3774,9 @@ typedef struct
 	image_t        *depthToColorFrontFacesFBOImage;
 	image_t        *downScaleFBOImage_quarter;
 	image_t        *downScaleFBOImage_64x64;
-//	image_t        *downScaleFBOImage_16x16;
-//	image_t        *downScaleFBOImage_4x4;
-//	image_t        *downScaleFBOImage_1x1;
+	image_t        *downScaleFBOImage_16x16;
+	image_t        *downScaleFBOImage_4x4;
+	image_t        *downScaleFBOImage_1x1;
 	image_t        *shadowMapFBOImage[MAX_SHADOWMAPS];
 	image_t        *shadowCubeFBOImage[MAX_SHADOWMAPS];
 	image_t        *sunShadowMapFBOImage[MAX_SHADOWMAPS];
@@ -3791,9 +3794,9 @@ typedef struct
 	FBO_t          *occlusionRenderFBO;		// used for overlapping visibility determination
 	FBO_t          *downScaleFBO_quarter;
 	FBO_t          *downScaleFBO_64x64;
-//	FBO_t          *downScaleFBO_16x16;
-//	FBO_t          *downScaleFBO_4x4;
-//	FBO_t          *downScaleFBO_1x1;
+	FBO_t          *downScaleFBO_16x16;
+	FBO_t          *downScaleFBO_4x4;
+	FBO_t          *downScaleFBO_1x1;
 	FBO_t          *contrastRenderFBO;
 	FBO_t          *bloomRenderFBO[2];
 	FBO_t          *shadowMapFBO[MAX_SHADOWMAPS];
@@ -4323,7 +4326,9 @@ void            R_CalcTBN(vec3_t tangent, vec3_t binormal, vec3_t normal,
 
 qboolean        R_CalcTangentVectors(srfVert_t * dv[3]);
 
+#if !defined(COMPAT_Q3A) || defined(COMPAT_ET)
 void            R_CalcSurfaceTriangleNeighbors(int numTriangles, srfTriangle_t * triangles);
+#endif
 void            R_CalcSurfaceTrianglePlanes(int numTriangles, srfTriangle_t * triangles, srfVert_t * verts);
 
 float           R_CalcFov(float fovX, float width, float height);

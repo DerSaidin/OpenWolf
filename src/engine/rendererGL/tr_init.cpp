@@ -1376,7 +1376,7 @@ void R_Register(void)
 	r_roundImagesDown = ri.Cvar_Get("r_roundImagesDown", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_colorMipLevels = ri.Cvar_Get("r_colorMipLevels", "0", CVAR_LATCH);
 	r_colorbits = ri.Cvar_Get("r_colorbits", "0", CVAR_ARCHIVE | CVAR_LATCH);
-	r_stereo = ri.Cvar_Get("r_stereo", "0", CVAR_ARCHIVE | CVAR_LATCH);
+	r_stereo = ri.Cvar_Get("r_stereo", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_CHEAT);
 	r_stencilbits = ri.Cvar_Get("r_stencilbits", "8", CVAR_ARCHIVE | CVAR_LATCH);
 	r_depthbits = ri.Cvar_Get("r_depthbits", "0", CVAR_ARCHIVE | CVAR_LATCH);
 	r_ignorehwgamma = ri.Cvar_Get("r_ignorehwgamma", "1", CVAR_ARCHIVE | CVAR_LATCH);
@@ -1388,11 +1388,11 @@ void R_Register(void)
 	r_simpleMipMaps = ri.Cvar_Get("r_simpleMipMaps", "0", CVAR_ARCHIVE | CVAR_LATCH);
 	r_uiFullScreen = ri.Cvar_Get("r_uifullscreen", "0", 0);
 	r_subdivisions = ri.Cvar_Get("r_subdivisions", "4", CVAR_ARCHIVE | CVAR_LATCH);
-	r_deferredShading = ri.Cvar_Get("r_deferredShading", "0", CVAR_CHEAT);
+	r_deferredShading = ri.Cvar_Get("r_deferredShading", "0", CVAR_CHEAT | CVAR_SHADER);
 	r_parallaxMapping = ri.Cvar_Get("r_parallaxMapping", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	r_dynamicLightCastShadows = ri.Cvar_Get("r_dynamicLightCastShadows", "1", CVAR_ARCHIVE);
 	r_precomputedLighting = ri.Cvar_Get( "r_precomputedLighting", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
-	r_vertexLighting = ri.Cvar_Get("r_vertexLighting", "0", CVAR_ARCHIVE | CVAR_LATCH);
+	r_vertexLighting = ri.Cvar_Get("r_vertexLighting", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	r_compressDiffuseMaps = ri.Cvar_Get("r_compressDiffuseMaps", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_compressSpecularMaps = ri.Cvar_Get("r_compressSpecularMaps", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_compressNormalMaps = ri.Cvar_Get("r_compressNormalMaps", "0", CVAR_ARCHIVE | CVAR_LATCH);
@@ -1412,7 +1412,7 @@ void R_Register(void)
 	r_depthOfField = ri.Cvar_Get("r_depthOfField", "0", CVAR_ARCHIVE);
 #endif
 
-	r_reflectionMapping = ri.Cvar_Get("r_reflectionMapping", "0", CVAR_CHEAT);
+	r_reflectionMapping = ri.Cvar_Get("r_reflectionMapping", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	r_highQualityNormalMapping = ri.Cvar_Get("r_highQualityNormalMapping", "0", CVAR_ARCHIVE | CVAR_LATCH);
 
 	r_forceAmbient = ri.Cvar_Get("r_forceAmbient", "0.125", CVAR_ARCHIVE | CVAR_LATCH);
@@ -1474,16 +1474,16 @@ void R_Register(void)
 	r_ambientScale = ri.Cvar_Get("r_ambientScale", "0.6", CVAR_CHEAT);
 	r_lightScale = ri.Cvar_Get("r_lightScale", "2", CVAR_CHEAT);
 
-	r_vboFaces = ri.Cvar_Get("r_vboFaces", "1", CVAR_CHEAT);
-	r_vboCurves = ri.Cvar_Get("r_vboCurves", "1", CVAR_CHEAT);
-	r_vboTriangles = ri.Cvar_Get("r_vboTriangles", "1", CVAR_CHEAT);
-	r_vboShadows = ri.Cvar_Get("r_vboShadows", "1", CVAR_CHEAT);
-	r_vboLighting = ri.Cvar_Get("r_vboLighting", "1", CVAR_CHEAT);
-	r_vboModels = ri.Cvar_Get("r_vboModels", "1", CVAR_CHEAT);
-	r_vboOptimizeVertices = ri.Cvar_Get("r_vboOptimizeVertices", "1", CVAR_CHEAT | CVAR_LATCH);
-	r_vboVertexSkinning = ri.Cvar_Get("r_vboVertexSkinning", "0", CVAR_ARCHIVE | CVAR_LATCH);
-	r_vboDeformVertexes = ri.Cvar_Get("r_vboDeformVertexes", "1", CVAR_ARCHIVE | CVAR_LATCH);
-	r_vboSmoothNormals = ri.Cvar_Get("r_vboSmoothNormals", "1", CVAR_ARCHIVE | CVAR_LATCH);
+	r_vboFaces = ri.Cvar_Get("r_vboFaces", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_vboCurves = ri.Cvar_Get("r_vboCurves", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_vboTriangles = ri.Cvar_Get("r_vboTriangles", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_vboShadows = ri.Cvar_Get("r_vboShadows", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_vboLighting = ri.Cvar_Get("r_vboLighting", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_vboModels = ri.Cvar_Get("r_vboModels", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_vboOptimizeVertices = ri.Cvar_Get("r_vboOptimizeVertices", "1", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_vboVertexSkinning = ri.Cvar_Get("r_vboVertexSkinning", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
+	r_vboDeformVertexes = ri.Cvar_Get("r_vboDeformVertexes", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
+	r_vboSmoothNormals = ri.Cvar_Get("r_vboSmoothNormals", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 
 #if defined(USE_BSP_CLUSTERSURFACE_MERGING)
 	r_mergeClusterSurfaces = ri.Cvar_Get("r_mergeClusterSurfaces", "0", CVAR_CHEAT);
@@ -1492,8 +1492,8 @@ void R_Register(void)
 	r_mergeClusterTriangles = ri.Cvar_Get("r_mergeClusterTriangles", "1", CVAR_CHEAT);
 #endif
 
-	r_dynamicBspOcclusionCulling = ri.Cvar_Get("r_dynamicBspOcclusionCulling", "0", CVAR_ARCHIVE);
-	r_dynamicEntityOcclusionCulling = ri.Cvar_Get("r_dynamicEntityOcclusionCulling", "0", CVAR_ARCHIVE);
+	r_dynamicBspOcclusionCulling = ri.Cvar_Get("r_dynamicBspOcclusionCulling", "0", CVAR_ARCHIVE | CVAR_SHADER);
+	r_dynamicEntityOcclusionCulling = ri.Cvar_Get("r_dynamicEntityOcclusionCulling", "0", CVAR_ARCHIVE | CVAR_SHADER);
 	r_dynamicLightOcclusionCulling = ri.Cvar_Get("r_dynamicLightOcclusionCulling", "0", CVAR_CHEAT);
 	r_chcMaxPrevInvisNodesBatchSize = ri.Cvar_Get("r_chcMaxPrevInvisNodesBatchSize", "50", CVAR_CHEAT);
 	r_chcMaxVisibleFrames = ri.Cvar_Get("r_chcMaxVisibleFrames", "10", CVAR_CHEAT);

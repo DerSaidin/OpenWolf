@@ -3096,9 +3096,9 @@ static void R_CreateDownScaleFBOImages(void)
 	}
 	ri.Hunk_FreeTempMemory(data);
 
-#if 0
+#if 1
 	width = height = 16;
-	data = ri.Hunk_AllocateTempMemory(width * height * 4);
+	data = (byte*)ri.Hunk_AllocateTempMemory(width * height * 4);
 	if(r_hdrRendering->integer && glConfig2.textureFloatAvailable)
 	{
 		tr.downScaleFBOImage_16x16 = R_CreateImage("_downScaleFBOImage_16x16", data, width, height, IF_NOPICMIP | IF_RGBA16F, FT_NEAREST, WT_CLAMP);
@@ -3111,7 +3111,7 @@ static void R_CreateDownScaleFBOImages(void)
 
 
 	width = height = 4;
-	data = ri.Hunk_AllocateTempMemory(width * height * 4);
+	data = (byte*)ri.Hunk_AllocateTempMemory(width * height * 4);
 	if(r_hdrRendering->integer && glConfig2.textureFloatAvailable)
 	{
 		tr.downScaleFBOImage_4x4 = R_CreateImage("_downScaleFBOImage_4x4", data, width, height, IF_NOPICMIP | IF_RGBA16F, FT_NEAREST, WT_CLAMP);
@@ -3124,7 +3124,7 @@ static void R_CreateDownScaleFBOImages(void)
 
 
 	width = height = 1;
-	data = ri.Hunk_AllocateTempMemory(width * height * 4);
+	data = (byte*)ri.Hunk_AllocateTempMemory(width * height * 4);
 	if(r_hdrRendering->integer && glConfig2.textureFloatAvailable)
 	{
 		tr.downScaleFBOImage_1x1 = R_CreateImage("_downScaleFBOImage_1x1", data, width, height, IF_NOPICMIP | IF_RGBA16F, FT_NEAREST, WT_CLAMP);

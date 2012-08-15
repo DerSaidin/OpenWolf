@@ -241,7 +241,9 @@ qboolean R_LoadMD3(model_t * mod, int lod, void *buffer, int bufferSize, const c
 			tri->indexes[2] = LittleLong(md3Tri->indexes[2]);
 		}
 
+#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 		R_CalcSurfaceTriangleNeighbors(surf->numTriangles, surf->triangles);
+#endif
 
 		// swap all the XyzNormals
 		surf->numVerts = md3Surf->numVerts;

@@ -2835,6 +2835,40 @@ public:
 	}
 };
 
+class u_EtaRatio :
+	GLUniform
+{
+public:
+	u_EtaRatio( GLShader *shader ) :
+		GLUniform( shader )
+	{
+	}
+
+	const char *GetName() const
+	{
+		return "u_EtaRatio";
+	}
+
+	void                            UpdateShaderProgramUniformLocation( shaderProgram_t *shaderProgram ) const
+	{
+		shaderProgram->u_EtaRatio = glGetUniformLocation( shaderProgram->program, GetName() );
+	}
+
+	void SetUniform_EtaRatioValue( GLfloat v0, GLfloat v1, GLfloat v2 )
+	{
+		shaderProgram_t *program = _shader->GetProgram();
+
+#if defined( LOG_GLSL_UNIFORMS )
+		if ( r_logFile->integer )
+		{
+			GLimp_LogComment(va("--- SetUniform_EtaRatio( program = %s, value1 = %f, value2 = %f, value3 = %f ) ---\n", 
+				program->name, v0, v1, v2));
+		}
+#endif
+		glUniform3f(program->u_EtaRatio, v0, v1, v2);
+	}
+};
+
 class GLShader_generic :
 	public GLShader,
 	public u_ColorMap,
@@ -3568,6 +3602,23 @@ public:
 	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
 };
 
+class GLShader_dispersion :
+	public GLShader,
+	public u_ViewOrigin,
+	public u_ModelMatrix,
+	public u_ModelViewProjectionMatrix,
+	public u_EtaRatio,
+	public u_FresnelPower,
+	public u_FresnelScale,
+	public u_FresnelBias,
+	public u_BoneMatrix,
+	public GLCompileMacro_USE_VERTEX_SKINNING
+{
+public:
+	GLShader_dispersion();
+	void SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram );
+	void SetShaderProgramUniforms( shaderProgram_t * shaderProgram );
+};
 
 extern GLShader_generic                         *gl_genericShader;
 extern GLShader_lightMapping                    *gl_lightMappingShader;
@@ -3602,6 +3653,7 @@ extern GLShader_refraction                      *gl_refractionShader;
 extern GLShader_depthToColor                    *gl_depthToColorShader;
 extern GLShader_volumetricFog                   *gl_volumetricFogShader;
 extern GLShader_volumetricLighting              *gl_volumetricLightingShader;
+extern GLShader_dispersion                      *gl_dispersionShader;
 
 #ifdef USE_GLSL_OPTIMIZER
 extern struct glslopt_ctx *s_glslOptimizer;

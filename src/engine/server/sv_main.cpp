@@ -876,17 +876,6 @@ SV_CheckDRDoS
 DRDoS stands for "Distributed Reflected Denial of Service".
 See here: http://www.lemuria.org/security/application-drdos.html
 
-Returns qfalse if we're good.  qtrue return value means we need to block.
-If the address isn't NA_IP, it's automatically denied.
-===============
-*/
-/*
-===============
-SV_CheckDRDoS
-
-DRDoS stands for "Distributed Reflected Denial of Service".
-See here: http://www.lemuria.org/security/application-drdos.html
-
 Returns false if we're good.  true return value means we need to block.
 If the address isn't NA_IP, it's automatically denied.
 ===============

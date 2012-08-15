@@ -3086,11 +3086,6 @@ void Com_Init(char *commandLine)
 
 	Com_Printf( "%s %s %s\n%s\n", Q3_VERSION, ARCH_STRING, __DATE__, commandLine );
 
-	if(setjmp(abortframe))
-	{
-		Sys_Error("Error during initialization");
-	}
-
 	// bk001129 - do this before anything else decides to push events
 	Com_InitPushEvent();
 

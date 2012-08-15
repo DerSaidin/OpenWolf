@@ -65,6 +65,7 @@ GLShader_refraction                      *gl_refractionShader = NULL;
 GLShader_depthToColor                    *gl_depthToColorShader = NULL;
 GLShader_volumetricFog                   *gl_volumetricFogShader = NULL;
 GLShader_volumetricLighting              *gl_volumetricLightingShader = NULL;
+GLShader_dispersion                      *gl_dispersionShader = NULL;
 
 bool GLCompileMacro_USE_VERTEX_SKINNING::HasConflictingMacros( int permutation, const std::vector< GLCompileMacro * > &macros ) const
 {
@@ -2772,4 +2773,29 @@ void GLShader_volumetricLighting::SetShaderProgramUniforms( shaderProgram_t * sh
 	glUniform1i(shaderProgram->u_AttenuationMapXY, 1);
 	glUniform1i(shaderProgram->u_AttenuationMapZ, 2);
 	glUniform1i(shaderProgram->u_ShadowMap, 3);
+}
+
+GLShader_dispersion::GLShader_dispersion() :
+	GLShader ("dispersion", "dispersion_C", ATTR_POSITION | ATTR_NORMAL),
+	u_ViewOrigin( this ),
+	u_ModelMatrix( this ),
+	u_ModelViewProjectionMatrix( this ),
+	u_EtaRatio ( this ),
+	u_FresnelPower ( this ),
+	u_FresnelScale ( this ),
+	u_FresnelBias ( this ),
+	u_BoneMatrix ( this ),
+	GLCompileMacro_USE_VERTEX_SKINNING( this )
+{
+		CompilePermutations();
+}
+
+void GLShader_dispersion::SetShaderProgramUniformLocations( shaderProgram_t * shaderProgram )
+{
+	shaderProgram->u_ColorMap = glGetUniformLocation(shaderProgram->program, "u_ColorMap");
+}
+
+void GLShader_dispersion::SetShaderProgramUniforms( shaderProgram_t * shaderProgram )
+{
+	glUniform1i(shaderProgram->u_ColorMap, 0);
 }

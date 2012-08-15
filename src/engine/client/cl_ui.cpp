@@ -1209,7 +1209,7 @@ intptr_t CL_UISystemCalls(intptr_t * args) {
 			CLUI_SetCDKey((char*)VMA(1));
 			return 0;
 		case UI_R_REGISTERFONT:
-			re.RegisterFont((char*)VMA(1), args[2], (fontInfo_t*)VMA(3));
+			re.RegisterFont((const char*)VMA(1), args[2], (fontInfo_t*)VMA(3));
 			return 0;
 		case UI_MEMSET:
 			return (intptr_t)memset( VMA( 1 ), args[2], args[3] );

@@ -1251,7 +1251,7 @@ qboolean G_ScriptAction_SetGlobalFog(gentity_t * ent, char *params)
 		return qtrue;
 	}
 
-	Parse1DMatrix(&pString, 3, color);
+	Parse1DMatrix(&pString, 3, color, qtrue);
 
 	token = COM_ParseExt(&pString, qfalse);
 	if(!token[0])

@@ -649,15 +649,15 @@ static void CG_CopyClientInfoModel( clientInfo_t *from, clientInfo_t *to )
 CG_GetCorpseNum
 ======================
 */
-static int CG_GetCorpseNum( pClass_t class )
+static int CG_GetCorpseNum( pClass_t _class )
 {
   int           i;
   clientInfo_t  *match;
   char          *modelName;
   char          *skinName;
 
-  modelName = BG_FindModelNameForClass( class );
-  skinName = BG_FindSkinNameForClass( class );
+  modelName = BG_FindModelNameForClass( _class );
+  skinName = BG_FindSkinNameForClass( _class );
 
   for( i = PCL_NONE + 1; i < PCL_NUM_CLASSES; i++ )
   {
@@ -716,12 +716,12 @@ static qboolean CG_ScanForExistingClientInfo( clientInfo_t *ci )
 CG_PrecacheClientInfo
 ======================
 */
-void CG_PrecacheClientInfo( pClass_t class, char *model, char *skin )
+void CG_PrecacheClientInfo( pClass_t _class, char *model, char *skin )
 {
   clientInfo_t  *ci;
   clientInfo_t  newInfo;
 
-  ci = &cgs.corpseinfo[ class ];
+  ci = &cgs.corpseinfo[ _class ];
 
   // the old value
   memset( &newInfo, 0, sizeof( newInfo ) );
@@ -804,7 +804,7 @@ void CG_NewClientInfo( int clientNum )
 
   // team
   v = Info_ValueForKey( configstring, "t" );
-  newInfo.team = atoi( v );
+  newInfo.team = (pTeam_t)atoi( v );
 
   // team task
   v = Info_ValueForKey( configstring, "tt" );
@@ -812,7 +812,7 @@ void CG_NewClientInfo( int clientNum )
 
   // team leader
   v = Info_ValueForKey( configstring, "tl" );
-  newInfo.teamLeader = atoi( v );
+  newInfo.teamLeader = (qboolean)atoi( v );
 
   v = Info_ValueForKey( configstring, "g_redteam" );
   Q_strncpyz( newInfo.redTeam, v, MAX_TEAMNAME );
@@ -1760,7 +1760,7 @@ Returns the Z component of the surface being shadowed
 ===============
 */
 #define SHADOW_DISTANCE   128
-static qboolean CG_PlayerShadow( centity_t *cent, float *shadowPlane, pClass_t class )
+static qboolean CG_PlayerShadow( centity_t *cent, float *shadowPlane, pClass_t _class )
 {
   vec3_t        end, mins, maxs;
   trace_t       trace;
@@ -1768,7 +1768,7 @@ static qboolean CG_PlayerShadow( centity_t *cent, float *shadowPlane, pClass_t c
   entityState_t *es = &cent->currentState;
   vec3_t        surfNormal = { 0.0f, 0.0f, 1.0f };
 
-  BG_FindBBoxForClass( class, mins, maxs, NULL, NULL, NULL );
+  BG_FindBBoxForClass( _class, mins, maxs, NULL, NULL, NULL );
   mins[ 2 ] = 0.0f;
   maxs[ 2 ] = 2.0f;
 
@@ -1814,7 +1814,7 @@ static qboolean CG_PlayerShadow( centity_t *cent, float *shadowPlane, pClass_t c
   // without taking a spot in the cg_marks array
   CG_ImpactMark( cgs.media.shadowMarkShader, trace.endpos, trace.plane.normal,
                  cent->pe.legs.yawAngle, 0.0f, 0.0f, 0.0f, alpha, qfalse,
-                 24.0f * BG_FindShadowScaleForClass( class ), qtrue );
+                 24.0f * BG_FindShadowScaleForClass( _class ), qtrue );
 
   return qtrue;
 }
@@ -1827,7 +1827,7 @@ CG_PlayerSplash
 Draw a mark at the water surface
 ===============
 */
-static void CG_PlayerSplash( centity_t *cent, pClass_t class )
+static void CG_PlayerSplash( centity_t *cent, pClass_t _class )
 {
   vec3_t      start, end;
   vec3_t      mins, maxs;
@@ -1837,7 +1837,7 @@ static void CG_PlayerSplash( centity_t *cent, pClass_t class )
   if( !cg_shadows.integer )
     return;
 
-  BG_FindBBoxForClass( class, mins, maxs, NULL, NULL, NULL );
+  BG_FindBBoxForClass( _class, mins, maxs, NULL, NULL, NULL );
 
   VectorCopy( cent->lerpOrigin, end );
   end[ 2 ] += mins[ 2 ];
@@ -1867,7 +1867,7 @@ static void CG_PlayerSplash( centity_t *cent, pClass_t class )
 
   CG_ImpactMark( cgs.media.wakeMarkShader, trace.endpos, trace.plane.normal,
                  cent->pe.legs.yawAngle, 1.0f, 1.0f, 1.0f, 1.0f, qfalse,
-                 32.0f * BG_FindShadowScaleForClass( class ), qtrue );
+                 32.0f * BG_FindShadowScaleForClass( _class ), qtrue );
 }
 
 
@@ -2018,7 +2018,7 @@ void CG_Player( centity_t *cent )
   qboolean      shadow = qfalse;
   float         shadowPlane;
   entityState_t *es = &cent->currentState;
-  pClass_t      class = ( es->powerups >> 8 ) & 0xFF;
+  pClass_t      _class = (pClass_t)(( es->powerups >> 8 ) & 0xFF);
   float         scale;
   vec3_t        tempAxis[ 3 ], tempAxis2[ 3 ];
   vec3_t        angles;
@@ -2057,7 +2057,7 @@ void CG_Player( centity_t *cent )
   {
     vec3_t  mins, maxs;
 
-    BG_FindBBoxForClass( class, mins, maxs, NULL, NULL, NULL );
+    BG_FindBBoxForClass( _class, mins, maxs, NULL, NULL, NULL );
     CG_DrawBoundingBox( cent->lerpOrigin, mins, maxs );
   }
 
@@ -2070,7 +2070,7 @@ void CG_Player( centity_t *cent )
 
   //rotate lerpAngles to floor
   if( es->eFlags & EF_WALLCLIMB &&
-      BG_RotateAxis( es->angles2, tempAxis, tempAxis2, qtrue, es->eFlags & EF_WALLCLIMBCEILING ) )
+      BG_RotateAxis( es->angles2, tempAxis, tempAxis2, qtrue, (qboolean)(es->eFlags & EF_WALLCLIMBCEILING) ) )
     AxisToAngles( tempAxis2, angles );
   else
     VectorCopy( cent->lerpAngles, angles );
@@ -2089,7 +2089,7 @@ void CG_Player( centity_t *cent )
 
   //rotate the legs axis to back to the wall
   if( es->eFlags & EF_WALLCLIMB &&
-      BG_RotateAxis( es->angles2, legs.axis, tempAxis, qfalse, es->eFlags & EF_WALLCLIMBCEILING ) )
+      BG_RotateAxis( es->angles2, legs.axis, tempAxis, qfalse, (qboolean)(es->eFlags & EF_WALLCLIMBCEILING) ) )
     AxisCopy( tempAxis, legs.axis );
 
   //smooth out WW transitions so the model doesn't hop around
@@ -2110,10 +2110,10 @@ void CG_Player( centity_t *cent )
   // add the shadow
   if( ( es->number == cg.snap->ps.clientNum && cg.renderingThirdPerson ) ||
       es->number != cg.snap->ps.clientNum )
-  shadow = CG_PlayerShadow( cent, &shadowPlane, class );
+  shadow = CG_PlayerShadow( cent, &shadowPlane, _class );
 
   // add a water splash if partially in and out of water
-  CG_PlayerSplash( cent, class );
+  CG_PlayerSplash( cent, _class );
 
   if( cg_shadows.integer == 3 && shadow )
     renderfx |= RF_SHADOW_PLANE;
@@ -2156,7 +2156,7 @@ void CG_Player( centity_t *cent )
     else
       VectorCopy( es->angles2, surfNormal );
 
-    BG_FindBBoxForClass( class, mins, maxs, NULL, NULL, NULL );
+    BG_FindBBoxForClass( _class, mins, maxs, NULL, NULL, NULL );
 
     VectorMA( legs.origin, -TRACE_DEPTH, surfNormal, end );
     VectorMA( legs.origin, 1.0f, surfNormal, start );
@@ -2172,7 +2172,7 @@ void CG_Player( centity_t *cent )
   }
 
   //rescale the model
-  scale = BG_FindModelScaleForClass( class );
+  scale = BG_FindModelScaleForClass( _class );
 
   if( scale != 1.0f )
   {
@@ -2184,7 +2184,7 @@ void CG_Player( centity_t *cent )
   }
 
   //offset on the Z axis if required
-  VectorMA( legs.origin, BG_FindZOffsetForClass( class ), surfNormal, legs.origin );
+  VectorMA( legs.origin, BG_FindZOffsetForClass( _class ), surfNormal, legs.origin );
   VectorCopy( legs.origin, legs.lightingOrigin );
   VectorCopy( legs.origin, legs.oldorigin ); // don't positionally lerp at all
 
@@ -2286,7 +2286,7 @@ void CG_Corpse( centity_t *cent )
   vec3_t        origin, liveZ, deadZ;
   float         scale;
 
-  corpseNum = CG_GetCorpseNum( es->clientNum );
+  corpseNum = CG_GetCorpseNum( (pClass_t)es->clientNum );
 
   if( corpseNum < 0 || corpseNum >= MAX_CLIENTS )
     CG_Error( "Bad corpseNum on corpse entity: %d", corpseNum );
@@ -2341,7 +2341,7 @@ void CG_Corpse( centity_t *cent )
   }
 
   // add the shadow
-  shadow = CG_PlayerShadow( cent, &shadowPlane, es->clientNum );
+  shadow = CG_PlayerShadow( cent, &shadowPlane, (pClass_t)es->clientNum );
 
   // get the player model information
   renderfx = 0;
@@ -2558,14 +2558,14 @@ qboolean CG_AtHighestClass( void )
     if( BG_ClassCanEvolveFromTo(
           cg.predictedPlayerState.stats[ STAT_PCLASS ], i,
           ALIEN_MAX_KILLS, 0 ) >= 0 &&
-        BG_FindStagesForClass( i, cgs.alienStage ) &&
-        BG_ClassIsAllowed( i ) )
+        BG_FindStagesForClass( i, (stage_t)cgs.alienStage ) &&
+        BG_ClassIsAllowed( (pClass_t)i ) )
     {
       superiorClasses = qtrue;
       break;
     }
   }
 
-  return !superiorClasses;
+  return (qboolean)!superiorClasses;
 }
 

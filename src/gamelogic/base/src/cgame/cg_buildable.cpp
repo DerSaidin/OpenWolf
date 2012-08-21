@@ -282,13 +282,13 @@ static qboolean CG_ParseBuildableSoundFile( const char *filename, buildable_t bu
     if ( !*token )
       break;
 
-    sounds[ i ].enabled = atoi( token );
+    sounds[ i ].enabled = (qboolean)atoi( token );
 
     token = COM_Parse( &text_p );
     if ( !*token )
       break;
 
-    sounds[ i ].looped = atoi( token );
+    sounds[ i ].looped = (qboolean)atoi( token );
 
   }
 
@@ -339,12 +339,12 @@ void CG_InitBuildables( void )
 
     //animation.cfg
     Com_sprintf( filename, sizeof( filename ), "models/buildables/%s/animation.cfg", buildableName );
-    if ( !CG_ParseBuildableAnimationFile( filename, i ) )
+    if ( !CG_ParseBuildableAnimationFile( filename, (buildable_t)i ) )
       Com_Printf( S_COLOR_YELLOW "WARNING: failed to load animation file %s\n", filename );
 
     //sound.cfg
     Com_sprintf( filename, sizeof( filename ), "sound/buildables/%s/sound.cfg", buildableName );
-    if ( !CG_ParseBuildableSoundFile( filename, i ) )
+    if ( !CG_ParseBuildableSoundFile( filename, (buildable_t)i ) )
       Com_Printf( S_COLOR_YELLOW "WARNING: failed to load sound file %s\n", filename );
 
     //models
@@ -427,10 +427,10 @@ cg.time should be between oldFrameTime and frameTime after exit
 static void CG_RunBuildableLerpFrame( centity_t *cent )
 {
   int                   f, numFrames;
-  buildable_t           buildable = cent->currentState.modelindex;
+  buildable_t           buildable = (buildable_t)cent->currentState.modelindex;
   lerpFrame_t           *lf = &cent->lerpFrame;
   animation_t           *anim;
-  buildableAnimNumber_t newAnimation = cent->buildableAnim & ~( ANIM_TOGGLEBIT|ANIM_FORCEBIT );
+  buildableAnimNumber_t newAnimation = (buildableAnimNumber_t)(cent->buildableAnim & ~( ANIM_TOGGLEBIT|ANIM_FORCEBIT ));
 
   // debugging tool to get no animations
   if( cg_animSpeed.integer == 0 )
@@ -501,7 +501,7 @@ static void CG_RunBuildableLerpFrame( centity_t *cent )
         // the animation is stuck at the end, so it
         // can immediately transition to another sequence
         lf->frameTime = cg.time;
-        cent->buildableAnim = cent->currentState.torsoAnim;
+        cent->buildableAnim = (buildableAnimNumber_t)cent->currentState.torsoAnim;
       }
     }
 
@@ -544,7 +544,7 @@ static void CG_BuildableAnimation( centity_t *cent, int *old, int *now, float *b
 
   //if no animation is set default to idle anim
   if( cent->buildableAnim == BANIM_NONE )
-    cent->buildableAnim = es->torsoAnim;
+    cent->buildableAnim = (buildableAnimNumber_t)es->torsoAnim;
 
   //display the first frame of the construction anim if not yet spawned
   if( !( es->generic1 & B_SPAWNED_TOGGLEBIT ) )
@@ -575,9 +575,9 @@ static void CG_BuildableAnimation( centity_t *cent, int *old, int *now, float *b
                    BG_FindHumanNameForBuildable( es->modelindex ), es->number );
 
       if( cent->buildableAnim == es->torsoAnim || es->legsAnim & ANIM_FORCEBIT )
-        cent->buildableAnim = cent->oldBuildableAnim = es->legsAnim;
+        cent->buildableAnim = cent->oldBuildableAnim = (buildableAnimNumber_t)es->legsAnim;
       else
-        cent->buildableAnim = cent->oldBuildableAnim = es->torsoAnim;
+        cent->buildableAnim = cent->oldBuildableAnim = (buildableAnimNumber_t)es->torsoAnim;
     }
 
     CG_RunBuildableLerpFrame( cent );
@@ -696,7 +696,7 @@ CG_BuildableParticleEffects
 static void CG_BuildableParticleEffects( centity_t *cent )
 {
   entityState_t   *es = &cent->currentState;
-  buildableTeam_t team = BG_FindTeamForBuildable( es->modelindex );
+  buildableTeam_t team = (buildableTeam_t)BG_FindTeamForBuildable( es->modelindex );
   int             health = es->generic1 & ~( B_POWERED_TOGGLEBIT | B_DCCED_TOGGLEBIT | B_SPAWNED_TOGGLEBIT );
   float           healthFrac = (float)health / B_HEALTH_SCALE;
 
@@ -833,7 +833,7 @@ void CG_Buildable( centity_t *cent )
   vec3_t          surfNormal, xNormal, mins, maxs;
   vec3_t          refNormal = { 0.0f, 0.0f, 1.0f };
   float           rotAngle;
-  buildableTeam_t team = BG_FindTeamForBuildable( es->modelindex );
+  buildableTeam_t team = (buildableTeam_t)BG_FindTeamForBuildable( es->modelindex );
   float           scale;
   int             health;
   float           healthScale;

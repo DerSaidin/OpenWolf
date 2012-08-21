@@ -398,7 +398,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\glew\include;..\..\libs\openexr;..\..\libs\jpeg;..\..\libs\libpng;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\libwebp\Include;..\..\libs\glsl-optimizer\src\glsl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;__WIN64__;WIN64;_AMD64_;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_XREAL_RENDERER;USE_WEBP;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WIN32;__WIN64__;WIN64;_AMD64_;_WINDOWS;_CRT_SECURE_NO_WARNINGS;BUILD_FREETYPE;FT_FREETYPE_H;USE_XREAL_RENDERER;USE_WEBP;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

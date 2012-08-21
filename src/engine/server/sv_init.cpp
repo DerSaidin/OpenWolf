@@ -611,7 +611,9 @@ void SV_SpawnServer(char *server, qboolean killBots) {
 
 	// MrE: main zone should be pretty much emtpy at this point
 	// except for file system data and cached renderer data
+#ifdef ZONE_DEBUG
 	Z_LogHeap();
+#endif
 
 	// allocate empty config strings
 	for(i = 0; i < MAX_CONFIGSTRINGS; i++) {

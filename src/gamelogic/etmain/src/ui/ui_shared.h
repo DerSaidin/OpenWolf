@@ -508,8 +508,6 @@ typedef struct
 	void            (*getHunkData) (int *hunkused, int *hunkexpected);
 	int             (*getConfigString) (int index, char *buff, int buffsize);
 
-	void            (*Con_GetText)( char *buf, int buf_size, int c );
-
 	float           yscale;
 	float           xscale;
 	float           bias;

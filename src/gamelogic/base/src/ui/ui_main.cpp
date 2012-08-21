@@ -108,6 +108,9 @@ vmCvar_t  ui_new;
 vmCvar_t  ui_debug;
 vmCvar_t  ui_initialized;
 vmCvar_t  ui_teamArenaFirstRun;
+vmCvar_t  cl_profile;
+vmCvar_t  cl_defaultProfile;
+vmCvar_t  ui_profile;
 
 void _UI_Init( qboolean );
 void _UI_Shutdown( void );
@@ -121,7 +124,7 @@ intptr_t vmMain( intptr_t command, intptr_t arg0, intptr_t arg1, intptr_t arg2, 
       return UI_API_VERSION;
 
     case UI_INIT:
-      _UI_Init(arg0);
+      _UI_Init((qboolean)arg0);
       return 0;
 
     case UI_SHUTDOWN:
@@ -129,7 +132,7 @@ intptr_t vmMain( intptr_t command, intptr_t arg0, intptr_t arg1, intptr_t arg2, 
       return 0;
 
     case UI_KEY_EVENT:
-      _UI_KeyEvent( arg0, arg1 );
+      _UI_KeyEvent( arg0, (qboolean)arg1 );
       return 0;
 
     case UI_MOUSE_EVENT:
@@ -144,14 +147,14 @@ intptr_t vmMain( intptr_t command, intptr_t arg0, intptr_t arg1, intptr_t arg2, 
       return _UI_IsFullscreen();
 
     case UI_SET_ACTIVE_MENU:
-      _UI_SetActiveMenu( arg0 );
+      _UI_SetActiveMenu( (uiMenuCommand_t)arg0 );
       return 0;
 
     case UI_CONSOLE_COMMAND:
       return UI_ConsoleCommand(arg0);
 
     case UI_DRAW_CONNECT_SCREEN:
-      UI_DrawConnectScreen( arg0 );
+      UI_DrawConnectScreen( (qboolean)arg0 );
       return 0;
 	// Dushan
 	case UI_REPORT_HIGHSCORE_RESPONSE:
@@ -2134,7 +2137,7 @@ static void UI_BuildPlayerList( void ) {
   trap_GetClientState( &cs );
   trap_GetConfigString( CS_PLAYERS + cs.clientNum, info, MAX_INFO_STRING );
   uiInfo.playerNumber = cs.clientNum;
-  uiInfo.teamLeader = atoi(Info_ValueForKey(info, "tl"));
+  uiInfo.teamLeader = (qboolean)atoi(Info_ValueForKey(info, "tl"));
   team = atoi(Info_ValueForKey(info, "t"));
   trap_GetConfigString( CS_SERVERINFO, info, sizeof(info) );
   count = atoi( Info_ValueForKey( info, "sv_maxclients" ) );
@@ -2190,7 +2193,7 @@ static void UI_DrawServerRefreshDate(rectDef_t *rect, float scale, vec4_t color,
     lowLight[1] = 0.8 * color[1];
     lowLight[2] = 0.8 * color[2];
     lowLight[3] = 0.8 * color[3];
-    LerpColor(color,lowLight,newColor,0.5+0.5*sin(uiInfo.uiDC.realTime / PULSE_DIVISOR));
+    LerpColor(color,lowLight,newColor,0.5+0.5*(float)sin((float)uiInfo.uiDC.realTime / PULSE_DIVISOR));
     Text_Paint(rect->x, rect->y, scale, newColor, va(trap_TranslateString("Getting info for %d servers (ESC to cancel)"), 
 		trap_LAN_GetServerCount(ui_netSource.integer)), 0, 0, textStyle);
   } else {
@@ -2532,7 +2535,7 @@ static qboolean UI_OwnerDrawVisible(int flags) {
 
   trap_GetClientState( &cs );
   trap_GetConfigString( CS_PLAYERS + cs.clientNum, info, MAX_INFO_STRING );
-  team = atoi( Info_ValueForKey( info, "t" ) );
+  team = (pTeam_t)atoi( Info_ValueForKey( info, "t" ) );
 
 
   while (flags) {
@@ -3103,6 +3106,108 @@ void UI_ServersSort(int column, qboolean force) {
   qsort( &uiInfo.serverStatus.displayServers[0], uiInfo.serverStatus.numDisplayServers, sizeof(int), UI_ServersQsortCompare);
 }
 
+/*
+===============
+UI_LoadProfiles
+===============
+*/
+static void UI_LoadProfiles()
+{
+	int             numdirs;
+	char            dirlist[2048];
+	char           *dirptr;
+
+	//char  *descptr;
+	int             i;
+	int             dirlen;
+
+	uiInfo.profileCount = 0;
+	uiInfo.profileIndex = -1;
+	numdirs = trap_FS_GetFileList("profiles", "/", dirlist, sizeof(dirlist));
+	dirptr = dirlist;
+
+	for(i = 0; i < numdirs; i++)
+	{
+		dirlen = strlen(dirptr) + 1;
+
+		if(dirptr[0] && Q_stricmp(dirptr, ".") && Q_stricmp(dirptr, ".."))
+		{
+			int             handle;
+			pc_token_t      token;
+
+			if(!(handle = trap_PC_LoadSource(va("profiles/%s/profile.dat", dirptr))))
+			{
+				dirptr += dirlen;
+				continue;
+			}
+
+			if(!trap_PC_ReadToken(handle, &token))
+			{
+				trap_PC_FreeSource(handle);
+				dirptr += dirlen;
+				continue;
+			}
+
+			uiInfo.profileList[uiInfo.profileCount].name = String_Alloc(token.string);
+			trap_PC_FreeSource(handle);
+
+			uiInfo.profileList[uiInfo.profileCount].dir = String_Alloc(dirptr);
+			uiInfo.profileCount++;
+
+			/*if( uiInfo.profileCount == 1 ) {
+			   int j;
+
+			   uiInfo.profileIndex = 0;
+			   trap_Cvar_Set( "ui_profile", token.string );
+
+			   for( j = 0; j < Menu_Count(); j++ ) {
+			   Menu_SetFeederSelection( Menu_Get(j), FEEDER_PROFILES, 0, NULL );
+			   }
+			   } */
+			if(uiInfo.profileIndex == -1)
+			{
+				Q_CleanStr(token.string);
+				Q_CleanDirName(token.string);
+				if(!Q_stricmp(token.string, cl_profile.string))
+				{
+					int             j;
+
+					uiInfo.profileIndex = i;
+					trap_Cvar_Set("ui_profile", uiInfo.profileList[0].name);
+					trap_Cvar_Update(&ui_profile);
+
+					for(j = 0; j < Menu_Count(); j++)
+					{
+						Menu_SetFeederSelection(Menu_Get(j), FEEDER_PROFILES, uiInfo.profileIndex, NULL);
+					}
+				}
+			}
+
+			if(uiInfo.profileCount >= MAX_PROFILES)
+			{
+				break;
+			}
+		}
+
+		dirptr += dirlen;
+	}
+
+	if(uiInfo.profileIndex == -1)
+	{
+		int             j;
+
+		uiInfo.profileIndex = 0;
+		trap_Cvar_Set("ui_profile", uiInfo.profileList[0].name);
+		trap_Cvar_Update(&ui_profile);
+
+		for(j = 0; j < Menu_Count(); j++)
+		{
+			Menu_SetFeederSelection(Menu_Get(j), FEEDER_PROFILES, 0, NULL);
+		}
+	}
+}
+
+
 
 /*
 ===============
@@ -3167,14 +3272,14 @@ static void UI_LoadTremTeams( void )
 UI_AddClass
 ===============
 */
-static void UI_AddClass( pClass_t class )
+static void UI_AddClass( pClass_t _class )
 {
   uiInfo.tremAlienClassList[ uiInfo.tremAlienClassCount ].text =
-    String_Alloc( BG_FindHumanNameForClassNum( class ) );
+    String_Alloc( BG_FindHumanNameForClassNum( _class ) );
   uiInfo.tremAlienClassList[ uiInfo.tremAlienClassCount ].cmd =
-    String_Alloc( va( "cmd class %s\n", BG_FindNameForClassNum( class ) ) );
+    String_Alloc( va( "cmd _class %s\n", BG_FindNameForClassNum( _class ) ) );
   uiInfo.tremAlienClassList[ uiInfo.tremAlienClassCount ].infopane =
-    UI_FindInfoPaneByName( va( "%sclass", BG_FindNameForClassNum( class ) ) );
+    UI_FindInfoPaneByName( va( "%sclass", BG_FindNameForClassNum( _class ) ) );
 
   uiInfo.tremAlienClassCount++;
 }
@@ -3327,7 +3432,7 @@ static void UI_LoadTremHumanArmouryBuys( void )
     if( BG_FindTeamForWeapon( i ) == WUT_HUMANS &&
         BG_FindPurchasableForWeapon( i ) &&
         BG_FindStagesForWeapon( i, stage ) &&
-        BG_WeaponIsAllowed( i ) &&
+        BG_WeaponIsAllowed( (weapon_t)i ) &&
         !( BG_FindSlotsForWeapon( i ) & slots ) &&
         !( weapons & ( 1 << i ) ) )
     {
@@ -3349,7 +3454,7 @@ static void UI_LoadTremHumanArmouryBuys( void )
     if( BG_FindTeamForUpgrade( i ) == WUT_HUMANS &&
         BG_FindPurchasableForUpgrade( i ) &&
         BG_FindStagesForUpgrade( i, stage ) &&
-        BG_UpgradeIsAllowed( i ) &&
+        BG_UpgradeIsAllowed( (upgrade_t)i ) &&
         !( BG_FindSlotsForUpgrade( i ) & slots ) &&
         !( upgrades & ( 1 << i ) ) )
     {
@@ -3421,20 +3526,20 @@ UI_LoadTremAlienUpgrades
 static void UI_LoadTremAlienUpgrades( void )
 {
   int     i, j = 0;
-  int     class, credits;
+  int     _class, credits;
   char    ui_currentClass[ MAX_STRING_CHARS ];
   stage_t stage = UI_GetCurrentAlienStage( );
 
   trap_Cvar_VariableStringBuffer( "ui_currentClass", ui_currentClass, MAX_STRING_CHARS );
-  sscanf( ui_currentClass, "%d %d", &class, &credits );
+  sscanf( ui_currentClass, "%d %d", &_class, &credits );
 
   uiInfo.tremAlienUpgradeCount = 0;
 
   for( i = PCL_NONE + 1; i < PCL_NUM_CLASSES; i++ )
   {
-    if( BG_ClassCanEvolveFromTo( class, i, credits, 0 ) >= 0 &&
+    if( BG_ClassCanEvolveFromTo( _class, i, credits, 0 ) >= 0 &&
         BG_FindStagesForClass( i, stage ) &&
-        BG_ClassIsAllowed( i ) )
+        BG_ClassIsAllowed( (pClass_t)i ) )
     {
       uiInfo.tremAlienUpgradeList[ j ].text = String_Alloc( BG_FindHumanNameForClassNum( i ) );
       uiInfo.tremAlienUpgradeList[ j ].cmd =
@@ -3470,7 +3575,7 @@ static void UI_LoadTremAlienBuilds( void )
     if( BG_FindTeamForBuildable( i ) == BIT_ALIENS &&
         BG_FindBuildWeaponForBuildable( i ) & weapons &&
         BG_FindStagesForBuildable( i, stage ) &&
-        BG_BuildableIsAllowed( i ) )
+        BG_BuildableIsAllowed( (buildable_t)i ) )
     {
       uiInfo.tremAlienBuildList[ j ].text =
         String_Alloc( BG_FindHumanNameForBuildable( i ) );
@@ -3507,7 +3612,7 @@ static void UI_LoadTremHumanBuilds( void )
     if( BG_FindTeamForBuildable( i ) == BIT_HUMANS &&
         BG_FindBuildWeaponForBuildable( i ) & weapons &&
         BG_FindStagesForBuildable( i, stage ) &&
-        BG_BuildableIsAllowed( i ) )
+        BG_BuildableIsAllowed( (buildable_t)i ) )
     {
       uiInfo.tremHumanBuildList[ j ].text =
         String_Alloc( BG_FindHumanNameForBuildable( i ) );
@@ -4240,6 +4345,185 @@ static void UI_RunMenuScript(char **args) {
           }
         }
       }
+		else if(Q_stricmp(name, "loadProfiles") == 0)
+		{
+			UI_LoadProfiles();
+		}
+		else if(Q_stricmp(name, "createProfile") == 0)
+		{
+			fileHandle_t    f;
+			char            buff[MAX_CVAR_VALUE_STRING];
+
+			/*Q_strncpyz( cl_profile.string, ui_profile.string, sizeof(cl_profile.string) );
+			   Q_CleanStr( cl_profile.string );
+			   Q_CleanDirName( cl_profile.string );
+
+			   trap_Cvar_Set( "cl_profile", cl_profile.string );
+			   if( trap_FS_FOpenFile( va( "profiles/%s/profile.dat", cl_profile.string ), &f, FS_WRITE ) >= 0 ) {
+			   trap_FS_Write( va( "\"%s\"", ui_profile.string ), strlen(ui_profile.string) + 2, f );
+			   trap_FS_FCloseFile( f );
+			   } */
+			Q_strncpyz(buff, ui_profile.string, sizeof(buff));
+			Q_CleanStr(buff);
+			Q_CleanDirName(buff);
+
+			if(trap_FS_FOpenFile(va("profiles/%s/profile.dat", buff), &f, FS_WRITE) >= 0)
+			{
+				trap_FS_Write(va("\"%s\"", ui_profile.string), strlen(ui_profile.string) + 2, f);
+				trap_FS_FCloseFile(f);
+			}
+			trap_Cvar_Set("name", ui_profile.string);
+		}
+		else if(Q_stricmp(name, "clearPID") == 0)
+		{
+			fileHandle_t    f;
+
+			// delete profile.pid from current profile
+			if(trap_FS_FOpenFile(va("profiles/%s/profile.pid", cl_profile.string), &f, FS_READ) >= 0)
+			{
+				trap_FS_FCloseFile(f);
+				trap_FS_Delete(va("profiles/%s/profile.pid", cl_profile.string));
+			}
+		}
+		else if(Q_stricmp(name, "applyProfile") == 0)
+		{
+			Q_strncpyz(cl_profile.string, ui_profile.string, sizeof(cl_profile.string));
+			Q_CleanStr(cl_profile.string);
+			Q_CleanDirName(cl_profile.string);
+			trap_Cvar_Set("cl_profile", cl_profile.string);
+		}
+		else if(Q_stricmp(name, "setDefaultProfile") == 0)
+		{
+			fileHandle_t    f;
+
+			Q_strncpyz(cl_defaultProfile.string, ui_profile.string, sizeof(cl_profile.string));
+			Q_CleanStr(cl_defaultProfile.string);
+			Q_CleanDirName(cl_defaultProfile.string);
+			trap_Cvar_Set("cl_defaultProfile", cl_defaultProfile.string);
+
+			if(trap_FS_FOpenFile("profiles/defaultprofile.dat", &f, FS_WRITE) >= 0)
+			{
+				trap_FS_Write(va("\"%s\"", cl_defaultProfile.string), strlen(cl_defaultProfile.string) + 2, f);
+				trap_FS_FCloseFile(f);
+			}
+		}
+		else if(Q_stricmp(name, "deleteProfile") == 0)
+		{
+			char            buff[MAX_CVAR_VALUE_STRING];
+
+			Q_strncpyz(buff, ui_profile.string, sizeof(buff));
+			Q_CleanStr(buff);
+			Q_CleanDirName(buff);
+
+			// can't delete active profile
+			if(Q_stricmp(buff, cl_profile.string))
+			{
+				if(!Q_stricmp(buff, cl_defaultProfile.string))
+				{
+					// if deleting the default profile, set the default to the current active profile
+					fileHandle_t    f;
+
+					trap_Cvar_Set("cl_defaultProfile", cl_profile.string);
+					if(trap_FS_FOpenFile("profiles/defaultprofile.dat", &f, FS_WRITE) >= 0)
+					{
+						trap_FS_Write(va("\"%s\"", cl_profile.string), strlen(cl_profile.string) + 2, f);
+						trap_FS_FCloseFile(f);
+					}
+				}
+
+				trap_FS_Delete(va("profiles/%s", buff));
+			}
+		}
+		else if(Q_stricmp(name, "renameProfileInit") == 0)
+		{
+			trap_Cvar_Set("ui_profile_renameto", ui_profile.string);
+		}
+		else if(Q_stricmp(name, "renameProfile") == 0)
+		{
+			fileHandle_t    f, f2;
+			int             len;
+			char            buff[MAX_CVAR_VALUE_STRING];
+			char            ui_renameprofileto[MAX_CVAR_VALUE_STRING];
+			char            uiprofile[MAX_CVAR_VALUE_STRING];
+
+			trap_Cvar_VariableStringBuffer("ui_profile_renameto", ui_renameprofileto, sizeof(ui_renameprofileto));
+			Q_strncpyz(buff, ui_renameprofileto, sizeof(buff));
+			Q_CleanStr(buff);
+			Q_CleanDirName(buff);
+
+			Q_strncpyz(uiprofile, ui_profile.string, sizeof(uiprofile));
+			Q_CleanStr(uiprofile);
+			Q_CleanDirName(uiprofile);
+
+			if(trap_FS_FOpenFile(va("profiles/%s/profile.dat", buff), &f, FS_WRITE) >= 0)
+			{
+				trap_FS_Write(va("\"%s\"", ui_renameprofileto), strlen(ui_renameprofileto) + 2, f);
+				trap_FS_FCloseFile(f);
+			}
+
+			// FIXME: make this copying handle all files in the profiles directory
+			if(Q_stricmp(uiprofile, buff))
+			{
+				if(trap_FS_FOpenFile(va("profiles/%s/%s", buff, CONFIG_NAME), &f, FS_WRITE) >= 0)
+				{
+					if((len = trap_FS_FOpenFile(va("profiles/%s/%s", uiprofile, CONFIG_NAME), &f2, FS_READ)) >= 0)
+					{
+						int             i;
+
+						for(i = 0; i < len; i++)
+						{
+							byte            b;
+
+							trap_FS_Read(&b, 1, f2);
+							trap_FS_Write(&b, 1, f);
+						}
+						trap_FS_FCloseFile(f2);
+					}
+					trap_FS_FCloseFile(f);
+				}
+
+				if(trap_FS_FOpenFile(va("profiles/%s/servercache.dat", buff), &f, FS_WRITE) >= 0)
+				{
+					if((len = trap_FS_FOpenFile(va("profiles/%s/servercache.dat", cl_profile.string), &f2, FS_READ)) >= 0)
+					{
+						int             i;
+
+						for(i = 0; i < len; i++)
+						{
+							byte            b;
+
+							trap_FS_Read(&b, 1, f2);
+							trap_FS_Write(&b, 1, f);
+						}
+						trap_FS_FCloseFile(f2);
+					}
+					trap_FS_FCloseFile(f);
+				}
+
+				if(!Q_stricmp(uiprofile, cl_defaultProfile.string))
+				{
+					// if renaming the default profile, set the default to the new profile
+					trap_Cvar_Set("cl_defaultProfile", buff);
+					if(trap_FS_FOpenFile("profiles/defaultprofile.dat", &f, FS_WRITE) >= 0)
+					{
+						trap_FS_Write(va("\"%s\"", buff), strlen(buff) + 2, f);
+						trap_FS_FCloseFile(f);
+					}
+				}
+
+				// if renaming the active profile, set active to new name
+				if(!Q_stricmp(uiprofile, cl_profile.string))
+				{
+					trap_Cvar_Set("cl_profile", buff);
+				}
+
+				// delete the old profile
+				trap_FS_Delete(va("profiles/%s", uiprofile));
+			}
+
+			trap_Cvar_Set("ui_profile", ui_renameprofileto);
+			trap_Cvar_Set("ui_profile_renameto", "");
+		}
     } else if (Q_stricmp(name, "orders") == 0) {
       const char *orders;
       if (String_Parse(args, &orders)) {
@@ -4511,7 +4795,7 @@ static void UI_BuildServerDisplayList(qboolean force) {
   }
   // if we shouldn't reset
   if ( force == 2 ) {
-    force = 0;
+    force = (qboolean)0;
   }
 
   // do motd updates here too
@@ -4981,7 +5265,6 @@ static int UI_FeederCount(float feederID) {
   } else if (feederID == FEEDER_DEMOS) {
     return uiInfo.demoCount;
   }
-
 //TA: tremulous menus
   else if( feederID == FEEDER_TREMTEAMS )
     return uiInfo.tremTeamCount;
@@ -5120,6 +5403,36 @@ static const char *UI_FeederItemText(float feederID, int index, int column, qhan
           }
       }
     }
+  } else if(feederID == FEEDER_PROFILES)
+	{
+		if(index >= 0 && index < uiInfo.profileCount)
+		{
+			char            buff[MAX_CVAR_VALUE_STRING];
+
+			Q_strncpyz(buff, uiInfo.profileList[index].name, sizeof(buff));
+			Q_CleanStr(buff);
+			Q_CleanDirName(buff);
+
+			if(!Q_stricmp(buff, cl_profile.string))
+			{
+				if(!Q_stricmp(buff, cl_defaultProfile.string))
+				{
+					return (va("^7(Default) %s", uiInfo.profileList[index].name));
+				}
+				else
+				{
+					return (va("^7%s", uiInfo.profileList[index].name));
+				}
+			}
+			else if(!Q_stricmp(buff, cl_defaultProfile.string))
+			{
+				return (va("(Default) %s", uiInfo.profileList[index].name));
+			}
+			else
+			{
+				return uiInfo.profileList[index].name;
+			}
+		}
   } else if (feederID == FEEDER_SERVERSTATUS) {
     if ( index >= 0 && index < uiInfo.serverStatusInfo.numLines ) {
       if ( column >= 0 && column < 4 ) {
@@ -5546,6 +5859,8 @@ void _UI_Init( qboolean inGameLoad ) {
   uiInfo.uiDC.drawCinematic = &UI_DrawCinematic;
   uiInfo.uiDC.runCinematicFrame = &UI_RunCinematicFrame;
   uiInfo.uiDC.translateString = &trap_TranslateString;
+  uiInfo.uiDC.checkAutoUpdate = &trap_CheckAutoUpdate;
+  uiInfo.uiDC.getAutoUpdate = &trap_GetAutoUpdate;
 
   Init_Display(&uiInfo.uiDC);
 
@@ -5723,6 +6038,22 @@ void _UI_SetActiveMenu( uiMenuCommand_t menu ) {
       }
       Menus_CloseAll();
       Menus_ActivateByName("main");
+		
+	  /*
+	  // Dushan FIX ME
+	  // makes sure it doesn't get restarted every time you reach the main menu
+		if(!cl_profile.string[0])
+		{
+			//Menus_ActivateByName( "profilelogin", qtrue );
+			// FIXME: initial profile popup
+			// FIXED: handled in opener now
+			Menus_ActivateByName( "profile_firstrun" );
+		}
+		else
+		{
+			Menus_ActivateByName("main");
+		}
+	  */
       trap_Cvar_VariableStringBuffer("com_errorMessage", buf, sizeof(buf));
       if (strlen(buf)) {
         if (!ui_singlePlayerActive.integer) {
@@ -6235,7 +6566,7 @@ static cvarTable_t    cvarTable[] = {
   { &ui_blueteam3, "ui_blueteam3", "0", CVAR_ARCHIVE },
   { &ui_blueteam4, "ui_blueteam4", "0", CVAR_ARCHIVE },
   { &ui_blueteam5, "ui_blueteam5", "0", CVAR_ARCHIVE },
-  { &ui_netSource, "ui_netSource", "0", CVAR_ARCHIVE },
+  { &ui_netSource, "ui_netSource", "1", CVAR_ARCHIVE },
   { &ui_menuFiles, "ui_menuFiles", "ui/menus.txt", CVAR_ARCHIVE },
   { &ui_currentTier, "ui_currentTier", "0", CVAR_ARCHIVE },
   { &ui_currentMap, "ui_currentMap", "0", CVAR_ARCHIVE },
@@ -6278,6 +6609,9 @@ static cvarTable_t    cvarTable[] = {
   { &ui_serverStatusTimeOut, "ui_serverStatusTimeOut", "7000", CVAR_ARCHIVE},
   { &ui_username, "ui_username", "", CVAR_ARCHIVE },
   { &ui_password, "ui_password", "", CVAR_ARCHIVE },
+  { &cl_profile, "cl_profile", "", CVAR_ROM },
+  { &cl_defaultProfile, "cl_defaultProfile", "", CVAR_ROM },
+  { &ui_profile, "ui_profile", "", CVAR_ROM },
 
   { &ui_bank, "ui_bank", "0", 0 },
 
@@ -6376,7 +6710,7 @@ static void UI_DoServerRefresh( void )
     uiInfo.serverStatus.refreshtime = uiInfo.uiDC.realTime + 1000;
   } else if (!wait) {
     // get the last servers in the list
-    UI_BuildServerDisplayList(2);
+    UI_BuildServerDisplayList((qboolean)2);
     // stop the refresh
     UI_StopServerRefresh();
   }

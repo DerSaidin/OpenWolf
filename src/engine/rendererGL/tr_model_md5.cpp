@@ -365,9 +365,7 @@ qboolean R_LoadMD5(model_t * mod, byte *buffer, int bufferSize, const char *modN
 			}
 		}
 
-#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 		R_CalcSurfaceTriangleNeighbors(surf->numTriangles, surf->triangles);
-#endif
 
 		// parse numWeights <number>
 		token = COM_ParseExt2(&buf_p, qtrue);

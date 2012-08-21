@@ -3082,7 +3082,7 @@ void            CG_windowNormalizeOnText(cg_window_t * w);
 
 void            CG_SetupCabinets(void);
 
-extern displayContextDef_t cgDC;
+extern			displayContextDef_t cgDC;
 void            CG_ParseSkyBox(void);
 void            CG_ParseTagConnect(int tagNum);
 void            CG_ParseTagConnects(void);

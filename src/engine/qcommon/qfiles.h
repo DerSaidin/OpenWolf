@@ -54,45 +54,12 @@ Maryland 20850 USA.
 /*
 ========================================================================
 
-QVM files
-
-========================================================================
-*/
-
-#define	VM_MAGIC			0x12721444
-#define	VM_MAGIC_VER2		0x12721445
-
-/* 'NTVE', but backwards because the QVM format is little-endian */
-#define	VM_MAGIC_USE_NATIVE	0x4556544E
-
-typedef struct {
-	int		vmMagic;
-
-	int		instructionCount;
-
-	int		codeOffset;
-	int		codeLength;
-
-	int		dataOffset;
-	int		dataLength;
-	int		litLength;			// ( dataLength - litLength ) should be byteswapped on load
-	int		bssLength;			// zero filled memory appended to datalength
-
-	//!!! below here is VM_MAGIC_VER2 !!!
-	int		jtrgLength;			// number of jump table targets
-} vmHeader_t;
-
-
-
-/*
-========================================================================
-
 PCX files are used for 8 bit images
 
 ========================================================================
 */
 
-typedef struct
+typedef struct pcx_s
 {
 	char            manufacturer;
 	char            version;

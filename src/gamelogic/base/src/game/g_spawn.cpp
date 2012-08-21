@@ -329,7 +329,7 @@ qboolean G_CallSpawn( gentity_t *ent )
   }
 
   //check buildable spawn functions
-  if( ( buildable = BG_FindBuildNumForEntityName( ent->classname ) ) != BA_NONE )
+  if( ( buildable = (buildable_t)BG_FindBuildNumForEntityName( ent->classname ) ) != BA_NONE )
   {
     if( buildable == BA_A_SPAWN || buildable == BA_H_SPAWN )
     {
@@ -371,7 +371,7 @@ char *G_NewString( const char *string )
 
   l = strlen( string ) + 1;
 
-  newb = G_Alloc( l );
+  newb = (char*)G_Alloc( l );
 
   new_p = newb;
 

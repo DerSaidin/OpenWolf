@@ -524,7 +524,6 @@ R_FindSurfaceTriangleWithEdge
 Tr3B - recoded from Q2E
 =================
 */
-#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 static int R_FindSurfaceTriangleWithEdge(int numTriangles, srfTriangle_t * triangles, int start, int end, int ignore)
 {
 	srfTriangle_t  *tri;
@@ -561,7 +560,6 @@ static int R_FindSurfaceTriangleWithEdge(int numTriangles, srfTriangle_t * trian
 
 	return match;
 }
-#endif
 
 /*
 =================
@@ -569,7 +567,6 @@ R_CalcSurfaceTriangleNeighbors
 Tr3B - recoded from Q2E
 =================
 */
-#if !defined(COMPAT_Q3A) || !defined(COMPAT_ET)
 void R_CalcSurfaceTriangleNeighbors(int numTriangles, srfTriangle_t * triangles)
 {
 	int             i;
@@ -582,7 +579,6 @@ void R_CalcSurfaceTriangleNeighbors(int numTriangles, srfTriangle_t * triangles)
 		tri->neighbors[2] = R_FindSurfaceTriangleWithEdge(numTriangles, triangles, tri->indexes[0], tri->indexes[2], i);
 	}
 }
-#endif
 
 /*
 =================

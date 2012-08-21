@@ -188,13 +188,13 @@ int trap_EntitiesInBox(const vec3_t mins, const vec3_t maxs, int *list, int maxc
 //24.
 //return SV_EntityContact(VMA(1), VMA(2), VMA(3), /* int capsule */ qfalse);
 qboolean trap_EntityContact(const vec3_t mins, const vec3_t maxs, const gentity_t * ent) {
-	return syscall(G_ENTITY_CONTACT, mins, maxs, ent);
+	return (qboolean)syscall(G_ENTITY_CONTACT, mins, maxs, ent);
 }
 
 //25.
 //return SV_EntityContact(VMA(1), VMA(2), VMA(3), /* int capsule */ qtrue);
 qboolean trap_EntityContactCapsule(const vec3_t mins, const vec3_t maxs, const gentity_t * ent) {
-	return syscall(G_ENTITY_CONTACTCAPSULE, mins, maxs, ent);
+	return (qboolean)syscall(G_ENTITY_CONTACTCAPSULE, mins, maxs, ent);
 }
 
 //26.
@@ -234,13 +234,13 @@ void trap_SetBrushModel(gentity_t * ent, const char *name) {
 //30.
 //return SV_inPVS(VMA(1), VMA(2));
 qboolean trap_InPVS(const vec3_t p1, const vec3_t p2) {
-	return syscall(G_IN_PVS, p1, p2);
+	return (qboolean)syscall(G_IN_PVS, p1, p2);
 }
 
 //31.
 //return SV_inPVSIgnorePortals(VMA(1), VMA(2));
 qboolean trap_InPVSIgnorePortals(const vec3_t p1, const vec3_t p2) {
-	return syscall(G_IN_PVS_IGNORE_PORTALS, p1, p2);
+	return (qboolean)syscall(G_IN_PVS_IGNORE_PORTALS, p1, p2);
 }
 
 //32.
@@ -288,7 +288,7 @@ void trap_AdjustAreaPortalState(gentity_t * ent, qboolean open) {
 //39.
 //return CM_AreasConnected(args[1], args[2]);
 qboolean trap_AreasConnected(int area1, int area2) {
-	return syscall(G_AREAS_CONNECTED, area1, area2);
+	return (qboolean)syscall(G_AREAS_CONNECTED, area1, area2);
 }
 
 //40.
@@ -318,7 +318,7 @@ void trap_GetUsercmd(int clientNum, usercmd_t * cmd) {
 
 //44.
 qboolean trap_GetEntityToken(char *buffer, int bufferSize) {
-	return syscall(G_GET_ENTITY_TOKEN, buffer, bufferSize);
+	return (qboolean)syscall(G_GET_ENTITY_TOKEN, buffer, bufferSize);
 }
 
 //45.
@@ -368,13 +368,13 @@ void trap_RemoveCommand( const char *cmdName ) {
 //52.
 //return SV_GetTag(args[1], args[2], VMA(3), VMA(4));
 qboolean trap_GetTag(int clientNum, int tagFileNumber, char *tagName, orientation_t * ori) {
-	return syscall(G_GETTAG, clientNum, tagFileNumber, tagName, ori);
+	return (qboolean)syscall(G_GETTAG, clientNum, tagFileNumber, tagName, ori);
 }
 
 //53.
 //return SV_LoadTag(VMA(1));
 qboolean trap_LoadTag(const char *filename) {
-	return syscall(G_REGISTERTAG, filename);
+	return (qboolean)syscall(G_REGISTERTAG, filename);
 }
 
 //54.
@@ -580,7 +580,7 @@ void trap_AAS_AreaCenter(int areanum, vec3_t center) {
 //87.
 //return botlib_export->aas.AAS_AreaWaypoint(args[1], VMA(2));
 qboolean trap_AAS_AreaWaypoint(int areanum, vec3_t center) {
-	return syscall( BOTLIB_AAS_AREA_WAYPOINT, areanum, center);
+	return (qboolean)syscall( BOTLIB_AAS_AREA_WAYPOINT, areanum, center);
 }
 
 //88.
@@ -1384,7 +1384,7 @@ void trap_SendMessage(int clientNum, char *buf, int buflen) {
 //224.
 //return SV_BinaryMessageStatus(args[1]);
 messageStatus_t trap_MessageStatus(int clientNum) {
-	return syscall(G_MESSAGESTATUS, clientNum);
+	return (messageStatus_t)syscall(G_MESSAGESTATUS, clientNum);
 }
 
 #if defined(ET_MYSQL)
@@ -1404,7 +1404,7 @@ void trap_SQL_FinishQuery( int queryid ) {
 //227.
 //return OW_NextRow( args[1] );
 qboolean trap_SQL_NextRow( int queryid ) {
-	return syscall( G_SQL_NEXTROW, queryid );
+	return (qboolean)syscall( G_SQL_NEXTROW, queryid );
 }
 
 //228.

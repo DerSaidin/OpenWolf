@@ -425,7 +425,7 @@ static float PM_CmdScale( usercmd_t *cmd )
   if( !max )
     return 0;
 
-  total = sqrt( cmd->forwardmove * cmd->forwardmove
+  total = (float)sqrt((float)cmd->forwardmove * cmd->forwardmove
     + cmd->rightmove * cmd->rightmove + cmd->upmove * cmd->upmove );
 
   scale = (float)pm->ps->speed * max / ( 127.0 * total ) * modifier;
@@ -1346,7 +1346,7 @@ static void PM_CheckLadder( void )
   vec3_t  forward, end;
   trace_t trace;
 
-  //test if class can use ladders
+  //test if _class can use ladders
   if( !BG_ClassHasAbility( pm->ps->stats[ STAT_PCLASS ], SCA_CANUSELADDERS ) )
   {
     pml.ladder = qfalse;
@@ -2839,9 +2839,9 @@ static void PM_Weapon( void )
     case WP_ALEVEL3:
     case WP_ALEVEL3_UPG:
       //pouncing has primary secondary AND autohit procedures
-      attack1 = pm->cmd.buttons & BUTTON_ATTACK;
-      attack2 = pm->cmd.buttons & BUTTON_ATTACK2;
-      attack3 = pm->cmd.buttons & BUTTON_USE_HOLDABLE;
+      attack1 = (qboolean)(pm->cmd.buttons & BUTTON_ATTACK);
+      attack2 = (qboolean)(pm->cmd.buttons & BUTTON_ATTACK2);
+      attack3 = (qboolean)(pm->cmd.buttons & BUTTON_USE_HOLDABLE);
 
       if( !pm->autoWeaponHit[ pm->ps->weapon ] && !attack1 && !attack2 && !attack3 )
       {
@@ -2852,9 +2852,9 @@ static void PM_Weapon( void )
       break;
 
     case WP_LUCIFER_CANNON:
-      attack1 = pm->cmd.buttons & BUTTON_ATTACK;
-      attack2 = pm->cmd.buttons & BUTTON_ATTACK2;
-      attack3 = pm->cmd.buttons & BUTTON_USE_HOLDABLE;
+      attack1 = (qboolean)(pm->cmd.buttons & BUTTON_ATTACK);
+      attack2 = (qboolean)(pm->cmd.buttons & BUTTON_ATTACK2);
+      attack3 = (qboolean)(pm->cmd.buttons & BUTTON_USE_HOLDABLE);
 
       if( ( attack1 || pm->ps->stats[ STAT_MISC ] == 0 ) && !attack2 && !attack3 )
       {
@@ -2865,12 +2865,12 @@ static void PM_Weapon( void )
           return;
         }
         else
-          attack1 = !attack1;
+          attack1 = (qboolean)!attack1;
       }
 
       //erp this looks confusing
       if( pm->ps->stats[ STAT_MISC ] > LCANNON_MIN_CHARGE )
-        attack1 = !attack1;
+        attack1 = (qboolean)!attack1;
       else if( pm->ps->stats[ STAT_MISC ] > 0 )
       {
         pm->ps->stats[ STAT_MISC ] = 0;
@@ -2882,9 +2882,9 @@ static void PM_Weapon( void )
 
     default:
       //by default primary and secondary attacks are allowed
-      attack1 = pm->cmd.buttons & BUTTON_ATTACK;
-      attack2 = pm->cmd.buttons & BUTTON_ATTACK2;
-      attack3 = pm->cmd.buttons & BUTTON_USE_HOLDABLE;
+      attack1 = (qboolean)(pm->cmd.buttons & BUTTON_ATTACK);
+      attack2 = (qboolean)(pm->cmd.buttons & BUTTON_ATTACK2);
+      attack3 = (qboolean)(pm->cmd.buttons & BUTTON_USE_HOLDABLE);
 
       if( !attack1 && !attack2 && !attack3 )
       {
@@ -3179,7 +3179,7 @@ void PM_UpdateViewAngles( playerState_t *ps, const usercmd_t *cmd )
 
   if( !( ps->stats[ STAT_STATE ] & SS_WALLCLIMBING ) ||
       !BG_RotateAxis( ps->grapplePoint, axis, rotaxis, qfalse,
-                      ps->stats[ STAT_STATE ] & SS_WALLCLIMBINGCEILING ) )
+                      (qboolean)(ps->stats[ STAT_STATE ] & SS_WALLCLIMBINGCEILING )) )
     AxisCopy( axis, rotaxis );
 
   //convert the new axis back to angles

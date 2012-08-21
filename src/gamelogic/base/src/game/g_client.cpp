@@ -649,7 +649,7 @@ void SpawnCorpse( gentity_t *ent )
   body->s.event = 0;
   body->r.contents = CONTENTS_CORPSE;
   body->s.clientNum = ent->client->ps.stats[ STAT_PCLASS ];
-  body->nonSegModel = ent->client->ps.persistant[ PERS_STATE ] & PS_NONSEGMODEL;
+  body->nonSegModel = (qboolean)(ent->client->ps.persistant[ PERS_STATE ] & PS_NONSEGMODEL);
 
   if( ent->client->ps.stats[ STAT_PTEAM ] == PTE_HUMANS )
     body->classname = "humanCorpse";
@@ -789,7 +789,7 @@ team_t TeamCount( int ignoreClientNum, int team )
       count++;
   }
 
-  return count;
+  return (team_t)count;
 }
 
 

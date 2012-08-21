@@ -5950,11 +5950,6 @@ void Item_ListBox_Paint(itemDef_t * item)
 	   fillRect.h -= 2 * item->window.borderSize;
 	   } */
 
-	if( listPtr->flags & LISTBOX_CHATLOG )
-	{
-		DC->Con_GetText( chatbuf, sizeof( chatbuf ), 1 );
-	}
-
 	// the listbox is horizontal or vertical and has a fixed size scroll bar going either direction
 	// elements are enumerated from the DC and either text or image handles are acquired from the DC as well
 	// textscale is used to size the text, textalignx and textaligny are used to size image elements

@@ -33,21 +33,21 @@ typedef struct
 
 static bind_t bindings[ ] =
 {
-  { "+button2",       "Activate Upgrade",       { -1, -1 } },
-  { "+speed",         "Run/Walk",               { -1, -1 } },
-  { "boost",          "Sprint",                 { -1, -1 } },
-  { "+moveup",        "Jump",                   { -1, -1 } },
-  { "+movedown",      "Crouch",                 { -1, -1 } },
-  { "+zoom",          "ZoomView",               { -1, -1 } },
-  { "+attack",        "Primary Attack",         { -1, -1 } },
-  { "+button5",       "Secondary Attack",       { -1, -1 } },
-  { "reload",         "Reload",                 { -1, -1 } },
-  { "buy ammo",       "Buy Ammo",               { -1, -1 } },
-  { "itemact medkit", "Use Medkit",             { -1, -1 } },
-  { "+button7",       "Use Structure/Evolve",   { -1, -1 } },
-  { "deconstruct",    "Deconstruct Structure",  { -1, -1 } },
-  { "weapprev",       "Previous Upgrade",       { -1, -1 } },
-  { "weapnext",       "Next Upgrade",           { -1, -1 } }
+  { "+button2",       "Activate Upgrade",       { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+speed",         "Run/Walk",               { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "boost",          "Sprint",                 { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+moveup",        "Jump",                   { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+movedown",      "Crouch",                 { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+zoom",          "ZoomView",               { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+attack",        "Primary Attack",         { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+button5",       "Secondary Attack",       { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "reload",         "Reload",                 { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "buy ammo",       "Buy Ammo",               { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "itemact medkit", "Use Medkit",             { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "+button7",       "Use Structure/Evolve",   { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "deconstruct",    "Deconstruct Structure",  { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "weapprev",       "Previous Upgrade",       { (keyNum_t)-1, (keyNum_t)-1 } },
+  { "weapnext",       "Next Upgrade",           { (keyNum_t)-1, (keyNum_t)-1 } }
 };
 
 static const int numBindings = sizeof( bindings ) / sizeof( bind_t );
@@ -76,7 +76,7 @@ static void CG_GetBindings( void )
 
       if( !Q_stricmp( buffer, bindings[ i ].command ) )
       {
-        bindings[ i ].keys[ numKeys++ ] = j;
+        bindings[ i ].keys[ numKeys++ ] = (keyNum_t)j;
 
         if( numKeys > 1 )
           break;
@@ -169,7 +169,7 @@ CG_AlienBuilderText
 */
 static void CG_AlienBuilderText( char *text, playerState_t *ps )
 {
-  buildable_t buildable = ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT;
+  buildable_t buildable = (buildable_t)(ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT);
 
   if( buildable > BA_NONE )
   {
@@ -326,7 +326,7 @@ CG_HumanCkitText
 */
 static void CG_HumanCkitText( char *text, playerState_t *ps )
 {
-  buildable_t buildable = ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT;
+  buildable_t buildable = (buildable_t)(ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT);
 
   if( buildable > BA_NONE )
   {
@@ -371,7 +371,7 @@ static void CG_HumanText( char *text, playerState_t *ps )
   else if( cg.weaponSelect > 32 )
   {
     name = cg_upgrades[ cg.weaponSelect - 32 ].humanName;
-    upgrade = cg.weaponSelect - 32;
+    upgrade = (upgrade_t)(cg.weaponSelect - 32);
   }
 
   BG_UnpackAmmoArray( ps->weapon, ps->ammo, ps->powerups, &ammo, &clips );

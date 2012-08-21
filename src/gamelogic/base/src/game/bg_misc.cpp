@@ -54,7 +54,7 @@ buildableAttributes_t bg_buildableList[ ] =
     ASPAWN_SPLASHRADIUS,   //int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     ASPAWN_BT,             //int       buildTime;
@@ -89,7 +89,7 @@ buildableAttributes_t bg_buildableList[ ] =
     BARRICADE_SPLASHRADIUS,//int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     BARRICADE_BT,          //int       buildTime;
@@ -124,7 +124,7 @@ buildableAttributes_t bg_buildableList[ ] =
     BOOSTER_SPLASHRADIUS,  //int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     BOOSTER_BT,            //int       buildTime;
@@ -159,7 +159,7 @@ buildableAttributes_t bg_buildableList[ ] =
     ACIDTUBE_SPLASHRADIUS, //int       splashRadius;
     MOD_ATUBE,             //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     200,                   //int       nextthink;
     ACIDTUBE_BT,           //int       buildTime;
@@ -194,7 +194,7 @@ buildableAttributes_t bg_buildableList[ ] =
     HIVE_SPLASHRADIUS,     //int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     500,                   //int       nextthink;
     HIVE_BT,               //int       buildTime;
@@ -229,7 +229,7 @@ buildableAttributes_t bg_buildableList[ ] =
     TRAPPER_SPLASHRADIUS,  //int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     TRAPPER_BT,            //int       buildTime;
@@ -264,7 +264,7 @@ buildableAttributes_t bg_buildableList[ ] =
     OVERMIND_SPLASHRADIUS, //int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     OVERMIND_ATTACK_REPEAT,//int       nextthink;
     OVERMIND_BT,           //int       buildTime;
@@ -299,7 +299,7 @@ buildableAttributes_t bg_buildableList[ ] =
     HOVEL_SPLASHRADIUS,    //int       splashRadius;
     MOD_ASPAWN,            //int       meansOfDeath;
     BIT_ALIENS,            //int       team;
-    ( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_ABUILD )|( 1 << WP_ABUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     150,                   //int       nextthink;
     HOVEL_BT,              //int       buildTime;
@@ -334,7 +334,7 @@ buildableAttributes_t bg_buildableList[ ] =
     HSPAWN_SPLASHRADIUS,   //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     HSPAWN_BT,             //int       buildTime;
@@ -369,7 +369,7 @@ buildableAttributes_t bg_buildableList[ ] =
     MEDISTAT_SPLASHRADIUS, //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     MEDISTAT_BT,           //int       buildTime;
@@ -406,7 +406,7 @@ buildableAttributes_t bg_buildableList[ ] =
     MGTURRET_SPLASHRADIUS, //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 ),   //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 )),   //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     50,                    //int       nextthink;
     MGTURRET_BT,           //int       buildTime;
@@ -441,7 +441,7 @@ buildableAttributes_t bg_buildableList[ ] =
     TESLAGEN_SPLASHRADIUS, //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD2 ),   //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD2 )),   //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     150,                   //int       nextthink;
     TESLAGEN_BT,           //int       buildTime;
@@ -476,7 +476,7 @@ buildableAttributes_t bg_buildableList[ ] =
     DC_SPLASHRADIUS,       //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD2 ),   //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD2 )),   //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     DC_BT,                 //int       buildTime;
@@ -511,7 +511,7 @@ buildableAttributes_t bg_buildableList[ ] =
     ARMOURY_SPLASHRADIUS,  //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     ARMOURY_BT,            //int       buildTime;
@@ -546,7 +546,7 @@ buildableAttributes_t bg_buildableList[ ] =
     REACTOR_SPLASHRADIUS,  //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     REACTOR_ATTACK_REPEAT, //int       nextthink;
     REACTOR_BT,            //int       buildTime;
@@ -581,7 +581,7 @@ buildableAttributes_t bg_buildableList[ ] =
     REPEATER_SPLASHRADIUS, //int       splashRadius;
     MOD_HSPAWN,            //int       meansOfDeath;
     BIT_HUMANS,            //int       team;
-    ( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 ),    //weapon_t  buildWeapon;
+    (weapon_t)(( 1 << WP_HBUILD )|( 1 << WP_HBUILD2 )),    //weapon_t  buildWeapon;
     BANIM_IDLE1,           //int       idleAnim;
     100,                   //int       nextthink;
     REPEATER_BT,           //int       buildTime;
@@ -2579,7 +2579,7 @@ qboolean BG_ClassHasAbility( int pclass, int ability )
   {
     if( bg_classList[ i ].classNum == pclass )
     {
-      return ( bg_classList[ i ].abilities & ability );
+      return (qboolean)( bg_classList[ i ].abilities & ability );
     }
   }
 
@@ -4800,7 +4800,7 @@ qboolean BG_WeaponIsFull( weapon_t weapon, int stats[ ], int psAmmo[ ], int psAm
   if( BG_InventoryContainsUpgrade( UP_BATTPACK, stats ) )
     maxAmmo = (int)( (float)maxAmmo * BATTPACK_MODIFIER );
 
-  return ( maxAmmo == ammo ) && ( maxClips == clips );
+  return (qboolean)(( maxAmmo == ammo ) && ( maxClips == clips ));
 }
 
 /*
@@ -4861,7 +4861,7 @@ qboolean BG_InventoryContainsWeapon( int weapon, int stats[ ] )
 
   weaponList = ( stats[ STAT_WEAPONS ] & 0x0000FFFF ) | ( ( stats[ STAT_WEAPONS2 ] << 16 ) & 0xFFFF0000 );
 
-  return( weaponList & ( 1 << weapon ) );
+  return (qboolean)( weaponList & ( 1 << weapon ) );
 }
 
 /*
@@ -4904,7 +4904,7 @@ Does the player hold an upgrade?
 */
 qboolean BG_InventoryContainsUpgrade( int item, int stats[ ] )
 {
-  return( stats[ STAT_ITEMS ] & ( 1 << item ) );
+  return (qboolean)( stats[ STAT_ITEMS ] & ( 1 << item ) );
 }
 
 /*
@@ -4940,7 +4940,7 @@ Is this upgrade active?
 */
 qboolean BG_UpgradeIsActive( int item, int stats[ ] )
 {
-  return( stats[ STAT_ACTIVEITEMS ] & ( 1 << item ) );
+  return (qboolean)( stats[ STAT_ACTIVEITEMS ] & ( 1 << item ) );
 }
 
 /*
@@ -5149,10 +5149,10 @@ void BG_ParseCSVEquipmentList( const char *string, weapon_t *weapons, int weapon
       q++;
 
     if( weaponsSize )
-      weapons[ i ] = BG_FindWeaponNumForName( q );
+      weapons[ i ] = (weapon_t)BG_FindWeaponNumForName( q );
 
     if( upgradesSize )
-      upgrades[ j ] = BG_FindUpgradeNumForName( q );
+      upgrades[ j ] = (upgrade_t)BG_FindUpgradeNumForName( q );
 
     if( weaponsSize && weapons[ i ] == WP_NONE &&
         upgradesSize && upgrades[ j ] == UP_NONE )
@@ -5212,7 +5212,7 @@ void BG_ParseCSVClassList( const char *string, pClass_t *classes, int classesSiz
     while( *q == ' ' )
       q++;
 
-    classes[ i ] = BG_FindClassNumForName( q );
+    classes[ i ] = (pClass_t)BG_FindClassNumForName( q );
 
     if( classes[ i ] == PCL_NONE )
       Com_Printf( S_COLOR_YELLOW "WARNING: unknown class %s\n", q );
@@ -5262,7 +5262,7 @@ void BG_ParseCSVBuildableList( const char *string, buildable_t *buildables, int 
     while( *q == ' ' )
       q++;
 
-    buildables[ i ] = BG_FindClassNumForName( q );
+    buildables[ i ] = (buildable_t)BG_FindClassNumForName( q );
 
     if( buildables[ i ] == BA_NONE )
       Com_Printf( S_COLOR_YELLOW "WARNING: unknown buildable %s\n", q );
@@ -5293,14 +5293,14 @@ qboolean BG_UpgradeClassAvailable( playerState_t *ps )
   stage_t currentStage;
 
   trap_Cvar_VariableStringBuffer( "g_alienStage", buffer, MAX_STRING_CHARS );
-  currentStage = atoi( buffer );
+  currentStage = (stage_t)atoi( buffer );
 
   for( i = PCL_NONE + 1; i < PCL_NUM_CLASSES; i++ )
   {
     if( BG_ClassCanEvolveFromTo( ps->stats[ STAT_PCLASS ], i,
             ps->persistant[ PERS_CREDIT ], 0 ) >= 0 &&
         BG_FindStagesForClass( i, currentStage ) &&
-        BG_ClassIsAllowed( i ) )
+        BG_ClassIsAllowed( (pClass_t)i ) )
     {
       return qtrue;
     }
@@ -5391,14 +5391,14 @@ qboolean BG_UpgradeIsAllowed( upgrade_t upgrade )
 BG_ClassIsAllowed
 ============
 */
-qboolean BG_ClassIsAllowed( pClass_t class )
+qboolean BG_ClassIsAllowed( pClass_t _class )
 {
   int i;
 
   for( i = 0; i < PCL_NUM_CLASSES &&
       bg_disabledGameElements.classes[ i ] != PCL_NONE; i++ )
   {
-    if( bg_disabledGameElements.classes[ i ] == class )
+    if( bg_disabledGameElements.classes[ i ] == _class )
       return qfalse;
   }
 

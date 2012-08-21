@@ -255,9 +255,9 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;WIN64;__WIN64__;NDEBUG;_WINDOWS;_USRDLL;Q3_UI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;GPP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;__WIN64__;NDEBUG;_WINDOWS;_USRDLL;Q3_UI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;GPP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -269,9 +269,8 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -281,18 +280,17 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\ui.def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>
+      </MapFileName>
+      <AdditionalDependencies>winmm.lib;libcmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>
       </ShowProgress>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <GenerateMapFile>true</GenerateMapFile>
-      <BaseAddress>0x40000000</BaseAddress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">

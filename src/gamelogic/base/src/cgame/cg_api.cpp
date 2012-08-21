@@ -431,7 +431,7 @@ qhandle_t trap_R_RegisterSkin(const char *name) {
 //62.
 //return re.GetSkinModel(args[1], VMA(2), VMA(3));
 qboolean trap_R_GetSkinModel(qhandle_t skinid, const char *type, char *name) {
-	return syscall(CG_R_GETSKINMODEL, skinid, type, name);
+	return (qboolean)syscall(CG_R_GETSKINMODEL, skinid, type, name);
 }
 
 //63.
@@ -636,13 +636,13 @@ void trap_GetCurrentSnapshotNumber(int *snapshotNumber, int *serverTime) {
 //94.
 //return CL_GetSnapshot(args[1], VMA(2));
 qboolean trap_GetSnapshot(int snapshotNumber, snapshot_t * snapshot) {
-	return syscall(CG_GETSNAPSHOT, snapshotNumber, snapshot);
+	return (qboolean)syscall(CG_GETSNAPSHOT, snapshotNumber, snapshot);
 }
 
 //95.
 //return CL_GetServerCommand(args[1]);
 qboolean trap_GetServerCommand(int serverCommandNumber) {
-	return syscall(CG_GETSERVERCOMMAND, serverCommandNumber);
+	return (qboolean)syscall(CG_GETSERVERCOMMAND, serverCommandNumber);
 }
 
 //96.
@@ -654,7 +654,7 @@ int trap_GetCurrentCmdNumber(void) {
 //97.
 //return CL_GetUserCmd(args[1], VMA(2));
 qboolean trap_GetUserCmd(int cmdNumber, usercmd_t * ucmd) {
-	return syscall(CG_GETUSERCMD, cmdNumber, ucmd);
+	return (qboolean)syscall(CG_GETUSERCMD, cmdNumber, ucmd);
 }
 
 //98.
@@ -678,7 +678,7 @@ int trap_MemoryRemaining(void) {
 //101.
 //return Key_IsDown(args[1]);
 qboolean trap_Key_IsDown(int keynum) {
-	return syscall(CG_KEY_ISDOWN, keynum);
+	return (qboolean)syscall(CG_KEY_ISDOWN, keynum);
 }
 
 //102.
@@ -702,7 +702,7 @@ int trap_Key_GetKey(const char *binding) {
 //105.
 //return Key_GetOverstrikeMode();
 qboolean trap_Key_GetOverstrikeMode(void) {
-	return syscall(CG_KEY_GETOVERSTRIKEMODE);
+	return (qboolean)syscall(CG_KEY_GETOVERSTRIKEMODE);
 }
 
 //106.
@@ -804,13 +804,13 @@ int trap_CIN_PlayCinematic(const char *arg0, int xpos, int ypos, int width, int 
 //127.
 //return CIN_StopCinematic(args[1]);
 e_status trap_CIN_StopCinematic(int handle) {
-	return syscall(CG_CIN_STOPCINEMATIC, handle);
+	return (e_status)syscall(CG_CIN_STOPCINEMATIC, handle);
 }
 
 //128.
 //return CIN_RunCinematic(args[1]);
 e_status trap_CIN_RunCinematic(int handle) {
-	return syscall(CG_CIN_RUNCINEMATIC, handle);
+	return (e_status)syscall(CG_CIN_RUNCINEMATIC, handle);
 }
 
 //129.
@@ -846,7 +846,7 @@ void testPrintFloat(char *string, float f) {
 //134.
 //return loadCamera(args[1], VMA(2));
 qboolean trap_loadCamera(int camNum, const char *name) {
-	return syscall(CG_LOADCAMERA, camNum, name);
+	return (qboolean)syscall(CG_LOADCAMERA, camNum, name);
 }
 
 //135.
@@ -871,13 +871,13 @@ void trap_stopCamera(int camNum) {
 //137.
 //return getCameraInfo(args[1], args[2], VMA(3), VMA(4), VMA(5));
 qboolean trap_getCameraInfo(int camNum, int time, vec3_t * origin, vec3_t * angles, float *fov) {
-	return syscall(CG_GETCAMERAINFO, camNum, time, origin, angles, fov);
+	return (qboolean)syscall(CG_GETCAMERAINFO, camNum, time, origin, angles, fov);
 }
 
 //138.
 //return re.GetEntityToken(VMA(1), args[2]);
 qboolean trap_GetEntityToken(char *buffer, int bufferSize) {
-	return syscall(CG_GET_ENTITY_TOKEN, buffer, bufferSize);
+	return (qboolean)syscall(CG_GET_ENTITY_TOKEN, buffer, bufferSize);
 }
 
 //139.
@@ -964,7 +964,7 @@ void trap_S_FadeAllSound(float targetvol, int time, qboolean stopsounds) {
 //152.
 //return re.inPVS(VMA(1), VMA(2));
 qboolean trap_R_inPVS(const vec3_t p1, const vec3_t p2) {
-	return syscall(CG_R_INPVS, p1, p2);
+	return (qboolean)syscall(CG_R_INPVS, p1, p2);
 }
 
 //153.
@@ -990,13 +990,13 @@ void trap_SendMessage(char *buf, int buflen) {
 //156.
 //return CL_BinaryMessageStatus();
 messageStatus_t trap_MessageStatus(void) {
-	return syscall(CG_MESSAGESTATUS);
+	return (messageStatus_t)syscall(CG_MESSAGESTATUS);
 }
 
 //157.
 //return re.LoadDynamicShader(VMA(1), VMA(2));
 qboolean trap_R_LoadDynamicShader(const char *shadername, const char *shadertext) {
-	return syscall(CG_R_LOADDYNAMICSHADER, shadername, shadertext);
+	return (qboolean)syscall(CG_R_LOADDYNAMICSHADER, shadername, shadertext);
 }
 
 //158.

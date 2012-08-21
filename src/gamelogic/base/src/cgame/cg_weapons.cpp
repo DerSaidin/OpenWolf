@@ -791,8 +791,8 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
   qboolean      noGunModel;
   qboolean      firing;
 
-  weaponNum = cent->currentState.weapon;
-  weaponMode = cent->currentState.generic1;
+  weaponNum = (weapon_t)cent->currentState.weapon;
+  weaponMode = (weaponMode_t)cent->currentState.generic1;
 
   if( weaponMode <= WPM_NONE || weaponMode >= WPM_NUM_WEAPONMODES )
     weaponMode = WPM_PRIMARY;
@@ -825,25 +825,25 @@ void CG_AddPlayerWeapon( refEntity_t *parent, playerState_t *ps, centity_t *cent
     if( cg.weapon1Firing != ( cg.predictedPlayerState.eFlags & EF_FIRING ) )
     {
       cg.weapon1Time = cg.time;
-      cg.weapon1Firing = ( cg.predictedPlayerState.eFlags & EF_FIRING );
+      cg.weapon1Firing = (qboolean)( cg.predictedPlayerState.eFlags & EF_FIRING );
     }
 
     if( cg.weapon2Firing != ( cg.predictedPlayerState.eFlags & EF_FIRING2 ) )
     {
       cg.weapon2Time = cg.time;
-      cg.weapon2Firing = ( cg.predictedPlayerState.eFlags & EF_FIRING2 );
+      cg.weapon2Firing = (qboolean)( cg.predictedPlayerState.eFlags & EF_FIRING2 );
     }
 
     if( cg.weapon3Firing != ( cg.predictedPlayerState.eFlags & EF_FIRING3 ) )
     {
       cg.weapon3Time = cg.time;
-      cg.weapon3Firing = ( cg.predictedPlayerState.eFlags & EF_FIRING3 );
+      cg.weapon3Firing = (qboolean)( cg.predictedPlayerState.eFlags & EF_FIRING3 );
     }
   }
 
   gun.hModel = weapon->weaponModel;
 
-  noGunModel = ( ( !ps || cg.renderingThirdPerson ) && weapon->disableIn3rdPerson ) || !gun.hModel;
+  noGunModel = (qboolean)(( ( !ps || cg.renderingThirdPerson ) && weapon->disableIn3rdPerson ) || !gun.hModel);
 
   if( !ps )
   {
@@ -980,8 +980,8 @@ void CG_AddViewWeapon( playerState_t *ps )
   float         fovOffset;
   vec3_t        angles;
   weaponInfo_t  *wi;
-  weapon_t      weapon = ps->weapon;
-  weaponMode_t  weaponMode = ps->generic1;
+  weapon_t      weapon = (weapon_t)ps->weapon;
+  weaponMode_t  weaponMode = (weaponMode_t)ps->generic1;
 
   if( weaponMode <= WPM_NONE || weaponMode >= WPM_NUM_WEAPONMODES )
     weaponMode = WPM_PRIMARY;
@@ -1004,7 +1004,7 @@ void CG_AddViewWeapon( playerState_t *ps )
 
   //TA: draw a prospective buildable infront of the player
   if( ( ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT ) > BA_NONE )
-    CG_GhostBuildable( ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT );
+    CG_GhostBuildable( (buildable_t)(ps->stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT) );
 
   if( weapon == WP_LUCIFER_CANNON && ps->stats[ STAT_MISC ] > 0 )
   {
@@ -1176,9 +1176,9 @@ void CG_DrawItemSelect( rectDef_t *rect, vec4_t color )
   if( !( cg.snap->ps.pm_flags & PMF_FOLLOW ) )
   {
     // first make sure that whatever it selected is actually selectable
-    if( cg.weaponSelect <= 32 && !CG_WeaponSelectable( cg.weaponSelect ) )
+    if( cg.weaponSelect <= 32 && !CG_WeaponSelectable( (weapon_t)cg.weaponSelect ) )
       CG_NextWeapon_f( );
-    else if( cg.weaponSelect > 32 && !CG_UpgradeSelectable( cg.weaponSelect ) )
+    else if( cg.weaponSelect > 32 && !CG_UpgradeSelectable( (upgrade_t)cg.weaponSelect ) )
       CG_NextWeapon_f( );
   }
 
@@ -1330,12 +1330,12 @@ void CG_NextWeapon_f( void )
 
     if( cg.weaponSelect <= 32 )
     {
-      if( CG_WeaponSelectable( cg.weaponSelect ) )
+      if( CG_WeaponSelectable( (weapon_t)cg.weaponSelect ) )
         break;
     }
     else if( cg.weaponSelect > 32 )
     {
-      if( CG_UpgradeSelectable( cg.weaponSelect - 32 ) )
+      if( CG_UpgradeSelectable( (upgrade_t)(cg.weaponSelect - 32) ) )
         break;
     }
   }
@@ -1374,12 +1374,12 @@ void CG_PrevWeapon_f( void )
 
     if( cg.weaponSelect <= 32 )
     {
-      if( CG_WeaponSelectable( cg.weaponSelect ) )
+      if( CG_WeaponSelectable( (weapon_t)cg.weaponSelect ) )
         break;
     }
     else if( cg.weaponSelect > 32 )
     {
-      if( CG_UpgradeSelectable( cg.weaponSelect - 32 ) )
+      if( CG_UpgradeSelectable( (upgrade_t)(cg.weaponSelect - 32) ) )
         break;
     }
   }
@@ -1441,7 +1441,7 @@ void CG_FireWeapon( centity_t *cent, weaponMode_t weaponMode )
 
   es = &cent->currentState;
 
-  weaponNum = es->weapon;
+  weaponNum = (weapon_t)es->weapon;
 
   if( weaponNum == WP_NONE )
     return;

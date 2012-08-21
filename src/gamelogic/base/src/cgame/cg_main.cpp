@@ -62,7 +62,7 @@ intptr_t vmMain( intptr_t command, intptr_t arg0, intptr_t arg1, intptr_t arg2, 
       return 0;
 
     case CG_DRAW_ACTIVE_FRAME:
-      CG_DrawActiveFrame( arg0, arg1, arg2 );
+      CG_DrawActiveFrame( arg0, (stereoFrame_t)arg1, (qboolean)arg2 );
       return 0;
 
     case CG_CROSSHAIR_PLAYER:
@@ -72,7 +72,7 @@ intptr_t vmMain( intptr_t command, intptr_t arg0, intptr_t arg1, intptr_t arg2, 
       return CG_LastAttacker( );
 
     case CG_KEY_EVENT:
-      CG_KeyEvent( arg0, arg1 );
+      CG_KeyEvent( arg0, (qboolean)arg1 );
       return 0;
 
     case CG_MOUSE_EVENT:
@@ -405,7 +405,7 @@ void CG_RegisterCvars( void )
 
   // see if we are also running the server on this machine
   trap_Cvar_VariableStringBuffer( "sv_running", var, sizeof( var ) );
-  cgs.localServer = atoi( var );
+  cgs.localServer = (qboolean)atoi( var );
   forceModelModificationCount = cg_forceModel.modificationCount;
 
   trap_Cvar_Register( NULL, "model", DEFAULT_MODEL, CVAR_USERINFO | CVAR_ARCHIVE );
@@ -926,7 +926,7 @@ static void CG_RegisterClients( void )
   //precache all the models/sounds/etc
   for( i = PCL_NONE + 1; i < PCL_NUM_CLASSES;  i++ )
   {
-    CG_PrecacheClientInfo( i, BG_FindModelNameForClass( i ),
+    CG_PrecacheClientInfo( (pClass_t)i, BG_FindModelNameForClass( i ),
                               BG_FindSkinNameForClass( i ) );
 
     cg.charModelFraction = (float)i / (float)PCL_NUM_CLASSES;

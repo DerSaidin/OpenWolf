@@ -177,6 +177,8 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <Optimization>Full</Optimization>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -195,6 +197,7 @@
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <MapExports>true</MapExports>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">
@@ -267,9 +270,9 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <ModuleDefinitionFile>botlib.def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
-      <GenerateMapFile>true</GenerateMapFile>
+      <GenerateMapFile>false</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
     </Link>
   </ItemDefinitionGroup>

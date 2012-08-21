@@ -75,9 +75,6 @@
     <Filter Include="Source Files\Server">
       <UniqueIdentifier>{ed3cb6b9-9321-41f6-bb19-0c4349c2f9eb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Sound">
-      <UniqueIdentifier>{c0e6deff-f029-4b22-afa8-87b7407c36a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Database">
       <UniqueIdentifier>{74ca0e8c-c746-4117-86e0-1cf786741f84}</UniqueIdentifier>
     </Filter>
@@ -109,13 +106,13 @@
       <UniqueIdentifier>{8c0fa5cb-4e6d-42cf-a314-74214fed7508}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\CM">
-      <UniqueIdentifier>{7198ac1a-94d6-4867-8261-23b305d8453e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\CM\Header Files">
-      <UniqueIdentifier>{ad29f470-6e9e-4a8a-87ff-3064c7f5e053}</UniqueIdentifier>
+      <UniqueIdentifier>{e0e56986-124e-4a2b-ae1a-e2382c76e968}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\CM\Source Files">
-      <UniqueIdentifier>{194ab20f-58a2-4712-a202-c35f9fcbef05}</UniqueIdentifier>
+      <UniqueIdentifier>{a16f4dc6-af21-48ca-baba-b7b6f209dc39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CM\Header Files">
+      <UniqueIdentifier>{e2c117eb-eda9-4eb1-9e5e-a11392c6bcac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -311,82 +308,79 @@
     <ClCompile Include="qcommon\cm_physics.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_wavelet.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_contacts.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_mix.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_contents.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_mem.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_debug.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_load.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_files.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_dma.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_load.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_codec_wav.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_q3BSP.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_codec_ogg.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_rotate.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_codec.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_trace.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\snd_adpcm.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="cm\CollisionModel_translate.cpp">
+      <Filter>Source Files\CM\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\libmumblelink.cpp">
-      <Filter>Source Files\Sound</Filter>
+    <ClCompile Include="qcommon\cm_api.cpp">
+      <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
-    <ClCompile Include="client\cl_ui.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_text.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_scrn.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_parse.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_main.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_keys.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_irc.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_input.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_download.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_console.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_cin.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
-    <ClCompile Include="client\cl_cgame.cpp">
+    <ClCompile Include="client\cin_ogm.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
     <ClCompile Include="client\cl_avi.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
-    <ClCompile Include="client\cin_ogm.cpp">
+    <ClCompile Include="client\cl_cgame.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_cin.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_console.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_download.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_input.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_irc.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_keys.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_main.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_net_chan.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_parse.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_scrn.cpp">
+      <Filter>Source Files\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="client\cl_ui.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\cm_load.cpp">
-      <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_patch.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\cm_polylib.cpp">
@@ -395,10 +389,10 @@
     <ClCompile Include="qcommon\cm_test.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\cm_trisoup.cpp">
+    <ClCompile Include="qcommon\cm_trace.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\cm_trace.cpp">
+    <ClCompile Include="qcommon\cm_trisoup.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
     <ClCompile Include="sys\con_curses.cpp">
@@ -461,9 +455,6 @@
     <ClCompile Include="qcommon\htable.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\huffman.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
     <ClCompile Include="qcommon\ioapi.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
@@ -503,10 +494,10 @@
     <ClCompile Include="server\sv_client.cpp">
       <Filter>Source Files\Server</Filter>
     </ClCompile>
-    <ClCompile Include="server\sv_init.cpp">
+    <ClCompile Include="server\sv_game.cpp">
       <Filter>Source Files\Server</Filter>
     </ClCompile>
-    <ClCompile Include="server\sv_game.cpp">
+    <ClCompile Include="server\sv_init.cpp">
       <Filter>Source Files\Server</Filter>
     </ClCompile>
     <ClCompile Include="server\sv_main.cpp">
@@ -521,62 +512,35 @@
     <ClCompile Include="server\sv_world.cpp">
       <Filter>Source Files\Server</Filter>
     </ClCompile>
+    <ClCompile Include="sys\sys_main.cpp">
+      <Filter>Source Files\SYS</Filter>
+    </ClCompile>
     <ClCompile Include="sys\sys_sysinfo.cpp">
       <Filter>Source Files\SYS</Filter>
     </ClCompile>
-    <ClCompile Include="sys\sys_main.cpp">
+    <ClCompile Include="sys\sys_win32_con.cpp">
       <Filter>Source Files\SYS</Filter>
     </ClCompile>
     <ClCompile Include="sys\sys_win32.cpp">
       <Filter>Source Files\SYS</Filter>
     </ClCompile>
-    <ClCompile Include="client\cl_net_chan.cpp">
-      <Filter>Source Files\Client</Filter>
+    <ClCompile Include="qcommon\vm.cpp">
+      <Filter>Source Files\VM</Filter>
     </ClCompile>
-    <ClCompile Include="sys\sys_win32_con.cpp">
-      <Filter>Source Files\SYS</Filter>
+    <ClCompile Include="qcommon\huffman.cpp">
+      <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
-    <ClCompile Include="cm\CollisionModel_contacts.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_contents.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_debug.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_files.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_load.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_q3BSP.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_rotate.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_trace.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cm\CollisionModel_translate.cpp">
-      <Filter>Source Files\CM\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\cm_api.cpp">
+    <ClCompile Include="qcommon\cm_patch.cpp">
       <Filter>Source Files\Collision Model</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\vm.c">
-      <Filter>Source Files\VM</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\vm_interpreted.c">
-      <Filter>Source Files\VM</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\vm_x86.c">
-      <Filter>Source Files\VM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\etmain\src\game\bg_public.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="client\client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="qcommon\cm_local.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -634,10 +598,10 @@
     <ClInclude Include="qcommon\ioapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="qcommon\vm_llvm.h">
+    <ClInclude Include="qcommon\htable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="qcommon\htable.h">
+    <ClInclude Include="..\..\etmain\src\ui\keycodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sys\sys_win32.h">
@@ -691,19 +655,13 @@
     <ClInclude Include="..\libs\libnewton\include\dContainers\dTree.h">
       <Filter>libs\Newton\dContainers\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="client\snd_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\snd_codec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\snd_local.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\snd_public.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="qcommon\q_shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gamelogic\etmain\src\game\botlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gamelogic\etmain\src\botai\botai.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\libs\nettle\nettle\bignum.h">
@@ -730,26 +688,11 @@
     <ClInclude Include="..\libs\mpir\include\gmp.h">
       <Filter>libs\MPIR\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="botlib\botai.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="botlib\botlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cm\CollisionModel.h">
       <Filter>Source Files\CM\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cm\CollisionModel_local.h">
       <Filter>Source Files\CM\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gamelogic\etmain\src\game\bg_public.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\gamelogic\etmain\src\ui\keycodes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\client.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1091,9 +1034,6 @@
       <Filter>Source Files\VM</Filter>
     </CustomBuild>
     <CustomBuild Include="asm\snapvector.asm">
-      <Filter>Source Files\VM</Filter>
-    </CustomBuild>
-    <CustomBuild Include="asm\vm_x86_64.asm">
       <Filter>Source Files\VM</Filter>
     </CustomBuild>
   </ItemGroup>

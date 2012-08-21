@@ -82,11 +82,11 @@ void G_GiveClientMaxAmmo( gentity_t *ent, qboolean buyingEnergyAmmo )
     if( buyingEnergyAmmo )
       weaponType = BG_FindUsesEnergyForWeapon( i );
     else
-      weaponType = !BG_FindUsesEnergyForWeapon( i );
+      weaponType = (qboolean)!BG_FindUsesEnergyForWeapon( i );
 
     if( BG_InventoryContainsWeapon( i, ent->client->ps.stats ) &&
         weaponType && !BG_FindInfinteAmmoForWeapon( i ) &&
-        !BG_WeaponIsFull( i, ent->client->ps.stats,
+        !BG_WeaponIsFull( (weapon_t)i, ent->client->ps.stats,
           ent->client->ps.ammo, ent->client->ps.powerups ) )
     {
       BG_FindAmmoForWeapon( i, &maxAmmo, &maxClips );
@@ -107,7 +107,7 @@ void G_GiveClientMaxAmmo( gentity_t *ent, qboolean buyingEnergyAmmo )
   }
 
   if( restoredAmmo )
-    G_ForceWeaponChange( ent, ent->client->ps.weapon );
+    G_ForceWeaponChange( ent, (weapon_t)ent->client->ps.weapon );
 }
 
 /*
@@ -722,7 +722,7 @@ void buildFire( gentity_t *ent, dynMenu_t menu )
       return;
     }
 
-    if( G_ValidateBuild( ent, ent->client->ps.stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT ) )
+    if( G_ValidateBuild( ent, (buildable_t)(ent->client->ps.stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT) ) )
     {
       if( ent->client->ps.stats[ STAT_PTEAM ] == PTE_ALIENS && !G_isOvermind( ) )
       {

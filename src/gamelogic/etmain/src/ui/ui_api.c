@@ -803,11 +803,6 @@ void trap_GetGlconfig2(glconfig2_t * glconfig)
 }
 
 //126.
-void trap_Con_GetText( char *buf, int buf_size, int c ) {
-	syscall( UI_CON_GETTEXT, buf, buf_size, c );
-}
-
-//127.
 int trap_Cvar_VariableInt( const char * var_name ) {
 	return syscall( UI_CVAR_VARIABLEINT, var_name );
 }

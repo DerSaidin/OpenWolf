@@ -38,7 +38,7 @@ Maryland 20850 USA.
 #include "../qcommon/qcommon.h"
 #include "../rendererGL/tr_public.h"
 #include "keys.h"
-#include "snd_public.h"
+#include "../snd_system/snd_public.h"
 #include "../../gamelogic/etmain/src/game/bg_public.h"	// FIXME
 
 #include "../client/ui_api.h"
@@ -802,9 +802,3 @@ qboolean        CL_VideoRecording(void);
 //
 void CL_WriteDemoMessage ( msg_t *msg, int headerBytes );
 void CL_RequestMotd( void );
-
-//
-// cl_text.c
-//
-
-int CL_RenderText_ExtractLines( fontInfo_t * font, float fontScale, float startColor[4], float baseColor[4], const char * text, int limit, int align, float width, lineInfo_t * lines, int line_offset, int line_limit );

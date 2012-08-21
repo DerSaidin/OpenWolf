@@ -459,7 +459,7 @@ static void creepSlow( gentity_t *self )
   vec3_t      mins, maxs;
   int         i, num;
   gentity_t   *enemy;
-  buildable_t buildable = self->s.modelindex;
+  buildable_t buildable = (buildable_t)self->s.modelindex;
   float       creepSize = (float)BG_FindCreepSizeForBuildable( buildable );
 
   VectorSet( range, creepSize, creepSize, creepSize );
@@ -2819,7 +2819,7 @@ gentity_t *G_buildItem( gentity_t *builder, buildable_t buildable, vec3_t origin
 
   G_AddEvent( built, EV_BUILD_CONSTRUCT, 0 );
 
-  G_setIdleBuildableAnim( built, BG_FindAnimForBuildable( buildable ) );
+  G_setIdleBuildableAnim( built, (buildableAnimNumber_t)BG_FindAnimForBuildable( buildable ) );
 
   if( built->builtBy >= 0 )
     G_setBuildableAnim( built, BANIM_CONSTRUCT1, qtrue );
@@ -2947,7 +2947,7 @@ void FinishSpawningBuildable( gentity_t *ent )
   trace_t     tr;
   vec3_t      dest;
   gentity_t   *built;
-  buildable_t buildable = ent->s.modelindex;
+  buildable_t buildable = (buildable_t)ent->s.modelindex;
 
   built = G_buildItem( ent, buildable, ent->s.pos.trBase, ent->s.angles );
   G_FreeEntity( ent );

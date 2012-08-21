@@ -1209,7 +1209,7 @@ intptr_t CL_UISystemCalls(intptr_t * args) {
 			CLUI_SetCDKey((char*)VMA(1));
 			return 0;
 		case UI_R_REGISTERFONT:
-			re.RegisterFont((const char*)VMA(1), args[2], (fontInfo_t*)VMA(3));
+			re.RegisterFont((char*)VMA(1), args[2], (fontInfo_t*)VMA(3));
 			return 0;
 		case UI_MEMSET:
 			return (intptr_t)memset( VMA( 1 ), args[2], args[3] );
@@ -1327,27 +1327,6 @@ intptr_t CL_UISystemCalls(intptr_t * args) {
 				float * uv = (float*)VMA(5);
 				re.DrawStretchPic(VMF(1), VMF(2), VMF(3), VMF(4), uv[0], uv[1], uv[2], uv[3], args[6]);
 			} return 0;
-
-		case UI_R_FLOWTEXT: {
-				const char * offset = (const char *)args[5];
-				int i,n;
-				const char * text = (const char *)VMA(5);
-				lineInfo_t * lines = (lineInfo_t*)VMA(9);
-				if ( text ) {
-					n = CL_RenderText_ExtractLines( (fontInfo_t*)VMA(1), VMF(2), (float*)VMA(3), (float*)VMA(4), text, args[6], args[7], VMF(8), lines, 0, args[10] );
-					if ( lines ) {
-						for ( i=0; i<n; i++ ) {
-							lines[ i ].text = offset + (lines[ i ].text - text);
-						}
-					}
-				} else {
-					n = 0;
-				}
-				return n;
-			}
-		case UI_R_GETFONT:
-			memcpy( VMA(3), re.GetFontFromFontSet( args[1], VMF(2) ), sizeof(fontInfo_t) );
-			return 0;
 		default:
 			Com_Error( ERR_DROP, "Bad UI system trap: %ld", (long int) args[0] );
 

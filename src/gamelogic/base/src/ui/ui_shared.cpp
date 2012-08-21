@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "ui_shared.h"
+#include "ui_local.h"			// For CS settings/retrieval
 
 #define SCROLL_TIME_START         500
 #define SCROLL_TIME_ADJUST        150
@@ -80,7 +81,7 @@ static qboolean Menu_OverActiveItem(menuDef_t *menu, float x, float y);
 #ifdef CGAME
 #define MEM_POOL_SIZE  128 * 1024
 #else
-#define MEM_POOL_SIZE  1024 * 1024
+#define MEM_POOL_SIZE  2048 * 2048
 #endif
 
 //TA: hacked variable name to avoid conflict with new cgame Alloc
@@ -126,7 +127,7 @@ void UI_InitMemory( void )
 
 qboolean UI_OutOfMemory( )
 {
-  return outOfMemory;
+  return (qboolean)outOfMemory;
 }
 
 
@@ -204,7 +205,7 @@ const char *String_Alloc(const char *p) {
       str = str->next;
     }
 
-    str  = UI_Alloc(sizeof(stringDef_t));
+    str = (stringDef_t*)UI_Alloc(sizeof(stringDef_t));
     str->next = NULL;
     str->str = &strPool[ph];
     if (last) {
@@ -776,7 +777,7 @@ void Item_UpdatePosition(itemDef_t *item) {
     return;
   }
 
-  menu = item->parent;
+  menu = (menuDef_t*)item->parent;
 
   x = menu->window.rect.x;
   y = menu->window.rect.y;
@@ -846,7 +847,7 @@ itemDef_t *Menu_ClearFocus(menuDef_t *menu) {
 }
 
 qboolean IsVisible(int flags) {
-  return (flags & WINDOW_VISIBLE && !(flags & WINDOW_FADINGOUT));
+  return (qboolean)(flags & WINDOW_VISIBLE && !(flags & WINDOW_FADINGOUT));
 }
 
 qboolean Rect_ContainsPoint(rectDef_t *rect, float x, float y) {
@@ -971,14 +972,14 @@ void Script_SetItemColor(itemDef_t *item, char **args) {
   if (String_Parse(args, &itemname) && String_Parse(args, &name)) {
     itemDef_t *item2;
     int j;
-    int count = Menu_ItemsMatchingGroup(item->parent, itemname);
+    int count = Menu_ItemsMatchingGroup((menuDef_t*)item->parent, itemname);
 
     if (!Color_Parse(args, &color)) {
       return;
     }
 
     for (j = 0; j < count; j++) {
-      item2 = Menu_GetMatchingItemByNumber(item->parent, j, itemname);
+      item2 = Menu_GetMatchingItemByNumber((menuDef_t*)item->parent, j, itemname);
       if (item2 != NULL) {
         out = NULL;
         if (Q_stricmp(name, "backcolor") == 0) {
@@ -1089,28 +1090,28 @@ void Menus_CloseAll( void ) {
 void Script_Show(itemDef_t *item, char **args) {
   const char *name;
   if (String_Parse(args, &name)) {
-    Menu_ShowItemByName(item->parent, name, qtrue);
+    Menu_ShowItemByName((menuDef_t*)item->parent, name, qtrue);
   }
 }
 
 void Script_Hide(itemDef_t *item, char **args) {
   const char *name;
   if (String_Parse(args, &name)) {
-    Menu_ShowItemByName(item->parent, name, qfalse);
+    Menu_ShowItemByName((menuDef_t*)item->parent, name, qfalse);
   }
 }
 
 void Script_FadeIn(itemDef_t *item, char **args) {
   const char *name;
   if (String_Parse(args, &name)) {
-    Menu_FadeItemByName(item->parent, name, qfalse);
+    Menu_FadeItemByName((menuDef_t*)item->parent, name, qfalse);
   }
 }
 
 void Script_FadeOut(itemDef_t *item, char **args) {
   const char *name;
   if (String_Parse(args, &name)) {
-    Menu_FadeItemByName(item->parent, name, qtrue);
+    Menu_FadeItemByName((menuDef_t*)item->parent, name, qtrue);
   }
 }
 
@@ -1175,7 +1176,7 @@ void Script_Transition(itemDef_t *item, char **args) {
 
   if (String_Parse(args, &name)) {
     if ( Rect_Parse(args, &rectFrom) && Rect_Parse(args, &rectTo) && Int_Parse(args, &time) && Float_Parse(args, &amt)) {
-      Menu_TransitionItemByName(item->parent, name, rectFrom, rectTo, time, amt);
+      Menu_TransitionItemByName((menuDef_t*)item->parent, name, rectFrom, rectTo, time, amt);
     }
   }
 }
@@ -1207,7 +1208,7 @@ void Script_Orbit(itemDef_t *item, char **args) {
 
   if (String_Parse(args, &name)) {
     if ( Float_Parse(args, &x) && Float_Parse(args, &y) && Float_Parse(args, &cx) && Float_Parse(args, &cy) && Int_Parse(args, &time) ) {
-      Menu_OrbitItemByName(item->parent, name, x, y, cx, cy, time);
+      Menu_OrbitItemByName((menuDef_t*)item->parent, name, x, y, cx, cy, time);
     }
   }
 }
@@ -1219,9 +1220,9 @@ void Script_SetFocus(itemDef_t *item, char **args) {
   itemDef_t *focusItem;
 
   if (String_Parse(args, &name)) {
-    focusItem = Menu_FindItemByName(item->parent, name);
+    focusItem = Menu_FindItemByName((menuDef_t*)item->parent, name);
     if (focusItem && !(focusItem->window.flags & WINDOW_DECORATION) && !(focusItem->window.flags & WINDOW_HASFOCUS)) {
-      Menu_ClearFocus(item->parent);
+      Menu_ClearFocus((menuDef_t*)item->parent);
       focusItem->window.flags |= WINDOW_HASFOCUS;
       if (focusItem->onFocus) {
         Item_RunScript(focusItem, focusItem->onFocus);
@@ -1277,6 +1278,119 @@ void Script_playLooped(itemDef_t *item, char **args) {
   }
 }
 
+qboolean FileExists(char *filename)
+{
+	fileHandle_t    f;
+
+	if(trap_FS_FOpenFile(filename, &f, FS_READ) < 0)
+	{
+		trap_FS_FCloseFile(f);
+		return qfalse;
+	}
+	else
+	{
+		trap_FS_FCloseFile(f);
+		return qtrue;
+	}
+}
+
+qboolean Script_CheckProfile(char *profile_path)
+{
+	fileHandle_t    f;
+	char            f_data[32];
+	int             f_pid;
+	char            com_pid[256];
+	int             pid;
+
+	if(trap_FS_FOpenFile(profile_path, &f, FS_READ) < 0)
+	{
+		//no profile found, we're ok
+		return qtrue;
+	}
+
+	trap_FS_Read(&f_data, sizeof(f_data) - 1, f);
+
+	DC->getCVarString("com_pid", com_pid, sizeof(com_pid));
+	pid = atoi(com_pid);
+
+	f_pid = atoi(f_data);
+	if(f_pid != pid)
+	{
+		//pid doesn't match
+		trap_FS_FCloseFile(f);
+		return qfalse;
+	}
+
+	//we're all ok
+	trap_FS_FCloseFile(f);
+	return qtrue;
+}
+
+qboolean Script_WriteProfile(char *profile_path)
+{
+	fileHandle_t    f;
+	char            com_pid[256];
+
+	if(FileExists(profile_path))
+	{
+		trap_FS_Delete(profile_path);
+	}
+
+	if(trap_FS_FOpenFile(profile_path, &f, FS_WRITE) < 0)
+	{
+		Com_Printf("Script_WriteProfile: Can't write %s.\n", profile_path);
+		return qfalse;
+	}
+	if(f < 0)
+	{
+		Com_Printf("Script_WriteProfile: Can't write %s.\n", profile_path);
+		return qfalse;
+	}
+
+	DC->getCVarString("com_pid", com_pid, sizeof(com_pid));
+
+	trap_FS_Write(com_pid, strlen(com_pid), f);
+
+	trap_FS_FCloseFile(f);
+
+	return qtrue;
+}
+
+void Script_CheckAutoUpdate(itemDef_t * item, char **args) {
+	DC->checkAutoUpdate();
+}
+
+void Script_GetAutoUpdate(itemDef_t * item, char **args) {
+	DC->getAutoUpdate();
+}
+
+void Script_ExeOWConfig(itemDef_t * item, char **args) {
+	char	cl_profileStr[256];
+	int     useprofile = 1;
+
+	if(Int_Parse(args, &useprofile)) {
+		DC->getCVarString("cl_profile", cl_profileStr, sizeof(cl_profileStr));
+
+		if(useprofile && cl_profileStr[0]) {
+			if(!Script_CheckProfile(va("profiles/%s/profile.pid", cl_profileStr))) {
+#ifndef _DEBUG
+				Com_Printf("^3WARNING: profile.pid found for profile '%s' - not executing %s\n", cl_profileStr, CONFIG_NAME);
+#else
+				DC->executeText(EXEC_NOW, va("exec profiles/%s/%s\n", cl_profileStr, CONFIG_NAME));
+#endif // _DEBUG
+			} else {
+				DC->executeText(EXEC_NOW, va("exec profiles/%s/%s\n", cl_profileStr, CONFIG_NAME));
+
+				if(!Script_WriteProfile(va("profiles/%s/profile.pid", cl_profileStr))) {
+					Com_Printf("^3WARNING: couldn't write profiles/%s/profile.pid\n", cl_profileStr);
+				}
+			}
+		} else {
+			DC->executeText(EXEC_NOW, va("exec %s\n", CONFIG_NAME));
+		}
+	}
+}
+
 
 commandDef_t commandList[] =
 {
@@ -1296,10 +1410,13 @@ commandDef_t commandList[] =
   {"setplayermodel", &Script_SetPlayerModel},   // sets this background color to team color
   {"setplayerhead", &Script_SetPlayerHead},     // sets this background color to team color
   {"transition", &Script_Transition},           // group/name
-  {"setcvar", &Script_SetCvar},           // group/name
-  {"exec", &Script_Exec},           // group/name
-  {"play", &Script_Play},           // group/name
+  {"setcvar", &Script_SetCvar},					// group/name
+  {"exec", &Script_Exec},						// group/name
+  {"play", &Script_Play},						// group/name
   {"playlooped", &Script_playLooped},           // group/name
+  {"execowconfig", &Script_ExeOWConfig},		// executes owconfig.cfg
+  {"checkautoupdate", &Script_CheckAutoUpdate},	// check for autoupdate
+  {"getautoupdate", &Script_GetAutoUpdate},		// get autoupdate
   {"orbit", &Script_Orbit}                      // group/name
 };
 
@@ -1405,7 +1522,7 @@ qboolean Item_SetFocus(itemDef_t *item, float x, float y) {
     return qfalse;
   }
 
-  oldFocus = Menu_ClearFocus(item->parent);
+  oldFocus = Menu_ClearFocus((menuDef_t*)item->parent);
 
   if (item->type == ITEM_TYPE_TEXT) {
     rectDef_t r;
@@ -1526,7 +1643,7 @@ int Item_ListBox_ThumbDrawPosition(itemDef_t *item) {
 
 float Item_Slider_ThumbPosition(itemDef_t *item) {
   float value, range, x;
-  editFieldDef_t *editDef = item->typeData;
+  editFieldDef_t *editDef = (editFieldDef_t*)item->typeData;
 
   if (item->text) {
     x = item->textRect.x + item->textRect.w + 8;
@@ -2196,20 +2313,20 @@ qboolean Item_TextField_HandleKey(itemDef_t *item, int key) {
       }
 
       if ( key == K_INS || key == K_KP_INS ) {
-        DC->setOverstrikeMode(!DC->getOverstrikeMode());
+        DC->setOverstrikeMode((qboolean)!DC->getOverstrikeMode());
         return qtrue;
       }
     }
 
     if (key == K_TAB || key == K_DOWNARROW || key == K_KP_DOWNARROW) {
-      newItem = Menu_SetNextCursorItem(item->parent);
+      newItem = Menu_SetNextCursorItem((menuDef_t*)item->parent);
       if (newItem && (newItem->type == ITEM_TYPE_EDITFIELD || newItem->type == ITEM_TYPE_NUMERICFIELD)) {
         g_editItem = newItem;
       }
     }
 
     if (key == K_UPARROW || key == K_KP_UPARROW) {
-      newItem = Menu_SetPrevCursorItem(item->parent);
+      newItem = Menu_SetPrevCursorItem((menuDef_t*)item->parent);
       if (newItem && (newItem->type == ITEM_TYPE_EDITFIELD || newItem->type == ITEM_TYPE_NUMERICFIELD)) {
         g_editItem = newItem;
       }
@@ -2307,7 +2424,7 @@ static void Scroll_ListBox_ThumbFunc(void *p) {
 static void Scroll_Slider_ThumbFunc(void *p) {
   float x, value, cursorx;
   scrollInfo_t *si = (scrollInfo_t*)p;
-  editFieldDef_t *editDef = si->item->typeData;
+  editFieldDef_t *editDef = (editFieldDef_t*)si->item->typeData;
 
   if (si->item->text) {
     x = si->item->textRect.x + si->item->textRect.w + 8;
@@ -2386,7 +2503,7 @@ qboolean Item_Slider_HandleKey(itemDef_t *item, int key, qboolean down) {
   //DC->Print("slider handle key\n");
   if (item->window.flags & WINDOW_HASFOCUS && item->cvar && Rect_ContainsPoint(&item->window.rect, DC->cursorx, DC->cursory)) {
     if (key == K_MOUSE1 || key == K_ENTER || key == K_MOUSE2 || key == K_MOUSE3) {
-      editFieldDef_t *editDef = item->typeData;
+      editFieldDef_t *editDef = (editFieldDef_t*)item->typeData;
       if (editDef) {
         rectDef_t testRect;
         width = SLIDER_WIDTH;
@@ -2719,7 +2836,8 @@ void Menu_HandleKey(menuDef_t *menu, int key, qboolean down) {
 
     case K_F11:
       if (DC->getCVarValue("developer")) {
-        debugMode ^= 1;
+		//FIX ME
+        //debugMode ^= 1;
       }
       break;
 
@@ -2876,7 +2994,7 @@ void Item_TextColor(itemDef_t *item, vec4_t *newColor) {
     lowLight[1] = 0.8 * item->window.foreColor[1];
     lowLight[2] = 0.8 * item->window.foreColor[2];
     lowLight[3] = 0.8 * item->window.foreColor[3];
-    LerpColor(item->window.foreColor,lowLight,*newColor,0.5+0.5*sin(DC->realTime / PULSE_DIVISOR));
+    LerpColor(item->window.foreColor,lowLight,*newColor,0.5+0.5*(float)sin((float)DC->realTime / PULSE_DIVISOR));
   } else {
     memcpy(newColor, &item->window.foreColor, sizeof(vec4_t));
     // items can be enabled and disabled based on cvars
@@ -4150,7 +4268,7 @@ void Item_OwnerDraw_Paint(itemDef_t *item) {
       lowLight[1] = 0.8 * item->window.foreColor[1];
       lowLight[2] = 0.8 * item->window.foreColor[2];
       lowLight[3] = 0.8 * item->window.foreColor[3];
-      LerpColor(item->window.foreColor,lowLight,color,0.5+0.5*sin(DC->realTime / PULSE_DIVISOR));
+      LerpColor(item->window.foreColor,lowLight,color,0.5+0.5*(float)sin((float)DC->realTime / PULSE_DIVISOR));
     }
 
     if (item->cvarFlags & (CVAR_ENABLE | CVAR_DISABLE) && !Item_EnableShowViaCvar(item, CVAR_ENABLE)) {
@@ -5827,7 +5945,7 @@ qboolean MenuParse_fadeCycle( itemDef_t *item, int handle ) {
 qboolean MenuParse_itemDef( itemDef_t *item, int handle ) {
   menuDef_t *menu = (menuDef_t*)item;
   if (menu->itemCount < MAX_MENUITEMS) {
-    menu->items[menu->itemCount] = UI_Alloc(sizeof(itemDef_t));
+    menu->items[menu->itemCount] = (itemDef_t*)UI_Alloc(sizeof(itemDef_t));
     Item_Init(menu->items[menu->itemCount]);
     if (!Item_Parse(handle, menu->items[menu->itemCount])) {
       return qfalse;
@@ -5948,6 +6066,18 @@ int Menu_Count( void ) {
   return menuCount;
 }
 
+menuDef_t      *Menu_Get(int handle)
+{
+	if(handle >= 0 && handle < menuCount)
+	{
+		return &Menus[handle];
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
 void Menu_PaintAll( void ) {
   int i;
   if (captureFunc) {
@@ -5990,7 +6120,7 @@ void *Display_CaptureItem(int x, int y) {
 // FIXME:
 qboolean Display_MouseMove(void *p, int x, int y) {
   int i;
-  menuDef_t *menu = p;
+  menuDef_t *menu = (menuDef_t*)p;
 
   if (menu == NULL) {
     menu = Menu_GetFocused();
@@ -6028,7 +6158,7 @@ int Display_CursorType(int x, int y) {
 
 
 void Display_HandleKey(int key, qboolean down, int x, int y) {
-  menuDef_t *menu = Display_CaptureItem(x, y);
+  menuDef_t *menu = (menuDef_t*)Display_CaptureItem(x, y);
   if (menu == NULL) {
     menu = Menu_GetFocused();
   }

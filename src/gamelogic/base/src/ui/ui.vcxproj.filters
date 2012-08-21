@@ -14,12 +14,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ui_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,6 +30,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ui_api.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\game\bg_misc.cpp">

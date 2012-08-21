@@ -355,13 +355,13 @@ void trap_Key_KeysForBinding(const char *binding, int *key1, int *key2) {
 //50.
 //return Key_IsDown(args[1]);
 qboolean trap_Key_IsDown(int keynum) {
-	return syscall(UI_KEY_ISDOWN, keynum);
+	return (qboolean)syscall(UI_KEY_ISDOWN, keynum);
 }
 
 //51.
 //return Key_GetOverstrikeMode();
 qboolean trap_Key_GetOverstrikeMode(void) {
-	return syscall(UI_KEY_GETOVERSTRIKEMODE);
+	return (qboolean)syscall(UI_KEY_GETOVERSTRIKEMODE);
 }
 
 //52.
@@ -499,7 +499,7 @@ int trap_LAN_ServerIsVisible(int source, int n) {
 //74.
 //return LAN_UpdateVisiblePings(args[1]);
 qboolean trap_LAN_UpdateVisiblePings(int source) {
-	return syscall(UI_LAN_UPDATEVISIBLEPINGS, source);
+	return (qboolean)syscall(UI_LAN_UPDATEVISIBLEPINGS, source);
 }
 
 //75.
@@ -517,13 +517,13 @@ int trap_LAN_ServerStatus(const char *serverAddress, char *serverStatus, int max
 //77.
 //return LAN_ServerIsInFavoriteList(args[1], args[2]);
 qboolean trap_LAN_ServerIsInFavoriteList(int source, int n) {
-	return syscall(UI_LAN_SERVERISINFAVORITELIST, source, n);
+	return (qboolean)syscall(UI_LAN_SERVERISINFAVORITELIST, source, n);
 }
 
 //78.
 //return GetNews(args[1]);
 qboolean trap_GetNews(qboolean force) {
-	return syscall(UI_GETNEWS, force);
+	return (qboolean)syscall(UI_GETNEWS, force);
 }
 
 //79.
@@ -691,13 +691,13 @@ int trap_CIN_PlayCinematic(const char *arg0, int xpos, int ypos, int width, int 
 //109.
 //return CIN_StopCinematic(args[1]);
 e_status trap_CIN_StopCinematic(int handle) {
-	return syscall(UI_CIN_STOPCINEMATIC, handle);
+	return (e_status)syscall(UI_CIN_STOPCINEMATIC, handle);
 }
 
 //110.
 //return CIN_RunCinematic(args[1]);
 e_status trap_CIN_RunCinematic(int handle) {
-	return syscall(UI_CIN_RUNCINEMATIC, handle);
+	return (e_status)syscall(UI_CIN_RUNCINEMATIC, handle);
 }
 
 //111.
@@ -721,7 +721,7 @@ void trap_R_RemapShader(const char *oldShader, const char *newShader, const char
 //114.
 //return CL_GetLimboString(args[1], VMA(2));
 qboolean trap_GetLimboString(int index, char *buf) {
-	return syscall(UI_CL_GETLIMBOSTRING, index, buf);
+	return (qboolean)syscall(UI_CL_GETLIMBOSTRING, index, buf);
 }
 
 //115.
@@ -803,11 +803,6 @@ void trap_GetGlconfig2(glconfig2_t * glconfig)
 }
 
 //126.
-void trap_Con_GetText( char *buf, int buf_size, int c ) {
-	syscall( UI_CON_GETTEXT, buf, buf_size, c );
-}
-
-//127.
 int trap_Cvar_VariableInt( const char * var_name ) {
 	return syscall( UI_CVAR_VARIABLEINT, var_name );
 }

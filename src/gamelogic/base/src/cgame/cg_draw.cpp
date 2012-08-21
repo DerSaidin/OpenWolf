@@ -822,7 +822,7 @@ CG_DrawPlayerBoosted
 static void CG_DrawPlayerBoosted( rectDef_t *rect, vec4_t color, qhandle_t shader )
 {
   playerState_t *ps = &cg.snap->ps;
-  qboolean      boosted = ps->stats[ STAT_STATE ] & SS_BOOSTED;
+  qboolean      boosted = (qboolean)(ps->stats[ STAT_STATE ] & SS_BOOSTED);
 
   if( boosted )
     color[ 3 ] = AH_MAX_ALPHA;
@@ -842,7 +842,7 @@ CG_DrawPlayerBoosterBolt
 static void CG_DrawPlayerBoosterBolt( rectDef_t *rect, vec4_t color, qhandle_t shader )
 {
   playerState_t *ps = &cg.snap->ps;
-  qboolean      boosted = ps->stats[ STAT_STATE ] & SS_BOOSTED;
+  qboolean      boosted = (qboolean)(ps->stats[ STAT_STATE ] & SS_BOOSTED);
   vec4_t        localColor;
 
   Vector4Copy( color, localColor );
@@ -851,7 +851,7 @@ static void CG_DrawPlayerBoosterBolt( rectDef_t *rect, vec4_t color, qhandle_t s
   {
     if( ps->stats[ STAT_BOOSTTIME ] > BOOST_TIME - 3000 )
     {
-      qboolean flash = ( ps->stats[ STAT_BOOSTTIME ] / 500 ) % 2;
+      qboolean flash = (qboolean)(( ps->stats[ STAT_BOOSTTIME ] / 500 ) % 2);
 
       if( flash )
         localColor[ 3 ] = 1.0f;
@@ -916,7 +916,7 @@ CG_DrawPlayerWallclimbing
 static void CG_DrawPlayerWallclimbing( rectDef_t *rect, vec4_t color, qhandle_t shader )
 {
   playerState_t *ps = &cg.snap->ps;
-  qboolean      ww = ps->stats[ STAT_STATE ] & SS_WALLCLIMBING;
+  qboolean      ww = (qboolean)(ps->stats[ STAT_STATE ] & SS_WALLCLIMBING);
 
   if( ww )
     color[ 3 ] = AH_MAX_ALPHA;
@@ -2812,7 +2812,7 @@ CG_EventHandling
 */
 void CG_EventHandling( int type )
 {
-  cgs.eventHandling = type;
+  cgs.eventHandling = (qboolean)type;
 
   if( type == CGAME_EVENT_NONE )
     CG_HideTeamMenu( );

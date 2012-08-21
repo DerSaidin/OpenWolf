@@ -14,40 +14,58 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp">
+    <ClCompile Include="..\game\bg_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
+    <ClCompile Include="..\game\bg_misc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ui\ui_shared.cpp">
+    <ClCompile Include="..\game\bg_pmove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_weapons.cpp">
+    <ClCompile Include="..\game\bg_slidemove.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_view.cpp">
+    <ClCompile Include="cg_animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_tutorial.cpp">
+    <ClCompile Include="cg_animmapobj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_trails.cpp">
+    <ClCompile Include="cg_api.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_snapshot.cpp">
+    <ClCompile Include="cg_attachment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_servercmds.cpp">
+    <ClCompile Include="cg_buildable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_scanner.cpp">
+    <ClCompile Include="cg_consolecmds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_ptr.cpp">
+    <ClCompile Include="cg_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_predict.cpp">
+    <ClCompile Include="cg_drawtools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cg_ents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cg_event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cg_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cg_marks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cg_mem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cg_particles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cg_playerstate.cpp">
@@ -56,55 +74,40 @@
     <ClCompile Include="cg_players.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_particles.cpp">
+    <ClCompile Include="cg_predict.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_mem.cpp">
+    <ClCompile Include="cg_ptr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_marks.cpp">
+    <ClCompile Include="cg_scanner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_main.cpp">
+    <ClCompile Include="cg_servercmds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_event.cpp">
+    <ClCompile Include="cg_snapshot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_ents.cpp">
+    <ClCompile Include="cg_trails.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_drawtools.cpp">
+    <ClCompile Include="cg_tutorial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_draw.cpp">
+    <ClCompile Include="cg_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_consolecmds.cpp">
+    <ClCompile Include="cg_weapons.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_buildable.cpp">
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_attachment.cpp">
+    <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cg_api.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cg_animmapobj.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cg_animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\game\bg_slidemove.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\game\bg_pmove.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\game\bg_misc.cpp">
+    <ClCompile Include="..\ui\ui_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

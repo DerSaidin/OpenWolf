@@ -157,9 +157,7 @@ typedef enum {
 	UI_GETGLCONFIG2,
 	UI_CON_GETTEXT,
 	UI_CVAR_VARIABLEINT,
-	UI_R_DRAWSPRITE,
-	UI_R_FLOWTEXT,
-	UI_R_GETFONT
+	UI_R_DRAWSPRITE
 } uiImport_t;
 
 typedef struct {
@@ -380,7 +378,6 @@ void trap_GetAutoUpdate(void);
 void trap_openURL(const char *s);
 void trap_GetHunkData(int *hunkused, int *hunkexpected);
 void trap_GetGlconfig2(glconfig2_t * glconfig);
-void trap_Con_GetText(char *buf, int buf_size, int c);
 int trap_Cvar_VariableInt(const char * var_name);
 void trap_R_DrawSprite( float x, float y, float w, float h, vec4_t uv, qhandle_t hShader );
 int trap_R_FlowText( fontInfo_t * font, float fontScale, const float startColor[4], const float baseColor[4], const char * text, int limit, int align, float width, lineInfo_t * lines, int max );

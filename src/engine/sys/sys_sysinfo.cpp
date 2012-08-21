@@ -30,19 +30,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
 ===============
-PrintRawHexData
-===============
-*/
-static void PrintRawHexData( const byte *buf, size_t buf_len ) {
-	uint i;
-
-	for( i = 0; i < buf_len; i++ ) {
-		Com_Printf( "%02X", (int)buf[i] );
-	}
-}
-
-/*
-===============
 PrintCpuInfoFromRegistry
 ===============
 */

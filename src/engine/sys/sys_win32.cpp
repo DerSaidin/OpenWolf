@@ -919,6 +919,20 @@ int Win_Main( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int
 		return 0;
 	}
 
+	if( setjmp( sys_exitframe ) ) {
+		//make sure that any subsystems that may have spawned threads go down
+		__try {
+#if !defined(DEDICATED)
+			S_Shutdown();
+			CL_ShutdownRef();
+#endif
+		} __finally  { //wheeeee...
+			Com_ReleaseMemory();
+		}
+
+		return sys_retcode;
+	}
+
 #ifdef EXCEPTION_HANDLER
 	WinSetExceptionVersion( Q3_VERSION );
 #endif

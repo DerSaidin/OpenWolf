@@ -61,7 +61,7 @@ void G_UpdatePTRConnection( gclient_t *client )
 {
   if( client && client->pers.connection )
   {
-    client->pers.connection->clientTeam = client->ps.stats[ STAT_PTEAM ];
+    client->pers.connection->clientTeam = (pTeam_t)client->ps.stats[ STAT_PTEAM ];
     client->pers.connection->clientCredit = client->ps.persistant[ PERS_CREDIT ];
   }
 }

@@ -353,12 +353,12 @@ static void CG_LaunchMissile( centity_t *cent )
 
   es = &cent->currentState;
 
-  weapon = es->weapon;
+  weapon = (weapon_t)es->weapon;
   if( weapon > WP_NUM_WEAPONS )
     weapon = WP_NONE;
 
   wi = &cg_weapons[ weapon ];
-  weaponMode = es->generic1;
+  weaponMode = (weaponMode_t)es->generic1;
 
   if( wi->wim[ weaponMode ].missileParticleSystem )
   {
@@ -399,12 +399,12 @@ static void CG_Missile( centity_t *cent )
 
   es = &cent->currentState;
 
-  weapon = es->weapon;
+  weapon = (weapon_t)es->weapon;
   if( weapon > WP_NUM_WEAPONS )
     weapon = WP_NONE;
 
   wi = &cg_weapons[ weapon ];
-  weaponMode = es->generic1;
+  weaponMode = (weaponMode_t)es->generic1;
 
   wim = &wi->wim[ weaponMode ];
 
@@ -992,8 +992,8 @@ static void CG_CEntityPVSEnter( centity_t *cent )
 
   //make sure that the buildable animations are in a consistent state
   //when a buildable enters the PVS
-  cent->buildableAnim = cent->lerpFrame.animationNumber = BANIM_NONE;
-  cent->oldBuildableAnim = es->legsAnim;
+  cent->buildableAnim = (buildableAnimNumber_t)(cent->lerpFrame.animationNumber = BANIM_NONE);
+  cent->oldBuildableAnim = (buildableAnimNumber_t)es->legsAnim;
 }
 
 

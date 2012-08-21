@@ -536,28 +536,28 @@ static qboolean G_EvaluateMapCondition( mapRotationCondition_t *mrc )
   switch( mrc->lhs )
   {
     case MCV_RANDOM:
-      return rand( ) & 1;
+      return (qboolean)(rand( ) & 1);
       break;
 
     case MCV_NUMCLIENTS:
       switch( mrc->op )
       {
         case MCO_LT:
-          return level.numConnectedClients < mrc->numClients;
+          return (qboolean)(level.numConnectedClients < mrc->numClients);
           break;
 
         case MCO_GT:
-          return level.numConnectedClients > mrc->numClients;
+          return (qboolean)(level.numConnectedClients > mrc->numClients);
           break;
 
         case MCO_EQ:
-          return level.numConnectedClients == mrc->numClients;
+          return (qboolean)(level.numConnectedClients == mrc->numClients);
           break;
       }
       break;
 
     case MCV_LASTWIN:
-      return level.lastWin == mrc->lastWin;
+      return (qboolean)(level.lastWin == mrc->lastWin);
       break;
 
     default:
@@ -680,7 +680,7 @@ Test if any map rotation is currently active
 */
 qboolean G_MapRotationActive( void )
 {
-  return ( g_currentMapRotation.integer > NOT_ROTATING && g_currentMapRotation.integer <= MAX_MAP_ROTATIONS );
+  return (qboolean)( g_currentMapRotation.integer > NOT_ROTATING && g_currentMapRotation.integer <= MAX_MAP_ROTATIONS );
 }
 
 /*

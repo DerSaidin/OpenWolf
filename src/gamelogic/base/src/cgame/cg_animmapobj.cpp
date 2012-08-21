@@ -87,7 +87,7 @@ void CG_ModelDoor( centity_t *cent )
   if( es->legsAnim != cent->doorState )
   {
     lf->animationTime = lf->frameTime + anim.initialLerp;
-    cent->doorState = es->legsAnim;
+    cent->doorState = (qboolean)es->legsAnim;
   }
 
   lf->animation = &anim;

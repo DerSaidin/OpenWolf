@@ -59,7 +59,7 @@ extern "C" {
 //
 // msg.c
 //
-typedef struct
+typedef struct msg_s
 {
 	qboolean        allowoverflow;	// if false, do a Com_Error
 	qboolean        overflowed;	// set to true if the buffer size failed (with allowoverflow set)
@@ -1311,7 +1311,7 @@ typedef enum
 	SE_PACKET					// evPtr is a netadr_t followed by data bytes to evPtrLength
 } sysEventType_t;
 
-typedef struct
+typedef struct sysEvent_s
 {
 	int             evTime;
 	sysEventType_t  evType;

@@ -2038,11 +2038,11 @@ static qboolean ParseStage(shaderStage_t * stage, char **text)
 			}
 			if(!Q_stricmp(token, "on"))
 			{
-				stage->isFogged = qtrue;
+				stage->noFog = qfalse;
 			}
 			else
 			{
-				stage->isFogged = qfalse;
+				stage->noFog = qtrue;
 			}
 		}
 		// blendfunc <srcFactor> <dstFactor>
@@ -2842,10 +2842,6 @@ static void ParseDeform(char **text)
 		ri.Printf(PRINT_WARNING, "WARNING: MAX_SHADER_DEFORMS in '%s'\n", shader.name);
 		return;
 	}
-	else if(shader.numDeforms)
-	{
-		ri.Printf(PRINT_WARNING, "WARNING: more than one deformVertexes command in shader '%s'\n", shader.name);
-	}
 
 	ds = &shader.deforms[shader.numDeforms];
 	shader.numDeforms++;
@@ -3598,7 +3594,7 @@ static char    *CreateShaderByGuide(const char *guideName, char *shaderText)
 	int             i;
 	char           *guideText;
 	char           *token;
-	char           *p;
+	const char     *p;
 	static char     buffer[4096];
 	char            name[MAX_QPATH];
 	int             numGuideParms;
@@ -3764,7 +3760,7 @@ static char    *CreateShaderByGuide(const char *guideName, char *shaderText)
 				// adjust name by guide parameters if necessary
 				for(i = 0; i < numGuideParms; i++)
 				{
-					if((p = (char*)Q_stristr(name, (const char *)guideParms)))
+					if((p = Q_stristr(name, (const char *)guideParms)))
 					{
 						//ri.Printf(PRINT_ALL, "guide parameter '%s' = '%s'\n", guideParms[i], shaderParms[i]);
 
@@ -4629,7 +4625,7 @@ CollapseMultitexture
 =================
 */
 // *INDENT-OFF*
-static void CollapseStages(void)
+static void CollapseStages()
 {
 //	int             abits, bbits;
 	int             i, j;
@@ -4657,17 +4653,10 @@ static void CollapseStages(void)
 	int				numStages = 0;
 	shaderStage_t	tmpStages[MAX_SHADER_STAGES];
 
-#if defined(USE_D3D10)
 	if(!r_collapseStages->integer)
 	{
 		return;
 	}
-#else
-	if(!glActiveTextureARB || !r_collapseStages->integer)
-	{
-		return;
-	}
-#endif
 
 	//ri.Printf(PRINT_ALL, "...collapsing '%s'\n", shader.name);
 
@@ -5785,13 +5774,12 @@ shader_t       *R_FindShader(const char *name, shaderType_t type, qboolean mipRa
 	// ydnar: allow implicit mapping ('-' = use shader name)
 	if(implicitMap[0] == '\0' || implicitMap[0] == '-')
 	{
-		Q_strncpyz(fileName, name, sizeof(fileName));
+		Q_strncpyz(fileName, strippedName, sizeof(fileName));
 	}
 	else
 	{
 		Q_strncpyz(fileName, implicitMap, sizeof(fileName));
 	}
-	COM_DefaultExtension(fileName, sizeof(fileName), ".tga");
 
 	// ydnar: implicit shaders were breaking nopicmip/nomipmaps
 	if(!mipRawImage)
@@ -6549,158 +6537,175 @@ static void ScanAndLoadShaderFiles(void)
 	char          **shaderFiles;
 	char           *buffers[MAX_SHADER_FILES];
 	char           *p;
-	int             numShaders;
+	int             numShaderFiles;
 	int             i;
-	char           *oldp, *token, *hashMem;
+	char           *oldp, *token, *hashMem, *textEnd;
 	int             shaderTextHashTableSizes[MAX_SHADERTEXT_HASH], hash, size;
 	char            filename[MAX_QPATH];
-	long            sum = 0;
+	long            sum = 0, summand;
 
 	ri.Printf(PRINT_ALL, "----- ScanAndLoadShaderFiles -----\n");
 
 	// scan for shader files
 #if defined(COMPAT_Q3A) || defined(COMPAT_ET)
-	shaderFiles = ri.FS_ListFiles("scripts", ".shader", &numShaders);
+	shaderFiles = ri.FS_ListFiles("scripts", ".shader", &numShaderFiles);
 #else
-	shaderFiles = ri.FS_ListFiles("materials", ".mtr", &numShaders);
+	shaderFiles = ri.FS_ListFiles("materials", ".mtr", &numShaderFiles);
 #endif
 
-	if(!shaderFiles || !numShaders)
+	if(!shaderFiles || !numShaderFiles)
 	{
 		ri.Printf(PRINT_WARNING, "WARNING: no shader files found\n");
 		return;
 	}
 
-	if(numShaders > MAX_SHADER_FILES)
-	{
-		numShaders = MAX_SHADER_FILES;
-	}
-
 	// build single large buffer
-	for(i = 0; i < numShaders; i++)
-	{
-#if 1 //defined(COMPAT_ET)
+	for(i = 0; i < numShaderFiles; i++) {
 		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i]);
-#else
-		Com_sprintf(filename, sizeof(filename), "materials/%s", shaderFiles[i]);
-#endif
-
 		sum += ri.FS_ReadFile(filename, NULL);
 	}
-	s_shaderText = (char*)ri.Hunk_Alloc(sum + numShaders * 2, h_low);
+	s_shaderText = (char*)ri.Hunk_Alloc(sum + numShaderFiles * 2, h_low);
 
-	// load in reverse order, so doubled shaders are overriden properly
-	for(i = numShaders - 1; i >= 0; i--)
-	{
-#if 1 //defined(COMPAT_ET)
-		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i]);
-#else
-		Com_sprintf(filename, sizeof(filename), "materials/%s", shaderFiles[i]);
-#endif
-
-		ri.Printf(PRINT_DEVELOPER, "...loading '%s'\n", filename);
-		sum += ri.FS_ReadFile(filename, (void **)&buffers[i]);
-		if(!buffers[i])
-		{
-			ri.Error(ERR_DROP, "Couldn't load %s", filename);
-		}
-
-		strcat(s_shaderText, "\n");
-		p = &s_shaderText[strlen(s_shaderText)];
-		strcat(s_shaderText, buffers[i]);
-		ri.FS_FreeFile(buffers[i]);
-		buffers[i] = p;
-		COM_Compress(p);
+	if(numShaderFiles > MAX_SHADER_FILES) {
+		numShaderFiles = MAX_SHADER_FILES;
 	}
 
-	Com_Memset(shaderTextHashTableSizes, 0, sizeof(shaderTextHashTableSizes));
-	size = 0;
-	for(i = 0; i < numShaders; i++)
+	// load and parse shader files
+	for ( i = 0; i < numShaderFiles; i++ )
 	{
-#if 1 //defined(COMPAT_ET)
-		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i]);
+#if defined(COMPAT_Q3A) || defined(COMPAT_ET)
+		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i] );
 #else
 		Com_sprintf(filename, sizeof(filename), "materials/%s", shaderFiles[i]);
 #endif
-		COM_BeginParseSession(filename);
 
-		// pointer to the first shader file
+		ri.Printf( PRINT_DEVELOPER, "...loading '%s'\n", filename );
+		summand = ri.FS_ReadFile( filename, (void **)&buffers[i] );
+
+		if ( !buffers[i] )
+			ri.Error( ERR_DROP, "Couldn't load %s", filename );
+
 		p = buffers[i];
-
-		// look for label
-		while(1)
-		{
+		while(1) {
 			token = COM_ParseExt2(&p, qtrue);
-			if(token[0] == 0)
-			{
+
+			if(!*token)
+				break;
+
+			// Step over the "table"/"guide" and the name
+			if(!Q_stricmp(token, "table") || !Q_stricmp(token, "guide") ) {
+				token = COM_ParseExt2(&p, qtrue);
+
+				if(!*token)
+					break;
+			}
+
+			oldp = p;
+
+			token = COM_ParseExt2(&p, qtrue);
+			if(token[0] != '{' && token[1] != '\0') {
+				ri.Printf(PRINT_WARNING, "WARNING: Bad shader file %s has incorrect syntax.\n", filename);
+				ri.FS_FreeFile(buffers[i]);
+				buffers[i] = NULL;
 				break;
 			}
 
-			// skip shader tables
-			if(!Q_stricmp(token, "table"))
-			{
-				// skip table name
-				token = COM_ParseExt2(&p, qtrue);
+			SkipBracedSection(&oldp);
+			p = oldp;
+		}
 
-				SkipBracedSection(&p);
+		if (buffers[i])
+			sum += summand;
+	}
+
+	// build single large buffer
+	s_shaderText = (char*)ri.Hunk_Alloc( sum + numShaderFiles*2, h_low );
+	s_shaderText[ 0 ] = '\0';
+	textEnd = s_shaderText;
+ 
+	// free in reverse order, so the temp files are all dumped
+	for ( i = numShaderFiles - 1; i >= 0 ; i-- )
+	{
+		if ( !buffers[i] )
+			continue;
+
+		strcat( textEnd, buffers[i] );
+		strcat( textEnd, "\n" );
+		textEnd += strlen( textEnd );
+		ri.FS_FreeFile( buffers[i] );
+	}
+
+	COM_Compress( s_shaderText );
+
+	// free up memory
+	ri.FS_FreeFileList( shaderFiles );
+
+	Com_Memset(shaderTextHashTableSizes, 0, sizeof(shaderTextHashTableSizes));
+	size = 0;
+
+	p = s_shaderText;
+	// look for shader names
+	while ( 1 ) {
+		token = COM_ParseExt2( &p, qtrue );
+		if ( token[0] == 0 ) {
+			break;
+		}
+
+		// skip shader tables
+		if(!Q_stricmp(token, "table"))
+		{
+			// skip table name
+			token = COM_ParseExt2(&p, qtrue);
+
+			SkipBracedSection(&p);
+		}
+		// support shader templates
+		else if(!Q_stricmp(token, "guide"))
+		{
+			// parse shader name
+			token = COM_ParseExt2(&p, qtrue);
+			//ri.Printf(PRINT_ALL, "...guided '%s'\n", token);
+
+			hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
+			shaderTextHashTableSizes[hash]++;
+			size++;
+
+			// skip guide name
+			token = COM_ParseExt2(&p, qtrue);
+
+			// skip parameters
+			token = COM_ParseExt2(&p, qtrue);
+			if(Q_stricmp(token, "("))
+			{
+				ri.Printf(PRINT_WARNING, "expected ( found '%s'\n", token);
+				//COM_ParseWarning("expected ( found '%s'\n", token);
+				break;
 			}
-			// support shader templates
-			else if(!Q_stricmp(token, "guide"))
+
+			while(1)
 			{
-				// parse shader name
 				token = COM_ParseExt2(&p, qtrue);
 
-				//ri.Printf(PRINT_ALL, "...guided '%s'\n", token);
-
-				hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
-				shaderTextHashTableSizes[hash]++;
-				size++;
-
-				// skip guide name
-				token = COM_ParseExt2(&p, qtrue);
-
-				// skip parameters
-				token = COM_ParseExt2(&p, qtrue);
-				if(Q_stricmp(token, "("))
-				{
-					COM_ParseWarning("expected ( found '%s'\n", token);
+				if(!token[0])
 					break;
-				}
 
-				while(1)
-				{
-					token = COM_ParseExt2(&p, qtrue);
-
-					if(!token[0])
-						break;
-
-					if(!Q_stricmp(token, ")"))
-						break;
-				}
-
-				if(Q_stricmp(token, ")"))
-				{
-					COM_ParseWarning("expected ) found '%s'\n", token);
+				if(!Q_stricmp(token, ")"))
 					break;
-				}
-			}
-			else
-			{
-				hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
-				shaderTextHashTableSizes[hash]++;
-				size++;
-
-				SkipBracedSection(&p);
 			}
 
-			// if we passed the pointer to the next shader file
-			if(i < numShaders - 1)
+			if(Q_stricmp(token, ")"))
 			{
-				if(p > buffers[i + 1])
-				{
-					break;
-				}
+				ri.Printf(PRINT_WARNING, "expected ( found '%s'\n", token);
+				//COM_ParseWarning("expected ) found '%s'\n", token);
+				break;
 			}
+		}
+		else
+		{
+			hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
+			shaderTextHashTableSizes[hash]++;
+			size++;
+			SkipBracedSection(&p);
 		}
 	}
 
@@ -6708,168 +6713,144 @@ static void ScanAndLoadShaderFiles(void)
 
 	hashMem = (char*)ri.Hunk_Alloc(size * sizeof(char *), h_low);
 
-	for(i = 0; i < MAX_SHADERTEXT_HASH; i++)
-	{
-		shaderTextHashTable[i] = (char **)hashMem;
-		hashMem = ((char *)hashMem) + ((shaderTextHashTableSizes[i] + 1) * sizeof(char *));
-	}
+	for (i = 0; i < MAX_SHADERTEXT_HASH; i++) {
+		shaderTextHashTable[i] = (char **) hashMem;
+		hashMem = ((char *) hashMem) + ((shaderTextHashTableSizes[i] + 1) * sizeof(char *));
+ 	}
 
 	Com_Memset(shaderTextHashTableSizes, 0, sizeof(shaderTextHashTableSizes));
-	//
-	for(i = 0; i < numShaders; i++)
-	{
-#if 1 //defined(COMPAT_ET)
-		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i]);
-#else
-		Com_sprintf(filename, sizeof(filename), "materials/%s", shaderFiles[i]);
-#endif
-		COM_BeginParseSession(filename);
 
-		// pointer to the first shader file
-		p = buffers[i];
+	p = s_shaderText;
 
-		// look for label
-		while(1)
+	// look for shader names
+	while ( 1 ) {
+		oldp = p;
+		token = COM_ParseExt( &p, qtrue );
+		if ( token[0] == 0 ) {
+			break;
+		}
+
+		// parse shader tables
+		if(!Q_stricmp(token, "table"))
 		{
+			int             depth;
+			float           values[FUNCTABLE_SIZE];
+			int             numValues;
+			shaderTable_t  *tb;
+			qboolean        alreadyCreated;
+
+			Com_Memset(&table, 0, sizeof(table));
+
+			token = COM_ParseExt2(&p, qtrue);
+
+			Q_strncpyz(table.name, token, sizeof(table.name));
+
+			// check if already created
+			alreadyCreated = qfalse;
+			hash = generateHashValue(table.name, MAX_SHADERTABLE_HASH);
+			for(tb = shaderTableHashTable[hash]; tb; tb = tb->next)
+			{
+				if(Q_stricmp(tb->name, table.name) == 0)
+				{
+					// match found
+					alreadyCreated = qtrue;
+					break;
+				}
+			}
+
+			depth = 0;
+			numValues = 0;
+			do
+			{
+				token = COM_ParseExt2(&p, qtrue);
+
+				if(!Q_stricmp(token, "snap"))
+				{
+					table.snap = qtrue;
+				}
+				else if(!Q_stricmp(token, "clamp"))
+				{
+					table.clamp = qtrue;
+				}
+				else if(token[0] == '{')
+				{
+					depth++;
+				}
+				else if(token[0] == '}')
+				{
+					depth--;
+				}
+				else if(token[0] == ',')
+				{
+					continue;
+				}
+				else
+				{
+					if(numValues == FUNCTABLE_SIZE)
+					{
+						ri.Printf(PRINT_WARNING, "WARNING: FUNCTABLE_SIZE hit\n");
+						break;
+					}
+					values[numValues++] = atof(token);
+				}
+			} while(depth && p);
+
+			if(!alreadyCreated)
+			{
+				ri.Printf(PRINT_DEVELOPER, "...generating '%s'\n", table.name);
+				GeneratePermanentShaderTable(values, numValues);
+			}
+		}
+		// support shader templates
+		else if(!Q_stricmp(token, "guide"))
+		{
+			// parse shader name
 			oldp = p;
 			token = COM_ParseExt2(&p, qtrue);
-			if(token[0] == 0)
+
+			//ri.Printf(PRINT_ALL, "...guided '%s'\n", token);
+
+			hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
+			shaderTextHashTable[hash][shaderTextHashTableSizes[hash]++] = oldp;
+
+			// skip guide name
+			token = COM_ParseExt2(&p, qtrue);
+
+			// skip parameters
+			token = COM_ParseExt2(&p, qtrue);
+			if(Q_stricmp(token, "("))
 			{
+				ri.Printf(PRINT_WARNING, "expected ( found '%s'\n", token);
+				//COM_ParseWarning("expected ( found '%s'\n", token);
 				break;
 			}
 
-			// parse shader tables
-			if(!Q_stricmp(token, "table"))
+			while(1)
 			{
-				int             depth;
-				float           values[FUNCTABLE_SIZE];
-				int             numValues;
-				shaderTable_t  *tb;
-				qboolean        alreadyCreated;
-
-				Com_Memset(&table, 0, sizeof(table));
-
-				token = COM_ParseExt2(&p, qtrue);
-				Q_strncpyz(table.name, token, sizeof(table.name));
-
-				// check if already created
-				alreadyCreated = qfalse;
-				hash = generateHashValue(table.name, MAX_SHADERTABLE_HASH);
-				for(tb = shaderTableHashTable[hash]; tb; tb = tb->next)
-				{
-					if(Q_stricmp(tb->name, table.name) == 0)
-					{
-						// match found
-						alreadyCreated = qtrue;
-						break;
-					}
-				}
-
-				depth = 0;
-				numValues = 0;
-				do
-				{
-					token = COM_ParseExt2(&p, qtrue);
-
-					if(!Q_stricmp(token, "snap"))
-					{
-						table.snap = qtrue;
-					}
-					else if(!Q_stricmp(token, "clamp"))
-					{
-						table.clamp = qtrue;
-					}
-					else if(token[0] == '{')
-					{
-						depth++;
-					}
-					else if(token[0] == '}')
-					{
-						depth--;
-					}
-					else if(token[0] == ',')
-					{
-						continue;
-					}
-					else
-					{
-						if(numValues == FUNCTABLE_SIZE)
-						{
-							ri.Printf(PRINT_WARNING, "WARNING: FUNCTABLE_SIZE hit\n");
-							break;
-						}
-						values[numValues++] = atof(token);
-					}
-				} while(depth && p);
-
-				if(!alreadyCreated)
-				{
-					ri.Printf(PRINT_DEVELOPER, "...generating '%s'\n", table.name);
-					GeneratePermanentShaderTable(values, numValues);
-				}
-			}
-			// support shader templates
-			else if(!Q_stricmp(token, "guide"))
-			{
-				// parse shader name
-				oldp = p;
 				token = COM_ParseExt2(&p, qtrue);
 
-				//ri.Printf(PRINT_ALL, "...guided '%s'\n", token);
-
-				hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
-				shaderTextHashTable[hash][shaderTextHashTableSizes[hash]++] = oldp;
-
-				// skip guide name
-				token = COM_ParseExt2(&p, qtrue);
-
-				// skip parameters
-				token = COM_ParseExt2(&p, qtrue);
-				if(Q_stricmp(token, "("))
-				{
-					COM_ParseWarning("expected ( found '%s'\n", token);
+				if(!token[0])
 					break;
-				}
 
-				while(1)
-				{
-					token = COM_ParseExt2(&p, qtrue);
-
-					if(!token[0])
-						break;
-
-					if(!Q_stricmp(token, ")"))
-						break;
-				}
-
-				if(Q_stricmp(token, ")"))
-				{
-					COM_ParseWarning("expected ) found '%s'\n", token);
+				if(!Q_stricmp(token, ")"))
 					break;
-				}
-			}
-			else
-			{
-				hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
-				shaderTextHashTable[hash][shaderTextHashTableSizes[hash]++] = oldp;
-
-				// skip shaderbody
-				SkipBracedSection(&p);
 			}
 
-			// if we passed the pointer to the next shader file
-			if(i < numShaders - 1)
+			if(Q_stricmp(token, ")"))
 			{
-				if(p > buffers[i + 1])
-				{
-					break;
-				}
+				ri.Printf(PRINT_WARNING, "expected ( found '%s'\n", token);
+				//COM_ParseWarning("expected ) found '%s'\n", token);
+				break;
 			}
 		}
-	}
+		else
+		{
+			hash = generateHashValue(token, MAX_SHADERTEXT_HASH);
+			shaderTextHashTable[hash][shaderTextHashTableSizes[hash]++] = oldp;
 
-	// free up memory
-	ri.FS_FreeFileList(shaderFiles);
+			SkipBracedSection(&p);
+		}
+	}
 }
 
 

@@ -632,7 +632,7 @@ void ClientTimerActions( gentity_t *ent, int msec )
           int     dist = BG_FindBuildDistForClass( ent->client->ps.stats[ STAT_PCLASS ] );
           vec3_t  dummy;
 
-          if( G_itemFits( ent, client->ps.stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT,
+          if( G_itemFits( ent, (buildable_t)(client->ps.stats[ STAT_BUILDABLE ] & ~SB_VALID_TOGGLEBIT),
                           dist, dummy ) == IBE_NONE )
             client->ps.stats[ STAT_BUILDABLE ] |= SB_VALID_TOGGLEBIT;
           else
@@ -798,7 +798,7 @@ void ClientIntermissionThink( gclient_t *client )
   client->oldbuttons = client->buttons;
   client->buttons = client->pers.cmd.buttons;
   if( client->buttons & ( BUTTON_ATTACK | BUTTON_USE_HOLDABLE ) & ( client->oldbuttons ^ client->buttons ) )
-    client->readyToExit = 1;
+    client->readyToExit = (qboolean)1;
 }
 
 
@@ -819,10 +819,10 @@ void ClientEvents( gentity_t *ent, int oldEventSequence )
   vec3_t    dir;
   vec3_t    point, mins;
   float     fallDistance;
-  pClass_t  class;
+  pClass_t  _class;
 
   client = ent->client;
-  class = client->ps.stats[ STAT_PCLASS ];
+  _class = (pClass_t)client->ps.stats[ STAT_PCLASS ];
 
   if( oldEventSequence < client->ps.eventSequence - MAX_EVENTS )
     oldEventSequence = client->ps.eventSequence - MAX_EVENTS;
@@ -846,11 +846,11 @@ void ClientEvents( gentity_t *ent, int oldEventSequence )
         else if( fallDistance > 1.0f )
           fallDistance = 1.0f;
 
-        damage = (int)( (float)BG_FindHealthForClass( class ) *
-                 BG_FindFallDamageForClass( class ) * fallDistance );
+        damage = (int)( (float)BG_FindHealthForClass( _class ) *
+                 BG_FindFallDamageForClass( _class ) * fallDistance );
 
         VectorSet( dir, 0, 0, 1 );
-        BG_FindBBoxForClass( class, mins, NULL, NULL, NULL, NULL );
+        BG_FindBBoxForClass( _class, mins, NULL, NULL, NULL, NULL );
         mins[ 0 ] = mins[ 1 ] = 0.0f;
         VectorAdd( client->ps.origin, mins, point );
 
@@ -886,7 +886,7 @@ void ClientEvents( gentity_t *ent, int oldEventSequence )
 
             if( BG_InventoryContainsWeapon( j, ent->client->ps.stats ) )
             {
-              G_ForceWeaponChange( ent, j );
+              G_ForceWeaponChange( ent, (weapon_t)j );
               break;
             }
           }
@@ -934,7 +934,7 @@ void SendPendingPredictableEvents( playerState_t *ps )
     number = t->s.number;
     BG_PlayerStateToEntityState( ps, &t->s, qtrue );
     t->s.number = number;
-    t->s.eType = ET_EVENTS + event;
+    t->s.eType = (entityType_t)(ET_EVENTS + event);
     t->s.eFlags |= EF_PLAYER_EVENT;
     t->s.otherEntityNum = ps->clientNum;
     // send to everyone except the client who generated the event
@@ -1192,7 +1192,7 @@ void ClientThink_real( gentity_t *ent )
   pm.trace = trap_Trace;
   pm.pointcontents = trap_PointContents;
   pm.debugLevel = g_debugMove.integer;
-  pm.noFootsteps = 0;
+  pm.noFootsteps = (qboolean)0;
 
   pm.pmove_fixed = pmove_fixed.integer | client->pers.pmoveFixed;
   pm.pmove_msec = pmove_msec.integer;

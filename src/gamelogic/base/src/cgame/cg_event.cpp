@@ -717,19 +717,19 @@ void CG_EntityEvent( centity_t *cent, vec3_t position )
     case EV_MISSILE_HIT:
       DEBUGNAME( "EV_MISSILE_HIT" );
       ByteToDir( es->eventParm, dir );
-      CG_MissileHitPlayer( es->weapon, es->generic1, position, dir, es->otherEntityNum );
+      CG_MissileHitPlayer( (weapon_t)es->weapon, (weaponMode_t)es->generic1, position, dir, es->otherEntityNum );
       break;
 
     case EV_MISSILE_MISS:
       DEBUGNAME( "EV_MISSILE_MISS" );
       ByteToDir( es->eventParm, dir );
-      CG_MissileHitWall( es->weapon, es->generic1, 0, position, dir, IMPACTSOUND_DEFAULT );
+      CG_MissileHitWall( (weapon_t)es->weapon, (weaponMode_t)es->generic1, 0, position, dir, IMPACTSOUND_DEFAULT );
       break;
 
     case EV_MISSILE_MISS_METAL:
       DEBUGNAME( "EV_MISSILE_MISS_METAL" );
       ByteToDir( es->eventParm, dir );
-      CG_MissileHitWall( es->weapon, es->generic1, 0, position, dir, IMPACTSOUND_METAL );
+      CG_MissileHitWall( (weapon_t)es->weapon, (weaponMode_t)es->generic1, 0, position, dir, IMPACTSOUND_METAL );
       break;
 
     case EV_HUMAN_BUILDABLE_EXPLOSION:
@@ -978,7 +978,7 @@ void CG_CheckEvents( centity_t *cent )
   // check for event-only entities
   if( cent->currentState.eType > ET_EVENTS )
   {
-    event = cent->currentState.eType - ET_EVENTS;
+    event = (entity_event_t)(cent->currentState.eType - ET_EVENTS);
 
     if( cent->previousEvent )
       return; // already fired
@@ -992,7 +992,7 @@ void CG_CheckEvents( centity_t *cent )
     if( cent->currentState.eFlags & EF_PLAYER_EVENT )
     {
       cent = &cg_entities[ cent->currentState.otherEntityNum ];
-      oldEvent = cent->currentState.event;
+      oldEvent = (entity_event_t)cent->currentState.event;
       cent->currentState.event = event;
     }
   }

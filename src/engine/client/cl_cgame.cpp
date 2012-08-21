@@ -48,7 +48,7 @@ Maryland 20850 USA.
 #include "../qcommon/crypto.h"
 #endif
 
-#include "libmumblelink.h"
+#include "../snd_system/libmumblelink.h"
 
 extern botlib_export_t *botlib_export;
 
@@ -804,7 +804,7 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 			S_StartSound( (float*)VMA(1), args[2], args[3], args[4] );
 			return 0;
 		case CG_S_STARTSOUNDEX:
-			S_StartSoundEx((float*)VMA(1), args[2], args[3], args[4]);
+			S_StartSoundEx( (vec_t*)VMA( 1 ), args[2], args[3], args[4], args[5], args[6] );
 			return 0;
 		case CG_S_STARTLOCALSOUND:
 			S_StartLocalSound( args[1], args[2] );

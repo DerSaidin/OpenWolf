@@ -192,18 +192,6 @@
     <ClCompile Include="tr_sky.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\qcommon\q_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\qcommon\q_shared.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sys\sdl_gamma.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sys\sdl_vid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_vbo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,16 +216,13 @@
     <ClCompile Include="tr_noise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_model_skel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tr_model_psk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_model_mdm.cpp">
+    <ClCompile Include="tr_model_skel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_model_mdc.cpp">
+    <ClCompile Include="tr_model_mdm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tr_model_md5.cpp">
@@ -246,10 +231,10 @@
     <ClCompile Include="tr_model_md3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_model.cpp">
+    <ClCompile Include="tr_mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_mesh.cpp">
+    <ClCompile Include="tr_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tr_marks.cpp">
@@ -285,10 +270,10 @@
     <ClCompile Include="tr_decals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_curve.cpp">
+    <ClCompile Include="tr_cmds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tr_cmds.cpp">
+    <ClCompile Include="tr_curve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tr_bsp.cpp">
@@ -298,6 +283,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tr_animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\sdl_vid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\sdl_gamma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\qcommon\q_shared.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\qcommon\q_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tr_model_mdc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

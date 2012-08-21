@@ -143,7 +143,7 @@ void ScoreboardMessage( gentity_t *ent )
 
     if( cl->ps.stats[ STAT_HEALTH ] > 0 )
     {
-      weapon = cl->ps.weapon;
+      weapon = (weapon_t)cl->ps.weapon;
 
       if( BG_InventoryContainsUpgrade( UP_BATTLESUIT, cl->ps.stats ) )
         upgrade = UP_BATTLESUIT;
@@ -375,7 +375,7 @@ void Cmd_Noclip_f( gentity_t *ent )
   else
     msg = "noclip ON\n";
 
-  ent->client->noclip = !ent->client->noclip;
+  ent->client->noclip = (qboolean)!ent->client->noclip;
 
   G_SendCommandFromServer( ent - g_entities, va( "print \"%s\"", msg ) );
 }
@@ -506,7 +506,7 @@ void Cmd_Team_f( gentity_t *ent )
     else if( level.numHumanClients < level.numAlienClients )
       team = PTE_HUMANS;
     else
-      team = PTE_ALIENS + ( rand( ) % 2 );
+      team = (pTeam_t)(PTE_ALIENS + ( rand( ) % 2 ));
   }
   else
   {
@@ -1086,7 +1086,7 @@ void Cmd_Class_f( gentity_t *ent )
   vec3_t    infestOrigin;
   int       allowedClasses[ PCL_NUM_CLASSES ];
   int       numClasses = 0;
-  pClass_t  currentClass = ent->client->ps.stats[ STAT_PCLASS ];
+  pClass_t  currentClass = (pClass_t)ent->client->ps.stats[ STAT_PCLASS ];
 
   int       numLevels;
   vec3_t    fromMins, fromMaxs, toMins, toMaxs;
@@ -1108,7 +1108,7 @@ void Cmd_Class_f( gentity_t *ent )
     allowedClasses[ numClasses++ ] = PCL_ALIEN_BUILDER0;
 
   if( BG_ClassIsAllowed( PCL_ALIEN_BUILDER0_UPG ) &&
-      BG_FindStagesForClass( PCL_ALIEN_BUILDER0_UPG, g_alienStage.integer ) )
+      BG_FindStagesForClass( PCL_ALIEN_BUILDER0_UPG, (stage_t)g_alienStage.integer ) )
     allowedClasses[ numClasses++ ] = PCL_ALIEN_BUILDER0_UPG;
 
   if( BG_ClassIsAllowed( PCL_ALIEN_LEVEL0 ) )
@@ -1158,7 +1158,7 @@ void Cmd_Class_f( gentity_t *ent )
       }
 
       //evolve now
-      ent->client->pers.classSelection = BG_FindClassNumForName( s );
+      ent->client->pers.classSelection = (pClass_t)BG_FindClassNumForName( s );
 
       if( ent->client->pers.classSelection == PCL_NONE )
       {
@@ -1198,7 +1198,7 @@ void Cmd_Class_f( gentity_t *ent )
       {
         //...check we can evolve to that class
         if( numLevels >= 0 &&
-            BG_FindStagesForClass( ent->client->pers.classSelection, g_alienStage.integer ) && 
+            BG_FindStagesForClass( ent->client->pers.classSelection, (stage_t)g_alienStage.integer ) && 
             BG_ClassIsAllowed( ent->client->pers.classSelection ) )
         {
           ent->client->pers.evolveHealthFraction = (float)ent->client->ps.stats[ STAT_HEALTH ] /
@@ -1235,15 +1235,15 @@ void Cmd_Class_f( gentity_t *ent )
     else
     {
       //spawning from an egg
-      ent->client->pers.classSelection =
-        ent->client->ps.stats[ STAT_PCLASS ] = BG_FindClassNumForName( s );
+      ent->client->pers.classSelection = (pClass_t) (
+        ent->client->ps.stats[ STAT_PCLASS ] = BG_FindClassNumForName( s ));
 
       if( ent->client->pers.classSelection != PCL_NONE )
       {
         for( i = 0; i < numClasses; i++ )
         {
           if( allowedClasses[ i ] == ent->client->pers.classSelection &&
-              BG_FindStagesForClass( ent->client->pers.classSelection, g_alienStage.integer ) &&
+              BG_FindStagesForClass( ent->client->pers.classSelection, (stage_t)g_alienStage.integer ) &&
               BG_ClassIsAllowed( ent->client->pers.classSelection ) )
           {
             G_PushSpawnQueue( &level.alienSpawnQueue, clientNum );
@@ -1270,8 +1270,8 @@ void Cmd_Class_f( gentity_t *ent )
       return;
     }
 
-    ent->client->pers.classSelection =
-      ent->client->ps.stats[ STAT_PCLASS ] = PCL_HUMAN;
+    ent->client->pers.classSelection = (pClass_t)(
+      ent->client->ps.stats[ STAT_PCLASS ] = PCL_HUMAN);
 
     //set the item to spawn with
     if( !Q_stricmp( s, BG_FindNameForWeapon( WP_MACHINEGUN ) ) && BG_WeaponIsAllowed( WP_MACHINEGUN ) )
@@ -1279,7 +1279,7 @@ void Cmd_Class_f( gentity_t *ent )
     else if( !Q_stricmp( s, BG_FindNameForWeapon( WP_HBUILD ) ) && BG_WeaponIsAllowed( WP_HBUILD ) )
       ent->client->pers.humanItemSelection = WP_HBUILD;
     else if( !Q_stricmp( s, BG_FindNameForWeapon( WP_HBUILD2 ) ) && BG_WeaponIsAllowed( WP_HBUILD2 ) &&
-        BG_FindStagesForWeapon( WP_HBUILD2, g_humanStage.integer ) )
+        BG_FindStagesForWeapon( WP_HBUILD2, (stage_t)g_humanStage.integer ) )
       ent->client->pers.humanItemSelection = WP_HBUILD2;
     else
     {
@@ -1372,7 +1372,7 @@ void Cmd_ActivateItem_f( gentity_t *ent )
   if( upgrade != UP_NONE && BG_InventoryContainsUpgrade( upgrade, ent->client->ps.stats ) )
     BG_ActivateUpgrade( upgrade, ent->client->ps.stats );
   else if( weapon != WP_NONE && BG_InventoryContainsWeapon( weapon, ent->client->ps.stats ) )
-    G_ForceWeaponChange( ent, weapon );
+    G_ForceWeaponChange( ent, (weapon_t)weapon );
   else
     G_SendCommandFromServer( ent-g_entities, va( "print \"You don't have the %s\n\"", s ) );
 }
@@ -1449,7 +1449,7 @@ void Cmd_ToggleItem_f( gentity_t *ent )
         weapon = WP_BLASTER;
     }
 
-    G_ForceWeaponChange( ent, weapon );
+    G_ForceWeaponChange( ent, (weapon_t)weapon );
   }
   else if( BG_InventoryContainsUpgrade( upgrade, ent->client->ps.stats ) )
   {
@@ -1558,7 +1558,7 @@ void Cmd_Buy_f( gentity_t *ent )
     }
 
     //are we /allowed/ to buy this?
-    if( !BG_FindStagesForWeapon( weapon, g_humanStage.integer ) || !BG_WeaponIsAllowed( weapon ) )
+    if( !BG_FindStagesForWeapon( weapon, (stage_t)g_humanStage.integer ) || !BG_WeaponIsAllowed( (weapon_t)weapon ) )
     {
       G_SendCommandFromServer( ent-g_entities, va( "print \"You can't buy this item\n\"" ) );
       return;
@@ -1575,7 +1575,7 @@ void Cmd_Buy_f( gentity_t *ent )
     BG_PackAmmoArray( weapon, ent->client->ps.ammo, ent->client->ps.powerups,
                       maxAmmo, maxClips );
 
-    G_ForceWeaponChange( ent, weapon );
+    G_ForceWeaponChange( ent, (weapon_t)weapon );
 
     //set build delay/pounce etc to 0
     ent->client->ps.stats[ STAT_MISC ] = 0;
@@ -1621,7 +1621,7 @@ void Cmd_Buy_f( gentity_t *ent )
     }
 
     //are we /allowed/ to buy this?
-    if( !BG_FindStagesForUpgrade( upgrade, g_humanStage.integer ) || !BG_UpgradeIsAllowed( upgrade ) )
+    if( !BG_FindStagesForUpgrade( upgrade, (stage_t)g_humanStage.integer ) || !BG_UpgradeIsAllowed( (upgrade_t)upgrade ) )
     {
       G_SendCommandFromServer( ent-g_entities, va( "print \"You can't buy this item\n\"" ) );
       return;
@@ -1826,16 +1826,16 @@ void Cmd_Build_f( gentity_t *ent )
 
   trap_Argv( 1, s, sizeof( s ) );
 
-  buildable = BG_FindBuildNumForName( s );
-  team = ent->client->ps.stats[ STAT_PTEAM ];
+  buildable = (buildable_t)BG_FindBuildNumForName( s );
+  team = (pTeam_t)ent->client->ps.stats[ STAT_PTEAM ];
 
   if( buildable != BA_NONE &&
       ( ( 1 << ent->client->ps.weapon ) & BG_FindBuildWeaponForBuildable( buildable ) ) &&
       !( ent->client->ps.stats[ STAT_STATE ] & SS_INFESTING ) &&
       !( ent->client->ps.stats[ STAT_STATE ] & SS_HOVELING ) &&
       BG_BuildableIsAllowed( buildable ) &&
-      ( ( team == PTE_ALIENS && BG_FindStagesForBuildable( buildable, g_alienStage.integer ) ) ||
-        ( team == PTE_HUMANS && BG_FindStagesForBuildable( buildable, g_humanStage.integer ) ) ) )
+      ( ( team == PTE_ALIENS && BG_FindStagesForBuildable( buildable, (stage_t)g_alienStage.integer ) ) ||
+        ( team == PTE_HUMANS && BG_FindStagesForBuildable( buildable, (stage_t)g_humanStage.integer ) ) ) )
   {
     dist = BG_FindBuildDistForClass( ent->client->ps.stats[ STAT_PCLASS ] );
 

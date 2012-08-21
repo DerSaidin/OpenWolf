@@ -118,7 +118,7 @@ void G_Free( void *ptr )
   char *freeend;
   int *freeptr;
 
-  freeptr = ptr;
+  freeptr = (int*)ptr;
   freeptr--;
 
   freemem += *freeptr;

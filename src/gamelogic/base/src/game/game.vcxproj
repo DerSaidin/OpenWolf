@@ -447,9 +447,9 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;GPP;USE_PHYSICS;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;GPP;USE_PHYSICS;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -459,10 +459,9 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\..\..\src\libs\mysql\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -473,9 +472,12 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\game.def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <GenerateMapFile>
+      </GenerateMapFile>
+      <MapFileName>
+      </MapFileName>
       <SubSystem>Windows</SubSystem>
       <BaseAddress>0x20000000</BaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -483,7 +485,6 @@
       </DataExecutionPrevention>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>..\..\..\..\libs\mysql\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">
@@ -541,6 +542,16 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\engine\qcommon\q_math.cpp" />
     <ClCompile Include="..\..\..\..\engine\qcommon\q_shared.cpp" />
+    <ClCompile Include="bg_lib.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="bg_misc.cpp" />
     <ClCompile Include="bg_pmove.cpp" />
     <ClCompile Include="bg_slidemove.cpp" />

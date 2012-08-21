@@ -399,7 +399,7 @@ void RE_RegisterFont(const char *fontName, int pointSize, fontInfo_t * font)
 
 	for(i = 0; i < registeredFontCount; i++)
 	{
-		if(Q_stricmp(fileName, registeredFont[i].name) == 0)
+		if(Q_stricmp(strippedName, registeredFont[i].name) == 0)
 		{
 			Com_Memcpy(font, &registeredFont[i], sizeof(fontInfo_t));
 			return;

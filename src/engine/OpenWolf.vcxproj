@@ -263,7 +263,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -275,11 +275,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;USE_CODEC_VORBIS;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;HAVE_BZIP2;USE_BASS;USE_VOIP;USE_MUMBLE;USE_PHYSICS;USE_CRYPTO;HAVE_CONFIG_H;USE_CURSES;ET_SQL;USE_LLVM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;HAVE_BZIP2;USE_VOIP;USE_MUMBLE;USE_PHYSICS;USE_CRYPTO;HAVE_CONFIG_H;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StructMemberAlignment>16Bytes</StructMemberAlignment>
       <OpenMPSupport>true</OpenMPSupport>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
       <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\glew\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\llvm\include;..\libs\bass\include;..\libs\libbz2\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pdcurses\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
@@ -299,19 +299,20 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\debug;..\libs\libbz2\libs\x32;..\libs\llvm\libs\win32\debug\;..\libs\libnewton\libs\win32;..\libs\mpir\libs\win32;..\libs\pdcurses\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\debug;..\libs\libbz2\libs\x32;..\libs\libnewton\libs\win32;..\libs\mpir\libs\win32;..\libs\pdcurses\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
@@ -330,8 +331,8 @@ hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_AMD64;_WIN64;__WIN64__;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;USE_VOIP;USE_MUMBLE;USE_OPENSSL;USE_CRYPTO;USE_PHP;USE_CURSES;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_AMD64;_WIN64;__WIN64__;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;USE_VOIP;USE_MUMBLE;USE_OPENSSL;USE_CRYPTO;USE_PHP;USE_CURSES;USE_LLVM;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -345,7 +346,7 @@ hostname &gt; status-info/build-machine
       <AdditionalIncludeDirectories>..\libs\mysql\include;..\libs\cpuinfo;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\glew\include\;..\libs\curl-7.25.0\include;..\libs\libvorbis\include;..\libs\libogg\include;..\libs\libspeex\win32;..\libs\libspeex\libspeex;..\libs\libspeex\include;..\libs\openssl\include;..\libs\libtheora\include;..\libs\libbz2\include;..\libs\llvm\include;..\libs\libnewton\include\;..\libs\libnewton\include\dMath;..\libs\libnewton\include\dContainers;..\libs\msinttypes;..\libs\nettle;..\libs\mpir\include;..\libs\pthreads\include;..\libs\pdcurses\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <OpenMPSupport>true</OpenMPSupport>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -361,7 +362,7 @@ hostname &gt; status-info/build-machine
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/MACHINE:X64 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libbz2.lib;libeay32.lib;mpir.lib;pdcurses.a;newton.lib;pthreadVC2_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libbz2.lib;libeay32.lib;mpir.lib;pdcurses.a;newton.lib;pthreadVC2_x64.lib;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\openssl\lib\VC;..\libs\zlibwapi\lib\x64;..\libs\libbz2\libs\x64;..\libs\llvm\libs\win64\debug;..\libs\libnewton\libs\win64;..\libs\openssl\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -395,8 +396,8 @@ hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;USE_CODEC_VORBIS;USE_VOIP;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;USE_LLVM;HAVE_BZIP2;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;USE_CODEC_VORBIS;USE_VOIP;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;HAVE_BZIP2;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -416,7 +417,7 @@ hostname &gt; status-info/build-machine
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;mpir.lib;pthreads.lib;pdcurses.a;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;mpir.lib;pthreads.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
@@ -424,12 +425,12 @@ hostname &gt; status-info/build-machine
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\llvm\libs\win32\debug;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
@@ -451,7 +452,7 @@ hostname &gt; status-info/build-machine
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;HAVE_CONFIG_H;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;USE_CODEC_VORBIS;USE_VOIP;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;USE_LLVM;HAVE_BZIP2;ET_SQL;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -479,7 +480,7 @@ hostname &gt; status-info/build-machine
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -504,8 +505,8 @@ hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WIN64;WIN32;_AMD64_;__WIN64__;_DEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_MUMBLE;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;USE_LLVM;HAVE_BZIP2;USE_INCREASED_ENTITIES;USE_OPENSSL;ET_SQL;USE_VOIP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>_WIN64;WIN32;_AMD64_;__WIN64__;_DEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_MUMBLE;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_VOIP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -520,7 +521,7 @@ hostname &gt; status-info/build-machine
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <AdditionalOptions>/wd4430 %(AdditionalOptions)</AdditionalOptions>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -528,7 +529,7 @@ hostname &gt; status-info/build-machine
       <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;newton.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libeay32.lib;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;shell32.lib;dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;newton.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libeay32.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
@@ -536,13 +537,13 @@ hostname &gt; status-info/build-machine
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\openssl\lib\VC;..\libs\zlibwapi\lib\x64;..\libs\libspeex\libs\win64\debug;..\libs\libnewton\libs\win64\static;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\llvm\libs\win64\debug\;..\libs\libbz2\libs\x64;..\libs\openssl\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\openssl\lib\VC;..\libs\zlibwapi\lib\x64;..\libs\libspeex\libs\win64\debug;..\libs\libnewton\libs\win64\static;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\libbz2\libs\x64;..\libs\openssl\libs\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreLinkEvent>
       <Command>echo "DEBUG build, no SVN info included" &gt; status-info/versions
@@ -564,7 +565,7 @@ hostname &gt; status-info/build-machine
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WIN64;WIN32;_AMD64_;__WIN64__;_DEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_CRYPTO;USE_PHP;USE_CURSES;HAVE_BZIP2;USE_INCREASED_ENTITIES;USE_OPENSSL;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -579,7 +580,7 @@ hostname &gt; status-info/build-machine
       <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <AdditionalOptions>/wd4430 %(AdditionalOptions)</AdditionalOptions>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -595,7 +596,7 @@ hostname &gt; status-info/build-machine
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
@@ -628,13 +629,13 @@ hostname &gt; status-info/build-machine</Command>
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_VOIP;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_PHYSICS;ET_SQL;USE_MUMBLE;USE_CODEC_VORBIS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_VOIP;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_PHYSICS;ET_SQL;USE_MUMBLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -643,15 +644,13 @@ hostname &gt; status-info/build-machine</Command>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pthreads\include;..\libs\pdcurses\include;..\libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\openal\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\llvm\include;..\libs\bass\include;..\libs\libbz2\include;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pthreads\include;..\libs\pdcurses\include;..\libs\glew\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <CompileAs>Default</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <StructMemberAlignment>16Bytes</StructMemberAlignment>
-      <ExceptionHandling>Sync</ExceptionHandling>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <ExceptionHandling>Async</ExceptionHandling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <DisableSpecificWarnings>4505;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -669,7 +668,7 @@ hostname &gt; status-info/build-machine</Command>
       <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;libbz2.lib;mpir.lib;pthreads.lib;pdcurses.a;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libbz2\libs\x32;..\libs\libnewton\libs\win32;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\llvm\libs\win32\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libbz2\libs\x32;..\libs\libnewton\libs\win32;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -711,13 +710,13 @@ echo hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;_M_AMD64;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;USE_VOIP;BOTLIB_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <BufferSecurityCheck>
-      </BufferSecurityCheck>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -730,12 +729,8 @@ echo hostname &gt; status-info/build-machine
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <CompileAs>Default</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <MultiProcessorCompilation>
-      </MultiProcessorCompilation>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <StructMemberAlignment>16Bytes</StructMemberAlignment>
-      <MinimalRebuild>true</MinimalRebuild>
-      <DisableSpecificWarnings>4505;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -752,7 +747,7 @@ echo hostname &gt; status-info/build-machine
       <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;libeay32.lib;zlibwapi.lib;libbz2.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\libs\win64;..\libs\libbz2\libs\x64;..\libs\libnewton\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\llvm\libs\win64\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\libs\win64;..\libs\libbz2\libs\x64;..\libs\libnewton\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -793,9 +788,9 @@ echo hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;USE_LLVM;USE_LOCAL_HEADERS;HAVE_CONFIG_H;HAVE_BZIP2;USE_OPENSSL;ET_SQL;USE_VOIP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;HAVE_BZIP2;ET_SQL;USE_VOIP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -814,25 +809,21 @@ echo hostname &gt; status-info/build-machine
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreads.lib;pdcurses.a;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreads.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <GenerateDebugInformation>
-      </GenerateDebugInformation>
-      <ProgramDatabaseFile>
-      </ProgramDatabaseFile>
-      <GenerateMapFile>
-      </GenerateMapFile>
-      <MapFileName>
-      </MapFileName>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\release;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\llvm\libs\win32\release;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\release;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>svn status -u ./../ &gt; status-info/versions
@@ -852,9 +843,9 @@ echo hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_CURSES;USE_LLVM;USE_LOCAL_HEADERS;HAVE_CONFIG_H;HAVE_BZIP2;USE_OPENSSL;ET_SQL;USE_VOIP;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;USE_PHYSICS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;HAVE_BZIP2;ET_SQL;USE_VOIP;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -864,7 +855,7 @@ echo hostname &gt; status-info/build-machine
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;..\libs\libbz2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\xvidcore\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\libpng;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\msinttypes;..\libs\mpir\include;..\libs\nettle\;..\libs\pdcurses\include;..\libs\pthreads\include;..\libs\libbz2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -873,25 +864,21 @@ echo hostname &gt; status-info/build-machine
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreads.lib;pdcurses.a;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;xvidcore.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreads.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <GenerateDebugInformation>
-      </GenerateDebugInformation>
-      <ProgramDatabaseFile>
-      </ProgramDatabaseFile>
-      <GenerateMapFile>
-      </GenerateMapFile>
-      <MapFileName>
-      </MapFileName>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\release;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\llvm\libs\win32\release;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win32;..\libs\xvidcore\lib;..\libs\zlibwapi\lib\x32;..\libs\openssl\libs\win32;..\libs\libspeex\libs\win32\release;..\libs\libnewton\libs\win32\static;..\libs\mpir\libs\win32;..\libs\pthreads\lib\win32;..\libs\pdcurses\lib\win32;..\libs\libbz2\libs\x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>svn status -u ./../ &gt; status-info/versions
@@ -910,10 +897,10 @@ echo hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;AMD64;_AMD64_;WIN64;_WIN64;__WIN64__;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;USE_PHYSICS;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;USE_PHYSICS;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <PrecompiledHeader>
@@ -924,9 +911,9 @@ echo hostname &gt; status-info/build-machine
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <ExceptionHandling>Async</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -934,19 +921,15 @@ echo hostname &gt; status-info/build-machine
       <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <GenerateDebugInformation>
-      </GenerateDebugInformation>
-      <ProgramDatabaseFile>
-      </ProgramDatabaseFile>
-      <GenerateMapFile>
-      </GenerateMapFile>
-      <MapFileName>
-      </MapFileName>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -971,10 +954,10 @@ echo hostname &gt; status-info/build-machine
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;AMD64;_AMD64_;WIN64;_WIN64;__WIN64__;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;USE_OPENSSL;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;DEDICATED;_CRT_SECURE_NO_WARNINGS;USE_LOCAL_HEADERS;HAVE_CONFIG_H;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;UPDATE_SERVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <PrecompiledHeader>
@@ -987,7 +970,7 @@ echo hostname &gt; status-info/build-machine
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalIncludeDirectories>..\libs\libtheora\include;..\libs\libvorbis\include;..\libs\mysql\include;..\libs\cpuinfo;..\libs\libspeex\include;..\libs\zlibwapi\include;..\libs\libsdl\include;..\libs\openssl\include;..\libs\curl-7.25.0\include;..\libs\libogg\include;..\libs\libspeex\libspeex;..\libs\libbz2\include;..\libs\msinttypes;..\libs\libnewton\include;..\libs\libnewton\include\dContainers;..\libs\libnewton\include\dMath;..\libs\nettle;..\libs\mpir\include;..\libs\pdcurses\include;..\libs\llvm\include;..\libs\pthreads\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <ExceptionHandling>Async</ExceptionHandling>
+      <ExceptionHandling>SyncCThrow</ExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -995,25 +978,21 @@ echo hostname &gt; status-info/build-machine
       <ResourceOutputFileName>sys\winquake.res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;LLVMAnalysis.lib;LLVMArchive.lib;LLVMAsmParser.lib;LLVMAsmPrinter.lib;LLVMBitReader.lib;LLVMBitWriter.lib;LLVMCodeGen.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMInstrumentation.lib;LLVMInterpreter.lib;LLVMipa.lib;LLVMipo.lib;LLVMJIT.lib;LLVMLinker.lib;LLVMMC.lib;LLVMMCDisassembler.lib;LLVMMCJIT.lib;LLVMMCParser.lib;LLVMObject.lib;LLVMScalarOpts.lib;LLVMSelectionDAG.lib;LLVMSupport.lib;LLVMTarget.lib;LLVMTransformUtils.lib;LLVMX86AsmParser.lib;LLVMX86AsmPrinter.lib;LLVMX86CodeGen.lib;LLVMX86Disassembler.lib;LLVMX86Info.lib;LLVMX86Utils.lib;LLVMTableGen.lib;LLVMX86Desc.lib;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dinput8.lib;winmm.lib;wsock32.lib;Iphlpapi.lib;ws2_32.lib;glu32.lib;libmysql.lib;psapi.lib;opengl32.lib;newton.lib;advapi32.lib;GlU32.Lib;zlibwapi.lib;libeay32.lib;mpir.lib;pthreadVC2_x64.lib;pdcurses.a;libbz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <GenerateDebugInformation>
-      </GenerateDebugInformation>
-      <ProgramDatabaseFile>
-      </ProgramDatabaseFile>
-      <GenerateMapFile>
-      </GenerateMapFile>
-      <MapFileName>
-      </MapFileName>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>8388608</StackReserveSize>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\lib\VC;..\libs\libspeex\libs\win64\release;..\libs\libnewton\libs\win64\static;..\libs\openssl\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\llvm\libs\win64\release;..\libs\libbz2\libs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\libs\mysql\lib\win64;..\libs\zlibwapi\lib\x64;..\libs\openssl\lib\VC;..\libs\libspeex\libs\win64\release;..\libs\libnewton\libs\win64\static;..\libs\openssl\libs\win64;..\libs\mpir\libs\win64;..\libs\pthreads\lib\win64;..\libs\pdcurses\lib\win64;..\libs\libbz2\libs\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Message>Generating Build Info</Message>
@@ -1217,16 +1196,6 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_text.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="client\cl_ui.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
@@ -1237,101 +1206,6 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\libmumblelink.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_adpcm.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_codec.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_codec_ogg.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_codec_wav.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_dma.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_load.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_mem.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_mix.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="client\snd_wavelet.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="cm\CollisionModel_contacts.cpp" />
     <ClCompile Include="cm\CollisionModel_contents.cpp" />
     <ClCompile Include="cm\CollisionModel_debug.cpp" />
@@ -1341,18 +1215,12 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="cm\CollisionModel_rotate.cpp" />
     <ClCompile Include="cm\CollisionModel_trace.cpp" />
     <ClCompile Include="cm\CollisionModel_translate.cpp" />
-    <ClCompile Include="database\db_main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\db_mysql.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="database\db_main.cpp" />
+    <ClCompile Include="database\db_mysql.cpp" />
     <ClCompile Include="qcommon\cm_api.cpp" />
     <ClCompile Include="qcommon\cm_load.cpp" />
     <ClCompile Include="qcommon\cm_patch.cpp" />
-    <ClCompile Include="qcommon\cm_physics.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="qcommon\cm_physics.cpp" />
     <ClCompile Include="qcommon\cm_polylib.cpp" />
     <ClCompile Include="qcommon\cm_test.cpp" />
     <ClCompile Include="qcommon\cm_trace.cpp" />
@@ -1402,9 +1270,7 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="server\sv_snapshot.cpp" />
     <ClCompile Include="server\sv_world.cpp" />
     <ClCompile Include="qcommon\unzip.cpp" />
-    <ClCompile Include="qcommon\vm.c" />
-    <ClCompile Include="qcommon\vm_interpreted.c" />
-    <ClCompile Include="qcommon\vm_x86.c" />
+    <ClCompile Include="qcommon\vm.cpp" />
     <ClCompile Include="qcommon\dl_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
@@ -1444,10 +1310,12 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="sys\con_curses.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="sys\con_log.cpp" />
     <ClCompile Include="sys\con_win32.cpp" />
@@ -1484,9 +1352,9 @@ echo hostname &gt; status-info/build-machine
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\gamelogic\etmain\src\game\bg_public.h" />
-    <ClInclude Include="botlib\botai.h" />
-    <ClInclude Include="botlib\botlib.h" />
+    <ClInclude Include="..\..\etmain\src\game\bg_public.h" />
+    <ClInclude Include="..\gamelogic\etmain\src\botai\botai.h" />
+    <ClInclude Include="..\gamelogic\etmain\src\game\botlib.h" />
     <ClInclude Include="..\libs\libnewton\include\dContainers\dBaseHierarchy.h" />
     <ClInclude Include="..\libs\libnewton\include\dContainers\dContainersStdAfx.h" />
     <ClInclude Include="..\libs\libnewton\include\dContainers\dCRC.h" />
@@ -1505,23 +1373,6 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="..\libs\nettle\nettle\buffer.h" />
     <ClInclude Include="..\libs\nettle\nettle\rsa.h" />
     <ClInclude Include="..\libs\nettle\nettle\sexp.h" />
-    <ClInclude Include="client\client.h" />
-    <ClInclude Include="client\snd_api.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="client\snd_codec.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="client\snd_local.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="client\snd_public.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="cm\CollisionModel.h" />
     <ClInclude Include="cm\CollisionModel_local.h" />
     <ClInclude Include="qcommon\crypto.h" />
@@ -1529,20 +1380,16 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="client\cg_api.h" />
     <ClInclude Include="client\libmumblelink.h" />
     <ClInclude Include="client\ui_api.h" />
-    <ClInclude Include="database\database.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="database\database.h" />
     <ClInclude Include="qcommon\htable.h" />
     <ClInclude Include="qcommon\ioapi.h" />
     <ClInclude Include="qcommon\md4.h" />
-    <ClInclude Include="qcommon\vm_llvm.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="client\client.h" />
     <ClInclude Include="qcommon\cm_local.h" />
     <ClInclude Include="qcommon\cm_patch.h" />
     <ClInclude Include="qcommon\cm_polylib.h" />
     <ClInclude Include="qcommon\cm_public.h" />
-    <ClInclude Include="..\gamelogic\etmain\src\ui\keycodes.h" />
+    <ClInclude Include="..\..\etmain\src\ui\keycodes.h" />
     <ClInclude Include="client\keys.h" />
     <ClInclude Include="qcommon\q_shared.h" />
     <ClInclude Include="qcommon\qcommon.h" />
@@ -1765,15 +1612,6 @@ echo hostname &gt; status-info/build-machine
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="asm\vm_x86_64.asm">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Assembling...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ml64  -D idx64=1 -c -Zi "-Fl$(IntDir)%(FileName).lst" "-Fo$(IntDir)%(FileName).obj" "%(FullPath)"</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Assembling...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(FileName).obj;%(Outputs)</Outputs>
-    </CustomBuild>
     <None Include="status-info\build-config" />
     <None Include="status-info\build-machine" />
     <None Include="status-info\versions" />
@@ -1811,6 +1649,9 @@ echo hostname &gt; status-info/build-machine
     </ProjectReference>
     <ProjectReference Include="idLib\idLib.vcxproj">
       <Project>{4b9edd89-0b65-46f0-94e0-6827116bbc6d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="snd_system\snd_system.vcxproj">
+      <Project>{6f39eda9-fc62-4e7a-a88e-526603066547}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

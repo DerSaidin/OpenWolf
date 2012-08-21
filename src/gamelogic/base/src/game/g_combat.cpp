@@ -570,7 +570,7 @@ void G_ParseArmourScript( char *buf, int upgrade )
 G_ParseDmgScript
 ===============
 */
-void G_ParseDmgScript( char *buf, int class )
+void G_ParseDmgScript( char *buf, int _class )
 {
   char  *token;
   int   count;
@@ -597,12 +597,12 @@ void G_ParseDmgScript( char *buf, int class )
     }
 
     //default
-    g_damageRegions[ class ][ count ].minHeight = 0.0;
-    g_damageRegions[ class ][ count ].maxHeight = 1.0;
-    g_damageRegions[ class ][ count ].minAngle = 0;
-    g_damageRegions[ class ][ count ].maxAngle = 360;
-    g_damageRegions[ class ][ count ].modifier = 1.0;
-    g_damageRegions[ class ][ count ].crouch = qfalse;
+    g_damageRegions[ _class ][ count ].minHeight = 0.0;
+    g_damageRegions[ _class ][ count ].maxHeight = 1.0;
+    g_damageRegions[ _class ][ count ].minAngle = 0;
+    g_damageRegions[ _class ][ count ].maxAngle = 360;
+    g_damageRegions[ _class ][ count ].modifier = 1.0;
+    g_damageRegions[ _class ][ count ].crouch = qfalse;
 
     while( 1 )
     {
@@ -625,7 +625,7 @@ void G_ParseDmgScript( char *buf, int class )
         if ( !token[0] )
           strcpy( token, "0" );
 
-        g_damageRegions[ class ][ count ].minHeight = atof( token );
+        g_damageRegions[ _class ][ count ].minHeight = atof( token );
       }
       else if( !strcmp( token, "maxHeight" ) )
       {
@@ -634,7 +634,7 @@ void G_ParseDmgScript( char *buf, int class )
         if ( !token[0] )
           strcpy( token, "100" );
 
-        g_damageRegions[ class ][ count ].maxHeight = atof( token );
+        g_damageRegions[ _class ][ count ].maxHeight = atof( token );
       }
       else if( !strcmp( token, "minAngle" ) )
       {
@@ -643,7 +643,7 @@ void G_ParseDmgScript( char *buf, int class )
         if ( !token[0] )
           strcpy( token, "0" );
 
-        g_damageRegions[ class ][ count ].minAngle = atoi( token );
+        g_damageRegions[ _class ][ count ].minAngle = atoi( token );
       }
       else if( !strcmp( token, "maxAngle" ) )
       {
@@ -652,7 +652,7 @@ void G_ParseDmgScript( char *buf, int class )
         if ( !token[0] )
           strcpy( token, "360" );
 
-        g_damageRegions[ class ][ count ].maxAngle = atoi( token );
+        g_damageRegions[ _class ][ count ].maxAngle = atoi( token );
       }
       else if( !strcmp( token, "modifier" ) )
       {
@@ -661,15 +661,15 @@ void G_ParseDmgScript( char *buf, int class )
         if ( !token[0] )
           strcpy( token, "1.0" );
 
-        g_damageRegions[ class ][ count ].modifier = atof( token );
+        g_damageRegions[ _class ][ count ].modifier = atof( token );
       }
       else if( !strcmp( token, "crouch" ) )
       {
-        g_damageRegions[ class ][ count ].crouch = qtrue;
+        g_damageRegions[ _class ][ count ].crouch = qtrue;
       }
     }
 
-    g_numDamageRegions[ class ]++;
+    g_numDamageRegions[ _class ]++;
     count++;
   }
 }
@@ -680,7 +680,7 @@ void G_ParseDmgScript( char *buf, int class )
 G_CalcDamageModifier
 ============
 */
-static float G_CalcDamageModifier( vec3_t point, gentity_t *targ, gentity_t *attacker, int class, int dflags )
+static float G_CalcDamageModifier( vec3_t point, gentity_t *targ, gentity_t *attacker, int _class, int dflags )
 {
   vec3_t  bulletPath;
   vec3_t  bulletAngle;
@@ -748,29 +748,29 @@ static float G_CalcDamageModifier( vec3_t point, gentity_t *targ, gentity_t *att
   }
   else
   {
-    for( i = 0; i < g_numDamageRegions[ class ]; i++ )
+    for( i = 0; i < g_numDamageRegions[ _class ]; i++ )
     {
       qboolean rotationBound;
 
-      if( g_damageRegions[ class ][ i ].minAngle >
-          g_damageRegions[ class ][ i ].maxAngle )
+      if( g_damageRegions[ _class ][ i ].minAngle >
+          g_damageRegions[ _class ][ i ].maxAngle )
       {
-        rotationBound = ( hitRotation >= g_damageRegions[ class ][ i ].minAngle &&
+        rotationBound = (qboolean)(( hitRotation >= g_damageRegions[ _class ][ i ].minAngle &&
                           hitRotation <= 360 ) || ( hitRotation >= 0 &&
-                          hitRotation <= g_damageRegions[ class ][ i ].maxAngle );
+                          hitRotation <= g_damageRegions[ _class ][ i ].maxAngle ));
       }
       else
       {
-        rotationBound = ( hitRotation >= g_damageRegions[ class ][ i ].minAngle &&
-                          hitRotation <= g_damageRegions[ class ][ i ].maxAngle );
+        rotationBound = (qboolean)( hitRotation >= g_damageRegions[ _class ][ i ].minAngle &&
+                          hitRotation <= g_damageRegions[ _class ][ i ].maxAngle );
       }
 
       if( rotationBound &&
-          hitRatio >= g_damageRegions[ class ][ i ].minHeight &&
-          hitRatio <= g_damageRegions[ class ][ i ].maxHeight &&
-          ( g_damageRegions[ class ][ i ].crouch ==
+          hitRatio >= g_damageRegions[ _class ][ i ].minHeight &&
+          hitRatio <= g_damageRegions[ _class ][ i ].maxHeight &&
+          ( g_damageRegions[ _class ][ i ].crouch ==
             ( targ->client->ps.pm_flags & PMF_DUCKED ) ) )
-        modifier *= g_damageRegions[ class ][ i ].modifier;
+        modifier *= g_damageRegions[ _class ][ i ].modifier;
     }
 
     for( i = UP_NONE + 1; i < UP_NUM_UPGRADES; i++ )
@@ -784,13 +784,13 @@ static float G_CalcDamageModifier( vec3_t point, gentity_t *targ, gentity_t *att
           if( g_armourRegions[ i ][ j ].minAngle >
               g_armourRegions[ i ][ j ].maxAngle )
           {
-            rotationBound = ( hitRotation >= g_armourRegions[ i ][ j ].minAngle &&
+            rotationBound = (qboolean)(( hitRotation >= g_armourRegions[ i ][ j ].minAngle &&
                               hitRotation <= 360 ) || ( hitRotation >= 0 &&
-                              hitRotation <= g_armourRegions[ i ][ j ].maxAngle );
+                              hitRotation <= g_armourRegions[ i ][ j ].maxAngle ));
           }
           else
           {
-            rotationBound = ( hitRotation >= g_armourRegions[ i ][ j ].minAngle &&
+            rotationBound = (qboolean)( hitRotation >= g_armourRegions[ i ][ j ].minAngle &&
                               hitRotation <= g_armourRegions[ i ][ j ].maxAngle );
           }
 

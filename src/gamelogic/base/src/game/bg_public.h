@@ -1252,6 +1252,6 @@ void BG_ParseCSVBuildableList( const char *string, buildable_t *buildables, int 
 void BG_InitAllowedGameElements( void );
 qboolean BG_WeaponIsAllowed( weapon_t weapon );
 qboolean BG_UpgradeIsAllowed( upgrade_t upgrade );
-qboolean BG_ClassIsAllowed( pClass_t class );
+qboolean BG_ClassIsAllowed( pClass_t _class );
 qboolean BG_BuildableIsAllowed( buildable_t buildable );
 qboolean BG_UpgradeClassAvailable( playerState_t *ps );

@@ -205,7 +205,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;BUILD_FREETYPE;FT_FREETYPE_H;USE_INTERNAL_JPEG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -216,6 +216,10 @@
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
+      <Optimization>Full</Optimization>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -329,9 +333,9 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <ManifestFile>$(IntDir)$(TargetName)$(TargetExt).intermediate.manifest</ManifestFile>
       <ProgramDatabaseFile>$(IntDir)\$(TargetName).pdb</ProgramDatabaseFile>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <MapFileName>$(IntDir)\$(TargetName).map</MapFileName>
-      <GenerateMapFile>true</GenerateMapFile>
+      <GenerateMapFile>false</GenerateMapFile>
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\libs\libsdl\include;..\..\libs\zlibwapi\include;..\..\libs\jpeg;..\..\libs\freetype\include\;..\..\libs\freetype\include\freetype2;..\..\libs\glew\include;..\..\libs\libpng;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

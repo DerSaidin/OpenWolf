@@ -51,7 +51,7 @@ Maryland 20850 USA.
 
 
 #include "client.h"
-#include "snd_local.h"
+#include "../snd_system/snd_local.h"
 #define MAXSIZE             8
 #define MINSIZE             4
 
@@ -1208,7 +1208,7 @@ redump:
 			if (!cinTable[currentHandle].silent) {
 				if (cinTable[currentHandle].numQuads == -1) {
 					S_Update();
-					s_rawend = s_soundtime;
+					s_rawend[0] = s_soundtime;
 				}
 				ssize = RllDecodeStereoToStereo( framedata, sbuf, cinTable[currentHandle].RoQFrameSize, 0, (unsigned short)cinTable[currentHandle].roq_flags);
 				S_RawSamples( 0, ssize, 22050, 2, 2, (byte *)sbuf, 1.0f, 1.0f );
@@ -1524,7 +1524,7 @@ e_status CIN_RunCinematic (int handle)
 	return cinTable[currentHandle].status;
 }
 
-extern char *findExtension(const char *fni); // from snd_codec.c (just a nice implementation of getting a point to the extention)
+extern char *S_FileExtension(const char *fni); // from snd_codec.c (just a nice implementation of getting a point to the extention)
 
 /*
 ==================
@@ -1560,7 +1560,7 @@ int CIN_PlayCinematic( const char *arg, int x, int y, int w, int h, int systemBi
 
 	strcpy(cinTable[currentHandle].fileName, name);
 
-	fileextPtr = findExtension(name);     // using the function from soundfile/audiocodec-detection
+	fileextPtr = S_FileExtension(name);     // using the function from soundfile/audiocodec-detection
 	if(!Q_stricmp(fileextPtr, ".ogm"))
 	{
 		if(Cin_OGM_Init(name))
@@ -1658,7 +1658,7 @@ int CIN_PlayCinematic( const char *arg, int x, int y, int w, int h, int systemBi
 		
 		Con_Close();
 
-		s_rawend = s_soundtime;
+		s_rawend[0] = s_soundtime;
 
 		return currentHandle;
 	}

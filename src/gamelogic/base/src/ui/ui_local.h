@@ -129,6 +129,12 @@ extern vmCvar_t  ui_smallFont;
 extern vmCvar_t  ui_bigFont;
 extern vmCvar_t  ui_serverStatusTimeOut;
 
+extern vmCvar_t  ui_username;
+extern vmCvar_t  ui_password;
+extern vmCvar_t  cl_profile;
+extern vmCvar_t  cl_defaultProfile;
+extern vmCvar_t  ui_profile;
+
 //TA: bank values
 extern vmCvar_t  ui_bank;
 
@@ -657,6 +663,12 @@ typedef struct {
 	int			gtEnum;
 } gameTypeInfo;
 
+typedef struct
+{
+	const char     *name;
+	const char     *dir;
+} profileInfo_t;
+
 typedef struct {
 	  const char	*mapName;
 	  const char	*mapLoadName;
@@ -741,7 +753,8 @@ typedef struct {
 #define MAX_INFOPANE_TEXT     4096
 #define MAX_INFOPANE_GRAPHICS 16
 #define MAX_INFOPANES         128
-#define MAX_CHARACTERS		5
+#define MAX_PROFILES			64
+#define MAX_CHARACTERS			5
 
 typedef struct
 {
@@ -837,6 +850,10 @@ typedef struct {
 	modInfo_t				modList[MAX_MODS];
 	int						modCount;
 	int						modIndex;
+
+	profileInfo_t			profileList[MAX_PROFILES];
+	int						profileCount;
+	int						profileIndex;
 
 	const char				*demoList[MAX_DEMOS];
 	int						demoCount;

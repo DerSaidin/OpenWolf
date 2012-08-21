@@ -1551,8 +1551,8 @@ typedef enum cvar_flags_s {
 	CVAR_WOLFINFO                  = BIT(11),     // DHM - NERVE :: Like userinfo, but for wolf multiplayer info
 	CVAR_UNSAFE                    = BIT(12),     // ydnar: unsafe system cvars (renderer, sound settings, anything that might cause a crash)
 	CVAR_SERVERINFO_NOUPDATE       = BIT(13),     // gordon: WONT automatically send this to clients, but server browsers will see it
-	CVAR_SHADER                    = BIT(13),     // tell renderer to recompile shaders.
-	CVAR_NONEXISTENT	           = BIT(15),     // Cvar doesn't exist.
+	CVAR_SHADER                    = BIT(14),     // tell renderer to recompile shaders.
+	CVAR_NONEXISTENT	           = 0xFFFFFFFF   // Cvar doesn't exist.
 } cvar_flags_t;
 
 // nothing outside the Cvar_*() functions should modify these fields!

@@ -41,7 +41,7 @@ Maryland 20850 USA.
 #include "../database/database.h"
 #endif
 
-#include "snd_local.h"			// fretn
+#include "../snd_system/snd_local.h"
 
 #include "../sys/sys_loadlib.h"
 #include "../sys/sys_local.h"
@@ -53,7 +53,7 @@ cvar_t         *cl_wavefilerecord;
 #endif
 
 #ifdef USE_MUMBLE
-#include "libmumblelink.h"
+#include "../snd_system/libmumblelink.h"
 #endif
 
 #ifdef USE_MUMBLE

@@ -79,6 +79,8 @@
 #define FEEDER_TREMHUMANBUILD           0x17      //human buildables
 //TA: tremulous menus
 
+#define FEEDER_PROFILES					0x18	  //profiles
+
 // display flags
 #define CG_SHOW_BLUE_TEAM_HAS_REDFLAG     0x00000001
 #define CG_SHOW_RED_TEAM_HAS_BLUEFLAG     0x00000002

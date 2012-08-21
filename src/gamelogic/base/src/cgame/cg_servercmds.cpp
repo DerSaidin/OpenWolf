@@ -58,8 +58,8 @@ static void CG_ParseScores( void )
     cg.scores[ i ].score = atoi( CG_Argv( i * 6 + 5 ) );
     cg.scores[ i ].ping = atoi( CG_Argv( i * 6 + 6 ) );
     cg.scores[ i ].time = atoi( CG_Argv( i * 6 + 7 ) );
-    cg.scores[ i ].weapon = atoi( CG_Argv( i * 6 + 8 ) );
-    cg.scores[ i ].upgrade = atoi( CG_Argv( i * 6 + 9 ) );
+    cg.scores[ i ].weapon = (weapon_t)atoi( CG_Argv( i * 6 + 8 ) );
+    cg.scores[ i ].upgrade = (upgrade_t)atoi( CG_Argv( i * 6 + 9 ) );
 
     if( cg.scores[ i ].client < 0 || cg.scores[ i ].client >= MAX_CLIENTS )
       cg.scores[ i ].client = 0;
@@ -188,7 +188,7 @@ void CG_ShaderStateChanged( void )
 
   while( o && *o )
   {
-    n = strstr( o, "=" );
+    n = (char*)strstr( o, "=" );
 
     if( n && *n )
     {
@@ -288,8 +288,8 @@ static void CG_ConfigStringModified( void )
                                    &cgs.humanBuildPointsPowered );
   else if( num == CS_STAGES )
   {
-    stage_t oldAlienStage = cgs.alienStage;
-    stage_t oldHumanStage = cgs.humanStage;
+    stage_t oldAlienStage = (stage_t)cgs.alienStage;
+    stage_t oldHumanStage = (stage_t)cgs.humanStage;
 
     sscanf( str, "%d %d %d %d %d %d",
         &cgs.alienStage, &cgs.humanStage,
@@ -297,10 +297,10 @@ static void CG_ConfigStringModified( void )
         &cgs.alienNextStageThreshold, &cgs.humanNextStageThreshold );
 
     if( cgs.alienStage != oldAlienStage )
-      CG_AnnounceAlienStageTransistion( oldAlienStage, cgs.alienStage );
+      CG_AnnounceAlienStageTransistion( oldAlienStage, (stage_t)cgs.alienStage );
 
     if( cgs.humanStage != oldHumanStage )
-      CG_AnnounceHumanStageTransistion( oldHumanStage, cgs.humanStage );
+      CG_AnnounceHumanStageTransistion( oldHumanStage, (stage_t)cgs.humanStage );
   }
   else if( num == CS_SPAWNS )
     sscanf( str, "%d %d", &cgs.numAlienSpawns, &cgs.numHumanSpawns );
@@ -363,7 +363,7 @@ static void CG_ConfigStringModified( void )
   else if( num >= CS_TEAMVOTE_STRING && num <= CS_TEAMVOTE_STRING + 1 )
     Q_strncpyz( cgs.teamVoteString[ num - CS_TEAMVOTE_STRING ], str, sizeof( cgs.teamVoteString ) );
   else if( num == CS_INTERMISSION )
-    cg.intermissionStarted = atoi( str );
+    cg.intermissionStarted = (qboolean)atoi( str );
   else if( num >= CS_MODELS && num < CS_MODELS+MAX_MODELS )
     cgs.gameModels[ num - CS_MODELS ] = trap_R_RegisterModel( str );
   else if( num >= CS_SHADERS && num < CS_SHADERS+MAX_GAME_SHADERS )

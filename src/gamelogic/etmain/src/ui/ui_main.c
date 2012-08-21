@@ -9281,8 +9281,6 @@ void _UI_Init(qboolean inGameLoad)
 	uiInfo.uiDC.updateScreen = &trap_UpdateScreen;
 	uiInfo.uiDC.getHunkData = &trap_GetHunkData;
 	uiInfo.uiDC.getConfigString = &trap_GetConfigString;
-	uiInfo.uiDC.Con_GetText = &trap_Con_GetText;
-
 
 	Init_Display(&uiInfo.uiDC);
 

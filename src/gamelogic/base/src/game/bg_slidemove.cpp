@@ -228,7 +228,7 @@ qboolean  PM_SlideMove( qboolean gravity )
   if( pm->ps->pm_time )
     VectorCopy( primal_velocity, pm->ps->velocity );
 
-  return ( bumpcount != 0 );
+  return (qboolean)( bumpcount != 0 );
 }
 
 /*

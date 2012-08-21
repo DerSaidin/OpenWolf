@@ -228,7 +228,7 @@ intptr_t vmMain( intptr_t command, intptr_t arg0, intptr_t arg1, intptr_t arg2, 
       return 0;
 
     case GAME_CLIENT_CONNECT:
-      return (intptr_t)ClientConnect( arg0, arg1, arg2 );
+      return (intptr_t)ClientConnect( arg0, (qboolean)arg1, (qboolean)arg2 );
 
     case GAME_CLIENT_THINK:
       ClientThink( arg0 );
@@ -931,7 +931,7 @@ void G_CalculateBuildPoints( void )
     if( ent->s.eType != ET_BUILDABLE )
       continue;
 
-    buildable = ent->s.modelindex;
+    buildable = (buildable_t)ent->s.modelindex;
 
     if( buildable != BA_NONE )
     {
@@ -1706,7 +1706,7 @@ qboolean ScoreIsTied( void )
   a = level.clients[ level.sortedClients[ 0 ] ].ps.persistant[ PERS_SCORE ];
   b = level.clients[ level.sortedClients[ 1 ] ].ps.persistant[ PERS_SCORE ];
 
-  return a == b;
+  return (qboolean)(a == b);
 }
 
 /*

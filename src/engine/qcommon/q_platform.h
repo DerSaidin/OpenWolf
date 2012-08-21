@@ -124,7 +124,8 @@ Maryland 20850 USA.
 #define OS_STRING "win_mingw64"
 #endif
 
-#define ID_INLINE __inline
+//#define ID_INLINE __inline
+#define ID_INLINE __forceinline /* use __forceinline (VC++ specific) */
 #define PATH_SEP '\\'
 
 #if defined( __WIN64__ ) 
@@ -158,7 +159,8 @@ Maryland 20850 USA.
 #define OS_STRING "win_mingw"
 #endif
 
-#define ID_INLINE __inline
+//#define ID_INLINE __inline
+#define ID_INLINE __forceinline /* use __forceinline (VC++ specific) */
 #define PATH_SEP '\\'
 
 #if defined( _M_IX86 ) || defined( __i386__ )

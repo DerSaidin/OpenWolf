@@ -38,48 +38,69 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <windows.h>
 #endif
 
-void GLimp_SetGamma( unsigned char red[256], unsigned char green[256], unsigned char blue[256] ) {
-	Uint16 table[3][256];
+/*
+=================
+GLimp_SetGamma
+=================
+*/
+void GLimp_SetGamma( unsigned char red[ 256 ], unsigned char green[ 256 ], unsigned char blue[ 256 ] )
+{
+	Uint16 table[ 3 ][ 256 ];
 	int i, j;
+#ifdef _WIN32
+	OSVERSIONINFO	vinfo;
+#endif
 
-	if( !glConfig.deviceSupportsGamma || r_ignorehwgamma->integer )
+	if ( !glConfig.deviceSupportsGamma || r_ignorehwgamma->integer )
+	{
 		return;
+	}
 
-	for( i = 0; i < 256; i++ ) {
-		table[0][i] = ( ( (Uint16)red[i] ) << 8 ) | red[i];
-		table[1][i] = ( ( (Uint16)green[i] ) << 8 ) | green[i];
-		table[2][i] = ( ( (Uint16)blue[i] ) << 8 ) | blue[i];
+	for ( i = 0; i < 256; i++ )
+	{
+		table[ 0 ][ i ] = ( ( ( Uint16 ) red[ i ] ) << 8 ) | red[ i ];
+		table[ 1 ][ i ] = ( ( ( Uint16 ) green[ i ] ) << 8 ) | green[ i ];
+		table[ 2 ][ i ] = ( ( ( Uint16 ) blue[ i ] ) << 8 ) | blue[ i ];
 	}
 
 #ifdef _WIN32
 	// Win2K and newer put this odd restriction on gamma ramps...
+	vinfo.dwOSVersionInfoSize = sizeof( vinfo );
+	GetVersionEx( &vinfo );
+
+	if ( vinfo.dwMajorVersion >= 5 && vinfo.dwPlatformId == VER_PLATFORM_WIN32_NT )
 	{
-		OSVERSIONINFO vinfo;
+		ri.Printf( PRINT_DEVELOPER, "performing gamma clamp.\n" );
 
-		vinfo.dwOSVersionInfoSize = sizeof( vinfo );
-		GetVersionEx( &vinfo );
-		if( vinfo.dwMajorVersion >= 5 && vinfo.dwPlatformId == VER_PLATFORM_WIN32_NT ) {
-			Com_DPrintf( "performing gamma clamp.\n" );
-			for( j = 0; j < 3; j++ ) {
-				for( i = 0; i < 128; i++ ) {
-					if( table[j][i] > ( ( 128 + i ) << 8 ) )
-						table[j][i] = ( 128 + i ) << 8;
+		for ( j = 0; j < 3; j++ )
+		{
+			for ( i = 0; i < 128; i++ )
+			{
+				if( table[ j ][ i ] > ( ( 128 + i ) << 8 ) )
+				{
+					table[ j ][ i ] = ( 128 + i ) << 8;
 				}
+			}
 
-				if( table[j][127] > 254 << 8 )
-					table[j][127] = 254 << 8;
+			if ( table[ j ] [127 ] > 254 << 8 )
+			{
+				table[ j ][ 127 ] = 254 << 8;
 			}
 		}
 	}
 #endif
 
 	// enforce constantly increasing
-	for( j = 0; j < 3; j++ ) {
-		for( i = 1; i < 256; i++ ) {
-			if( table[j][i] < table[j][i - 1] )
-				table[j][i] = table[j][i - 1];
+	for ( j = 0; j < 3; j++ )
+	{
+		for ( i = 1; i < 256; i++ )
+		{
+			if ( table[ j ][ i ] < table[ j ][ i - 1 ] )
+			{
+				table[ j ][ i ] = table[ j ][ i - 1 ];
+			}
 		}
 	}
 
-	SDL_SetGammaRamp( table[0], table[1], table[2] );
+	SDL_SetGammaRamp( table[ 0 ], table[ 1 ], table[ 2 ] );
 }

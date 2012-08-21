@@ -78,7 +78,7 @@ qboolean CL_GameCommand(void)
 	return qfalse;				// bk001204 - non-void
 }
 
-void CL_KeyEvent(int key, qboolean down, unsigned time)
+void CL_KeyEvent(int key, int down, unsigned time)
 {
 }
 

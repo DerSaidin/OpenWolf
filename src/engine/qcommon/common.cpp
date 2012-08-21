@@ -114,7 +114,9 @@ cvar_t         *com_introPlayed;
 cvar_t         *com_logosPlaying;
 cvar_t         *cl_paused;
 cvar_t         *sv_paused;
-//cvar_t		   *cl_packetdelay;
+#if defined (DEDICATED)
+cvar_t		   *cl_packetdelay;
+#endif
 //cvar_t		   *sv_packetdelay;
 cvar_t         *com_cameraMode;
 cvar_t         *com_maxfpsUnfocused;

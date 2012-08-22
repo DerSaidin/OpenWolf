@@ -167,7 +167,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 	case WM_CLOSE:
 		if ( ( com_dedicated && com_dedicated->integer ) ) {
 			cmdString = CopyString( "quit" );
-			Sys_QueEvent( 0, SE_CONSOLE, 0, 0, strlen( cmdString ) + 1, cmdString );
+			Com_QueueEvent( 0, SE_CONSOLE, 0, 0, strlen( cmdString ) + 1, cmdString );
 		} else if ( s_wcd.quitOnClose )   {
 			PostQuitMessage( 0 );
 		} else
@@ -213,7 +213,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 				PostQuitMessage( 0 );
 			} else {
 				cmdString = CopyString( "quit" );
-				Sys_QueEvent( 0, SE_CONSOLE, 0, 0, strlen( cmdString ) + 1, cmdString );
+				Com_QueueEvent( 0, SE_CONSOLE, 0, 0, strlen( cmdString ) + 1, cmdString );
 			}
 		} else if ( wParam == CLEAR_ID )   {
 			SendMessage( s_wcd.hwndBuffer, EM_SETSEL, 0, -1 );

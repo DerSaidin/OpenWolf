@@ -1524,6 +1524,7 @@ int				Parse_SourceFileAndLine(int handle, char *filename, int *line);
 
 void            Com_GetHunkInfo(int *hunkused, int *hunkexpected);
 void            Com_RandomBytes( byte *string, int len );
+void            Com_QueueEvent( int time, sysEventType_t type, int value, int value2, int ptrLength, void *ptr );
 
 #ifdef __cplusplus
 }

@@ -1442,7 +1442,6 @@ qboolean		Sys_WritePIDFile( void );
 // NOTE TTimo - on win32 the cwd is prepended .. non portable behaviour
 void            Sys_StartProcess(char *exeName, qboolean doexit);	// NERVE - SMF
 void            Sys_OpenURL(const char *url, qboolean doexit);	// NERVE - SMF
-void            Sys_QueEvent( int time, sysEventType_t type, int value, int value2, int ptrLength, void *ptr );
 
 #ifdef __linux__
 // TTimo only on linux .. maybe on Mac too?

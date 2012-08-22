@@ -3277,7 +3277,7 @@ static void UI_AddClass( pClass_t _class )
   uiInfo.tremAlienClassList[ uiInfo.tremAlienClassCount ].text =
     String_Alloc( BG_FindHumanNameForClassNum( _class ) );
   uiInfo.tremAlienClassList[ uiInfo.tremAlienClassCount ].cmd =
-    String_Alloc( va( "cmd _class %s\n", BG_FindNameForClassNum( _class ) ) );
+    String_Alloc( va( "cmd class %s\n", BG_FindNameForClassNum( _class ) ) );
   uiInfo.tremAlienClassList[ uiInfo.tremAlienClassCount ].infopane =
     UI_FindInfoPaneByName( va( "%sclass", BG_FindNameForClassNum( _class ) ) );
 

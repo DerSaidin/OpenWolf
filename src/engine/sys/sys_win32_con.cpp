@@ -229,7 +229,7 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		SetTimer( hWnd, 1, 1000, NULL );
 		break;
 	case WM_ERASEBKGND:
-#if 0
+#if 1
 		HDC hdcScaled;
 		HGDIOBJ oldObject;
 
@@ -301,6 +301,7 @@ static char win_currentMatch[ MAX_TOKEN_CHARS ];
 static int win_matchCount;
 static int win_matchIndex;
 static int win_findMatchIndex;
+static int win_tabTime = 0;
 static field_t win_historyEditLines[ WIN_COMMAND_HISTORY ];
 static int win_nextHistoryLine = 0;
 static int win_historyLine = 0;

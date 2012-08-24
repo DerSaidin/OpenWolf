@@ -1,6 +1,3 @@
-#ifndef SSLOPT_CASE_INCLUDED
-#define SSLOPT_CASE_INCLUDED
-
 /* Copyright (C) 2000 MySQL AB
 
    This program is free software; you can redistribute it and/or modify
@@ -29,4 +26,3 @@
       opt_use_ssl= 1;
       break;
 #endif
-#endif /* SSLOPT_CASE_INCLUDED */

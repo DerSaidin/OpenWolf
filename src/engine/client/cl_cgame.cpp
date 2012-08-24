@@ -44,9 +44,7 @@ Maryland 20850 USA.
 
 #include "../botlib/botlib.h"
 
-#ifdef USE_CRYPTO
 #include "../qcommon/crypto.h"
-#endif
 
 #include "../snd_system/libmumblelink.h"
 
@@ -483,7 +481,6 @@ qboolean CL_GetServerCommand(int serverCommandNumber)
 		return qfalse;
 	}
 
-#ifdef USE_CRYPTO
 	if ( cl_pubkeyID->integer && !strcmp( cmd, "pubkey_request" ) ) {
 		char buffer[ MAX_STRING_CHARS ] = "pubkey ";
 		mpz_get_str( buffer + 7, 16, public_key.n );
@@ -512,7 +509,6 @@ qboolean CL_GetServerCommand(int serverCommandNumber)
 		mpz_clear( message );
 		return qfalse;
 	}
-#endif
 
 	// we may want to put a "connect to other server" command here
 

@@ -53,6 +53,7 @@ Maryland 20850 USA.
 // we cannot call it "qkey", "etkey" is already taken,
 // so we will change it to etxreal
 #define GUIDKEY_FILE "guidopenwolf"
+#define GUIDKEY_SIZE 28
 
 // file containing our RSA public and private keys
 #define RSAKEY_FILE "rsaopenwolf"
@@ -678,6 +679,7 @@ void            CL_GlobalServers_f(void);
 void            CL_FavoriteServers_f(void);
 void            CL_Ping_f(void);
 qboolean        CL_UpdateVisiblePings_f(int source);
+void			CL_GenGuid(msg_t *msg);
 
 //
 // console

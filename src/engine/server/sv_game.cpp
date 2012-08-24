@@ -38,9 +38,7 @@ Maryland 20850 USA.
 
 #include "../botlib/botlib.h"
 
-#ifdef USE_CRYPTO
 #include "../qcommon/crypto.h"
-#endif
 
 botlib_export_t *botlib_export;
 
@@ -174,7 +172,6 @@ Generate an encrypted RSA message
 ===============
 */
 int SV_RSAGenMsg( const char *pubkey, char *cleartext, char *encrypted ) {
-#ifdef USE_CRYPTO
 	struct        rsa_public_key public_key;
 	mpz_t         message;
 	unsigned char buffer[ RSA_KEY_LENGTH / 8 - 11 ];
@@ -198,9 +195,6 @@ int SV_RSAGenMsg( const char *pubkey, char *cleartext, char *encrypted ) {
 	mpz_clear( message );
 
 	return retval;
-#else
-	return 0;
-#endif
 }
 
 /*

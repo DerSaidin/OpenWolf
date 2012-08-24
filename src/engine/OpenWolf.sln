@@ -618,7 +618,8 @@ Global
 		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.DLL Release|Win32.Build.0 = Release|Win32
 		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.DLL Release|x64.ActiveCfg = Release|x64
 		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.DLL Release|x64.Build.0 = Release|x64
-		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.Release AutoUpdate|Win32.ActiveCfg = Release|x64
+		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.Release AutoUpdate|Win32.ActiveCfg = Release|Win32
+		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.Release AutoUpdate|Win32.Build.0 = Release|Win32
 		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.Release AutoUpdate|x64.ActiveCfg = Release|x64
 		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.Release AutoUpdate|x64.Build.0 = Release|x64
 		{4B9EDD89-0B65-46F0-94E0-6827116BBC6D}.Release Dedicated|Win32.ActiveCfg = Release|Win32
@@ -682,7 +683,6 @@ Global
 		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release AutoUpdate|x64.Build.0 = Release AutoUpdate|x64
 		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release Dedicated|Win32.ActiveCfg = Release AutoUpdate|x64
 		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release Dedicated|x64.ActiveCfg = Release AutoUpdate|x64
-		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release Dedicated|x64.Build.0 = Release AutoUpdate|x64
 		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release|Win32.ActiveCfg = Release|Win32
 		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release|Win32.Build.0 = Release|Win32
 		{48033ADD-F9CE-4951-9520-2A86AC61E45B}.Release|x64.ActiveCfg = Release|x64
@@ -712,7 +712,6 @@ Global
 		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release AutoUpdate|x64.Build.0 = Release AutoUpdate|x64
 		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release Dedicated|Win32.ActiveCfg = Release AutoUpdate|x64
 		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release Dedicated|x64.ActiveCfg = Release AutoUpdate|x64
-		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release Dedicated|x64.Build.0 = Release AutoUpdate|x64
 		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release|Win32.ActiveCfg = Release|Win32
 		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release|Win32.Build.0 = Release|Win32
 		{6E90EE4B-CEA6-40F3-A5CC-8C96B7EA5F2E}.Release|x64.ActiveCfg = Release|x64
@@ -742,7 +741,6 @@ Global
 		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release AutoUpdate|x64.Build.0 = Release AutoUpdate|x64
 		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release Dedicated|Win32.ActiveCfg = Release AutoUpdate|x64
 		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release Dedicated|x64.ActiveCfg = Release AutoUpdate|x64
-		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release Dedicated|x64.Build.0 = Release AutoUpdate|x64
 		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release|Win32.ActiveCfg = Release|Win32
 		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release|Win32.Build.0 = Release|Win32
 		{75976B8A-6A6C-4CB9-B953-8633BD61181B}.Release|x64.ActiveCfg = Release|x64

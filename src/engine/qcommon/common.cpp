@@ -52,9 +52,7 @@ Maryland 20850 USA.
 #include <winsock.h>
 #endif
 
-#ifdef USE_CRYPTO
 #include "../qcommon/crypto.h"
-#endif
 
 int demo_protocols[] = { 66, 67, 68, 0 };
 

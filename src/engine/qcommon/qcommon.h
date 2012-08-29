@@ -1521,6 +1521,8 @@ int				Parse_LoadSourceHandle(const char *filename);
 int				Parse_FreeSourceHandle(int handle);
 int				Parse_ReadTokenHandle(int handle, pc_token_t *pc_token);
 int				Parse_SourceFileAndLine(int handle, char *filename, int *line);
+void			Parse_RemoveAllGlobalDefines(void);
+void			Parse_UnreadLastTokenHandle(int handle);
 
 void            Com_GetHunkInfo(int *hunkused, int *hunkexpected);
 void            Com_RandomBytes( byte *string, int len );

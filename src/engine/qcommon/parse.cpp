@@ -3751,3 +3751,26 @@ int Parse_SourceFileAndLine(int handle, char *filename, int *line)
     *line = 0;
   return qtrue;
 }
+
+void Parse_RemoveAllGlobalDefines(void) {
+	define_t *define;
+
+	for(define=globaldefines; define; define=globaldefines) {
+		globaldefines = globaldefines->next;
+		Parse_FreeDefine( define );
+	}
+
+	globaldefines = NULL;
+}
+
+void Parse_UnreadLastTokenHandle(int handle) {
+	if ( handle < 1 || handle >= MAX_SOURCEFILES ) {
+		return;
+	}
+	
+	if ( !sourceFiles[handle] ) {
+		return;
+	}
+
+	Parse_UnreadSourceToken( sourceFiles[handle], &sourceFiles[handle]->token );
+}

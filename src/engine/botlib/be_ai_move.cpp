@@ -45,8 +45,6 @@ Maryland 20850 USA.
 #include "l_memory.h"
 #include "l_libvar.h"
 #include "l_utils.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "aasfile.h"
 #include "botlib.h"

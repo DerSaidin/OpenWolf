@@ -41,10 +41,9 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_memory.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "aasfile.h"
 #include "botlib.h"
@@ -429,8 +428,8 @@ void AAS_FreeBSPEntities(void)
 //===========================================================================
 void AAS_ParseBSPEntities(void)
 {
-	script_t       *script;
-	token_t         token;
+	idToken         token;
+	idLexer         parser;
 	bsp_entity_t   *ent;
 	bsp_epair_t    *epair;
 	byte           *buffer, *buftrav;
@@ -441,18 +440,18 @@ void AAS_ParseBSPEntities(void)
 
 	bspworld.ebuffer = NULL;
 
-	script = LoadScriptMemory(bspworld.dentdata, bspworld.entdatasize, "entdata");
-	SetScriptFlags(script, SCFL_NOSTRINGWHITESPACES | SCFL_NOSTRINGESCAPECHARS);	//SCFL_PRIMITIVE);
+	parser.LoadMemory(bspworld.dentdata, bspworld.entdatasize, "entdata");
+	parser.SetFlags(LEXFL_NOSTRINGWHITESPACES | LEXFL_NOSTRINGESCAPECHARS);
 
 	bufsize = 0;
 
-	while(PS_ReadToken(script, &token))
+	while(parser.ReadToken(&token))
 	{
 		if(strcmp(token.string, "{"))
 		{
-			ScriptError(script, "invalid %s\n", token.string);
+			parser.Error("invalid %s\n", token.string);
 			AAS_FreeBSPEntities();
-			FreeScript(script);
+			parser.FreeSource();
 			return;
 		}						//end if
 		if(bspworld.numentities >= MAX_BSPENTITIES)
@@ -460,7 +459,7 @@ void AAS_ParseBSPEntities(void)
 			botimport.Print(PRT_MESSAGE, "too many entities in BSP file\n");
 			break;
 		}						//end if
-		while(PS_ReadToken(script, &token))
+		while(parser.ReadToken(&token))
 		{
 			if(!strcmp(token.string, "}"))
 			{
@@ -469,31 +468,31 @@ void AAS_ParseBSPEntities(void)
 			bufsize += sizeof(bsp_epair_t);
 			if(token.type != TT_STRING)
 			{
-				ScriptError(script, "invalid %s\n", token.string);
+				parser.Error("invalid %s\n", token.string);
 				AAS_FreeBSPEntities();
-				FreeScript(script);
+				parser.FreeSource();
 				return;
 			}					//end if
-			StripDoubleQuotes(token.string);
+			parser.StripDoubleQuotes(token.string);
 			bufsize += strlen(token.string) + 1;
-			if(!PS_ExpectTokenType(script, TT_STRING, 0, &token))
+			if(!parser.ExpectTokenType(TT_STRING, 0, &token))
 			{
 				AAS_FreeBSPEntities();
-				FreeScript(script);
+				parser.FreeSource();
 				return;
 			}					//end if
-			StripDoubleQuotes(token.string);
+			parser.StripDoubleQuotes(token.string);
 			bufsize += strlen(token.string) + 1;
 		}						//end while
 		if(strcmp(token.string, "}"))
 		{
-			ScriptError(script, "missing }\n");
+			parser.Error("missing }\n");
 			AAS_FreeBSPEntities();
-			FreeScript(script);
+			parser.FreeSource();
 			return;
 		}						//end if
 	}							//end while
-	FreeScript(script);
+	parser.FreeSource();
 
 	buffer = (byte *) GetClearedHunkMemory(bufsize);
 	buftrav = buffer;
@@ -501,18 +500,17 @@ void AAS_ParseBSPEntities(void)
 
 	// RF, now parse the entities into memory
 	// RF, NOTE: removed error checks for speed, no need to do them twice
-
-	script = LoadScriptMemory(bspworld.dentdata, bspworld.entdatasize, "entdata");
-	SetScriptFlags(script, SCFL_NOSTRINGWHITESPACES | SCFL_NOSTRINGESCAPECHARS);	//SCFL_PRIMITIVE);
+	parser.LoadMemory(bspworld.dentdata, bspworld.entdatasize, "entdata");
+	parser.SetFlags(LEXFL_NOSTRINGWHITESPACES | LEXFL_NOSTRINGESCAPECHARS);
 
 	bspworld.numentities = 1;
 
-	while(PS_ReadToken(script, &token))
+	while(parser.ReadToken(&token))
 	{
 		ent = &bspworld.entities[bspworld.numentities];
 		bspworld.numentities++;
 		ent->epairs = NULL;
-		while(PS_ReadToken(script, &token))
+		while(parser.ReadToken(&token))
 		{
 			if(!strcmp(token.string, "}"))
 			{
@@ -522,23 +520,23 @@ void AAS_ParseBSPEntities(void)
 			buftrav += sizeof(bsp_epair_t);
 			epair->next = ent->epairs;
 			ent->epairs = epair;
-			StripDoubleQuotes(token.string);
+			parser.StripDoubleQuotes(token.string);
 			epair->key = (char *)buftrav;
 			buftrav += (strlen(token.string) + 1);
 			strcpy(epair->key, token.string);
-			if(!PS_ExpectTokenType(script, TT_STRING, 0, &token))
+			if(!parser.ExpectTokenType(TT_STRING, 0, &token))
 			{
 				AAS_FreeBSPEntities();
-				FreeScript(script);
+				parser.FreeSource();
 				return;
 			}					//end if
-			StripDoubleQuotes(token.string);
+			parser.StripDoubleQuotes(token.string);
 			epair->value = (char *)buftrav;
 			buftrav += (strlen(token.string) + 1);
 			strcpy(epair->value, token.string);
 		}						//end while
 	}							//end while
-	FreeScript(script);
+	parser.FreeSource();
 }								//end of the function AAS_ParseBSPEntities
 
 //===========================================================================

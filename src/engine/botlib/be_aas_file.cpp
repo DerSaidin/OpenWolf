@@ -43,8 +43,6 @@ Maryland 20850 USA.
 
 #include "../qcommon/q_shared.h"
 #include "l_memory.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "l_libvar.h"
 #include "l_utils.h"

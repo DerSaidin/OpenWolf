@@ -41,13 +41,12 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_utils.h"
 #include "l_libvar.h"
 #include "l_memory.h"
 #include "l_log.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "aasfile.h"
 #include "botlib.h"
@@ -268,11 +267,11 @@ void BotMutateGoalFuzzyLogic(int goalstate, float range)
 itemconfig_t   *LoadItemConfig(char *filename)
 {
 	int             max_iteminfo;
-	token_t         token;
+	idToken         token;
 	char            path[MAX_PATH];
-	source_t       *source;
 	itemconfig_t   *ic;
 	iteminfo_t     *ii;
+	idLexer        parser;
 
 	max_iteminfo = (int)LibVarValue("max_iteminfo", "256");
 	if(max_iteminfo < 0)
@@ -283,8 +282,8 @@ itemconfig_t   *LoadItemConfig(char *filename)
 	}
 
 	strncpy(path, filename, MAX_PATH);
-	source = LoadSourceFile(path);
-	if(!source)
+	parser.LoadFile(path);
+	if(!parser.LoadFile(path))
 	{
 		botimport.Print(PRT_ERROR, "counldn't load %s\n", path);
 		return NULL;
@@ -294,31 +293,31 @@ itemconfig_t   *LoadItemConfig(char *filename)
 	ic->iteminfo = (iteminfo_t *) ((char *)ic + sizeof(itemconfig_t));
 	ic->numiteminfo = 0;
 	//parse the item config file
-	while(PC_ReadToken(source, &token))
+	while(parser.ReadToken(&token))
 	{
 		if(!strcmp(token.string, "iteminfo"))
 		{
 			if(ic->numiteminfo >= max_iteminfo)
 			{
-				SourceError(source, "more than %d item info defined\n", max_iteminfo);
+				parser.Error("more than %d item info defined\n", max_iteminfo);
 				FreeMemory(ic);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			ii = &ic->iteminfo[ic->numiteminfo];
 			memset(ii, 0, sizeof(iteminfo_t));
-			if(!PC_ExpectTokenType(source, TT_STRING, 0, &token))
+			if(!parser.ExpectTokenType(TT_STRING, 0, &token))
 			{
 				FreeMemory(ic);
-				FreeMemory(source);
+				//FreeMemory();
 				return NULL;
 			}					//end if
-			StripDoubleQuotes(token.string);
+			parser.StripDoubleQuotes(token.string);
 			strncpy(ii->classname, token.string, sizeof(ii->classname) - 1);
-			if(!ReadStructure(source, &iteminfo_struct, (char *)ii))
+			if(!ReadStructure(&iteminfo_struct, (char *)ii))
 			{
 				FreeMemory(ic);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			ii->number = ic->numiteminfo;
@@ -326,13 +325,13 @@ itemconfig_t   *LoadItemConfig(char *filename)
 		}						//end if
 		else
 		{
-			SourceError(source, "unknown definition %s\n", token.string);
+			parser.Error("unknown definition %s\n", token.string);
 			FreeMemory(ic);
-			FreeSource(source);
+			parser.FreeSource();
 			return NULL;
 		}						//end else
 	}							//end while
-	FreeSource(source);
+	parser.FreeSource();
 	//
 	if(!ic->numiteminfo)
 	{
@@ -1699,6 +1698,7 @@ void BotResetGoalState(int goalstate)
 int BotLoadItemWeights(int goalstate, char *filename)
 {
 	bot_goalstate_t *gs;
+	idLexer          parser;
 
 	gs = BotGoalStateFromHandle(goalstate);
 	if(!gs)
@@ -1706,9 +1706,9 @@ int BotLoadItemWeights(int goalstate, char *filename)
 		return BLERR_CANNOTLOADITEMWEIGHTS;
 	}
 	//load the weight configuration
-	PS_SetBaseFolder("botfiles");
+	parser.SetBaseFolder("botfiles");
 	gs->itemweightconfig = ReadWeightConfig(filename);
-	PS_SetBaseFolder("");
+	parser.SetBaseFolder("");
 	if(!gs->itemweightconfig)
 	{
 		botimport.Print(PRT_FATAL, "couldn't load weights\n");
@@ -1807,6 +1807,7 @@ int BotSetupGoalAI(qboolean singleplayer)
 {
 // END  Arnout changes, 28-08-2002.
 	char           *filename;
+	idLexer         parser;
 
 	//check if teamplay is on
 // START    Arnout changes, 28-08-2002.
@@ -1815,11 +1816,11 @@ int BotSetupGoalAI(qboolean singleplayer)
 	g_singleplayer = singleplayer;
 // END  Arnout changes, 28-08-2002.
 	//item configuration file
-	PS_SetBaseFolder("botfiles");
+	parser.SetBaseFolder("botfiles");
 	filename = LibVarString("itemconfig", "items.c");
 	//load the item configuration
 	itemconfig = LoadItemConfig(filename);
-	PS_SetBaseFolder("");
+	parser.SetBaseFolder("");
 	if(!itemconfig)
 	{
 		botimport.Print(PRT_FATAL, "couldn't load item config\n");

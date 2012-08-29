@@ -1017,17 +1017,17 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 		case CG_ACOS:
 			return FloatAsInt(Q_acos(VMF(1)));
 		case CG_PC_ADD_GLOBAL_DEFINE:
-			return botlib_export->PC_AddGlobalDefine((char*)VMA(1));
+			return Parse_AddGlobalDefine((char*)VMA(1));
 		case CG_PC_LOAD_SOURCE:
-			return botlib_export->PC_LoadSourceHandle((char*)VMA(1));
+			return Parse_LoadSourceHandle((char*)VMA(1));
 		case CG_PC_FREE_SOURCE:
-			return botlib_export->PC_FreeSourceHandle(args[1]);
+			return Parse_FreeSourceHandle(args[1]);
 		case CG_PC_READ_TOKEN:
-			return botlib_export->PC_ReadTokenHandle(args[1], (pc_token_t*)VMA(2));
+			return Parse_ReadTokenHandle(args[1], (pc_token_t*)VMA(2));
 		case CG_PC_SOURCE_FILE_AND_LINE:
-			return botlib_export->PC_SourceFileAndLine(args[1], (char*)VMA(2), (int*)VMA(3));
+			return Parse_SourceFileAndLine(args[1], (char*)VMA(2), (int*)VMA(3));
 		case CG_PC_UNREAD_TOKEN:
-			botlib_export->PC_UnreadLastTokenHandle(args[1]);
+			Parse_UnreadLastTokenHandle(args[1]);
 			return 0;
 		case CG_S_STOPBACKGROUNDTRACK:
 			S_StopBackgroundTrack();

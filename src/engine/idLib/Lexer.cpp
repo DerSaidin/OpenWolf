@@ -1799,3 +1799,17 @@ bool idLexer::HadError( void ) const {
 	return hadError;
 }
 
+/*
+================
+idLexer::StripDoubleQuotes
+================
+*/
+void idLexer::StripDoubleQuotes(char *string) {
+	if(*string == '\"') {
+		memmove(string, string + 1, strlen(string + 1) + 1);
+	}
+	if(string[strlen(string) - 1] == '\"') {
+		string[strlen(string) - 1] = '\0';
+	}
+}
+

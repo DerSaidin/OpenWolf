@@ -42,10 +42,9 @@ Maryland 20850 USA.
  *****************************************************************************/
 
 #ifdef BOTLIB
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "botlib.h"		//for the include of be_interface.h
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "l_utils.h"
 #include "be_interface.h"
@@ -56,7 +55,6 @@ Maryland 20850 USA.
 #include "../bspc/qbsp.h"
 #include "../bspc/l_log.h"
 #include "../bspc/l_mem.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 
 #define qtrue   true
@@ -89,14 +87,15 @@ fielddef_t     *FindField(fielddef_t * defs, char *name)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
+qboolean ReadNumber(fielddef_t * fd, void *p)
 {
-	token_t         token;
+	idToken         token;
 	int             negative = qfalse;
 	long int        intval, intmin = 0, intmax = 0;
 	double          floatval;
+	idLexer         parser;
 
-	if(!PC_ExpectAnyToken(source, &token))
+	if(!parser.ExpectAnyToken(&token))
 	{
 		return qfalse;
 	}
@@ -106,18 +105,18 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 	{
 		if(fd->type & FT_UNSIGNED)
 		{
-			SourceError(source, "expected unsigned value, found %s", token.string);
+			parser.Error("expected unsigned value, found %s", token.string);
 			return qfalse;
 		}						//end if
 		//if not a minus sign
 		if(strcmp(token.string, "-"))
 		{
-			SourceError(source, "unexpected punctuation %s", token.string);
+			parser.Error("unexpected punctuation %s", token.string);
 			return qfalse;
 		}						//end if
 		negative = qtrue;
 		//read the number
-		if(!PC_ExpectAnyToken(source, &token))
+		if(!parser.ExpectAnyToken(&token))
 		{
 			return qfalse;
 		}
@@ -125,7 +124,7 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 	//check if it is a number
 	if(token.type != TT_NUMBER)
 	{
-		SourceError(source, "expected number, found %s", token.string);
+		parser.Error("expected number, found %s", token.string);
 		return qfalse;
 	}							//end if
 	//check for a float value
@@ -133,7 +132,7 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 	{
 		if((fd->type & FT_TYPE) != FT_FLOAT)
 		{
-			SourceError(source, "unexpected float");
+			parser.Error("unexpected float");
 			return qfalse;
 		}						//end if
 		floatval = token.floatvalue;
@@ -145,7 +144,7 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 		{
 			if(floatval < fd->floatmin || floatval > fd->floatmax)
 			{
-				SourceError(source, "float out of range [%f, %f]", fd->floatmin, fd->floatmax);
+				parser.Error("float out of range [%f, %f]", fd->floatmin, fd->floatmax);
 				return qfalse;
 			}					//end if
 		}						//end if
@@ -194,7 +193,7 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 		}						//end if
 		if(intval < intmin || intval > intmax)
 		{
-			SourceError(source, "value %ld out of range [%ld, %ld]", intval, intmin, intmax);
+			parser.Error("value %ld out of range [%ld, %ld]", intval, intmin, intmax);
 			return qfalse;
 		}						//end if
 	}							//end if
@@ -204,7 +203,7 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 		{
 			if(intval < fd->floatmin || intval > fd->floatmax)
 			{
-				SourceError(source, "value %ld out of range [%f, %f]", intval, fd->floatmin, fd->floatmax);
+				parser.Error("value %ld out of range [%f, %f]", intval, fd->floatmin, fd->floatmax);
 				return qfalse;
 			}					//end if
 		}						//end if
@@ -245,11 +244,13 @@ qboolean ReadNumber(source_t * source, fielddef_t * fd, void *p)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-qboolean ReadChar(source_t * source, fielddef_t * fd, void *p)
+qboolean ReadChar(fielddef_t * fd, void *p)
 {
-	token_t         token;
+	idToken         token;
+	idLexer         parser;
+	idStr           string;
 
-	if(!PC_ExpectAnyToken(source, &token))
+	if(!parser.ExpectAnyToken(&token))
 	{
 		return qfalse;
 	}
@@ -257,13 +258,13 @@ qboolean ReadChar(source_t * source, fielddef_t * fd, void *p)
 	//take literals into account
 	if(token.type == TT_LITERAL)
 	{
-		StripSingleQuotes(token.string);
+		string.StripQuotes();
 		*(char *)p = token.string[0];
 	}							//end if
 	else
 	{
-		PC_UnreadLastToken(source);
-		if(!ReadNumber(source, fd, p))
+		parser.UnreadToken(&token);
+		if(!ReadNumber(fd, p))
 		{
 			return qfalse;
 		}
@@ -277,16 +278,17 @@ qboolean ReadChar(source_t * source, fielddef_t * fd, void *p)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-int ReadString(source_t * source, fielddef_t * fd, void *p)
+int ReadString(fielddef_t * fd, void *p)
 {
-	token_t         token;
+	idToken   token;
+	idLexer   parser;
 
-	if(!PC_ExpectTokenType(source, TT_STRING, 0, &token))
+	if(!parser.ExpectTokenType(TT_STRING, 0, &token))
 	{
 		return 0;
 	}
 	//remove the double quotes
-	StripDoubleQuotes(token.string);
+	parser.StripDoubleQuotes(token.string);
 	//copy the string
 	strncpy((char *)p, token.string, MAX_STRINGFIELD);
 	//make sure the string is closed with a zero
@@ -301,20 +303,21 @@ int ReadString(source_t * source, fielddef_t * fd, void *p)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-int ReadStructure(source_t * source, structdef_t * def, char *structure)
+int ReadStructure(structdef_t * def, char *structure)
 {
-	token_t         token;
+	idToken         token;
+	idLexer         parser;
 	fielddef_t     *fd;
 	void           *p;
 	int             num;
 
-	if(!PC_ExpectTokenString(source, "{"))
+	if(!parser.ExpectTokenString("{"))
 	{
 		return 0;
 	}
 	while(1)
 	{
-		if(!PC_ExpectAnyToken(source, &token))
+		if(!parser.ExpectAnyToken(&token))
 		{
 			return qfalse;
 		}
@@ -327,13 +330,13 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 		fd = FindField(def->fields, token.string);
 		if(!fd)
 		{
-			SourceError(source, "unknown structure field %s", token.string);
+			parser.Error("unknown structure field %s", token.string);
 			return qfalse;
 		}						//end if
 		if(fd->type & FT_ARRAY)
 		{
 			num = fd->maxarray;
-			if(!PC_ExpectTokenString(source, "{"))
+			if(!parser.ExpectTokenString("{"))
 			{
 				return qfalse;
 			}
@@ -347,7 +350,7 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 		{
 			if(fd->type & FT_ARRAY)
 			{
-				if(PC_CheckTokenString(source, "}"))
+				if(parser.CheckTokenString("}"))
 				{
 					break;
 				}
@@ -356,7 +359,7 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 			{
 				case FT_CHAR:
 				{
-					if(!ReadChar(source, fd, p))
+					if(!ReadChar(fd, p))
 					{
 						return qfalse;
 					}
@@ -365,7 +368,7 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 				}				//end case
 				case FT_INT:
 				{
-					if(!ReadNumber(source, fd, p))
+					if(!ReadNumber(fd, p))
 					{
 						return qfalse;
 					}
@@ -374,7 +377,7 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 				}				//end case
 				case FT_FLOAT:
 				{
-					if(!ReadNumber(source, fd, p))
+					if(!ReadNumber(fd, p))
 					{
 						return qfalse;
 					}
@@ -383,7 +386,7 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 				}				//end case
 				case FT_STRING:
 				{
-					if(!ReadString(source, fd, p))
+					if(!ReadString(fd, p))
 					{
 						return qfalse;
 					}
@@ -394,17 +397,17 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 				{
 					if(!fd->substruct)
 					{
-						SourceError(source, "BUG: no sub structure defined");
+						parser.Error("BUG: no sub structure defined");
 						return qfalse;
 					}			//end if
-					ReadStructure(source, fd->substruct, (char *)p);
+					ReadStructure(fd->substruct, (char *)p);
 					p = (char *)p + fd->substruct->size;
 					break;
 				}				//end case
 			}					//end switch
 			if(fd->type & FT_ARRAY)
 			{
-				if(!PC_ExpectAnyToken(source, &token))
+				if(!parser.ExpectAnyToken(&token))
 				{
 					return qfalse;
 				}
@@ -414,7 +417,7 @@ int ReadStructure(source_t * source, structdef_t * def, char *structure)
 				}
 				if(strcmp(token.string, ","))
 				{
-					SourceError(source, "expected a comma, found %s", token.string);
+					parser.Error("expected a comma, found %s", token.string);
 					return qfalse;
 				}				//end if
 			}					//end if
@@ -487,6 +490,7 @@ int WriteStructWithIndent(FILE * fp, structdef_t * def, char *structure, int ind
 	int             i, num;
 	void           *p;
 	fielddef_t     *fd;
+	idBitMsg        bitmsg;
 
 	if(!WriteIndent(fp, indent))
 	{

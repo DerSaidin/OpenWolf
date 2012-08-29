@@ -41,12 +41,11 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_log.h"
 #include "l_memory.h"
 #include "l_utils.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "l_libvar.h"
 #include "aasfile.h"
@@ -244,35 +243,31 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 {
 	int             indent, index, foundcharacter;
 	bot_character_t *ch;
-	source_t       *source;
-	token_t         token;
+	idToken         token;
+	idLexer         parser;
 
 	foundcharacter = qfalse;
 	//a bot character is parsed in two phases
-	PS_SetBaseFolder("botfiles");
-	source = LoadSourceFile(charfile);
-	PS_SetBaseFolder("");
-	if(!source)
-	{
-		botimport.Print(PRT_ERROR, "counldn't load %s\n", charfile);
-		return NULL;
-	}							//end if
+	parser.SetBaseFolder("botfiles");
+	parser.LoadFile(charfile);
+	parser.SetBaseFolder("");
+
 	ch = (bot_character_t *) GetClearedMemory(sizeof(bot_character_t) + MAX_CHARACTERISTICS * sizeof(bot_characteristic_t));
 	strcpy(ch->filename, charfile);
-	while(PC_ReadToken(source, &token))
+	while(parser.ReadToken(&token))
 	{
 		if(!strcmp(token.string, "skill"))
 		{
-			if(!PC_ExpectTokenType(source, TT_NUMBER, 0, &token))
+			if(!parser.ExpectTokenType(TT_NUMBER, 0, &token))
 			{
-				FreeSource(source);
+				parser.FreeSource();
 				BotFreeCharacterStrings(ch);
 				FreeMemory(ch);
 				return NULL;
 			}					//end if
-			if(!PC_ExpectTokenString(source, "{"))
+			if(!parser.ExpectTokenString("{"))
 			{
-				FreeSource(source);
+				parser.FreeSource();
 				BotFreeCharacterStrings(ch);
 				FreeMemory(ch);
 				return NULL;
@@ -282,7 +277,7 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 			{
 				foundcharacter = qtrue;
 				ch->skill = token.intvalue;
-				while(PC_ExpectAnyToken(source, &token))
+				while(parser.ExpectAnyToken(&token))
 				{
 					if(!strcmp(token.string, "}"))
 					{
@@ -290,8 +285,8 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 					}
 					if(token.type != TT_NUMBER || !(token.subtype & TT_INTEGER))
 					{
-						SourceError(source, "expected integer index, found %s\n", token.string);
-						FreeSource(source);
+						parser.Error("expected integer index, found %s\n", token.string);
+						parser.FreeSource();
 						BotFreeCharacterStrings(ch);
 						FreeMemory(ch);
 						return NULL;
@@ -299,23 +294,23 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 					index = token.intvalue;
 					if(index < 0 || index > MAX_CHARACTERISTICS)
 					{
-						SourceError(source, "characteristic index out of range [0, %d]\n", MAX_CHARACTERISTICS);
-						FreeSource(source);
+						parser.Error("characteristic index out of range [0, %d]\n", MAX_CHARACTERISTICS);
+						parser.FreeSource();
 						BotFreeCharacterStrings(ch);
 						FreeMemory(ch);
 						return NULL;
 					}			//end if
 					if(ch->c[index].type)
 					{
-						SourceError(source, "characteristic %d already initialized\n", index);
-						FreeSource(source);
+						parser.Error("characteristic %d already initialized\n", index);
+						parser.FreeSource();
 						BotFreeCharacterStrings(ch);
 						FreeMemory(ch);
 						return NULL;
 					}			//end if
-					if(!PC_ExpectAnyToken(source, &token))
+					if(!parser.ExpectAnyToken(&token))
 					{
-						FreeSource(source);
+						parser.FreeSource();
 						BotFreeCharacterStrings(ch);
 						FreeMemory(ch);
 						return NULL;
@@ -335,15 +330,15 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 					}			//end if
 					else if(token.type == TT_STRING)
 					{
-						StripDoubleQuotes(token.string);
+						parser.StripDoubleQuotes(token.string);
 						ch->c[index].value.string = (char*)GetMemory(strlen(token.string) + 1);
 						strcpy(ch->c[index].value.string, token.string);
 						ch->c[index].type = CT_STRING;
 					}			//end else if
 					else
 					{
-						SourceError(source, "expected integer, float or string, found %s\n", token.string);
-						FreeSource(source);
+						parser.Error("expected integer, float or string, found %s\n", token.string);
+						parser.FreeSource();
 						BotFreeCharacterStrings(ch);
 						FreeMemory(ch);
 						return NULL;
@@ -356,9 +351,9 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 				indent = 1;
 				while(indent)
 				{
-					if(!PC_ExpectAnyToken(source, &token))
+					if(!parser.ExpectAnyToken(&token))
 					{
-						FreeSource(source);
+						parser.FreeSource();
 						BotFreeCharacterStrings(ch);
 						FreeMemory(ch);
 						return NULL;
@@ -376,14 +371,14 @@ bot_character_t *BotLoadCharacterFromFile(char *charfile, int skill)
 		}						//end if
 		else
 		{
-			SourceError(source, "unknown definition %s\n", token.string);
-			FreeSource(source);
+			parser.Error("unknown definition %s\n", token.string);
+			parser.FreeSource();
 			BotFreeCharacterStrings(ch);
 			FreeMemory(ch);
 			return NULL;
 		}						//end else
 	}							//end while
-	FreeSource(source);
+	parser.FreeSource();
 	//
 	if(!foundcharacter)
 	{

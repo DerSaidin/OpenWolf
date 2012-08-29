@@ -629,7 +629,7 @@ hostname &gt; status-info/build-machine</Command>
     </Midl>
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_VOIP;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_PHYSICS;ET_SQL;USE_MUMBLE;GUIDMASTER_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_VOIP;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_PHYSICS;ET_SQL;USE_MUMBLE;GUIDMASTER_SUPPORT;BOTLIB_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

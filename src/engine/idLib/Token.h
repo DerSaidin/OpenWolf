@@ -68,6 +68,8 @@ If you have questions concerning this license or the applicable additional terms
 // punctuation sub type is the punctuation id
 // name sub type is the length of the name
 
+#define MAX_TOKEN                   1024
+
 class idToken : public idStr {
 
 	friend class idParser;
@@ -79,7 +81,10 @@ public:
 	int				line;								// line in script the token was on
 	int				linesCrossed;						// number of lines crossed in white space before token
 	int				flags;								// token flags, used for recursive defines
-
+	char            string[MAX_TOKEN];					// available token
+	unsigned long	intvalue;							// integer value
+	double			floatvalue;							// floating point value
+	idToken *		next;								// next token in chain, only used by idParser
 public:
 					idToken( void );
 					idToken( const idToken *token );
@@ -98,11 +103,8 @@ public:
 	void			NumberValue( void );				// calculate values for a TT_NUMBER
 
 private:
-	unsigned long	intvalue;							// integer value
-	double			floatvalue;							// floating point value
 	const char *	whiteSpaceStart_p;					// start of white space before token, only used by idLexer
 	const char *	whiteSpaceEnd_p;					// end of white space before token, only used by idLexer
-	idToken *		next;								// next token in chain, only used by idParser
 
 	void			AppendDirty( const char a );		// append character without adding trailing zero
 };

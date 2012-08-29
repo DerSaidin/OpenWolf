@@ -41,12 +41,11 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_memory.h"
 #include "l_log.h"
 #include "l_libvar.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "aasfile.h"
 #include "botlib.h"
@@ -99,7 +98,7 @@ int             botlibsetup = qfalse;
 int Sys_MilliSeconds(void)
 {
 // Ridah, faster Win32 code
-#if 0 //def _WIN32
+#ifdef _WIN32
 	int             sys_curtime;
 	static qboolean initialized = qfalse;
 	static int      sys_timeBase;
@@ -174,7 +173,7 @@ qboolean BotLibSetup(char *str)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-define_t *globaldefines;
+extern define_t *globaldefines;
 int Export_BotLibSetup(qboolean singleplayer)
 {
 	int             errnum;
@@ -238,6 +237,8 @@ int Export_BotLibSetup(qboolean singleplayer)
 //===========================================================================
 int Export_BotLibShutdown(void)
 {
+	idParser parser;
+
 	static int      recursive = 0;
 
 	if(!BotLibSetup("BotLibShutdown"))
@@ -264,7 +265,7 @@ int Export_BotLibShutdown(void)
 	// free all libvars
 	LibVarDeAllocAll();
 	// remove all global defines from the pre compiler
-	PC_RemoveAllGlobalDefines();
+	parser.RemoveAllGlobalDefines();
 	// shut down library log file
 	Log_Shutdown();
 	//
@@ -272,7 +273,7 @@ int Export_BotLibShutdown(void)
 	botlibglobals.botlibsetup = qfalse;
 	recursive = 0;
 	// print any files still open
-	PC_CheckOpenSourceHandles();
+	//PC_CheckOpenSourceHandles();
 	//
 #ifdef _DEBUG
 	Log_AlwaysOpen("memory.log");
@@ -969,14 +970,6 @@ botlib_export_t *GetBotLibAPI(int apiVersion, botlib_import_t * import)
 	be_botlib_export.BotLibShutdown = Export_BotLibShutdown;
 	be_botlib_export.BotLibVarSet = Export_BotLibVarSet;
 	be_botlib_export.BotLibVarGet = Export_BotLibVarGet;
-	be_botlib_export.PC_AddGlobalDefine = PC_AddGlobalDefine;
-	be_botlib_export.PC_RemoveAllGlobalDefines = PC_RemoveAllGlobalDefines;
-	be_botlib_export.PC_LoadSourceHandle = PC_LoadSourceHandle;
-	be_botlib_export.PC_FreeSourceHandle = PC_FreeSourceHandle;
-	be_botlib_export.PC_ReadTokenHandle = PC_ReadTokenHandle;
-	be_botlib_export.PC_SourceFileAndLine = PC_SourceFileAndLine;
-	be_botlib_export.PC_UnreadLastTokenHandle = PC_UnreadLastTokenHandle;
-
 	be_botlib_export.BotLibStartFrame = Export_BotLibStartFrame;
 	be_botlib_export.BotLibLoadMap = Export_BotLibLoadMap;
 	be_botlib_export.BotLibUpdateEntity = Export_BotLibUpdateEntity;
@@ -984,6 +977,7 @@ botlib_export_t *GetBotLibAPI(int apiVersion, botlib_import_t * import)
 
 	return &be_botlib_export;
 }
+
 #ifndef BOTLIB_STATIC
 void QDECL Com_Printf(const char *msg, ...)
 {
@@ -991,7 +985,7 @@ void QDECL Com_Printf(const char *msg, ...)
 	char            text[1024];
 
 	va_start(argptr, msg);
-	Q_vsnprintf(text, sizeof(text), msg, argptr);
+	idStr::vsnPrintf(text, sizeof(text), msg, argptr);
 	va_end(argptr);
 
 	botimport.Print(PRINT_ALL, "%s", text);
@@ -1003,7 +997,7 @@ void QDECL Com_DPrintf(const char *msg, ...)
 	char            text[1024];
 
 	va_start(argptr, msg);
-	Q_vsnprintf(text, sizeof(text), msg, argptr);
+	idStr::vsnPrintf(text, sizeof(text), msg, argptr);
 	va_end(argptr);
 
 	botimport.Print(PRINT_DEVELOPER, "%s", text);
@@ -1015,9 +1009,43 @@ void QDECL Com_Error(int level, const char *error, ...)
 	char            text[1024];
 
 	va_start(argptr, error);
-	Q_vsnprintf(text, sizeof(text), error, argptr);
+	idStr::vsnPrintf(text, sizeof(text), error, argptr);
 	va_end(argptr);
 
 	botimport.Error(level, "%s", text);
 }
+
+void QDECL Com_FatalError( const char *error, ... ) {
+	va_list argptr;
+	char msg[8192];
+
+	va_start( argptr,error );
+	vsprintf( msg,error,argptr );
+	va_end( argptr );
+
+	botimport.Error(ERR_FATAL, msg);
+}
+
+void QDECL Com_DropError( const char *error, ... ) {
+	va_list argptr;
+	char msg[8192];
+
+	va_start( argptr,error );
+	vsprintf( msg,error,argptr );
+	va_end( argptr );
+
+	botimport.Error(ERR_DROP, msg);
+}
+
+void QDECL Com_Warning( const char *error, ... ) {
+	va_list argptr;
+	char msg[8192];
+
+	va_start( argptr,error );
+	vsprintf( msg,error,argptr );
+	va_end( argptr );
+
+	botimport.Print(PRINT_DEVELOPER, "%s", error);
+}
+
 #endif

@@ -41,13 +41,12 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_libvar.h"
 #include "l_log.h"
 #include "l_memory.h"
 #include "l_utils.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "aasfile.h"
 #include "botlib.h"
@@ -251,10 +250,10 @@ void DumpWeaponConfig(weaponconfig_t * wc)
 weaponconfig_t *LoadWeaponConfig(char *filename)
 {
 	int             max_weaponinfo, max_projectileinfo;
-	token_t         token;
+	idToken         token;
+	idLexer         parser;
 	char            path[MAX_PATH];
 	int             i, j;
-	source_t       *source;
 	weaponconfig_t *wc;
 	weaponinfo_t    weaponinfo;
 
@@ -273,8 +272,8 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 		LibVarSet("max_projectileinfo", "64");
 	}							//end if
 	strncpy(path, filename, MAX_PATH);
-	source = LoadSourceFile(path);
-	if(!source)
+	parser.LoadFile(path);
+	if(!parser.LoadFile(path))
 	{
 		botimport.Print(PRT_ERROR, "counldn't load %s\n", path);
 		return NULL;
@@ -288,22 +287,22 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 	wc->numweapons = max_weaponinfo;
 	wc->numprojectiles = 0;
 	//parse the source file
-	while(PC_ReadToken(source, &token))
+	while(parser.ReadToken(&token))
 	{
 		if(!strcmp(token.string, "weaponinfo"))
 		{
 			memset(&weaponinfo, 0, sizeof(weaponinfo_t));
-			if(!ReadStructure(source, &weaponinfo_struct, (char *)&weaponinfo))
+			if(!ReadStructure(&weaponinfo_struct, (char *)&weaponinfo))
 			{
 				FreeMemory(wc);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			if(weaponinfo.number < 0 || weaponinfo.number >= max_weaponinfo)
 			{
 				botimport.Print(PRT_ERROR, "weapon info number %d out of range in %s\n", weaponinfo.number, path);
 				FreeMemory(wc);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			memcpy(&wc->weaponinfo[weaponinfo.number], &weaponinfo, sizeof(weaponinfo_t));
@@ -315,14 +314,14 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 			{
 				botimport.Print(PRT_ERROR, "more than %d projectiles defined in %s\n", max_projectileinfo, path);
 				FreeMemory(wc);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			memset(&wc->projectileinfo[wc->numprojectiles], 0, sizeof(projectileinfo_t));
-			if(!ReadStructure(source, &projectileinfo_struct, (char *)&wc->projectileinfo[wc->numprojectiles]))
+			if(!ReadStructure(&projectileinfo_struct, (char *)&wc->projectileinfo[wc->numprojectiles]))
 			{
 				FreeMemory(wc);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			wc->numprojectiles++;
@@ -331,11 +330,11 @@ weaponconfig_t *LoadWeaponConfig(char *filename)
 		{
 			botimport.Print(PRT_ERROR, "unknown definition %s in %s\n", token.string, path);
 			FreeMemory(wc);
-			FreeSource(source);
+			parser.FreeSource();
 			return NULL;
 		}						//end else
 	}							//end while
-	FreeSource(source);
+	parser.FreeSource();
 	//fix up weapons
 	for(i = 0; i < wc->numweapons; i++)
 	{
@@ -433,6 +432,7 @@ void BotFreeWeaponWeights(int weaponstate)
 int BotLoadWeaponWeights(int weaponstate, char *filename)
 {
 	bot_weaponstate_t *ws;
+	idLexer            parser;
 
 	ws = BotWeaponStateFromHandle(weaponstate);
 	if(!ws)
@@ -441,9 +441,9 @@ int BotLoadWeaponWeights(int weaponstate, char *filename)
 	}
 	BotFreeWeaponWeights(weaponstate);
 	//
-	PS_SetBaseFolder("botfiles");
+	parser.SetBaseFolder("botfiles");
 	ws->weaponweightconfig = ReadWeightConfig(filename);
-	PS_SetBaseFolder("");
+	parser.SetBaseFolder("");
 	if(!ws->weaponweightconfig)
 	{
 		botimport.Print(PRT_FATAL, "couldn't load weapon config %s\n", filename);
@@ -614,11 +614,12 @@ void BotFreeWeaponState(int handle)
 int BotSetupWeaponAI(void)
 {
 	char           *file;
+	idLexer         parser;
 
-	PS_SetBaseFolder("botfiles");
+	parser.SetBaseFolder("botfiles");
 	file = LibVarString("weaponconfig", "weapons.c");
 	weaponconfig = LoadWeaponConfig(file);
-	PS_SetBaseFolder("");
+	parser.SetBaseFolder("");
 	if(!weaponconfig)
 	{
 		botimport.Print(PRT_FATAL, "couldn't load the weapon config\n");

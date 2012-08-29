@@ -41,12 +41,11 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_memory.h"
 #include "l_libvar.h"
 #include "l_utils.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "l_log.h"
 #include "aasfile.h"
@@ -72,7 +71,7 @@ void QDECL AAS_Error(char *fmt, ...)
 	va_list         arglist;
 
 	va_start(arglist, fmt);
-	Q_vsnprintf(str, sizeof(str), fmt, arglist);
+	idStr::vsnPrintf(str, sizeof(str), fmt, arglist);
 	va_end(arglist);
 	botimport.Print(PRT_FATAL, "%s", str);
 }								//end of the function AAS_Error

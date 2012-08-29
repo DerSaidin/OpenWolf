@@ -76,7 +76,7 @@ typedef struct structdef_s
 } structdef_t;
 
 //read a structure from a script
-int             ReadStructure(source_t * source, structdef_t * def, char *structure);
+int             ReadStructure(structdef_t * def, char *structure);
 
 //write a structure to a file
 int             WriteStructure(FILE * fp, structdef_t * def, char *structure);

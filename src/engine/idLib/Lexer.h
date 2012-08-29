@@ -60,7 +60,8 @@ typedef enum {
 	LEXFL_ALLOWFLOATEXCEPTIONS			= BIT(10),	// allow float exceptions like 1.#INF or 1.#IND to be parsed
 	LEXFL_ALLOWMULTICHARLITERALS		= BIT(11),	// allow multi character literals
 	LEXFL_ALLOWBACKSLASHSTRINGCONCAT	= BIT(12),	// allow multiple strings seperated by '\' to be concatenated
-	LEXFL_ONLYSTRINGS					= BIT(13)	// parse as whitespace deliminated strings (quoted strings keep quotes)
+	LEXFL_ONLYSTRINGS					= BIT(13),	// parse as whitespace deliminated strings (quoted strings keep quotes)
+	LEXFL_NOSTRINGWHITESPACES           = BIT(14)
 } lexerFlags_t;
 
 // punctuation ids
@@ -241,6 +242,8 @@ public:
 					// set the base folder to load files from
 	static void		SetBaseFolder( const char *path );
 
+					//remove any leading and trailing double quotes from the token
+	void            StripDoubleQuotes(char *string);
 private:
 	int				loaded;					// set when a script file is loaded from file or memory
 	idStr			filename;				// file name of the script

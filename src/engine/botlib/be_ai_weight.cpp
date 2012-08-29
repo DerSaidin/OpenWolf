@@ -40,12 +40,11 @@ Maryland 20850 USA.
  *
  *****************************************************************************/
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "l_memory.h"
 #include "l_log.h"
 #include "l_utils.h"
-#include "l_script.h"
-#include "l_precomp.h"
 #include "l_struct.h"
 #include "l_libvar.h"
 #include "aasfile.h"
@@ -67,25 +66,26 @@ weightconfig_t *weightFileList[MAX_WEIGHT_FILES];
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-int ReadValue(source_t * source, float *value)
+int ReadValue(float *value)
 {
-	token_t         token;
+	idToken         token;
+	idLexer         parser;
 
-	if(!PC_ExpectAnyToken(source, &token))
+	if(!parser.ExpectAnyToken(&token))
 	{
 		return qfalse;
 	}
 	if(!strcmp(token.string, "-"))
 	{
-		SourceWarning(source, "negative value set to zero\n");
-		if(!PC_ExpectTokenType(source, TT_NUMBER, 0, &token))
+		parser.Warning("negative value set to zero\n");
+		if(!parser.ExpectTokenType(TT_NUMBER, 0, &token))
 		{
 			return qfalse;
 		}
 	}							//end if
 	if(token.type != TT_NUMBER)
 	{
-		SourceError(source, "invalid return value %s\n", token.string);
+		parser.Error("invalid return value %s\n", token.string);
 		return qfalse;
 	}							//end if
 	*value = token.floatvalue;
@@ -98,36 +98,37 @@ int ReadValue(source_t * source, float *value)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-int ReadFuzzyWeight(source_t * source, fuzzyseperator_t * fs)
+int ReadFuzzyWeight(fuzzyseperator_t * fs)
 {
-	if(PC_CheckTokenString(source, "balance"))
+	idLexer parser;
+	if(parser.CheckTokenString("balance"))
 	{
 		fs->type = WT_BALANCE;
-		if(!PC_ExpectTokenString(source, "("))
+		if(!parser.ExpectTokenString("("))
 		{
 			return qfalse;
 		}
-		if(!ReadValue(source, &fs->weight))
+		if(!ReadValue(&fs->weight))
 		{
 			return qfalse;
 		}
-		if(!PC_ExpectTokenString(source, ","))
+		if(!parser.ExpectTokenString(","))
 		{
 			return qfalse;
 		}
-		if(!ReadValue(source, &fs->minweight))
+		if(!ReadValue(&fs->minweight))
 		{
 			return qfalse;
 		}
-		if(!PC_ExpectTokenString(source, ","))
+		if(!parser.ExpectTokenString(","))
 		{
 			return qfalse;
 		}
-		if(!ReadValue(source, &fs->maxweight))
+		if(!ReadValue(&fs->maxweight))
 		{
 			return qfalse;
 		}
-		if(!PC_ExpectTokenString(source, ")"))
+		if(!parser.ExpectTokenString(")"))
 		{
 			return qfalse;
 		}
@@ -135,14 +136,14 @@ int ReadFuzzyWeight(source_t * source, fuzzyseperator_t * fs)
 	else
 	{
 		fs->type = 0;
-		if(!ReadValue(source, &fs->weight))
+		if(!ReadValue(&fs->weight))
 		{
 			return qfalse;
 		}
 		fs->minweight = fs->weight;
 		fs->maxweight = fs->weight;
 	}							//end if
-	if(!PC_ExpectTokenString(source, ";"))
+	if(!parser.ExpectTokenString(";"))
 	{
 		return qfalse;
 	}
@@ -214,33 +215,34 @@ void FreeWeightConfig(weightconfig_t * config)
 // Returns:             -
 // Changes Globals:     -
 //===========================================================================
-fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
+fuzzyseperator_t *ReadFuzzySeperators_r()
 {
 	int             newindent, index, def, founddefault;
-	token_t         token;
+	idToken         token;
 	fuzzyseperator_t *fs, *lastfs, *firstfs;
+	idLexer         parser;
 
 	founddefault = qfalse;
 	firstfs = NULL;
 	lastfs = NULL;
-	if(!PC_ExpectTokenString(source, "("))
+	if(!parser.ExpectTokenString( "("))
 	{
 		return NULL;
 	}
-	if(!PC_ExpectTokenType(source, TT_NUMBER, TT_INTEGER, &token))
+	if(!parser.ExpectTokenType(TT_NUMBER, TT_INTEGER, &token))
 	{
 		return NULL;
 	}
 	index = token.intvalue;
-	if(!PC_ExpectTokenString(source, ")"))
+	if(!parser.ExpectTokenString(")"))
 	{
 		return NULL;
 	}
-	if(!PC_ExpectTokenString(source, "{"))
+	if(!parser.ExpectTokenString("{"))
 	{
 		return NULL;
 	}
-	if(!PC_ExpectAnyToken(source, &token))
+	if(!parser.ExpectAnyToken(&token))
 	{
 		return NULL;
 	}
@@ -264,7 +266,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 			{
 				if(founddefault)
 				{
-					SourceError(source, "switch already has a default\n");
+					parser.Error("switch already has a default\n");
 					FreeFuzzySeperators_r(firstfs);
 					return NULL;
 				}				//end if
@@ -273,14 +275,14 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 			}					//end if
 			else
 			{
-				if(!PC_ExpectTokenType(source, TT_NUMBER, TT_INTEGER, &token))
+				if(!parser.ExpectTokenType(TT_NUMBER, TT_INTEGER, &token))
 				{
 					FreeFuzzySeperators_r(firstfs);
 					return NULL;
 				}				//end if
 				fs->value = token.intvalue;
 			}					//end else
-			if(!PC_ExpectTokenString(source, ":") || !PC_ExpectAnyToken(source, &token))
+			if(!parser.ExpectTokenString(":") || !parser.ExpectAnyToken(&token))
 			{
 				FreeFuzzySeperators_r(firstfs);
 				return NULL;
@@ -289,7 +291,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 			if(!strcmp(token.string, "{"))
 			{
 				newindent = qtrue;
-				if(!PC_ExpectAnyToken(source, &token))
+				if(!parser.ExpectAnyToken(&token))
 				{
 					FreeFuzzySeperators_r(firstfs);
 					return NULL;
@@ -297,7 +299,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 			}					//end if
 			if(!strcmp(token.string, "return"))
 			{
-				if(!ReadFuzzyWeight(source, fs))
+				if(!ReadFuzzyWeight(fs))
 				{
 					FreeFuzzySeperators_r(firstfs);
 					return NULL;
@@ -305,7 +307,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 			}					//end if
 			else if(!strcmp(token.string, "switch"))
 			{
-				fs->child = ReadFuzzySeperators_r(source);
+				fs->child = ReadFuzzySeperators_r();
 				if(!fs->child)
 				{
 					FreeFuzzySeperators_r(firstfs);
@@ -314,12 +316,12 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 			}					//end else if
 			else
 			{
-				SourceError(source, "invalid name %s\n", token.string);
+				parser.Error("invalid name %s\n", token.string);
 				return NULL;
 			}					//end else
 			if(newindent)
 			{
-				if(!PC_ExpectTokenString(source, "}"))
+				if(!parser.ExpectTokenString("}"))
 				{
 					FreeFuzzySeperators_r(firstfs);
 					return NULL;
@@ -329,10 +331,10 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 		else
 		{
 			FreeFuzzySeperators_r(firstfs);
-			SourceError(source, "invalid name %s\n", token.string);
+			parser.Error("invalid name %s\n", token.string);
 			return NULL;
 		}						//end else
-		if(!PC_ExpectAnyToken(source, &token))
+		if(!parser.ExpectAnyToken(&token))
 		{
 			FreeFuzzySeperators_r(firstfs);
 			return NULL;
@@ -341,7 +343,7 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 	//
 	if(!founddefault)
 	{
-		SourceWarning(source, "switch without default\n");
+		parser.Warning("switch without default\n");
 		fs = (fuzzyseperator_t *) GetClearedMemory(sizeof(fuzzyseperator_t));
 		fs->index = index;
 		fs->value = MAX_INVENTORYVALUE;
@@ -371,10 +373,10 @@ fuzzyseperator_t *ReadFuzzySeperators_r(source_t * source)
 weightconfig_t *ReadWeightConfig(char *filename)
 {
 	int             newindent, avail = 0, n;
-	token_t         token;
-	source_t       *source;
+	idToken         token;
 	fuzzyseperator_t *fs;
 	weightconfig_t *config = NULL;
+	idLexer         parser;
 
 #ifdef DEBUG
 	int             starttime;
@@ -410,8 +412,8 @@ weightconfig_t *ReadWeightConfig(char *filename)
 		}						//end if
 	}							//end if
 
-	source = LoadSourceFile(filename);
-	if(!source)
+	parser.LoadFile(filename);
+	if(!parser.LoadFile(filename))
 	{
 		botimport.Print(PRT_ERROR, "counldn't load %s\n", filename);
 		return NULL;
@@ -421,48 +423,48 @@ weightconfig_t *ReadWeightConfig(char *filename)
 	config->numweights = 0;
 	Q_strncpyz(config->filename, filename, sizeof(config->filename));
 	//parse the item config file
-	while(PC_ReadToken(source, &token))
+	while(parser.ReadToken(&token))
 	{
 		if(!strcmp(token.string, "weight"))
 		{
 			if(config->numweights >= MAX_WEIGHTS)
 			{
-				SourceWarning(source, "too many fuzzy weights\n");
+				parser.Warning("too many fuzzy weights\n");
 				break;
 			}					//end if
-			if(!PC_ExpectTokenType(source, TT_STRING, 0, &token))
+			if(!parser.ExpectTokenType(TT_STRING, 0, &token))
 			{
 				FreeWeightConfig(config);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
-			StripDoubleQuotes(token.string);
+			parser.StripDoubleQuotes(token.string);
 			config->weights[config->numweights].name = (char *)GetClearedMemory(strlen(token.string) + 1);
 			strcpy(config->weights[config->numweights].name, token.string);
-			if(!PC_ExpectAnyToken(source, &token))
+			if(!parser.ExpectAnyToken(&token))
 			{
 				FreeWeightConfig(config);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end if
 			newindent = qfalse;
 			if(!strcmp(token.string, "{"))
 			{
 				newindent = qtrue;
-				if(!PC_ExpectAnyToken(source, &token))
+				if(!parser.ExpectAnyToken(&token))
 				{
 					FreeWeightConfig(config);
-					FreeSource(source);
+					parser.FreeSource();
 					return NULL;
 				}				//end if
 			}					//end if
 			if(!strcmp(token.string, "switch"))
 			{
-				fs = ReadFuzzySeperators_r(source);
+				fs = ReadFuzzySeperators_r();
 				if(!fs)
 				{
 					FreeWeightConfig(config);
-					FreeSource(source);
+					parser.FreeSource();
 					return NULL;
 				}				//end if
 				config->weights[config->numweights].firstseperator = fs;
@@ -474,28 +476,28 @@ weightconfig_t *ReadWeightConfig(char *filename)
 				fs->value = MAX_INVENTORYVALUE;
 				fs->next = NULL;
 				fs->child = NULL;
-				if(!ReadFuzzyWeight(source, fs))
+				if(!ReadFuzzyWeight(fs))
 				{
 					FreeMemory(fs);
 					FreeWeightConfig(config);
-					FreeSource(source);
+					parser.FreeSource();
 					return NULL;
 				}				//end if
 				config->weights[config->numweights].firstseperator = fs;
 			}					//end else if
 			else
 			{
-				SourceError(source, "invalid name %s\n", token.string);
+				parser.Error("invalid name %s\n", token.string);
 				FreeWeightConfig(config);
-				FreeSource(source);
+				parser.FreeSource();
 				return NULL;
 			}					//end else
 			if(newindent)
 			{
-				if(!PC_ExpectTokenString(source, "}"))
+				if(!parser.ExpectTokenString("}"))
 				{
 					FreeWeightConfig(config);
-					FreeSource(source);
+					parser.FreeSource();
 					return NULL;
 				}				//end if
 			}					//end if
@@ -503,14 +505,14 @@ weightconfig_t *ReadWeightConfig(char *filename)
 		}						//end if
 		else
 		{
-			SourceError(source, "invalid name %s\n", token.string);
+			parser.Error("invalid name %s\n", token.string);
 			FreeWeightConfig(config);
-			FreeSource(source);
+			parser.FreeSource();
 			return NULL;
 		}						//end else
 	}							//end while
 	//free the source at the end of a pass
-	FreeSource(source);
+	parser.FreeSource();
 	//if the file was located in a pak file
 #ifdef DEBUG
 	botimport.Print(PRT_MESSAGE, "loaded %s\n", filename);

@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // common.c -- misc functions used in client and server
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "qcommon.h"
 #include "../database/database.h"
@@ -216,7 +217,7 @@ void QDECL Com_Printf(const char *fmt, ...)
 
 	va_start (argptr,fmt);
 	
-	Q_vsnprintf( msg, sizeof( msg ) - 1, fmt, argptr );
+	idStr::vsnPrintf( msg, sizeof( msg ) - 1, fmt, argptr );
 	msg[sizeof( msg ) - 1] = 0;
 		
 	va_end (argptr);
@@ -332,7 +333,7 @@ void QDECL Com_DPrintf(const char *fmt, ...)
 	}
 
 	va_start(argptr, fmt);
-	Q_vsnprintf(msg, sizeof(msg), fmt, argptr);
+	idStr::vsnPrintf(msg, sizeof(msg), fmt, argptr);
 	va_end(argptr);
 
 	Com_Printf("%s", msg);
@@ -413,7 +414,7 @@ void QDECL Com_Error(int code, const char *fmt, ...)
 	lastErrorTime = currentTime;
 
 	va_start (argptr,fmt);
-	Q_vsnprintf (com_errorMessage, sizeof(com_errorMessage),fmt,argptr);
+	idStr::vsnPrintf (com_errorMessage, sizeof(com_errorMessage),fmt,argptr);
 	va_end (argptr);
 
 	switch(code) {
@@ -3091,9 +3092,11 @@ void Com_Init(char *commandLine)
 		Sys_Error("Error during initialization");
 	}
 
+	// initialize idLib
+	idLib::Init();
+
 	// bk001129 - do this before anything else decides to push events
 	Com_InitPushEvent();
-
 	Com_InitSmallZoneMemory();
 	Cvar_Init();
 
@@ -3850,6 +3853,9 @@ void Com_Shutdown(qboolean badProfile)
 #if defined(USE_HTTP)
 	Net_HTTP_Kill();
 #endif
+
+	// shutdown idLib
+	idLib::ShutDown();
 }
 
 

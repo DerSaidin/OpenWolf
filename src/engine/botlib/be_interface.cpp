@@ -98,7 +98,7 @@ int             botlibsetup = qfalse;
 int Sys_MilliSeconds(void)
 {
 // Ridah, faster Win32 code
-#ifdef _WIN32
+#if 0 //def _WIN32
 	int             sys_curtime;
 	static qboolean initialized = qfalse;
 	static int      sys_timeBase;
@@ -173,7 +173,7 @@ qboolean BotLibSetup(char *str)
 // Returns:                 -
 // Changes Globals:     -
 //===========================================================================
-extern define_t *globaldefines;
+//extern define_t *globaldefines;
 int Export_BotLibSetup(qboolean singleplayer)
 {
 	int             errnum;
@@ -221,7 +221,7 @@ int Export_BotLibSetup(qboolean singleplayer)
 		return errnum;
 	}
 
-	globaldefines = NULL;
+	//globaldefines = NULL;
 
 	botlibsetup = qtrue;
 	botlibglobals.botlibsetup = qtrue;

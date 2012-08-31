@@ -226,7 +226,7 @@ float RB_EvalExpression(const expression_t * exp, float defaultValue)
 	float           value;
 	float           value1;
 	float           value2;
-	opstring_t		opStrings;
+	extern const opstring_t opStrings[];
 
 	numOps = 0;
 	value = 0;
@@ -365,7 +365,7 @@ float RB_EvalExpression(const expression_t * exp, float defaultValue)
 				if(numOps < 2)
 				{
 					ri.Printf(PRINT_ALL, "WARNING: shader %s has numOps < 2 for binary operator %s\n", tess.surfaceShader->name,
-							  opStrings.s);
+							  opStrings[op.type].s);
 					return defaultValue;
 				}
 

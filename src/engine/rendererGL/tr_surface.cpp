@@ -909,8 +909,8 @@ static void Tess_SurfacePolychain(srfPoly_t * p)
 void Tess_SurfacePolybuffer(srfPolyBuffer_t * surf)
 {
 	int             i;
-	int				numIndexes;
-	int				numVertexes;
+	int             numIndexes;
+	int             numVertexes;
 	glIndex_t      *indices;
 	float          *xyzw;
 	float          *st;

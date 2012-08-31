@@ -181,7 +181,7 @@ static qboolean ParseVector(char **text, int count, float *v)
 }
 
 
-opstring_t      opStrings[] = {
+extern const opstring_t opStrings[] = {
 	{"bad", OP_BAD}
 	,
 
@@ -286,7 +286,7 @@ opstring_t      opStrings[] = {
 
 static void GetOpType(char *token, expOperation_t * op)
 {
-	opstring_t     *opString;
+	const opstring_t *opString;
 	char            tableName[MAX_QPATH];
 	int             hash;
 	shaderTable_t  *tb;
@@ -1813,7 +1813,6 @@ static qboolean ParseStage(shaderStage_t * stage, char **text)
 				num = stage->bundle[0].numImages;
 				if(num < MAX_IMAGE_ANIMATIONS)
 				{
-					//stage->bundle[0].image[num] = R_FindImageFile(token, IF_NONE, FT_DEFAULT, WT_REPEAT, shader.name);
 					stage->bundle[0].image[num] = R_FindImageFile(token, imageBits, filterType, WT_REPEAT, shader.name);
 					if(!stage->bundle[0].image[num])
 					{

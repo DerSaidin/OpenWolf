@@ -717,7 +717,7 @@ image_t        *R_LoadDDSImageData(void *pImageData, const char *name, int bits,
 				break;
 
 			default:
-				ri.Printf(PRINT_WARNING, "R_LoadDDSImage: unsupported FOURCC 0x%08x, \"%s\"\n",
+				ri.Printf(PRINT_WARNING, "R_LoadDDSImage: unsupported FOURCC 0x%16x, \"%s\"\n",
 				          ddsd->u4.ddpfPixelFormat.dwFourCC, name);
 				goto ret_error;
 		}

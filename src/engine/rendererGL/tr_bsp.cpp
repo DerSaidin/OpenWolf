@@ -836,6 +836,7 @@ static void R_LoadLightmaps(lump_t * l, const char *bspName)
 
 					image = R_AllocImage(va("%s/%s", mapName, lightmapFiles[i]), qtrue);
 					if(!image) {
+						Com_Dealloc(hdrImage);
 						break;
 					}
 
@@ -5168,11 +5169,11 @@ static void R_LoadNodesAndLeafs(lump_t * nodeLump, lump_t * leafLump)
 	dleaf_t        *inLeaf;
 	bspNode_t      *out;
 	int             numNodes, numLeafs;
-	srfVert_t      *verts;
-	srfTriangle_t  *triangles;
+	srfVert_t      *verts = NULL;
+	srfTriangle_t  *triangles = NULL;
 	IBO_t          *volumeIBO;
-	vec3_t			mins, maxs;
-//	vec3_t			offset = {0.01, 0.01, 0.01};
+	vec3_t          mins, maxs;
+//	vec3_t          offset = {0.01, 0.01, 0.01};
 
 	ri.Printf(PRINT_ALL, "...loading nodes and leaves\n");
 
@@ -5368,11 +5369,11 @@ static void R_LoadNodesAndLeafs(lump_t * nodeLump, lump_t * leafLump)
 
 	if(triangles)
 	{
-	ri.Hunk_FreeTempMemory(triangles);
+		ri.Hunk_FreeTempMemory(triangles);
 	}
 	if(verts)
 	{
-	ri.Hunk_FreeTempMemory(verts);
+		ri.Hunk_FreeTempMemory(verts);
 	}
 
 	tess.multiDrawPrimitives = 0;
@@ -5504,7 +5505,7 @@ static void R_LoadFogs(lump_t * l, lump_t * brushesLump, lump_t * sidesLump)
 	int             planeNum;
 	shader_t       *shader;
 	float           d;
-	int             firstSide;
+	int             firstSide = 0;
 
 	ri.Printf(PRINT_ALL, "...loading fogs\n");
 
@@ -6668,7 +6669,7 @@ R_PrecacheInteractionSurface
 */
 static void R_PrecacheInteractionSurface(bspSurface_t * surf, trRefLight_t * light)
 {
-	bool        intersects;
+	bool            intersects;
 
 	if(surf->lightCount == s_lightCount)
 	{
@@ -7429,12 +7430,12 @@ static void R_CreateVBOShadowMeshes(trRefLight_t * light)
 	int             numCaches;
 
 	shader_t       *shader, *oldShader;
-	bool	        alphaTest, oldAlphaTest;
+	bool            alphaTest, oldAlphaTest;
 
 	bspSurface_t   *surface;
 
 	srfVBOMesh_t   *vboSurf;
-	vec3_t			bounds[2];
+	vec3_t          bounds[2];
 
 	if(!r_vboShadows->integer)
 		return;

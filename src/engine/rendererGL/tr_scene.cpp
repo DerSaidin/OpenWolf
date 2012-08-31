@@ -99,7 +99,8 @@ void R_ToggleSmpFrame(void)
 RE_ClearScene
 ====================
 */
-void RE_ClearScene(void) {
+void RE_ClearScene(void)
+{
 	r_firstSceneLight = r_numLights;
 	r_firstSceneEntity = r_numEntities;
 	r_firstScenePoly = r_numPolys;

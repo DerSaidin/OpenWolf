@@ -94,8 +94,8 @@ asked for again.
 qhandle_t RE_RegisterModel(const char *name)
 {
 	model_t        *mod;
-	byte	       *buffer;
-	int             bufferLen;
+	byte           *buffer;
+	int             bufferLen = 0;
 	int             lod;
 	int             ident;
 	qboolean        loaded;

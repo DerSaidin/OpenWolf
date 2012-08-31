@@ -160,9 +160,9 @@ enum
 
 typedef struct link_s
 {
-	void            *data;
-	int				numElements;	// only used by sentinels
-	struct link_s	*prev, *next;
+	void           *data;
+	int             numElements;	// only used by sentinels
+	struct link_s  *prev, *next;
 } link_t;
 
 static ID_INLINE void InitLink(link_t *l, void *data)
@@ -339,16 +339,16 @@ typedef struct trRefLight_s
 	qboolean        additive;	// texture detail is lost tho when the lightmap is dark
 	vec3_t          origin;		// l.origin + rotated l.center
 	vec3_t          transformed;	// origin in local coordinate system
-	vec3_t			direction;	// for directional lights (sun)
+	vec3_t          direction;	// for directional lights (sun)
 
 	matrix_t        transformMatrix;	// light to world
 	matrix_t        viewMatrix;			// object to light
 	matrix_t        projectionMatrix;	// light frustum
 
-	float			falloffLength;
+	float           falloffLength;
 
-	matrix_t		shadowMatrices[MAX_SHADOWMAPS];
-	matrix_t		shadowMatricesBiased[MAX_SHADOWMAPS];
+	matrix_t        shadowMatrices[MAX_SHADOWMAPS];
+	matrix_t        shadowMatricesBiased[MAX_SHADOWMAPS];
 	matrix_t        attenuationMatrix;	// attenuation * (light view * entity transform)
 	matrix_t        attenuationMatrix2;	// attenuation * tcMod matrices
 
@@ -364,19 +364,19 @@ typedef struct trRefLight_s
 	float           depthFar;
 	qboolean        noDepthBoundsTest;
 
-	bool			clipsNearPlane;
+	bool            clipsNearPlane;
 
 	qboolean        noOcclusionQueries;
 	uint32_t        occlusionQueryObject;
 	uint32_t        occlusionQuerySamples;
-	link_t			multiQuery;				// CHC++: list of all nodes that are used by the same occlusion query
+	link_t          multiQuery;				// CHC++: list of all nodes that are used by the same occlusion query
 
 	frustum_t       frustum;
-	vec4_t			localFrustum[6];
+	vec4_t          localFrustum[6];
 	struct VBO_s   *frustumVBO;
 	struct IBO_s   *frustumIBO;
 	uint16_t        frustumIndexes;
-	uint16_t       	frustumVerts;
+	uint16_t        frustumVerts;
 
 	screenRect_t    scissor;
 
@@ -394,9 +394,9 @@ typedef struct trRefLight_s
 	uint16_t        numInteractions;	// total interactions
 	uint16_t        numShadowOnlyInteractions;
 	uint16_t        numLightOnlyInteractions;
-	bool	        noSort;		// don't sort interactions by material
+	bool            noSort;		// don't sort interactions by material
 
-	link_t			leafs;
+	link_t          leafs;
 
 	int             visCounts[MAX_VISCOUNTS];	// node needs to be traversed if current
 	//struct bspNode_s **leafs;
@@ -424,10 +424,10 @@ typedef struct
 	vec3_t          worldCorners[8];
 
 	// GPU occlusion culling
-	qboolean		noOcclusionQueries;
+	qboolean        noOcclusionQueries;
 	uint32_t        occlusionQueryObject;
 	uint32_t        occlusionQuerySamples;
-	link_t			multiQuery;				// CHC++: list of all nodes that are used by the same occlusion query
+	link_t          multiQuery;				// CHC++: list of all nodes that are used by the same occlusion query
 } trRefEntity_t;
 
 typedef struct
@@ -444,10 +444,10 @@ typedef struct
 // useful helper struct
 typedef struct vertexHash_s
 {
-	vec3_t				xyz;
-	void			    *data;
+	vec3_t          xyz;
+	void           *data;
 
-	struct vertexHash_s	*next;
+	struct vertexHash_s *next;
 } vertexHash_t;
 
 enum
@@ -552,7 +552,7 @@ typedef struct VBO_s
 
 	uint32_t        vertexesVBO;
 	uint32_t        vertexesSize;	// amount of memory data allocated for all vertices in bytes
-	uint32_t		vertexesNum;
+	uint32_t        vertexesNum;
 	uint32_t        ofsXYZ;
 	uint32_t        ofsTexCoords;
 	uint32_t        ofsLightCoords;
@@ -560,15 +560,15 @@ typedef struct VBO_s
 	uint32_t        ofsBinormals;
 	uint32_t        ofsNormals;
 	uint32_t        ofsColors;
-	uint32_t		ofsPaintColors;		// for advanced terrain blending
-	uint32_t		ofsLightDirections;
+	uint32_t        ofsPaintColors;		// for advanced terrain blending
+	uint32_t        ofsLightDirections;
 	uint32_t        ofsBoneIndexes;
 	uint32_t        ofsBoneWeights;
 
-	uint32_t		sizeXYZ;
-	uint32_t		sizeTangents;
-	uint32_t		sizeBinormals;
-	uint32_t		sizeNormals;
+	uint32_t        sizeXYZ;
+	uint32_t        sizeTangents;
+	uint32_t        sizeBinormals;
+	uint32_t        sizeNormals;
 
 	uint32_t        attribs;
 } VBO_t;
@@ -579,7 +579,7 @@ typedef struct IBO_s
 
 	uint32_t        indexesVBO;
 	uint32_t        indexesSize;	// amount of memory data allocated for all triangles in bytes
-	uint32_t		indexesNum;
+	uint32_t        indexesNum;
 
 //  uint32_t        ofsIndexes;
 } IBO_t;
@@ -1026,8 +1026,8 @@ typedef struct
 
 	expression_t    alphaTestExp;
 
-	qboolean		tcGen_Environment;
-	qboolean		tcGen_Lightmap;
+	qboolean        tcGen_Environment;
+	qboolean        tcGen_Lightmap;
 
 	byte            constantColor[4];	// for CGEN_CONST and AGEN_CONST
 
@@ -1056,7 +1056,7 @@ typedef struct
 	expression_t    fresnelScaleExp;
 	expression_t    fresnelBiasExp;
 
-	expression_t	normalScaleExp;
+	expression_t    normalScaleExp;
 
 	expression_t    etaExp;
 	expression_t    etaDeltaExp;
@@ -1075,7 +1075,7 @@ typedef struct
 
 	qboolean        isDetail;
 	qboolean        noFog;		// used only for shaders that have fog disabled, so we can enable it for individual stages
-	qboolean		isFogged;
+	qboolean        isFogged;
 } shaderStage_t;
 
 struct shaderCommands_s;
@@ -1356,7 +1356,7 @@ enum
 				ATTR_TANGENT |
 				ATTR_BINORMAL |
 				ATTR_NORMAL |
-				ATTR_COLOR// |
+				ATTR_COLOR
 
 #if !defined(COMPAT_Q3A) && !defined(COMPAT_ET)
 				|
@@ -1405,173 +1405,173 @@ typedef struct shaderProgram_s
 	int32_t         u_EnvironmentMap0;
 	int32_t         u_EnvironmentMap1;
 
-	int32_t			u_RandomMap;
+	int32_t         u_RandomMap;
 	int32_t         u_GrainMap;
 	int32_t         u_VignetteMap;
 
 	int32_t         u_ColorTextureMatrix;
-	matrix_t		t_ColorTextureMatrix;
+	matrix_t        t_ColorTextureMatrix;
 
 	int32_t         u_DiffuseTextureMatrix;
-	matrix_t		t_DiffuseTextureMatrix;
+	matrix_t        t_DiffuseTextureMatrix;
 
 	int32_t         u_NormalTextureMatrix;
-	matrix_t		t_NormalTextureMatrix;
+	matrix_t        t_NormalTextureMatrix;
 
 	int32_t         u_SpecularTextureMatrix;
-	matrix_t		t_SpecularTextureMatrix;
+	matrix_t        t_SpecularTextureMatrix;
 
 	int32_t         u_AlphaTest;
-	alphaTest_t		t_AlphaTest;
+	alphaTest_t     t_AlphaTest;
 
 	int32_t         u_ViewOrigin;
-	vec3_t			t_ViewOrigin;
+	vec3_t          t_ViewOrigin;
 
-	GLint			u_DeformParms;
+	GLint           u_DeformParms;
 
 	int32_t         u_Color;
-	vec4_t			t_Color;
+	vec4_t          t_Color;
 
 	int32_t         u_ColorModulate;
-	vec4_t			t_ColorModulate;
+	vec4_t          t_ColorModulate;
 
 	int32_t         u_AmbientColor;
-	vec3_t			t_AmbientColor;
+	vec3_t          t_AmbientColor;
 
 	int32_t         u_LightDir;
-	vec3_t			t_LightDir;
+	vec3_t          t_LightDir;
 
 	int32_t         u_LightOrigin;
-	vec3_t			t_LightOrigin;
+	vec3_t          t_LightOrigin;
 
 	int32_t         u_LightColor;
-	vec3_t			t_LightColor;
+	vec3_t          t_LightColor;
 
 	int32_t         u_LightRadius;
-	float			t_LightRadius;
+	float           t_LightRadius;
 
 	int32_t         u_LightParallel;
-	qboolean		t_LightParallel;
+	qboolean        t_LightParallel;
 
 	int32_t         u_LightScale;
-	float			t_LightScale;
+	float           t_LightScale;
 
 	int32_t         u_LightWrapAround;
-	float			t_LightWrapAround;
+	float           t_LightWrapAround;
 
 	int32_t         u_LightAttenuationMatrix;
-	matrix_t		t_LightAttenuationMatrix;
+	matrix_t        t_LightAttenuationMatrix;
 
 	int32_t         u_LightFrustum;
 
 	int32_t         u_ShadowMatrix;
-	matrix_t		t_ShadowMatrix;
+	matrix_t        t_ShadowMatrix;
 
 	int32_t         u_ShadowCompare;
-	qboolean		t_ShadowCompare;
+	qboolean        t_ShadowCompare;
 
 	int32_t         u_ShadowTexelSize;
-	float			t_ShadowTexelSize;
+	float           t_ShadowTexelSize;
 
 	int32_t         u_ShadowBlur;
-	float			t_ShadowBlur;
+	float           t_ShadowBlur;
 
-	GLint			u_ShadowParallelSplitDistances;
-	vec4_t			t_ShadowParallelSplitDistances;
+	GLint           u_ShadowParallelSplitDistances;
+	vec4_t          t_ShadowParallelSplitDistances;
 
 	int32_t         u_RefractionIndex;
-	float			t_RefractionIndex;
+	float           t_RefractionIndex;
 
 	int32_t         u_FresnelPower;
 	int32_t         u_FresnelScale;
 	int32_t         u_FresnelBias;
 
-	GLint			u_NormalScale;
+	GLint           u_NormalScale;
 
 	int32_t         u_EtaRatio;
 
 	int32_t         u_FogDensity;
 	int32_t         u_FogColor;
 
-	GLint			u_FogDistanceVector;
-	vec4_t			t_FogDistanceVector;
+	GLint           u_FogDistanceVector;
+	vec4_t          t_FogDistanceVector;
 
-	GLint			u_FogDepthVector;
-	vec4_t			t_FogDepthVector;
+	GLint           u_FogDepthVector;
+	vec4_t          t_FogDepthVector;
 
-	GLint			u_FogEyeT;
-	float			t_FogEyeT;
+	GLint           u_FogEyeT;
+	float           t_FogEyeT;
 
 	int32_t         u_SSAOJitter;
 	int32_t         u_SSAORadius;
 
-	GLint			u_ParallaxMapping;
-	qboolean		t_ParallaxMapping;
+	GLint           u_ParallaxMapping;
+	qboolean        t_ParallaxMapping;
 
 	int32_t         u_DepthScale;
-	float			t_DepthScale;
+	float           t_DepthScale;
 
 
-	GLint			u_PortalClipping;
-	qboolean		t_PortalClipping;
+	GLint           u_PortalClipping;
+	qboolean        t_PortalClipping;
 
-	GLint			u_PortalPlane;
-	vec4_t			t_PortalPlane;
+	GLint           u_PortalPlane;
+	vec4_t          t_PortalPlane;
 
 	int32_t         u_PortalRange;
-	float			t_PortalRange;
+	float           t_PortalRange;
 
-	GLint			u_EnvironmentInterpolation;
-	float			t_EnvironmentInterpolation;
+	GLint           u_EnvironmentInterpolation;
+	float           t_EnvironmentInterpolation;
 
-	GLint			u_HDRKey;
-	float			t_HDRKey;
+	GLint           u_HDRKey;
+	float           t_HDRKey;
 
-	GLint			u_HDRAverageLuminance;
-	float			t_HDRAverageLuminance;
+	GLint           u_HDRAverageLuminance;
+	float           t_HDRAverageLuminance;
 
-	GLint			u_HDRMaxLuminance;
-	float			t_HDRMaxLuminance;
+	GLint           u_HDRMaxLuminance;
+	float           t_HDRMaxLuminance;
 
 	int32_t         u_DeformMagnitude;
-	float			t_DeformMagnitude;
+	float           t_DeformMagnitude;
 
-	GLint			u_BlurMagnitude;
+	GLint           u_BlurMagnitude;
 
 	int32_t         u_ModelMatrix;	// model -> world
-	matrix_t		t_ModelMatrix;
+	matrix_t        t_ModelMatrix;
 
 	int32_t         u_ViewMatrix;	// world -> camera
-	matrix_t		t_ViewMatrix;
+	matrix_t        t_ViewMatrix;
 
 	int32_t         u_ModelViewMatrix;	// model -> camera
-	matrix_t		t_ModelViewMatrix;
+	matrix_t        t_ModelViewMatrix;
 
 	int32_t         u_ModelViewMatrixTranspose;
-	matrix_t		t_ModelViewMatrixTranspose;
+	matrix_t        t_ModelViewMatrixTranspose;
 
 	int32_t         u_ProjectionMatrix;
-	matrix_t		t_ProjectionMatrix;
+	matrix_t        t_ProjectionMatrix;
 
 	int32_t         u_ProjectionMatrixTranspose;
-	matrix_t		t_ProjectionMatrixTranspose;
+	matrix_t        t_ProjectionMatrixTranspose;
 
 	int32_t         u_ModelViewProjectionMatrix;
-	matrix_t		t_ModelViewProjectionMatrix;
+	matrix_t        t_ModelViewProjectionMatrix;
 
 	int32_t         u_UnprojectMatrix;
-	matrix_t		t_UnprojectMatrix;
+	matrix_t        t_UnprojectMatrix;
 
 	int32_t         u_VertexSkinning;
-	qboolean		t_VertexSkinning;
+	qboolean        t_VertexSkinning;
 
-	GLint			u_VertexInterpolation;
-	float			t_VertexInterpolation;
+	GLint           u_VertexInterpolation;
+	float           t_VertexInterpolation;
 
 	int32_t         u_BoneMatrix;
 
 	int32_t         u_Time;
-	float			t_Time;
+	float           t_Time;
 } shaderProgram_t;
 
 #define	SHADER_PROGRAM_T_OFS(x) ((size_t)&(((shaderProgram_t *)0)->x))
@@ -2369,7 +2369,7 @@ typedef struct
 	vec3_t          vieworg;
 	vec3_t          viewaxis[3];	// transformation matrix
 
-	stereoFrame_t	stereoFrame;
+	stereoFrame_t   stereoFrame;
 
 	int             time;		// time in milliseconds for shader effects and other time dependent rendering issues
 	int             rdflags;	// RDF_NOWORLDMODEL, etc
@@ -2479,7 +2479,7 @@ typedef struct
 	int             originalBrushNumber;
 	vec3_t          bounds[2];
 
-	vec4_t			color;		// in packed byte format
+	vec4_t          color;		// in packed byte format
 	float           tcScale;	// texture coordinate vector scales
 	fogParms_t      fogParms;
 
@@ -2500,7 +2500,7 @@ typedef struct
 
 	int             frameSceneNum;	// copied from tr.frameSceneNum
 	int             frameCount;	// copied from tr.frameCount
-	int				viewCount; // copied from tr.viewCount
+	int             viewCount; // copied from tr.viewCount
 
 	cplane_t        portalPlane;	// clip anything behind this if mirroring
 	int             viewportX, viewportY, viewportWidth, viewportHeight;
@@ -2510,13 +2510,13 @@ typedef struct
 	matrix_t        projectionMatrix;
 	matrix_t        unprojectionMatrix;	// transform pixel window space -> world space
 
-	float			parallelSplitDistances[MAX_SHADOWMAPS + 1];	// distances in camera space
+	float           parallelSplitDistances[MAX_SHADOWMAPS + 1];	// distances in camera space
 
 	frustum_t       frustums[MAX_SHADOWMAPS + 1];	// first frustum is the default one with complete zNear - zFar range
 													// and the other ones are for PSSM
 
 	vec3_t          visBounds[2];
-	float			skyFar;
+	float           skyFar;
 	float           zNear;
 	float           zFar;
 
@@ -2525,7 +2525,7 @@ typedef struct
 
 	int             numInteractions;
 	struct interaction_s *interactions;
-	stereoFrame_t	stereoFrame;
+	stereoFrame_t   stereoFrame;
 } viewParms_t;
 
 
@@ -3882,7 +3882,7 @@ typedef struct
 	frontEndCounters_t pc;
 	int             frontEndMsec;	// not in pc due to clearing issue
 
-	vec4_t			clipRegion;		// 2D clipping region
+	vec4_t          clipRegion;		// 2D clipping region
 
 	//
 	// put large tables at the end, so most elements will be
@@ -3901,14 +3901,14 @@ typedef struct
 	FBO_t          *fbos[MAX_FBOS];
 
 #if !defined(USE_D3D10)
-	GLuint			vao;
+	GLuint          vao;
 #endif
 
 	growList_t      vbos;
 	growList_t      ibos;
 
 	byte           *cubeTemp[6];	// 6 textures for cubemap storage
-	growList_t		cubeProbes;		// all cubemaps in a linear growing list
+	growList_t      cubeProbes;		// all cubemaps in a linear growing list
 	vertexHash_t  **cubeHashTable;	// hash table for faster access
 
 	// shader indexes from other modules will be looked up in tr.shaders[]
@@ -3966,6 +3966,10 @@ extern cvar_t  *r_glMajorVersion;  // override GL version autodetect (for testin
 extern cvar_t  *r_glMinorVersion;
 extern cvar_t  *r_glDebugProfile;
 extern cvar_t  *r_glCoreProfile;
+
+#ifdef USE_GLSL_OPTIMIZER
+extern cvar_t  *r_glslOptimizer;
+#endif
 
 extern cvar_t  *r_flares;		// light flares
 extern cvar_t  *r_flareSize;
@@ -4565,16 +4569,16 @@ typedef struct shaderCommands_s
 
 	qboolean        skipTangentSpaces;
 	qboolean        shadowVolume;
-	qboolean		skipVBO;
+	qboolean        skipVBO;
 	int16_t         lightmapNum;
-	int16_t			fogNum;
+	int16_t         fogNum;
 
 	uint32_t        numIndexes;
 	uint32_t        numVertexes;
 
-	int				multiDrawPrimitives;
-	glIndex_t*		multiDrawIndexes[MAX_MULTIDRAW_PRIMITIVES];
-	int				multiDrawCounts[MAX_MULTIDRAW_PRIMITIVES];
+	int             multiDrawPrimitives;
+	glIndex_t*      multiDrawIndexes[MAX_MULTIDRAW_PRIMITIVES];
+	int             multiDrawCounts[MAX_MULTIDRAW_PRIMITIVES];
 
 	qboolean        vboVertexSkinning;
 	matrix_t        boneMatrices[MAX_BONES];
@@ -4604,7 +4608,7 @@ void            Tess_Begin(	void (*stageIteratorFunc)(),
 							int	fogNum);
 // *INDENT-ON*
 void            Tess_End(void);
-void			Tess_EndBegin();
+void            Tess_EndBegin();
 void            Tess_DrawElements();
 void            Tess_CheckOverflow(int verts, int indexes);
 
@@ -4632,8 +4636,8 @@ Add a polyhedron that is composed of four triangular faces
 */
 void            Tess_AddTetrahedron(vec4_t tetraVerts[4], vec4_t const color);
 
-void			Tess_AddCube(const vec3_t position, const vec3_t minSize, const vec3_t maxSize, const vec4_t color);
-void			Tess_AddCubeWithNormals(const vec3_t position, const vec3_t minSize, const vec3_t maxSize, const vec4_t color);
+void            Tess_AddCube(const vec3_t position, const vec3_t minSize, const vec3_t maxSize, const vec4_t color);
+void            Tess_AddCubeWithNormals(const vec3_t position, const vec3_t minSize, const vec3_t maxSize, const vec4_t color);
 
 void            Tess_InstantQuad(vec4_t quadVerts[4]);
 void            Tess_UpdateVBOs(uint32_t attribBits);
@@ -5181,17 +5185,17 @@ void            RE_BeginFrame(stereoFrame_t stereoFrame);
 void            RE_EndFrame(int *frontEndMsec, int *backEndMsec);
 
 
-void			LoadTGA(const char *name, byte ** pic, int *width, int *height, byte alphaByte);
+void            LoadTGA(const char *name, byte ** pic, int *width, int *height, byte alphaByte);
 
 void            LoadJPG(const char *filename, unsigned char **pic, int *width, int *height, byte alphaByte);
 void            SaveJPG(char *filename, int quality, int image_width, int image_height, unsigned char *image_buffer);
 int             SaveJPGToBuffer(byte * buffer, size_t bufferSize, int quality, int image_width, int image_height, byte * image_buffer);
 
-void			LoadPNG(const char *name, byte ** pic, int *width, int *height, byte alphaByte);
+void            LoadPNG(const char *name, byte ** pic, int *width, int *height, byte alphaByte);
 void            SavePNG(const char *name, const byte * pic, int width, int height, int numBytes, qboolean flip);
 
 #ifdef USE_WEBP
-void			LoadWEBP(const char *name, byte ** pic, int *width, int *height, byte alphaByte);
+void            LoadWEBP(const char *name, byte ** pic, int *width, int *height, byte alphaByte);
 #endif
 
 // video stuff
@@ -5210,11 +5214,11 @@ void            R_DoneFreeType();
 void            RE_RegisterFont(const char *fontName, int pointSize, fontInfo_t * font);
 
 // bani
-void			RE_RenderToTexture(int textureid, int x, int y, int w, int h);
-void			RE_Finish(void);
+void            RE_RenderToTexture(int textureid, int x, int y, int w, int h);
+void            RE_Finish(void);
 
-void			LoadRGBEToFloats(const char *name, float **pic, int *width, int *height, qboolean doGamma, qboolean toneMap, qboolean compensate);
-void			LoadRGBEToHalfs(const char *name, unsigned short ** halfImage, int *width, int *height);
+void            LoadRGBEToFloats(const char *name, float **pic, int *width, int *height, qboolean doGamma, qboolean toneMap, qboolean compensate);
+void            LoadRGBEToHalfs(const char *name, unsigned short ** halfImage, int *width, int *height);
 
 #if defined(__cplusplus)
 }

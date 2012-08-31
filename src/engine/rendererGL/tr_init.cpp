@@ -45,6 +45,10 @@ cvar_t         *r_glMajorVersion;
 cvar_t         *r_glMinorVersion;
 cvar_t         *r_glDebugProfile;
 
+#ifdef USE_GLSL_OPTIMIZER
+cvar_t         *r_glslOptimizer;
+#endif
+
 cvar_t         *r_flares;
 cvar_t         *r_flareSize;
 cvar_t         *r_flareFade;
@@ -484,7 +488,8 @@ void GL_CheckErrors_(const char *fileName, int line)
 /*
 ** R_GetModeInfo
 */
-typedef struct vidmode_s {
+typedef struct vidmode_s
+{
 	const char *description;
 	int        width, height;
 	float      pixelAspect; // pixel width / height
@@ -515,25 +520,32 @@ static const vidmode_t r_vidModes[] =
 };
 static const int s_numVidModes = ( sizeof( r_vidModes ) / sizeof( r_vidModes[ 0 ] ) );
 
-qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode ) {
+qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode )
+{
 	const vidmode_t *vm;
 
-	if ( mode < -2 ) {
+	if ( mode < -2 )
+	{
+		return qfalse;
+	}
+	if ( mode >= s_numVidModes )
+	{
 		return qfalse;
 	}
 
-	if ( mode >= s_numVidModes ) {
-		return qfalse;
-	}
-
-	if( mode == -2) {
+	if( mode == -2)
+	{
 		// Must set width and height to display size before calling this function!
 		*windowAspect = ( float ) *width / *height;
-	} else if ( mode == -1 ) {
+	}
+	else if ( mode == -1 )
+	{
 		*width = r_customwidth->integer;
 		*height = r_customheight->integer;
 		*windowAspect = r_customaspect->value;
-	} else {
+	}
+	else
+	{
 		vm = &r_vidModes[ mode ];
 
 		*width = vm->width;
@@ -547,12 +559,14 @@ qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode )
 /*
 ** R_ModeList_f
 */
-static void R_ModeList_f( void ) {
+static void R_ModeList_f( void )
+{
 	int i;
 
 	ri.Printf( PRINT_ALL, "\n" );
 
-	for ( i = 0; i < s_numVidModes; i++ ) {
+	for ( i = 0; i < s_numVidModes; i++ )
+	{
 		ri.Printf( PRINT_ALL, "Mode %-2d: %s\n", i, r_vidModes[ i ].description );
 	}
 
@@ -601,7 +615,7 @@ static byte *RB_ReadPixels(int x, int y, int width, int height, size_t offset)
 	paddedLineLen = PAD(lineLen, packAlign);
 
 	// Allocate a few more bytes so that we can choose an alignment we like
-	buffer = (byte*)ri.Hunk_AllocateTempMemory(offset + paddedLineLen * height + packAlign - 1);
+	buffer = (byte*)ri.Hunk_AllocateTempMemory(offset + (paddedLineLen * height) + packAlign - 1);
 
 	pixels = (byte*)PADP(buffer + offset, packAlign);
 	glReadPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels);
@@ -609,7 +623,7 @@ static byte *RB_ReadPixels(int x, int y, int width, int height, size_t offset)
 	// Drop alignment and line padding bytes
 	for(i = 0; i < height; ++i)
 	{
-		memmove(buffer + offset + i * lineLen, pixels + i * paddedLineLen, lineLen);
+		memmove(buffer + offset + (i * lineLen), pixels + (i * paddedLineLen), lineLen);
 	}
 #endif
 
@@ -623,20 +637,20 @@ R_TakeScreenshot
 */
 static void RB_TakeScreenshot(int x, int y, int width, int height, char *fileName)
 {
-	byte *buffer;
-	int dataSize;
-	byte *end, *p;
+	byte           *buffer;
+	size_t          dataSize;
+	byte           *end, *p;
 
 	// with 18 bytes for the TGA file header
 	buffer = RB_ReadPixels(x, y, width, height, 18);
 	Com_Memset(buffer, 0, 18);
 
-	buffer[2] = 2; // uncompressed type
+	buffer[2] = 2;				// uncompressed type
 	buffer[12] = width & 255;
 	buffer[13] = width >> 8;
 	buffer[14] = height & 255;
 	buffer[15] = height >> 8;
-	buffer[16] = 24; // pixel size
+	buffer[16] = 24;			// pixel size
 
 	dataSize = 3 * width * height;
 
@@ -649,7 +663,7 @@ static void RB_TakeScreenshot(int x, int y, int width, int height, char *fileNam
 		p[2] = temp;
 	}
 
-	if(tr.overbrightBits > 0 && glConfig.deviceSupportsGamma)
+	if((tr.overbrightBits > 0) && glConfig.deviceSupportsGamma)
 	{
 		R_GammaCorrect(buffer + 18, dataSize);
 	}
@@ -661,14 +675,14 @@ static void RB_TakeScreenshot(int x, int y, int width, int height, char *fileNam
 
 /*
 ==================
-R_TakeScreenshotJPEG
+RB_TakeScreenshotJPEG
 ==================
 */
 static void RB_TakeScreenshotJPEG(int x, int y, int width, int height, char *fileName)
 {
 	byte *buffer = RB_ReadPixels(x, y, width, height, 0);
 
-	if(tr.overbrightBits > 0 && glConfig.deviceSupportsGamma)
+	if((tr.overbrightBits > 0) && glConfig.deviceSupportsGamma)
 	{
 		R_GammaCorrect(buffer, 3 * width * height);
 	}
@@ -679,14 +693,14 @@ static void RB_TakeScreenshotJPEG(int x, int y, int width, int height, char *fil
 
 /*
 ==================
-R_TakeScreenshotPNG
+RB_TakeScreenshotPNG
 ==================
 */
 static void RB_TakeScreenshotPNG(int x, int y, int width, int height, char *fileName)
 {
 	byte *buffer = RB_ReadPixels(x, y, width, height, 0);
 
-	if(tr.overbrightBits > 0 && glConfig.deviceSupportsGamma)
+	if((tr.overbrightBits > 0) && glConfig.deviceSupportsGamma)
 	{
 		R_GammaCorrect(buffer, 3 * width * height);
 	}
@@ -1351,6 +1365,10 @@ void R_Register(void)
 	r_glCoreProfile = ri.Cvar_Get("r_glCoreProfile", "", CVAR_LATCH);
 	r_glDebugProfile = ri.Cvar_Get("r_glDebugProfile", "", CVAR_LATCH);
 
+#ifdef USE_GLSL_OPTIMIZER
+	r_glslOptimizer = ri.Cvar_Get("r_glslOptimizer", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
+#endif
+
 	// latched and archived variables
 	r_ext_compressed_textures = ri.Cvar_Get("r_ext_compressed_textures", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_ext_occlusion_query = ri.Cvar_Get("r_ext_occlusion_query", "1", CVAR_CHEAT | CVAR_LATCH);
@@ -1396,7 +1414,7 @@ void R_Register(void)
 	r_compressDiffuseMaps = ri.Cvar_Get("r_compressDiffuseMaps", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_compressSpecularMaps = ri.Cvar_Get("r_compressSpecularMaps", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_compressNormalMaps = ri.Cvar_Get("r_compressNormalMaps", "0", CVAR_ARCHIVE | CVAR_LATCH);
-	r_heatHazeFix = ri.Cvar_Get("r_heatHazeFix", "0", CVAR_CHEAT);
+	r_heatHazeFix = ri.Cvar_Get("r_heatHazeFix", "0", CVAR_CHEAT | CVAR_SHADER);
 	r_noMarksOnTrisurfs = ri.Cvar_Get("r_noMarksOnTrisurfs", "1", CVAR_CHEAT);
 	r_recompileShaders = ri.Cvar_Get( "r_recompileShaders", "0", CVAR_ARCHIVE );
 
@@ -1405,7 +1423,7 @@ void R_Register(void)
 	r_wolfFog = ri.Cvar_Get("r_wolfFog", "1", CVAR_CHEAT);
 	r_noFog = ri.Cvar_Get("r_noFog", "0", CVAR_CHEAT);
 #ifdef EXPERIMENTAL
-	r_screenSpaceAmbientOcclusion = ri.Cvar_Get("r_screenSpaceAmbientOcclusion", "0", CVAR_ARCHIVE);
+	r_screenSpaceAmbientOcclusion = ri.Cvar_Get("r_screenSpaceAmbientOcclusion", "0", CVAR_ARCHIVE | CVAR_SHADER);
 	//AssertCvarRange(r_screenSpaceAmbientOcclusion, 0, 2, qtrue);
 #endif
 #ifdef EXPERIMENTAL
@@ -1439,15 +1457,15 @@ void R_Register(void)
 
 	r_singleShader = ri.Cvar_Get("r_singleShader", "0", CVAR_CHEAT | CVAR_LATCH);
 	r_stitchCurves = ri.Cvar_Get("r_stitchCurves", "1", CVAR_CHEAT | CVAR_LATCH);
-	r_debugShadowMaps = ri.Cvar_Get( "r_debugShadowMaps", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
+	r_debugShadowMaps = ri.Cvar_Get("r_debugShadowMaps", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
 	r_shadowMapLuminanceAlpha = ri.Cvar_Get("r_shadowMapLuminanceAlpha", "1", CVAR_ARCHIVE | CVAR_LATCH);
 	r_shadowMapLinearFilter = ri.Cvar_Get("r_shadowMapLinearFilter", "1", CVAR_CHEAT | CVAR_LATCH);
-	r_lightBleedReduction = ri.Cvar_Get( "r_lightBleedReduction", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_overDarkeningFactor = ri.Cvar_Get( "r_overDarkeningFactor", "30.0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_shadowMapDepthScale = ri.Cvar_Get( "r_shadowMapDepthScale", "1.41", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
+	r_lightBleedReduction = ri.Cvar_Get("r_lightBleedReduction", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_overDarkeningFactor = ri.Cvar_Get("r_overDarkeningFactor", "30.0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_shadowMapDepthScale = ri.Cvar_Get("r_shadowMapDepthScale", "1.41", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
 
 	r_parallelShadowSplitWeight = ri.Cvar_Get("r_parallelShadowSplitWeight", "0.9", CVAR_CHEAT);
-	r_parallelShadowSplits = ri.Cvar_Get( "r_parallelShadowSplits", "2", CVAR_LATCH | CVAR_SHADER );
+	r_parallelShadowSplits = ri.Cvar_Get("r_parallelShadowSplits", "2", CVAR_LATCH | CVAR_SHADER);
 	AssertCvarRange(r_parallelShadowSplits, 0, MAX_SHADOWMAPS -1, qtrue);
 
 	r_lightSpacePerspectiveWarping = ri.Cvar_Get("r_lightSpacePerspectiveWarping", "1", CVAR_CHEAT);
@@ -1511,17 +1529,17 @@ void R_Register(void)
 	r_hdrMinLuminance = ri.Cvar_Get("r_hdrMinLuminance", "0.18", CVAR_CHEAT);
 	r_hdrMaxLuminance = ri.Cvar_Get("r_hdrMaxLuminance", "3000", CVAR_CHEAT);
 	r_hdrKey = ri.Cvar_Get("r_hdrKey", "0.28", CVAR_CHEAT);
-	r_hdrContrastThreshold = ri.Cvar_Get("r_hdrContrastThreshold", "1.3", CVAR_CHEAT);
-	r_hdrContrastOffset = ri.Cvar_Get("r_hdrContrastOffset", "3.0", CVAR_CHEAT);
+	r_hdrContrastThreshold = ri.Cvar_Get("r_hdrContrastThreshold", "1.3", CVAR_CHEAT | CVAR_SHADER);
+	r_hdrContrastOffset = ri.Cvar_Get("r_hdrContrastOffset", "3.0", CVAR_CHEAT | CVAR_SHADER);
 	r_hdrLightmap = ri.Cvar_Get("r_hdrLightmap", "1", CVAR_CHEAT | CVAR_LATCH);
 	r_hdrLightmapExposure = ri.Cvar_Get("r_hdrLightmapExposure", "1.0", CVAR_CHEAT | CVAR_LATCH);
 	r_hdrLightmapGamma = ri.Cvar_Get("r_hdrLightmapGamma", "1.7", CVAR_CHEAT | CVAR_LATCH);
 	r_hdrLightmapCompensate = ri.Cvar_Get("r_hdrLightmapCompensate", "1.0", CVAR_CHEAT | CVAR_LATCH);
-	r_hdrToneMappingOperator = ri.Cvar_Get("r_hdrToneMappingOperator", "1", CVAR_CHEAT);
-	r_hdrGamma = ri.Cvar_Get("r_hdrGamma", "1.1", CVAR_CHEAT);
+	r_hdrToneMappingOperator = ri.Cvar_Get("r_hdrToneMappingOperator", "1", CVAR_CHEAT | CVAR_SHADER);
+	r_hdrGamma = ri.Cvar_Get("r_hdrGamma", "1.1", CVAR_CHEAT | CVAR_SHADER);
 	r_hdrDebug = ri.Cvar_Get("r_hdrDebug", "0", CVAR_CHEAT);
 
-	r_evsmPostProcess = ri.Cvar_Get("r_evsmPostProcess", "0", CVAR_ARCHIVE | CVAR_LATCH);
+	r_evsmPostProcess = ri.Cvar_Get("r_evsmPostProcess", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 
 	r_printShaders = ri.Cvar_Get("r_printShaders", "0", CVAR_ARCHIVE);
 
@@ -1580,16 +1598,16 @@ void R_Register(void)
 	r_offsetFactor = ri.Cvar_Get("r_offsetFactor", "-1", CVAR_CHEAT);
 	r_offsetUnits = ri.Cvar_Get("r_offsetUnits", "-2", CVAR_CHEAT);
 	r_forceSpecular = ri.Cvar_Get("r_forceSpecular", "0", CVAR_CHEAT);
-	r_specularExponent = ri.Cvar_Get( "r_specularExponent", "16", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_specularExponent2 = ri.Cvar_Get( "r_specularExponent2", "3", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_specularScale = ri.Cvar_Get( "r_specularScale", "1.4", CVAR_CHEAT );
-	r_normalScale = ri.Cvar_Get( "r_normalScale", "1.1", CVAR_CHEAT );
-	r_normalMapping = ri.Cvar_Get( "r_normalMapping", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
+	r_specularExponent = ri.Cvar_Get("r_specularExponent", "16", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_specularExponent2 = ri.Cvar_Get("r_specularExponent2", "3", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_specularScale = ri.Cvar_Get("r_specularScale", "1.4", CVAR_CHEAT);
+	r_normalScale = ri.Cvar_Get("r_normalScale", "1.1", CVAR_CHEAT);
+	r_normalMapping = ri.Cvar_Get("r_normalMapping", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	r_parallaxDepthScale = ri.Cvar_Get("r_parallaxDepthScale", "0.03", CVAR_CHEAT);
 
-	r_wrapAroundLighting = ri.Cvar_Get( "r_wrapAroundLighting", "0.7", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_halfLambertLighting = ri.Cvar_Get( "r_halfLambertLighting", "1", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_rimLighting = ri.Cvar_Get("r_rimLighting", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
+	r_wrapAroundLighting = ri.Cvar_Get("r_wrapAroundLighting", "0.7", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_halfLambertLighting = ri.Cvar_Get("r_halfLambertLighting", "1", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_rimLighting = ri.Cvar_Get("r_rimLighting", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	r_rimExponent = ri.Cvar_Get("r_rimExponent", "3", CVAR_CHEAT);
 	AssertCvarRange(r_rimExponent, 0.5, 8.0, qfalse);
 
@@ -1597,13 +1615,13 @@ void R_Register(void)
 	r_lockpvs = ri.Cvar_Get("r_lockpvs", "0", CVAR_CHEAT);
 	r_noportals = ri.Cvar_Get("r_noportals", "0", CVAR_CHEAT);
 
-	r_shadows = ri.Cvar_Get( "cg_shadows", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
+	r_shadows = ri.Cvar_Get("cg_shadows", "1", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	AssertCvarRange(r_shadows, 0, SHADOWING_STENCIL, qtrue);
 
-	r_softShadows = ri.Cvar_Get( "r_softShadows", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
+	r_softShadows = ri.Cvar_Get("r_softShadows", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 	AssertCvarRange(r_softShadows, 0, 6, qtrue);
 
-	r_shadowBlur = ri.Cvar_Get( "r_shadowBlur", "2", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER );
+	r_shadowBlur = ri.Cvar_Get("r_shadowBlur", "2", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SHADER);
 
 	r_shadowMapQuality = ri.Cvar_Get("r_shadowMapQuality", "3", CVAR_ARCHIVE | CVAR_LATCH);
 	AssertCvarRange(r_shadowMapQuality, 0, 4, qtrue);
@@ -1686,12 +1704,12 @@ void R_Register(void)
 	r_showLightGrid = ri.Cvar_Get("r_showLightGrid", "0", CVAR_CHEAT);
 	r_showOcclusionQueries = ri.Cvar_Get("r_showOcclusionQueries", "0", CVAR_CHEAT);
 	r_showBatches = ri.Cvar_Get("r_showBatches", "0", CVAR_CHEAT);
-	r_showLightMaps = ri.Cvar_Get( "r_showLightMaps", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
-	r_showDeluxeMaps = ri.Cvar_Get( "r_showDeluxeMaps", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
+	r_showLightMaps = ri.Cvar_Get("r_showLightMaps", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
+	r_showDeluxeMaps = ri.Cvar_Get("r_showDeluxeMaps", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
 	r_showAreaPortals = ri.Cvar_Get("r_showAreaPortals", "0", CVAR_CHEAT);
 	r_showCubeProbes = ri.Cvar_Get("r_showCubeProbes", "0", CVAR_CHEAT);
 	r_showBspNodes = ri.Cvar_Get("r_showBspNodes", "0", CVAR_CHEAT);
-	r_showParallelShadowSplits = ri.Cvar_Get( "r_showParallelShadowSplits", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER );
+	r_showParallelShadowSplits = ri.Cvar_Get("r_showParallelShadowSplits", "0", CVAR_CHEAT | CVAR_LATCH | CVAR_SHADER);
 	r_showDecalProjectors = ri.Cvar_Get("r_showDecalProjectors", "0", CVAR_CHEAT);
 
 	r_showDeferredDiffuse = ri.Cvar_Get("r_showDeferredDiffuse", "0", CVAR_CHEAT);

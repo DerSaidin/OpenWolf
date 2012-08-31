@@ -63,19 +63,19 @@ typedef struct
 	// size display elements. Returns false if the renderer couldn't
 	// be initialized.
 	qboolean        (*BeginRegistration) (glconfig_t * config, glconfig2_t * glconfig2);
-	qhandle_t		(*RegisterModel) (const char *name);
-	//qhandle_t		(*RegisterModelAllLODs) (const char *name);
-	qhandle_t		(*RegisterSkin) (const char *name);
+	qhandle_t       (*RegisterModel) (const char *name);
+	//qhandle_t     (*RegisterModelAllLODs) (const char *name);
+	qhandle_t       (*RegisterSkin) (const char *name);
 	qhandle_t       (*RegisterShader) (const char *name);
-	qhandle_t		(*RegisterShaderNoMip) (const char *name);
+	qhandle_t       (*RegisterShaderNoMip) (const char *name);
 #if defined(USE_REFLIGHT)
-	qhandle_t		(*RegisterShaderLightAttenuation) (const char *name);
+	qhandle_t       (*RegisterShaderLightAttenuation) (const char *name);
 #endif
 	void            (*RegisterFont) (const char *fontName, int pointSize, fontInfo_t * font);
 
 	void            (*LoadWorld) (const char *name);
-	qboolean		(*GetSkinModel) (qhandle_t skinid, const char *type, char *name);	//----(SA) added
-	qhandle_t		(*GetShaderFromModel) (qhandle_t modelid, int surfnum, int withlightmap);	//----(SA)    added
+	qboolean        (*GetSkinModel) (qhandle_t skinid, const char *type, char *name);	//----(SA) added
+	qhandle_t       (*GetShaderFromModel) (qhandle_t modelid, int surfnum, int withlightmap);	//----(SA)    added
 
 	// the vis data is a large enough block of data that we go to the trouble
 	// of sharing it with the clipmodel subsystem
@@ -99,7 +99,7 @@ typedef struct
 										qhandle_t hShader, int flags);
 
 	// Dushan
-	void	        (*AddAdditiveLightToScene)( const vec3_t org, float intensity, float r, float g, float b );
+	void            (*AddAdditiveLightToScene)( const vec3_t org, float intensity, float r, float g, float b );
 
 //----(SA)
 	void            (*AddCoronaToScene) (const vec3_t org, float r, float g, float b, float scale, int id, qboolean visible);
@@ -111,7 +111,7 @@ typedef struct
 	void            (*RestoreViewParms) ();
 
 	void            (*SetColor) (const float *rgba);	// NULL = 1,1,1,1
-	void	        (*SetClipRegion)(const float *region);
+	void            (*SetClipRegion)(const float *region);
 	void            (*DrawStretchPic) (float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader);	// 0 = white
 	void            (*DrawRotatedPic) (float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader, float angle);	// NERVE - SMF
 	void            (*DrawStretchPicGradient) (float x, float y, float w, float h, float s1, float t1, float s2, float t2,
@@ -144,17 +144,17 @@ typedef struct
 	void            (*DrawDebugPolygon) (int color, int numpoints, float *points);
 	void            (*DrawDebugText) (const vec3_t org, float r, float g, float b, const char *text, qboolean neverOcclude);
 
-	qboolean		(*GetEntityToken) (char *buffer, int size);
+	qboolean        (*GetEntityToken) (char *buffer, int size);
 
 	void            (*AddPolyBufferToScene) (polyBuffer_t * pPolyBuffer);
 
 	void            (*SetGlobalFog) (qboolean restore, int duration, float r, float g, float b, float depthForOpaque);
 
-	qboolean		(*inPVS) (const vec3_t p1, const vec3_t p2);
+	qboolean         (*inPVS) (const vec3_t p1, const vec3_t p2);
 
 	void            (*purgeCache) (void);
 
-	qboolean		(*LoadDynamicShader) (const char *shadername, const char *shadertext);
+	qboolean        (*LoadDynamicShader) (const char *shadername, const char *shadertext);
 	
 	void            (*RenderToTexture) (int textureid, int x, int y, int w, int h);
 
@@ -171,8 +171,8 @@ typedef struct
 
 	// RB: alternative skeletal animation system
 #if defined(USE_REFENTITY_ANIMATIONSYSTEM)
-	qhandle_t		(*RegisterAnimation) (const char *name);
-	int				(*CheckSkeleton) (refSkeleton_t * skel, qhandle_t model, qhandle_t anim);
+	qhandle_t       (*RegisterAnimation) (const char *name);
+	int             (*CheckSkeleton) (refSkeleton_t * skel, qhandle_t model, qhandle_t anim);
 	int             (*BuildSkeleton) (refSkeleton_t * skel, qhandle_t anim, int startFrame, int endFrame, float frac,
 									  qboolean clearOrigin);
 	int             (*BlendSkeleton) (refSkeleton_t * skel, const refSkeleton_t * blend, float frac);
@@ -182,7 +182,7 @@ typedef struct
 #endif
 
 	// XreaL END
-	fontInfo_t*		(*GetFontFromFontSet)( qhandle_t fontSet, float fontScale );
+	fontInfo_t*     (*GetFontFromFontSet)( qhandle_t fontSet, float fontScale );
 } refexport_t;
 
 //
@@ -256,9 +256,9 @@ typedef struct
 	                e_status(*CIN_RunCinematic) (int handle);
 
 	// Dushan
-	long			(*ftol)(float f);
+	long            (*ftol)(float f);
 	const char     *(*Con_GetText)( int console );
-	void		    (*HTTP_PostBug)(const char *fileName);
+	void            (*HTTP_PostBug)(const char *fileName);
 
 	// XreaL BEGIN
 	void           *(*Sys_GetSystemHandles) (void);

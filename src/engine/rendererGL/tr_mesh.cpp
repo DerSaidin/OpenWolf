@@ -263,8 +263,8 @@ void R_AddMDVSurfaces(trRefEntity_t * ent)
 	mdvSurface_t   *mdvSurface = 0;
 	shader_t       *shader = 0;
 	int             lod;
-	bool	        personalModel;
-	int				fogNum;
+	bool            personalModel;
+	int             fogNum;
 
 	// don't add third_person objects if not in a portal
 	personalModel = (ent->e.renderfx & RF_THIRD_PERSON) && !tr.viewParms.isPortal;
@@ -367,7 +367,7 @@ void R_AddMDVInteractions(trRefEntity_t * ent, trRefLight_t * light)
 	mdvSurface_t   *mdvSurface = 0;
 	shader_t       *shader = 0;
 	int             lod;
-	bool	        personalModel;
+	bool            personalModel;
 	byte            cubeSideBits;
 	interactionType_t iaType = IA_DEFAULT;
 

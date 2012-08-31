@@ -1340,7 +1340,7 @@ static void R_AddEdgeToLightScissor(trRefLight_t * light, vec3_t local1, vec3_t 
 	int             i;
 	vec3_t          intersect = {0};
 	vec3_t          world1, world2;
-	bool	        side1, side2;
+	bool            side1, side2;
 	cplane_t       *frust;
 
 	for(i = 0; i < FRUSTUM_PLANES; i++)

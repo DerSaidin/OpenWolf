@@ -1198,7 +1198,9 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="cm\CollisionModel_translate.cpp" />
     <ClCompile Include="database\db_main.cpp" />
     <ClCompile Include="database\db_mysql.cpp" />
+    <ClCompile Include="framework\ioapi.cpp" />
     <ClCompile Include="FrameWork\KeyInput.cpp" />
+    <ClCompile Include="framework\Unzip.cpp" />
     <ClCompile Include="qcommon\cm_api.cpp" />
     <ClCompile Include="qcommon\cm_load.cpp" />
     <ClCompile Include="qcommon\cm_patch.cpp" />
@@ -1214,7 +1216,6 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="qcommon\files.cpp" />
     <ClCompile Include="qcommon\htable.cpp" />
     <ClCompile Include="qcommon\huffman.cpp" />
-    <ClCompile Include="qcommon\ioapi.cpp" />
     <ClCompile Include="qcommon\md4.cpp" />
     <ClCompile Include="qcommon\md5.cpp" />
     <ClCompile Include="qcommon\msg.cpp" />
@@ -1251,7 +1252,6 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="server\sv_net_chan.cpp" />
     <ClCompile Include="server\sv_snapshot.cpp" />
     <ClCompile Include="server\sv_world.cpp" />
-    <ClCompile Include="qcommon\unzip.cpp" />
     <ClCompile Include="qcommon\vm.cpp" />
     <ClCompile Include="qcommon\dl_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
@@ -1357,7 +1357,9 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="..\libs\nettle\nettle\sexp.h" />
     <ClInclude Include="cm\CollisionModel.h" />
     <ClInclude Include="cm\CollisionModel_local.h" />
+    <ClInclude Include="framework\ioapi.h" />
     <ClInclude Include="FrameWork\KeyInput.h" />
+    <ClInclude Include="framework\Unzip.h" />
     <ClInclude Include="qcommon\crypto.h" />
     <ClInclude Include="qcommon\q_platform.h" />
     <ClInclude Include="client\cg_api.h" />
@@ -1365,7 +1367,6 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="client\ui_api.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="qcommon\htable.h" />
-    <ClInclude Include="qcommon\ioapi.h" />
     <ClInclude Include="qcommon\md4.h" />
     <ClInclude Include="client\client.h" />
     <ClInclude Include="qcommon\cm_local.h" />
@@ -1378,7 +1379,6 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="server\g_api.h" />
     <ClInclude Include="server\server.h" />
     <ClInclude Include="qcommon\surfaceflags.h" />
-    <ClInclude Include="qcommon\unzip.h" />
     <ClInclude Include="qcommon\vm_local.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>

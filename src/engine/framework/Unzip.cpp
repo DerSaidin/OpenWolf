@@ -63,8 +63,8 @@
 
 */
 
+#include "../idLib/precompiled.h"
 #include "../client/client.h"
-
 
 #include <stdio.h>
 #include <stdlib.h>

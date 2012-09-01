@@ -449,9 +449,6 @@
     <ClCompile Include="qcommon\htable.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\ioapi.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
     <ClCompile Include="qcommon\md4.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
@@ -468,9 +465,6 @@
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
     <ClCompile Include="qcommon\q_shared.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
-    <ClCompile Include="qcommon\unzip.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
     <ClCompile Include="sys\sdl_input.cpp">
@@ -521,9 +515,6 @@
     <ClCompile Include="qcommon\vm.cpp">
       <Filter>Source Files\VM</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\huffman.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
     <ClCompile Include="qcommon\cm_patch.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
@@ -532,6 +523,15 @@
     </ClCompile>
     <ClCompile Include="qcommon\files.cpp">
       <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\Unzip.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\huffman.cpp">
+      <Filter>Source Files\Qcommon</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\ioapi.cpp">
+      <Filter>Source Files\FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -562,9 +562,6 @@
     <ClInclude Include="server\server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="qcommon\unzip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="qcommon\vm_local.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -590,9 +587,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\md4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qcommon\ioapi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\htable.h">
@@ -689,6 +683,12 @@
       <Filter>Source Files\CM\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FrameWork\KeyInput.h">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\Unzip.h">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\ioapi.h">
       <Filter>Source Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>

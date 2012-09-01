@@ -46,7 +46,7 @@ Maryland 20850 USA.
 #include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "qcommon.h"
-#include "unzip.h"
+#include "../framework/Unzip.h"
 
 #ifdef _WIN32
 #include <direct.h>

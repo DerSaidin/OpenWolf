@@ -709,7 +709,7 @@ char           *Com_StringContains(char *str1, char *str2, int casesensitive)
 			}
 			else
 			{
-				if(toupper(str1[j]) != toupper(str2[j]))
+				if(idStr::ToUpper(str1[j]) != idStr::ToUpper(str2[j]))
 				{
 					break;
 				}
@@ -789,7 +789,7 @@ int Com_Filter(char *filter, char *name, int casesensitive)
 					}
 					else
 					{
-						if(toupper(*name) >= toupper(*filter) && toupper(*name) <= toupper(*(filter + 2)))
+						if(idStr::ToUpper(*name) >= toupper(*filter) && idStr::ToUpper(*name) <= idStr::ToUpper(*(filter + 2)))
 						{
 							found = qtrue;
 						}
@@ -807,7 +807,7 @@ int Com_Filter(char *filter, char *name, int casesensitive)
 					}
 					else
 					{
-						if(toupper(*filter) == toupper(*name))
+						if(idStr::ToUpper(*filter) == idStr::ToUpper(*name))
 						{
 							found = qtrue;
 						}
@@ -841,7 +841,7 @@ int Com_Filter(char *filter, char *name, int casesensitive)
 			}
 			else
 			{
-				if(toupper(*filter) != toupper(*name))
+				if(idStr::ToUpper(*filter) != idStr::ToUpper(*name))
 				{
 					return qfalse;
 				}

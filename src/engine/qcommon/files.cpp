@@ -43,6 +43,7 @@ Maryland 20850 USA.
 
 #define MP_LEGACY_PAK 0x7776DC09
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "qcommon.h"
 #include "unzip.h"
@@ -1842,7 +1843,7 @@ void QDECL FS_Printf( fileHandle_t h, const char *fmt, ... ) {
 	char msg[MAXPRINTMSG];
 
 	va_start( argptr,fmt );
-	Q_vsnprintf( msg, sizeof( msg ), fmt, argptr );
+	idStr::vsnPrintf( msg, sizeof( msg ), fmt, argptr );
 	va_end( argptr );
 
 	FS_Write( msg, strlen( msg ), h );

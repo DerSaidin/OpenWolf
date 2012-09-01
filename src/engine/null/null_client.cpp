@@ -78,10 +78,6 @@ qboolean CL_GameCommand(void)
 	return qfalse;				// bk001204 - non-void
 }
 
-void CL_KeyEvent(int key, int down, unsigned time)
-{
-}
-
 qboolean UI_GameCommand(void)
 {
 	return qfalse;

@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // cl_main.c  -- client main loop
 
+#include "../idLib/precompiled.h"
 #include "client.h"
 #include <limits.h>
 
@@ -1335,7 +1336,7 @@ Closing the main menu will restart the demo loop
 void CL_StartDemoLoop( void ) {
 	// start the demo loop again
 	Cbuf_AddText ("d1\n");
-	Key_SetCatcher( 0 );
+	idKeyInput::SetCatcher( 0 );
 }
 
 /*
@@ -4042,8 +4043,6 @@ void CL_SetRecommended_f(void)
 	Com_SetRecommended();
 }
 
-
-
 /*
 ================
 CL_RefPrintf
@@ -4057,7 +4056,7 @@ void QDECL CL_RefPrintf(int print_level, const char *fmt, ...)
 	char            msg[MAXPRINTMSG];
 
 	va_start(argptr, fmt);
-	Q_vsnprintf(msg, sizeof(msg), fmt, argptr);
+	idStr::vsnPrintf(msg, sizeof(msg), fmt, argptr);
 	va_end(argptr);
 
 	if(print_level == PRINT_ALL)
@@ -4073,10 +4072,6 @@ void QDECL CL_RefPrintf(int print_level, const char *fmt, ...)
 		Com_DPrintf(S_COLOR_RED "%s", msg);	// red
 	}
 }
-
-
-
-
 
 /*
 ============
@@ -4095,8 +4090,6 @@ qboolean CL_InitRenderer(void)
 	cls.charSetShader = re.RegisterShader("gfx/2d/consolechars");
 
 	cls.useLegacyConsoleFont = qtrue;
-
-
 
     // Register console font specified by cl_consoleFont, if any
     // filehandle is unused but forces FS_FOpenFileRead() to heed purecheck because it does not when filehandle is NULL 
@@ -6337,7 +6330,7 @@ static trans_t *LookupTrans(char *original, char *translated[MAX_LANGUAGES], qbo
 	// see if we want to save out the translation table everytime a string is added
 	if(cl_debugTranslation->integer == 2 && !isLoading)
 	{
-		CL_SaveTransTable("new", qtrue);
+		CL_SaveTransTable("scripts/translation.cfg", qfalse);
 	}
 
 	return newt;

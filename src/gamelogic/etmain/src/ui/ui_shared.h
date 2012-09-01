@@ -38,7 +38,7 @@ Maryland 20850 USA.
 
 #include "../../../../engine/qcommon/q_shared.h"
 #include "../../../../engine/rendererGL/tr_types.h"
-#include "keycodes.h"
+#include "../../../../engine//FrameWork/KeyInput.h"
 
 #include "../../ui/menudef.h"
 

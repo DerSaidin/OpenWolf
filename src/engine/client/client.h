@@ -37,7 +37,6 @@ Maryland 20850 USA.
 #include "../../../src/engine/qcommon/q_shared.h"
 #include "../qcommon/qcommon.h"
 #include "../rendererGL/tr_public.h"
-#include "keys.h"
 #include "../snd_system/snd_public.h"
 #include "../../gamelogic/etmain/src/game/bg_public.h"	// FIXME
 
@@ -630,7 +629,6 @@ typedef enum {
 	NUM_BUTTONS
 } kbuttons_t;
 
-
 void            CL_ClearKeys(void);
 void            CL_InitInput(void);
 void            CL_SendCmd(void);
@@ -644,8 +642,6 @@ void            IN_Help(void);
 void            IN_Salute(void);
 //----(SA)
 float           CL_KeyState(kbutton_t * key);
-int             Key_StringToKeynum( char *str );
-char           *Key_KeynumToString( int keynum ); 
 
 //
 //cl_irc.c
@@ -771,8 +767,6 @@ void            CL_CGameBinaryMessageReceived(const char *buf, int buflen, int s
 //
 void            CL_InitUI(void);
 void            CL_ShutdownUI(void);
-int             Key_GetCatcher(void);
-void            Key_SetCatcher(int catcher);
 void            LAN_LoadCachedServers();
 void            LAN_SaveServersToCache();
 

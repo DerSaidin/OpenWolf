@@ -32,6 +32,8 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
+#include "../idLib/precompiled.h"
+
 #ifdef USE_LOCAL_HEADERS
 #	include "SDL.h"
 #else
@@ -114,7 +116,7 @@ static void IN_PrintKey( const SDL_keysym *keysym, keyNum_t key, qboolean down )
 	if( keysym->mod & KMOD_MODE )     Com_Printf( " KMOD_MODE" );
 	if( keysym->mod & KMOD_RESERVED ) Com_Printf( " KMOD_RESERVED" );
 
-	Com_Printf( " Q:0x%02x(%s)", key, Key_KeynumToString( key ) );
+	Com_Printf( " Q:0x%02x(%s)", key, idKeyInput::KeynumToString( key ) );
 
 	if( keysym->unicode )
 	{
@@ -184,7 +186,7 @@ static qboolean IN_IsConsoleKey( keyNum_t key, const unsigned char character )
 			else
 			{
 				c->type = KEY;
-				c->u.key = (keyNum_t)Key_StringToKeynum( token );
+				c->u.key = (keyNum_t)idKeyInput::StringToKeynum( token );
 
 				// 0 isn't a key
 				if( c->u.key <= 0 )
@@ -351,7 +353,7 @@ static const char *IN_TranslateSDLToQ3Key( SDL_keysym *keysym,
 
 	// Keys that have ASCII names but produce no character are probably
 	// dead keys -- ignore them
-	if( down && strlen( Key_KeynumToString( *key ) ) == 1 &&
+	if( down && strlen( idKeyInput::KeynumToString( *key ) ) == 1 &&
 		keysym->unicode == 0 )
 	{
 		if( in_keyboardDebug->integer )
@@ -924,7 +926,7 @@ static int IN_XBox360AxisToButton(int controllerAxis, int key, float expectedSta
 
 		if(in_xbox360ControllerDebug->integer)
 		{
-			Com_Printf("xbox axis = %i to key = Q:0x%02x(%s), value = %f\n", controllerAxis, key, Key_KeynumToString(key), f);
+			Com_Printf("xbox axis = %i to key = Q:0x%02x(%s), value = %f\n", controllerAxis, key, idKeyInput::KeynumToString(key), f);
 		}
 	}
 
@@ -934,7 +936,7 @@ static int IN_XBox360AxisToButton(int controllerAxis, int key, float expectedSta
 
 		if(in_xbox360ControllerDebug->integer)
 		{
-			Com_Printf("xbox axis = %i to key = Q:0x%02x(%s), value = %f\n", controllerAxis, key, Key_KeynumToString(key), f);
+			Com_Printf("xbox axis = %i to key = Q:0x%02x(%s), value = %f\n", controllerAxis, key, idKeyInput::KeynumToString(key), f);
 		}
 	}
 
@@ -981,7 +983,7 @@ static void IN_Xbox360ControllerMove(void)
 
 				if(in_xbox360ControllerDebug->integer)
 				{
-					Com_Printf("xbox button = %i to key = Q:0x%02x(%s)\n", i, K_XBOX360_A + i, Key_KeynumToString(K_XBOX360_A + i));
+					Com_Printf("xbox button = %i to key = Q:0x%02x(%s)\n", i, K_XBOX360_A + i, idKeyInput::KeynumToString(K_XBOX360_A + i));
 				}
 				stick_state.buttons[i] = pressed;
 			}
@@ -1036,7 +1038,7 @@ static void IN_Xbox360ControllerMove(void)
 			}
 
 			if(hat != SDL_HAT_CENTERED)
-				Com_Printf("xbox hat bits = %i to key = Q:0x%02x(%s)\n", hat, key, Key_KeynumToString(key));
+				Com_Printf("xbox hat bits = %i to key = Q:0x%02x(%s)\n", hat, key, idKeyInput::KeynumToString(key));
 		}
 
 		// release event

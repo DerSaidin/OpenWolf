@@ -1,35 +1,61 @@
 /*
 ===========================================================================
-Copyright (C) 1999-2005 Id Software, Inc.
 
-This file is part of OpenWolf source code.
+OpenWolf GPL Source Code
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
-OpenWolf source code is free software; you can redistribute it
-and/or modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2 of the License,
-or (at your option) any later version.
+This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
-OpenWolf source code is distributed in the hope that it will be
-useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+OpenWolf Source Code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+OpenWolf Source Code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with OpenWolf source code; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+along with OpenWolf Source Code.  If not, see <http://www.gnu.org/licenses/>.
+
+In addition, the OpenWolf Source Code is also subject to certain additional terms. 
+You should have received a copy of these additional terms immediately following the 
+terms and conditions of the GNU General Public License which accompanied the OpenWolf 
+Source Code.  If not, please request a copy in writing from id Software at the address 
+below.
+
+If you have questions concerning this license or the applicable additional terms, you 
+may contact in writing id Software LLC, c/o ZeniMax Media Inc., Suite 120, Rockville, 
+Maryland 20850 USA.
+
 ===========================================================================
 */
 
-//
-#ifndef __KEYCODES_H__
-#define __KEYCODES_H__
+#ifndef __KEYINPUT_H__
+#define __KEYINPUT_H__
+
+/*
+===============================================================================
+
+	Key Input
+
+===============================================================================
+*/
+
+// these are the key numbers that are used by the key system
+// normal keys should be passed as lowercased ascii
+// Some high ascii (> 127) characters that are mapped directly to keys on
+// western european keyboards are inserted in this table so that those keys
+// are bindable (otherwise they get bound as one of the special keys in this
+// table)
 
 //
 // these are the key numbers that should be passed to KeyEvent
 //
 
 // normal keys should be passed as lowercased ascii
-
 typedef enum
 {
 	K_NONE = -1,
@@ -302,4 +328,27 @@ typedef enum
 // distinguished by or'ing in K_CHAR_FLAG (ugly)
 #define	K_CHAR_FLAG		1024
 
-#endif
+class idKeyInput {
+public:
+	static void			Init( void );
+	static qboolean		IsDown( int keynum );
+	static void			CharEvent( int key );
+	static int			GetCatcher( void );
+	static void			GetBindingBuf( int keynum, char *buf, int buflen );
+	static void			KeynumToStringBuf( int keynum, char *buf, int buflen );
+	static int			GetKey( const char *binding );
+	static void			GetBindingByString( const char* binding, int* key1, int* key2 );
+	static char			*GetBinding( int keynum );
+	static void			SetBinding( int keynum, const char *binding );
+	static char			*KeynumToString( int keynum );
+	static int			StringToKeynum( char *str );
+	static qboolean		GetOverstrikeMode( void );
+	static void			SetOverstrikeMode( qboolean state );
+	static void			KeyEvent( int key, int down, unsigned time );
+	static void			AddKeyUpCommands( int key, char *kb );
+	static void			SetCatcher( int catcher );
+	static void			ClearStates( void );
+	static void         Shutdown( void );
+};
+
+#endif /* !__KEYINPUT_H__ */

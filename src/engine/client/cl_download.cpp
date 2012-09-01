@@ -59,6 +59,7 @@ windows; ~/.q3a/mymod/ in linux. Name collision with an existing pk3 file will r
 be left to the user to sort out.
 */
 
+#include "../idLib/precompiled.h"
 #include <curl/curl.h>
 #include "client.h"
 
@@ -168,7 +169,7 @@ static size_t Curl_HeaderCallbackFromNet_f(const char *ptr, size_t size, size_t 
         * Only us-ascii chars are accepted.
         * The actual filename will be validated later, when the transfer is started.
         */
-    if (!strncasecmp(buf, "content-disposition:", 20)) {
+    if (!idStr::Icmpn(buf, "content-disposition:", 20)) {
         const char *c = strstr(buf, "filename=") +9;
         if (c != (const char*)9) {
             const char *e;
@@ -191,7 +192,7 @@ static size_t Curl_HeaderCallbackFromNet_f(const char *ptr, size_t size, size_t 
     }
 
     // catch openwolf headers
-    if (!strncasecmp(buf, "openwolf-motd: ", 17)) {
+    if (!idStr::Icmpn(buf, "openwolf-motd: ", 17)) {
         if (strlen(buf) >= 17+sizeof(motd)) {
             if (dl_showmotd->integer) {
                 Com_Printf("Warning: server motd string too large.\n");
@@ -272,7 +273,7 @@ static int Curl_ProgressCallbackFromNet_f(void *clientp, double dltotal, double 
     // pump events and refresh screen
     Com_EventLoop();
     SCR_UpdateScreen();
-    if (Key_IsDown(K_ESCAPE)) {
+    if (idKeyInput::IsDown(K_ESCAPE)) {
         Q_strncpyz(dl_error, "Download aborted.", sizeof(dl_error));
         return -1;
     }
@@ -293,7 +294,7 @@ static void Curl_RepoDownload_f(void) {
         Com_Printf("Map already exists locally.\n");
         return;
     }
-    if (strncasecmp(dl_source->string, "http://", 7)) {
+    if (idStr::Icmpn(dl_source->string, "http://", 7)) {
         if (strstr(dl_source->string, "://")) {
             Com_Printf("Invalid dl_source.\n");
             return;

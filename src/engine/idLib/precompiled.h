@@ -304,6 +304,7 @@ public:
 //#include "../framework/File.h"
 //#include "../framework/FileSystem.h"
 //#include "../framework/UsercmdGen.h"
+#include "../FrameWork/KeyInput.h"
 //
 //// decls
 //#include "../framework/DeclManager.h"
@@ -314,6 +315,7 @@ public:
 //#include "../framework/DeclParticle.h"
 //#include "../framework/DeclAF.h"
 //#include "../framework/DeclPDA.h"
+#include "../framework/KeyInput.h"
 
 // We have expression parsing and evaluation code in multiple places:
 // materials, sound shaders, and guis. We should unify them.

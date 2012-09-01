@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // sv_bot.c
 
+#include "../idLib/precompiled.h"
 #include "server.h"
 #include "../botlib/botlib.h"
 #include "../botlib/botai.h"
@@ -198,7 +199,7 @@ void QDECL __attribute__((format(printf, 2, 3))) BotImport_Print(int type, char 
 	va_list         ap;
 
 	va_start(ap, fmt);
-	Q_vsnprintf(str, sizeof(str), fmt, ap);
+	idStr::vsnPrintf(str, sizeof(str), fmt, ap);
 	va_end(ap);
 
 	switch (type) {

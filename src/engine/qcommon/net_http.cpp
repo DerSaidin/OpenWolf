@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ===========================================================================
 */
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "qcommon.h"
 
@@ -358,7 +359,7 @@ void HTTP_PostUrl( const char * url, HTTP_response response, void * notifyData, 
 	if ( fmt ) {
 		va_list arglist;
 		va_start(arglist, fmt);
-		vsnprintf( task->postfields, sizeof(task->postfields), fmt, arglist );
+		idStr::vsnPrintf( task->postfields, sizeof(task->postfields), fmt, arglist );
 		va_end(arglist);
 	} else
 		task->postfields[ 0 ] = '\0';

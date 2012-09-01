@@ -953,18 +953,17 @@ typedef struct
 	char            buffer[MAX_EDIT_LINE];
 } field_t;
 
+
 void            Field_Clear(field_t * edit);
 void            Field_Set(field_t * edit, const char *text);
-void Field_WordDelete( field_t *edit );
-void Field_AutoComplete( field_t *edit, const char *prompt );
-void Field_CompleteKeyname( void );
-void Field_CompleteCgame( int argNum );
-void Field_CompleteFilename( const char *dir,
-		const char *ext, qboolean stripExt );
-void Field_CompleteAlias( void );
-void Field_CompleteDelay( void );
-void Field_CompleteCommand( char *cmd,
-		qboolean doCommands, qboolean doCvars );
+void			Field_WordDelete( field_t *edit );
+void			Field_AutoComplete( field_t *edit, const char *prompt );
+void			Field_CompleteKeyname( void );
+void			Field_CompleteCgame( int argNum );
+void			Field_CompleteFilename( const char *dir, const char *ext, qboolean stripExt );
+void			Field_CompleteAlias( void );
+void			Field_CompleteDelay( void );
+void			Field_CompleteCommand( char *cmd, qboolean doCommands, qboolean doCvars );
 
 /*
 ==============================================================
@@ -977,8 +976,17 @@ MISC
 // centralizing the declarations for cl_cdkey
 // (old code causing buffer overflows)
 extern char     cl_cdkey[34];
-void            Com_AppendCDKey(const char *filename);
-void            Com_ReadCDKey(const char *filename);
+
+extern qboolean key_overstrikeMode;
+//extern idKey   *keys;
+
+extern field_t  g_consoleField;
+extern field_t  chatField;
+extern int      anykeydown;
+extern qboolean chat_team;
+extern qboolean chat_buddy;
+// Dushan
+extern qboolean chat_irc;
 
 typedef struct gameInfo_s
 {
@@ -1203,20 +1211,12 @@ void            CL_Disconnect(qboolean showMainMenu);
 void            CL_Shutdown(void);
 void            CL_Frame(int msec);
 qboolean        CL_GameCommand(void);
-void            CL_KeyEvent(int key, int down, unsigned time);
-
-void            CL_CharEvent(int key);
 
 // char events are for field typing, not game control
-
 void            CL_MouseEvent(int dx, int dy, int time);
-
 void            CL_JoystickEvent(int axis, int value, int time);
-
 void            CL_PacketEvent(netadr_t from, msg_t * msg);
-
 void            CL_ConsolePrint(char *text);
-
 void            CL_MapLoading(void);
 
 // do a screen update before starting to load a map

@@ -32,6 +32,8 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
+#include "../idLib/precompiled.h"
+
 // Dushan
 #include <CPUInfo.h>
 // the CPUInfo.h implemntation of lengthof is unsafe, so use the one
@@ -425,7 +427,7 @@ void Sys_WriteDump( const char *fmt, ... ) {
 		*/
 
 		va_start( vargs, fmt );
-		vsnprintf( msg, sizeof( msg ) - 1, fmt, vargs );
+		idStr::vsnPrintf( msg, sizeof( msg ) - 1, fmt, vargs );
 		va_end( vargs );
 
 		msg[sizeof( msg ) - 1] = 0; //ensure null termination
@@ -463,7 +465,7 @@ void Sys_Error( const char *error, ... ) {
 #endif
 
 	va_start (argptr,error);
-	Q_vsnprintf (string, sizeof(string), error, argptr);
+	idStr::vsnPrintf (string, sizeof(string), error, argptr);
 	va_end (argptr);
 
 #if defined (_WIN32) && !defined (_DEBUG)
@@ -511,7 +513,7 @@ void __attribute__((format(printf, 1, 2))) Sys_Warn( char *warning, ... ) {
 	char    string[1024];
 
 	va_start (argptr,warning);
-	Q_vsnprintf (string, sizeof(string), warning, argptr);
+	idStr::vsnPrintf (string, sizeof(string), warning, argptr);
 	va_end (argptr);
 
 	CON_Print( va( "Warning: %s", string ) );

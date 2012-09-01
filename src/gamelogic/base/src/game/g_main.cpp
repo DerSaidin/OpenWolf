@@ -268,7 +268,7 @@ void QDECL G_Printf( const char *fmt, ... )
   char    text[ 1024 ];
 
   va_start( argptr, fmt );
-  Q_vsnprintf(text, sizeof(text), fmt, argptr);
+  vsnprintf(text, sizeof(text), fmt, argptr);
   va_end( argptr );
 
   trap_Print( text );
@@ -280,7 +280,7 @@ void QDECL G_Error( const char *fmt, ... )
   char    text[ 1024 ];
 
   va_start( argptr, fmt );
-  Q_vsnprintf(text, sizeof(text), fmt, argptr);
+  vsnprintf(text, sizeof(text), fmt, argptr);
   va_end( argptr );
 
   trap_Error( text );
@@ -1440,7 +1440,7 @@ void QDECL G_LogPrintf(const char *fmt, ...)
 	l = strlen(string);
 
 	va_start(argptr, fmt);
-	Q_vsnprintf(string + l, sizeof(string) - l, fmt, argptr);
+	vsnprintf(string + l, sizeof(string) - l, fmt, argptr);
 	va_end(argptr);
 
 	if(g_dedicated.integer)
@@ -2124,4 +2124,3 @@ void G_RunFrame( int levelTime )
     trap_Cvar_Set( "g_listEntity", "0" );
   }
 }
-

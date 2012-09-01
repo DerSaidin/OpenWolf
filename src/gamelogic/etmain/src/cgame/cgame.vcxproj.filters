@@ -187,9 +187,6 @@
     <ClInclude Include="..\ui\ui_shared.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ui\keycodes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\game\surfaceflags.h">
       <Filter>Header Files</Filter>
     </ClInclude>

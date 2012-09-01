@@ -114,6 +114,9 @@
     <Filter Include="Source Files\CM\Header Files">
       <UniqueIdentifier>{e2c117eb-eda9-4eb1-9e5e-a11392c6bcac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\FrameWork">
+      <UniqueIdentifier>{30518ec2-5b89-4b1e-888f-0bfecde49fe4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libs\libnewton\include\dMath\dVector.cpp">
@@ -362,9 +365,6 @@
     <ClCompile Include="client\cl_irc.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
-    <ClCompile Include="client\cl_keys.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
     <ClCompile Include="client\cl_main.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
@@ -533,6 +533,9 @@
     <ClCompile Include="qcommon\cm_patch.cpp">
       <Filter>Source Files\Collision Model</Filter>
     </ClCompile>
+    <ClCompile Include="FrameWork\KeyInput.cpp">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\etmain\src\game\bg_public.h">
@@ -551,9 +554,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\cm_public.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="client\keys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\qcommon.h">
@@ -599,9 +599,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="qcommon\htable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\etmain\src\ui\keycodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sys\sys_win32.h">
@@ -693,6 +690,9 @@
     </ClInclude>
     <ClInclude Include="cm\CollisionModel_local.h">
       <Filter>Source Files\CM\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\KeyInput.h">
+      <Filter>Source Files\FrameWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

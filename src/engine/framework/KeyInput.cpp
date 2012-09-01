@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -32,34 +33,23 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
-#include "client.h"
+#include "../idLib/precompiled.h"
+#include "../client/client.h"
 
 /*
-
 key up events are sent even if in console mode
-
 */
 
 field_t g_consoleField;
 field_t chatField;
 qboolean chat_team;
 qboolean chat_buddy;
-//Dushan
 qboolean chat_irc;
-
-qboolean key_overstrikeMode;
-
-int anykeydown;
-qkey_t keys[MAX_KEYS];
-
 
 typedef struct {
 	char    *name;
-	int keynum;
+	int		keynum;
 } keyname_t;
-
-qboolean UI_checkKeyExec( int key );        // NERVE - SMF
-qboolean CL_CGameCheckKeyExec( int key );
 
 // names not in this list can either be lowercase ascii, or '0xnn' hex sequences
 keyname_t keynames[] =
@@ -323,6 +313,24 @@ keyname_t keynames[] =
 	{NULL,0}
 };
 
+qboolean key_overstrikeMode = qfalse;
+int anykeydown;
+
+class idKey {
+public:
+	idKey( void ) { 
+		down = qfalse; 
+		repeats = 0;
+		binding = 0;
+		hash = 0;
+	}
+	qboolean	down;
+	int			repeats; // if > 1, it is autorepeating
+	char		*binding;
+	int			hash;
+};
+
+idKey *keys = NULL;
 
 /*
 =============================================================================
@@ -332,99 +340,7 @@ EDIT FIELDS
 =============================================================================
 */
 
-
-/*
-===================
-Field_Draw
-
-Handles horizontal scrolling and cursor blinking
-x, y, and width are in pixels
-===================
-*/
-void Field_VariableSizeDraw( field_t *edit, int x, int y, int size, qboolean showCursor,
-		qboolean noColorEscape, float alpha ) {
-	int		len;
-	int		drawLen;
-	int		prestep;
-	int		cursorChar;
-	char	str[MAX_STRING_CHARS];
-	int		i;
-
-	drawLen = edit->widthInChars - 1; // - 1 so there is always a space for the cursor
-	len = strlen( edit->buffer );
-
-	// guarantee that cursor will be visible
-	if ( len <= drawLen ) {
-		prestep = 0;
-	} else {
-		if ( edit->scroll + drawLen > len ) {
-			edit->scroll = len - drawLen;
-			if ( edit->scroll < 0 ) {
-				edit->scroll = 0;
-			}
-		}
-		prestep = edit->scroll;
-	}
-
-	if ( prestep + drawLen > len ) {
-		drawLen = len - prestep;
-	}
-
-	// extract <drawLen> characters from the field at <prestep>
-	if ( drawLen >= MAX_STRING_CHARS ) {
-		Com_Error( ERR_DROP, "drawLen >= MAX_STRING_CHARS" );
-	}
-
-	Com_Memcpy( str, edit->buffer + prestep, drawLen );
-	str[ drawLen ] = 0;
-
-	// draw it
-	if ( size == SMALLCHAR_WIDTH ) {
-		float	color[4];
-
-		color[0] = color[1] = color[2] = 1.0;
-		color[3] = alpha;
-		SCR_DrawSmallStringExt( x, y, str, color, qfalse, noColorEscape );
-	} else {
-		// draw big string with drop shadow
-		SCR_DrawBigString( x, y, str, 1.0, noColorEscape );
-	}
-
-	// draw the cursor
-	if ( showCursor ) {
-		if ( (int)( cls.realtime >> 8 ) & 1 ) {
-			return;		// off blink
-		}
-
-		if ( key_overstrikeMode ) {
-			cursorChar = 11;
-		} else {
-			cursorChar = 10;
-		}
-
-		i = drawLen - strlen( str );
-
-		if ( size == SMALLCHAR_WIDTH ) {
-            float xlocation = x + SCR_ConsoleFontStringWidth( str + prestep, edit->cursor - prestep) ;
-            SCR_DrawConsoleFontChar( xlocation , y, cursorChar );
-		} else {
-			str[0] = cursorChar;
-			str[1] = 0;
-			SCR_DrawBigString( x + ( edit->cursor - prestep - i ) * size, y, str, 1.0, qfalse );
-
-		}
-	}
-}
-
-void Field_Draw( field_t *edit, int x, int y, qboolean showCursor, qboolean noColorEscape, float alpha ) 
-{
-	Field_VariableSizeDraw( edit, x, y, SMALLCHAR_WIDTH, showCursor, noColorEscape, alpha );
-}
-
-void Field_BigDraw( field_t *edit, int x, int y, qboolean showCursor, qboolean noColorEscape ) 
-{
-	Field_VariableSizeDraw( edit, x, y, BIGCHAR_WIDTH, showCursor, noColorEscape, 1.0f );
-}
+void Field_CharEvent( field_t *edit, int ch );
 
 /*
 ================
@@ -617,6 +533,31 @@ static void CompleteCommand( void ) {
 		Field_AutoComplete( edit, "]" );
 }
 
+qboolean CL_CGameCheckKeyExec(int key)
+{
+	if(cgvm)
+	{
+		return (qboolean)VM_Call(cgvm, CG_CHECKEXECKEY, key);
+	}
+	else
+	{
+		return qfalse;
+	}
+}
+
+qboolean UI_checkKeyExec(int key)
+{
+	if(uivm)
+	{
+		return (qboolean)(VM_Call(uivm, UI_CHECKEXECKEY, key));
+	}
+	else
+	{
+		return qfalse;
+	}
+}
+
+
 /*
 ====================
 Console_Key
@@ -624,7 +565,8 @@ Console_Key
 Handles history and console scrollback
 ====================
 */
-void Console_Key( int key ) {
+void Console_Key( int key )
+{
 	// ctrl-L clears screen
 	if ( key == 'l' && keys[K_CTRL].down ) {
 		Cbuf_AddText( "clear\n" );
@@ -808,22 +750,24 @@ void Message_Key( int key ) {
 //============================================================================
 
 
-qboolean Key_GetOverstrikeMode( void ) {
+qboolean idKeyInput::GetOverstrikeMode( void )
+{
 	return key_overstrikeMode;
 }
 
 
-void Key_SetOverstrikeMode( qboolean state ) {
+void idKeyInput::SetOverstrikeMode( qboolean state )
+{
 	key_overstrikeMode = state;
 }
 
 
 /*
 ===================
-Key_IsDown
+idKeyInput::IsDown
 ===================
 */
-qboolean Key_IsDown( int keynum ) {
+qboolean idKeyInput::IsDown( int keynum ) {
 	if ( keynum < 0 || keynum >= MAX_KEYS ) {
 		return qfalse;
 	}
@@ -845,7 +789,8 @@ the K_* names are matched up.
 to be configured even if they don't have defined names.
 ===================
 */
-int Key_StringToKeynum( char *str ) {
+int idKeyInput::StringToKeynum( char *str )
+{
 	keyname_t   *kn;
 
 	if ( !str || !str[0] ) {
@@ -875,13 +820,13 @@ int Key_StringToKeynum( char *str ) {
 
 /*
 ===================
-Key_KeynumToString
+idKeyInput::KeynumToString
 
 Returns a string (either a single ascii char, a K_* name, or a 0x11 hex string) for the
 given keynum.
 ===================
 */
-char *Key_KeynumToString( int keynum ) {
+char *idKeyInput::KeynumToString( int keynum ) {
 	keyname_t   *kn;
 	static char tinystr[5];
 	int i, j;
@@ -946,8 +891,8 @@ static long generateHashValue( const char *fname ) {
 Key_SetBinding
 ===================
 */
-void Key_SetBinding( int keynum, const char *binding ) {
-
+void idKeyInput::SetBinding( int keynum, const char *binding )
+{
 	char *lcbinding;    // fretn - make a copy of our binding lowercase
 						// so name toggle scripts work again: bind x name BzZIfretn?
 						// resulted into bzzifretn?
@@ -976,10 +921,10 @@ void Key_SetBinding( int keynum, const char *binding ) {
 
 /*
 ===================
-Key_GetBinding
+idKeyInput::GetBinding
 ===================
 */
-char *Key_GetBinding( int keynum ) {
+char *idKeyInput::GetBinding( int keynum ) {
 	if ( keynum < 0 || keynum >= MAX_KEYS ) {
 		return "";
 	}
@@ -988,7 +933,7 @@ char *Key_GetBinding( int keynum ) {
 }
 
 // binding MUST be lower case
-void Key_GetBindingByString( const char* binding, int* key1, int* key2 ) {
+void idKeyInput::GetBindingByString( const char* binding, int* key1, int* key2 ) {
 	int i;
 	int hash = generateHashValue( binding );
 
@@ -1009,11 +954,10 @@ void Key_GetBindingByString( const char* binding, int* key1, int* key2 ) {
 
 /*
 ===================
-Key_GetKey
+idKeyInput::GetKey
 ===================
 */
-
-int Key_GetKey( const char *binding ) {
+int idKeyInput::GetKey( const char *binding ) {
 	int i;
 
 	if ( binding ) {
@@ -1039,13 +983,13 @@ void Key_Unbind_f( void ) {
 		return;
 	}
 
-	b = Key_StringToKeynum( Cmd_Argv( 1 ) );
+	b = idKeyInput::StringToKeynum( Cmd_Argv( 1 ) );
 	if ( b == -1 ) {
 		Com_Printf( "\"%s\" isn't a valid key\n", Cmd_Argv( 1 ) );
 		return;
 	}
 
-	Key_SetBinding( b, "" );
+	idKeyInput::SetBinding( b, "" );
 }
 
 /*
@@ -1058,7 +1002,7 @@ void Key_Unbindall_f( void ) {
 
 	for (i=0 ; i < MAX_KEYS; i++)
 		if ( keys[i].binding ) {
-			Key_SetBinding( i, "" );
+			idKeyInput::SetBinding( i, "" );
 		}
 }
 
@@ -1077,7 +1021,7 @@ void Key_Bind_f( void ) {
 		Com_Printf( "bind <key> [command] : attach a command to a key\n" );
 		return;
 	}
-	b = Key_StringToKeynum( Cmd_Argv( 1 ) );
+	b = idKeyInput::StringToKeynum( Cmd_Argv( 1 ) );
 	if ( b == -1 ) {
 		Com_Printf( "\"%s\" isn't a valid key\n", Cmd_Argv( 1 ) );
 		return;
@@ -1093,7 +1037,7 @@ void Key_Bind_f( void ) {
 	}
 
 	// set to 3rd arg onwards, unquoted from raw
-	Key_SetBinding( b, Com_UnquoteStr( Cmd_Cmd_FromNth( 2 ) ) );
+	idKeyInput::SetBinding( b, Com_UnquoteStr( Cmd_Cmd_FromNth( 2 ) ) );
 }
 
 /*
@@ -1112,13 +1056,13 @@ void Key_EditBind_f( void ) {
 		return;
 	}
 	key = Cmd_Argv (1);
-	b = Key_StringToKeynum (key);
+	b = idKeyInput::StringToKeynum (key);
 	if (b == -1) {
 		Com_Printf( "\"%s\" isn't a valid key\n", key );
 		return;
 	}
 
-	binding = Key_GetBinding (b);
+	binding = idKeyInput::GetBinding (b);
 
 	keyq = (char*)Com_QuoteStr (key); // <- static buffer
 	buf = (char*)malloc (8 + strlen (keyq) + strlen (binding));
@@ -1129,6 +1073,64 @@ void Key_EditBind_f( void ) {
 	free (buf);
 }
 
+/*
+====================
+Key_KeynumToStringBuf
+====================
+*/
+void idKeyInput::KeynumToStringBuf( int keynum, char *buf, int buflen )
+{
+	Q_strncpyz( buf, idKeyInput::KeynumToString( keynum ), buflen );
+}
+
+/*
+====================
+Key_GetBindingBuf
+====================
+*/
+void idKeyInput::GetBindingBuf( int keynum, char *buf, int buflen )
+{
+	char           *value;
+
+	value = idKeyInput::GetBinding(keynum);
+	if(value)
+	{
+		Q_strncpyz(buf, value, buflen);
+	}
+	else
+	{
+		*buf = 0;
+	}
+}
+
+/*
+====================
+idKeyInput::GetCatcher
+====================
+*/
+int idKeyInput::GetCatcher( void )
+{
+	return cls.keyCatchers;
+}
+
+/*
+====================
+Ket_SetCatcher
+====================
+*/
+void idKeyInput::SetCatcher( int catcher )
+{
+	// NERVE - SMF - console overrides everything
+	if(cls.keyCatchers & KEYCATCH_CONSOLE)
+	{
+		cls.keyCatchers = catcher | KEYCATCH_CONSOLE;
+	}
+	else
+	{
+		cls.keyCatchers = catcher;
+	}
+
+}
 
 /*
 ============
@@ -1145,7 +1147,7 @@ void Key_WriteBindings( fileHandle_t f ) {
 	for (i=0 ; i<MAX_KEYS ; i++) {
 		if ( keys[i].binding && keys[i].binding[0] ) {
 			// quote the string if it contains ; but no "
-			FS_Printf (f, "bind %s %s\n", Key_KeynumToString(i), Com_QuoteStr(keys[i].binding) );
+			FS_Printf (f, "bind %s %s\n", idKeyInput::KeynumToString(i), Com_QuoteStr(keys[i].binding) );
 		}
 
 	}
@@ -1163,7 +1165,7 @@ void Key_Bindlist_f( void ) {
 
 	for ( i = 0 ; i < MAX_KEYS ; i++ ) {
 		if ( keys[i].binding && keys[i].binding[0] ) {
-			Com_Printf( "%s = %s\n", Key_KeynumToString(i), keys[i].binding );
+			Com_Printf( "%s = %s\n", idKeyInput::KeynumToString(i), keys[i].binding );
 		}
 	}
 }
@@ -1237,10 +1239,13 @@ static void Key_CompleteEditbind( char *args, int argNum ) {
 
 /*
 ===================
-CL_InitKeyCommands
+idKeyInput::Init
 ===================
 */
-void CL_InitKeyCommands( void ) {
+void idKeyInput::Init( void ) {
+
+	keys = new idKey[MAX_KEYS];
+
 	// register our functions
 	Cmd_AddCommand( "bind",Key_Bind_f );
 	Cmd_SetCommandCompletionFunc( "bind", Key_CompleteBind );
@@ -1257,7 +1262,8 @@ void CL_InitKeyCommands( void ) {
 CL_AddKeyUpCommands
 ===================
 */
-void CL_AddKeyUpCommands( int key, char *kb ) {
+void idKeyInput::AddKeyUpCommands( int key, char *kb )
+{
 	int i;
 	char button[1024], *buttonPtr;
 	char	cmd[1024];
@@ -1299,7 +1305,7 @@ void CL_AddKeyUpCommands( int key, char *kb ) {
 
 /*
 ===================
-CL_KeyEvent
+idKeyInput::KeyEvent
 
 Called by the system for both key up and key down events
 ===================
@@ -1308,7 +1314,8 @@ Called by the system for both key up and key down events
 // fretn
 qboolean consoleButtonWasPressed = qfalse;
 
-void CL_KeyEvent( int key, int down, unsigned time ) {
+void idKeyInput::KeyEvent( int key, int down, unsigned time )
+{
 	char    *kb;
 	char cmd[1024];
 	qboolean bypassMenu = qfalse;       // NERVE - SMF
@@ -1358,7 +1365,7 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 	if (key == K_ENTER) {
 		if (down) {
 			if (keys[K_ALT].down) {
-				Key_ClearStates();
+				idKeyInput::ClearStates();
 				if (Cvar_VariableValue("r_fullscreen") == 0) {
 					Com_Printf("Switching to fullscreen rendering\n");
 					Cvar_Set("r_fullscreen", "1");
@@ -1376,15 +1383,15 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 	if ( down && keys[ K_COMMAND ].down ) {
 		
 		if ( key == 'f' ) {
-			Key_ClearStates();
+			idKeyInput::ClearStates();
 			Cbuf_ExecuteText( EXEC_APPEND, "toggle r_fullscreen\nvid_restart\n" );
 			return;
 		} else if ( key == 'q' ) {
-			Key_ClearStates();
+			idKeyInput::ClearStates();
 			Cbuf_ExecuteText( EXEC_APPEND, "quit\n" );
 			return;
 		} else if ( key == K_TAB ) {
-			Key_ClearStates();
+			idKeyInput::ClearStates();
 			Cvar_SetValue( "r_minimize", 1 );
 			return;
 		}
@@ -1392,7 +1399,7 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 #endif
 	if( cl_altTab->integer && keys[K_ALT].down && key == K_TAB )
 	{
-		Key_ClearStates();
+		idKeyInput::ClearStates();
 		Cvar_SetValue( "r_minimize", 1 );
 		return;
 	}
@@ -1404,7 +1411,7 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 			return;
 		}
 		Con_ToggleConsole_f();
-		Key_ClearStates();
+		idKeyInput::ClearStates();
 		return;
 	}
 
@@ -1528,7 +1535,7 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 	if (!down) {
 		kb = keys[key].binding;
 
-		CL_AddKeyUpCommands( key, kb );
+		idKeyInput::AddKeyUpCommands( key, kb );
 
 		if ( cls.keyCatchers & (KEYCATCH_UI | KEYCATCH_BUG) && uivm ) {
 			VM_Call( uivm, UI_KEY_EVENT, key, down );
@@ -1573,8 +1580,7 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 		kb = keys[key].binding;
 		if ( !kb ) {
 			if ( key >= 200 ) {
-				Com_Printf( "%s is unbound, use controls menu to set.\n"
-							, Key_KeynumToString( key ) );
+				Com_Printf( "%s is unbound, use controls menu to set.\n", idKeyInput::KeynumToString( key ) );
 			}
 		} else if ( kb[0] == '+' ) {
 			// button commands add keynum and time as parms so that multiple
@@ -1592,12 +1598,12 @@ void CL_KeyEvent( int key, int down, unsigned time ) {
 
 /*
 ===================
-CL_CharEvent
+idKeyInput::CharEvent
 
 Normal keyboard characters, already shifted / capslocked / etc
 ===================
 */
-void CL_CharEvent( int key ) {
+void idKeyInput::CharEvent( int key ) {
 	// the console key should never be used as a char
 	// ydnar: added uk equivalent of shift+`
 	// the RIGHT way to do this would be to have certain keys disable the equivalent SE_CHAR event
@@ -1628,20 +1634,30 @@ void CL_CharEvent( int key ) {
 
 /*
 ===================
-Key_ClearStates
+idKeyInput::ClearStates
 ===================
 */
-void Key_ClearStates( void ) {
+void idKeyInput::ClearStates( void ) {
 	int i;
 
 	anykeydown = 0;
 
 	for ( i = 0 ; i < MAX_KEYS ; i++ ) {
 		if ( keys[i].down ) {
-			CL_KeyEvent( i, qfalse, 0 );
+			idKeyInput::KeyEvent( i, qfalse, 0 );
 
 		}
 		keys[i].down = (qboolean)0;
 		keys[i].repeats = 0;
 	}
+}
+
+/*
+===================
+idKeyInput::Shutdown
+===================
+*/
+void idKeyInput::Shutdown( void ) {
+	delete [] keys;
+	keys = NULL;
 }

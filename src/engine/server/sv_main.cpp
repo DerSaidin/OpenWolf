@@ -32,6 +32,7 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
+#include "../idLib/precompiled.h"
 #include "server.h"
 
 #ifdef USE_VOIP
@@ -204,7 +205,7 @@ void QDECL SV_SendServerCommand(client_t * cl, const char *fmt, ...) {
 	int             j;
 
 	va_start(argptr, fmt);
-	Q_vsnprintf((char *)message, sizeof(message), fmt, argptr);
+	idStr::vsnPrintf((char *)message, sizeof(message), fmt, argptr);
 	va_end(argptr);
 
 	// do not forward server command messages that would be too big to clients

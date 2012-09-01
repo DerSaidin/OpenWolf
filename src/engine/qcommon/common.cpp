@@ -280,41 +280,6 @@ void QDECL Com_Printf(const char *fmt, ...)
 	return;
 }
 
-void QDECL Com_FatalError( const char *error, ... ) {
-	va_list argptr;
-	char msg[8192];
-
-	va_start( argptr,error );
-	vsprintf( msg,error,argptr );
-	va_end( argptr );
-
-	Com_Error(ERR_FATAL, msg);
-}
-
-void QDECL Com_DropError( const char *error, ... ) {
-	va_list argptr;
-	char msg[8192];
-
-	va_start( argptr,error );
-	vsprintf( msg,error,argptr );
-	va_end( argptr );
-
-	Com_Error(ERR_DROP, msg);
-}
-
-void QDECL Com_Warning( const char *error, ... ) {
-	va_list argptr;
-	char msg[8192];
-
-	va_start( argptr,error );
-	vsprintf( msg,error,argptr );
-	va_end( argptr );
-
-	Com_Printf(msg);
-}
-
-
-
 /*
 ================
 Com_DPrintf
@@ -2661,13 +2626,12 @@ int Com_EventLoop(void)
 		switch (ev.evType)
 		{
 			default:
-				// bk001129 - was ev.evTime
 				Com_Error(ERR_FATAL, "Com_EventLoop: bad event type %i", ev.evType);
 				break;
 			case SE_NONE:
 				break;
 			case SE_KEY:
-				CL_KeyEvent(ev.evValue, ev.evValue2, ev.evTime);
+				idKeyInput::KeyEvent(ev.evValue, ev.evValue2, ev.evTime);
 				break;
 			case SE_CHAR:
 #ifndef DEDICATED
@@ -2682,7 +2646,7 @@ int Com_EventLoop(void)
 					break;
 				}
 #endif
-				CL_CharEvent(ev.evValue);
+				idKeyInput::CharEvent(ev.evValue);
 				break;
 			case SE_MOUSE:
 				CL_MouseEvent(ev.evValue, ev.evValue2, ev.evTime);
@@ -3134,7 +3098,7 @@ void Com_Init(char *commandLine)
 	com_pid = Cvar_Get("com_pid", s, CVAR_ROM);
 
 	// done early so bind command exists
-	CL_InitKeyCommands();
+	idKeyInput::Init();
 
 	FS_InitFilesystem();
 
@@ -3853,6 +3817,9 @@ void Com_Shutdown(qboolean badProfile)
 #if defined(USE_HTTP)
 	Net_HTTP_Kill();
 #endif
+
+	// shut down the key system
+	idKeyInput::Shutdown();
 
 	// shutdown idLib
 	idLib::ShutDown();

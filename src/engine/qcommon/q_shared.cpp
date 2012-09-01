@@ -721,7 +721,7 @@ void COM_ParseError( char *format, ... ) {
 	static char string[4096];
 
 	va_start( argptr, format );
-	Q_vsnprintf( string, sizeof( string ), format, argptr );
+	vsnprintf( string, sizeof( string ), format, argptr );
 	va_end( argptr );
 
 	Com_Printf(S_COLOR_RED "ERROR: %s, line %d: %s\n", com_parsename, com_lines, string);
@@ -732,11 +732,13 @@ void COM_ParseWarning( char *format, ... ) {
 	static char string[4096];
 
 	va_start( argptr, format );
-	Q_vsnprintf( string, sizeof( string ), format, argptr );
+	vsnprintf( string, sizeof( string ), format, argptr );
 	va_end( argptr );
 
 	Com_Printf( "WARNING: %s, line %d: %s\n", com_parsename, com_lines, string );
 }
+
+
 
 /*
 ==============
@@ -2061,7 +2063,7 @@ int QDECL Com_sprintf(char *dest, int size, const char *fmt, ...) {
 	va_list argptr;
 
 	va_start( argptr,fmt );
-	len = Q_vsnprintf( dest, size, fmt, argptr );
+	len = vsnprintf( dest, size, fmt, argptr );
 	va_end( argptr );
 
 	// Dushan
@@ -2677,5 +2679,39 @@ float QDECL fatof( const char *string )
 
 	return value * sign;
 }
+
+void QDECL Com_FatalError( const char *error, ... ) {
+	va_list argptr;
+	char msg[8192];
+
+	va_start( argptr,error );
+	vsprintf( msg,error,argptr );
+	va_end( argptr );
+
+	Com_Error(ERR_FATAL, msg);
+}
+
+void QDECL Com_DropError( const char *error, ... ) {
+	va_list argptr;
+	char msg[8192];
+
+	va_start( argptr,error );
+	vsprintf( msg,error,argptr );
+	va_end( argptr );
+
+	Com_Error(ERR_DROP, msg);
+}
+
+void QDECL Com_Warning( const char *error, ... ) {
+	va_list argptr;
+	char msg[8192];
+
+	va_start( argptr,error );
+	vsprintf( msg,error,argptr );
+	va_end( argptr );
+
+	Com_Printf(msg);
+}
+
 
 //====================================================================

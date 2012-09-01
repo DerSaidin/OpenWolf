@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // cl.input.c  -- builds an intended movement command to send to the server
 
+#include "../idLib/precompiled.h"
 #include "client.h"
 
 unsigned        frame_msec;
@@ -1050,8 +1051,7 @@ CL_CmdButtons
 */
 void CL_CmdButtons(usercmd_t * cmd)
 {
-	int             i;
-
+	int i;
 	//
 	// figure button bits
 	// send a button bit even if the key was pressed and released in

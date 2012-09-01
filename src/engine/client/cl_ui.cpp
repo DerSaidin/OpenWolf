@@ -32,7 +32,7 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
-
+#include "../idLib/precompiled.h"
 #include "client.h"
 
 #include "../botlib/botlib.h"
@@ -805,66 +805,6 @@ static void GetClipboardData(char *buf, int buflen)
 
 /*
 ====================
-Key_KeynumToStringBuf
-====================
-*/
-void Key_KeynumToStringBuf(int keynum, char *buf, int buflen)
-{
-	Q_strncpyz( buf, Key_KeynumToString( keynum ), buflen );
-}
-
-/*
-====================
-Key_GetBindingBuf
-====================
-*/
-void Key_GetBindingBuf(int keynum, char *buf, int buflen)
-{
-	char           *value;
-
-	value = Key_GetBinding(keynum);
-	if(value)
-	{
-		Q_strncpyz(buf, value, buflen);
-	}
-	else
-	{
-		*buf = 0;
-	}
-}
-
-/*
-====================
-Key_GetCatcher
-====================
-*/
-int Key_GetCatcher(void)
-{
-	return cls.keyCatchers;
-}
-
-/*
-====================
-Ket_SetCatcher
-====================
-*/
-void Key_SetCatcher(int catcher)
-{
-	// NERVE - SMF - console overrides everything
-	if(cls.keyCatchers & KEYCATCH_CONSOLE)
-	{
-		cls.keyCatchers = catcher | KEYCATCH_CONSOLE;
-	}
-	else
-	{
-		cls.keyCatchers = catcher;
-	}
-
-}
-
-
-/*
-====================
 CLUI_GetCDKey
 ====================
 */
@@ -1113,31 +1053,31 @@ intptr_t CL_UISystemCalls(intptr_t * args) {
 			//S_FadeAllSounds(VMF(1), args[2], args[3]);
 			return 0;
 		case UI_KEY_KEYNUMTOSTRINGBUF:
-			Key_KeynumToStringBuf(args[1], (char*)VMA(2), args[3]);
+			idKeyInput::KeynumToStringBuf(args[1], (char*)VMA(2), args[3]);
 			return 0;
 		case UI_KEY_GETBINDINGBUF:
-			Key_GetBindingBuf(args[1], (char*)VMA(2), args[3]);
+			idKeyInput::GetBindingBuf(args[1], (char*)VMA(2), args[3]);
 			return 0;
 		case UI_KEY_SETBINDING:
-			Key_SetBinding(args[1], (char*)VMA(2));
+			idKeyInput::SetBinding(args[1], (char*)VMA(2));
 			return 0;
 		case UI_KEY_BINDINGTOKEYS:
-			Key_GetBindingByString((char*)VMA(1), (int*)VMA(2), (int*)VMA(3));
+			idKeyInput::GetBindingByString((char*)VMA(1), (int*)VMA(2), (int*)VMA(3));
 			return 0;
 		case UI_KEY_ISDOWN:
-			return Key_IsDown(args[1]);
+			return idKeyInput::IsDown(args[1]);
 		case UI_KEY_GETOVERSTRIKEMODE:
-			return Key_GetOverstrikeMode();
+			return idKeyInput::GetOverstrikeMode();
 		case UI_KEY_SETOVERSTRIKEMODE:
-			Key_SetOverstrikeMode((qboolean)args[1]);
+			idKeyInput::SetOverstrikeMode((qboolean)args[1]);
 			return 0;
 		case UI_KEY_CLEARSTATES:
-			Key_ClearStates();
+			idKeyInput::ClearStates();
 			return 0;
 		case UI_KEY_GETCATCHER:
-			return Key_GetCatcher();
+			return idKeyInput::GetCatcher();
 		case UI_KEY_SETCATCHER:
-			Key_SetCatcher(args[1]);
+			idKeyInput::SetCatcher(args[1]);
 			return 0;
 		case UI_GETCLIPBOARDDATA:
 			GetClipboardData((char*)VMA(1), args[2]);
@@ -1391,18 +1331,6 @@ qboolean UI_usesUniqueCDKey()
 	if(uivm)
 	{
 		return (qboolean)(VM_Call(uivm, UI_HASUNIQUECDKEY) == qtrue);
-	}
-	else
-	{
-		return qfalse;
-	}
-}
-
-qboolean UI_checkKeyExec(int key)
-{
-	if(uivm)
-	{
-		return (qboolean)(VM_Call(uivm, UI_CHECKEXECKEY, key));
 	}
 	else
 	{

@@ -28,6 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #include "config.h"
 #endif
 
+#include "../idLib/precompiled.h"
+
 #include "client.h"
 #include "../qcommon/htable.h"
 
@@ -960,7 +962,7 @@ static __attribute__((format(printf, 1, 2))) int IRC_Send( const char * format ,
 
 	// Format message
 	va_start( args , format );
-	len = vsnprintf( buffer , IRC_SEND_BUF_SIZE - 1 , format , args );
+	len = idStr::vsnPrintf( buffer , IRC_SEND_BUF_SIZE - 1 , format , args );
 	va_end( args );
 	if ( len >= IRC_SEND_BUF_SIZE - 1 ) {
 		// This is a bug, return w/ a fatal error

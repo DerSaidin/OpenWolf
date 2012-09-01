@@ -34,6 +34,8 @@ Maryland 20850 USA.
 
 // cl_cgame.c  -- client system interaction with client game
 
+#include "../idLib/precompiled.h"
+
 #ifdef _MSC_VER
 #include "../../libs/msinttypes/inttypes.h"
 #else
@@ -55,16 +57,6 @@ extern void     startCamera(int camNum, int time);
 extern qboolean getCameraInfo(int camNum, int time, vec3_t * origin, vec3_t * angles, float *fov);
 
 static void(*completer)(const char *s) = NULL;
-
-// NERVE - SMF
-void            Key_GetBindingBuf(int keynum, char *buf, int buflen);
-void            Key_KeynumToStringBuf(int keynum, char *buf, int buflen);
-
-// -NERVE - SMF
-
-// ydnar: can we put this in a header, pls?
-void            Key_GetBindingByString(const char *binding, int *key1, int *key2);
-
 
 /*
 ====================
@@ -278,19 +270,6 @@ void CL_CgameError(const char *string)
 {
 	Com_Error(ERR_DROP, "%s", string);
 }
-
-qboolean CL_CGameCheckKeyExec(int key)
-{
-	if(cgvm)
-	{
-		return (qboolean)VM_Call(cgvm, CG_CHECKEXECKEY, key);
-	}
-	else
-	{
-		return qfalse;
-	}
-}
-
 
 /*
 =====================
@@ -727,7 +706,7 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 			FS_Read2(VMA(1), args[2], args[3]);
 			return 0;
 		case CG_FS_WRITE:
-			return FS_Write((char*)VMA(1), args[2], args[3]);
+			return FS_Write(VMA(1), args[2], args[3]);
 		case CG_FS_FCLOSEFILE:
 			FS_FCloseFile(args[1]);
 			return 0;
@@ -977,18 +956,18 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 		case CG_MEMORY_REMAINING:
 			return Hunk_MemoryRemaining();
 		case CG_KEY_ISDOWN:
-			return Key_IsDown(args[1]);
+			return idKeyInput::IsDown(args[1]);
 		case CG_KEY_GETCATCHER:
-			return Key_GetCatcher();
+			return idKeyInput::GetCatcher();
 		case CG_KEY_SETCATCHER:
-			Key_SetCatcher(args[1]);
+			idKeyInput::SetCatcher(args[1]);
 			return 0;
 		case CG_KEY_GETKEY:
-			return Key_GetKey((char*)VMA(1));
+			return idKeyInput::GetKey((char*)VMA(1));
 		case CG_KEY_GETOVERSTRIKEMODE:
-			return Key_GetOverstrikeMode();
+			return idKeyInput::GetOverstrikeMode();
 		case CG_KEY_SETOVERSTRIKEMODE:
-			Key_SetOverstrikeMode((qboolean)args[1]);
+			idKeyInput::SetOverstrikeMode((qboolean)args[1]);
 			return 0;
 		case CG_MEMSET:
 			// we cannot return server-address to QVM !
@@ -1069,10 +1048,10 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 			//startCamera(args[1], args[2]);
 			return 0;
 		case CG_STOPCAMERA:
-				//if(args[1] == 0)
-				//{					// CAM_PRIMARY
-				//	cl.cameraMode = false;
-				//}
+			//if(args[1] == 0)
+			//{					// CAM_PRIMARY
+			//	cl.cameraMode = false;
+			//}
 			return 0;
 		case CG_GETCAMERAINFO:
 			//return getCameraInfo(args[1], args[2], VMA(3), VMA(4), VMA(5));
@@ -1089,10 +1068,10 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 		case CG_INGAME_CLOSEPOPUP:
 			return 0;
 		case CG_KEY_GETBINDINGBUF:
-			Key_GetBindingBuf(args[1], (char*)VMA(2), args[3]);
+			idKeyInput::GetBindingBuf(args[1], (char*)VMA(2), args[3]);
 			return 0;
 		case CG_KEY_SETBINDING:
-			Key_SetBinding(args[1], (char*)VMA(2));
+			idKeyInput::SetBinding(args[1], (char*)VMA(2));
 			return 0;
 		case CG_PARSE_ADD_GLOBAL_DEFINE:
 			return Parse_AddGlobalDefine( (char*)VMA(1) );
@@ -1105,10 +1084,10 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 		case CG_PARSE_SOURCE_FILE_AND_LINE:
 			return Parse_SourceFileAndLine( args[1], (char*)VMA(2), (int *)VMA(3) );
 		case CG_KEY_KEYNUMTOSTRINGBUF:
-			Key_KeynumToStringBuf(args[1], (char*)VMA(2), args[3]);
+			idKeyInput::KeynumToStringBuf(args[1], (char*)VMA(2), args[3]);
 			return 0;
 		case CG_KEY_BINDINGTOKEYS:
-			Key_GetBindingByString((char*)VMA(1), (int*)VMA(2), (int*)VMA(3));
+			idKeyInput::GetBindingByString((char*)VMA(1), (int*)VMA(2), (int*)VMA(3));
 			return 0;
 		case CG_TRANSLATE_STRING:
 			CL_TranslateString((char*)VMA(1), (char*)VMA(2));
@@ -1123,8 +1102,8 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 			Com_GetHunkInfo((int*)VMA(1), (int*)VMA(2));
 			return 0;
 		case CG_PUMPEVENTLOOP:
-//      Com_EventLoop();
-//      CL_WritePacket();
+//			Com_EventLoop();
+//			CL_WritePacket();
 			return 0;
 		case CG_SENDMESSAGE:
 			CL_SendBinaryMessage((char*)VMA(1), args[2]);

@@ -663,7 +663,6 @@
     <ClInclude Include="..\game\bg_local.h" />
     <ClInclude Include="..\game\bg_public.h" />
     <ClInclude Include="cg_local.h" />
-    <ClInclude Include="..\ui\keycodes.h" />
     <ClInclude Include="..\..\ui\menudef.h" />
     <ClInclude Include="..\game\surfaceflags.h" />
     <ClInclude Include="..\..\..\..\engine\renderer\tr_types.h" />

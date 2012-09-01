@@ -632,7 +632,7 @@ hostname &gt; status-info/build-machine</Command>
       <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;USE_VOIP;USE_CIN_THEORA;USE_INCREASED_ENTITIES;ZLIB_WINAPI;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_PHYSICS;ET_SQL;USE_MUMBLE;GUIDMASTER_SUPPORT;BOTLIB_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
@@ -713,7 +713,7 @@ echo hostname &gt; status-info/build-machine
       <PreprocessorDefinitions>WIN32;AMD64;WIN64;__WIN64__;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;USE_CODEC_VORBIS;USE_LOCAL_HEADERS;USE_CIN_THEORA;HAVE_CONFIG_H;USE_VOIP;USE_MUMBLE;USE_CRYPTO;USE_PHP;HAVE_BZIP2;USE_INCREASED_ENTITIES;ET_SQL;USE_PHYSICS;GUIDMASTER_SUPPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>
       </StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
@@ -731,6 +731,7 @@ echo hostname &gt; status-info/build-machine
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>SyncCThrow</ExceptionHandling>
+      <DisableSpecificWarnings>4189;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1146,16 +1147,6 @@ echo hostname &gt; status-info/build-machine
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="client\cl_keys.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release AutoUpdate|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Dedicated|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="client\cl_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Dedicated|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug AutoUpdate|Win32'">true</ExcludedFromBuild>
@@ -1217,6 +1208,7 @@ echo hostname &gt; status-info/build-machine
     <ClCompile Include="cm\CollisionModel_translate.cpp" />
     <ClCompile Include="database\db_main.cpp" />
     <ClCompile Include="database\db_mysql.cpp" />
+    <ClCompile Include="FrameWork\KeyInput.cpp" />
     <ClCompile Include="qcommon\cm_api.cpp" />
     <ClCompile Include="qcommon\cm_load.cpp" />
     <ClCompile Include="qcommon\cm_patch.cpp" />
@@ -1375,6 +1367,7 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="..\libs\nettle\nettle\sexp.h" />
     <ClInclude Include="cm\CollisionModel.h" />
     <ClInclude Include="cm\CollisionModel_local.h" />
+    <ClInclude Include="FrameWork\KeyInput.h" />
     <ClInclude Include="qcommon\crypto.h" />
     <ClInclude Include="qcommon\q_platform.h" />
     <ClInclude Include="client\cg_api.h" />
@@ -1389,8 +1382,6 @@ echo hostname &gt; status-info/build-machine
     <ClInclude Include="qcommon\cm_patch.h" />
     <ClInclude Include="qcommon\cm_polylib.h" />
     <ClInclude Include="qcommon\cm_public.h" />
-    <ClInclude Include="..\..\etmain\src\ui\keycodes.h" />
-    <ClInclude Include="client\keys.h" />
     <ClInclude Include="qcommon\q_shared.h" />
     <ClInclude Include="qcommon\qcommon.h" />
     <ClInclude Include="qcommon\qfiles.h" />

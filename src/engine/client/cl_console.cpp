@@ -34,10 +34,10 @@ Maryland 20850 USA.
 
 // console.c
 
+#include "../idLib/precompiled.h"
 #include "client.h"
 
-
-int             g_console_field_width = 78;
+int			g_console_field_width = 78;
 
 #define CONSOLE_COLOR COLOR_WHITE
 #define DEFAULT_CONSOLE_WIDTH   78
@@ -97,11 +97,7 @@ cvar_t		*scr_conUseOld;
 cvar_t		*scr_conBarSize;
 cvar_t		*scr_conHeight;
 
-// DHM - Nerve :: Must hold CTRL + SHIFT + ~ to get console
-cvar_t         *con_restricted;
-
 vec4_t          console_highlightcolor = { 0.5, 0.5, 0.2, 0.45 };
-
 
 /*
 ================
@@ -110,11 +106,6 @@ Con_ToggleConsole_f
 */
 void Con_ToggleConsole_f(void) {
 	con.acLength = 0;
-
-	if(con_restricted->integer && (!keys[K_CTRL].down || !keys[K_SHIFT].down))
-	{
-		return;
-	}
 
 	// ydnar: persistent console input is more useful
 	// Arnout: added cvar
@@ -136,22 +127,7 @@ void Con_ToggleConsole_f(void) {
 	else
 	{
 		cls.keyCatchers |= KEYCATCH_CONSOLE;
-
-		// short console
-		if(keys[K_CTRL].down)
-		{
-			con.desiredFrac = (5.0 * SMALLCHAR_HEIGHT) / cls.glconfig.vidHeight;
-		}
-		// full console
-		else if(keys[K_ALT].down)
-		{
-			con.desiredFrac = 1.0;
-		}
-		// normal half-screen console
-		else
-		{
-			con.desiredFrac = 0.5;
-		}
+		con.desiredFrac = 0.5;
 	}
 }
 
@@ -541,7 +517,6 @@ void Con_Init(void)
 	con_conspeed = Cvar_Get("scr_conspeed", "3", 0);
 	con_debug = Cvar_Get("con_debug", "0", CVAR_ARCHIVE);	//----(SA)    added
 	con_autoclear = Cvar_Get("con_autoclear", "1", CVAR_ARCHIVE);
-	con_restricted = Cvar_Get("con_restricted", "0", CVAR_INIT);	// DHM - Nerve
 	
 	// Defines cvar for color and alpha for console/bar under console
 	scr_conUseShader = Cvar_Get ("scr_conUseShader", "0", CVAR_ARCHIVE);
@@ -761,6 +736,120 @@ DRAWING
 ==============================================================================
 */
 
+/*
+===================
+Field_VariableSizeDraw
+
+Handles horizontal scrolling and cursor blinking
+x, y, and width are in pixels
+===================
+*/
+void Field_VariableSizeDraw( field_t *edit, int x, int y, int size, qboolean showCursor, qboolean noColorEscape, float alpha ) {
+	int		len, drawLen, prestep, cursorChar, i;
+	char	str[MAX_STRING_CHARS];
+
+	drawLen = edit->widthInChars - 1; // - 1 so there is always a space for the cursor
+	len = strlen( edit->buffer );
+
+	// guarantee that cursor will be visible
+	if ( len <= drawLen )
+	{
+		prestep = 0;
+	} 
+	else
+	{
+		if ( edit->scroll + drawLen > len )
+		{
+			edit->scroll = len - drawLen;
+			if ( edit->scroll < 0 )
+			{
+				edit->scroll = 0;
+			}
+		}
+		prestep = edit->scroll;
+	}
+
+	if ( prestep + drawLen > len )
+	{
+		drawLen = len - prestep;
+	}
+
+	// extract <drawLen> characters from the field at <prestep>
+	if ( drawLen >= MAX_STRING_CHARS )
+	{
+		Com_Error( ERR_DROP, "drawLen >= MAX_STRING_CHARS" );
+	}
+
+	Com_Memcpy( str, edit->buffer + prestep, drawLen );
+	str[ drawLen ] = 0;
+
+	// draw it
+	if ( size == SMALLCHAR_WIDTH )
+	{
+		float color[4];
+
+		color[0] = color[1] = color[2] = 1.0;
+		color[3] = alpha;
+		SCR_DrawSmallStringExt( x, y, str, color, qfalse, noColorEscape );
+	}
+	else
+	{
+		// draw big string with drop shadow
+		SCR_DrawBigString( x, y, str, 1.0, noColorEscape );
+	}
+
+	// draw the cursor
+	if ( showCursor )
+	{
+		if ( (int)( cls.realtime >> 8 ) & 1 )
+		{
+			return;	// off blink
+		}
+
+		if ( key_overstrikeMode )
+		{
+			cursorChar = 11;
+		}
+		else
+		{
+			cursorChar = 10;
+		}
+
+		i = drawLen - strlen( str );
+
+		if ( size == SMALLCHAR_WIDTH )
+		{
+            float xlocation = x + SCR_ConsoleFontStringWidth( str + prestep, edit->cursor - prestep);
+            SCR_DrawConsoleFontChar( xlocation , y, cursorChar );
+		}
+		else
+		{
+			str[0] = cursorChar;
+			str[1] = 0;
+			SCR_DrawBigString( x + ( edit->cursor - prestep - i ) * size, y, str, 1.0, qfalse );
+		}
+	}
+}
+
+/*
+================
+Field_Draw
+================
+*/
+void Field_Draw( field_t *edit, int x, int y, qboolean showCursor, qboolean noColorEscape, float alpha ) 
+{
+	Field_VariableSizeDraw( edit, x, y, SMALLCHAR_WIDTH, showCursor, noColorEscape, alpha );
+}
+
+/*
+================
+Field_BigDraw
+================
+*/
+void Field_BigDraw( field_t *edit, int x, int y, qboolean showCursor, qboolean noColorEscape ) 
+{
+	Field_VariableSizeDraw( edit, x, y, BIGCHAR_WIDTH, showCursor, noColorEscape, 1.0f );
+}
 
 /*
 ================

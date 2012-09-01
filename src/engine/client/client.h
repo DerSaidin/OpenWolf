@@ -778,12 +778,6 @@ void            CL_Netchan_TransmitNextFragment(netchan_t * chan);
 qboolean        CL_Netchan_Process(netchan_t * chan, msg_t * msg);
 
 //
-// cl_download.c
-//
-void            OWDL_Init( void );
-qboolean        OWDL_Active( void );
-
-//
 // cl_avi.c
 //
 qboolean        CL_OpenAVIForWriting(const char *filename);

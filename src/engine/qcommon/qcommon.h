@@ -901,8 +901,6 @@ char           *FS_ShiftStr(const char *string, int shift);
 
 void            FS_CopyFile(char *fromOSPath, char *toOSPath);
 
-char           *FS_FindDll( const char *filename );
-
 int             FS_CreatePath(const char *OSPath);
 
 qboolean        FS_VerifyPak(const char *pak);
@@ -921,10 +919,6 @@ const char     *FS_GetCurrentGameDir(void);
 qboolean        FS_Which(const char *filename, void *searchPath);
 
 qboolean        FS_SV_FileExists( const char *file );
-// return the current gamedir (eg. "main", "mymod"...)
-const char     *FS_GetGameDir();
-// remove a file from the homepath (eg. C:\users\(name)\My Documents\My Games\OpenWolf\; ~/.OpenWolf/).
-qboolean        FS_OW_RemoveFile(const char *filepath);
 
 /*
 ==============================================================

@@ -32,7 +32,7 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
-
+#include "../idLib/precompiled.h"
 //#include "qcommon.h"
 #include "htable.h"
 
@@ -523,7 +523,7 @@ static unsigned int _HT_GetCIKey( const char * key )
 	unsigned int hash = 111119;
 
 	while ( *current ) {
-		hash += (unsigned char)tolower( *current );
+		hash += (unsigned char)idStr::ToLower( *current );
 		hash += ( hash << 10 );
 		hash ^= ( hash >> 6 );
 		current ++;

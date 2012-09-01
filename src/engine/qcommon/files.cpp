@@ -604,24 +604,12 @@ void FS_CopyFile( char *fromOSPath, char *toOSPath ) {
 /*
 ===========
 FS_Remove
-
 ===========
 */
-/*static void FS_Remove( const char *osPath ) {
+static void FS_Remove( const char *osPath )
+{
 	remove( osPath );
-}*/
-
-/*
-===========
-FS_Remove
-
-===========
-*/
-static qboolean FS_Remove( const char *osPath ) {
-	return (qboolean)!remove( osPath );
 }
-
-// XreaL BEGIN
 
 /*
 ===========
@@ -632,7 +620,6 @@ void FS_HomeRemove(const char *homePath)
 {
 	remove(FS_BuildOSPath(fs_homepath->string, fs_gamedir, homePath));
 }
-// XreaL END
 
 /*
 ================
@@ -4570,55 +4557,4 @@ void	FS_FilenameCompletion( const char *dir, const char *ext,
 		callback( filename );
 	}
 	FS_FreeFileList( filenames );
-}
-
-// return the current gamedir (eg. "baseq3", "mymod", ...)
-const char *FS_GetGameDir() {
-	return fs_gamedir;
-}
-
-/*
-===========
-FS_Remove
-
-===========
-*/
-// remove a file from the homepath (eg. C:\users\(name)\My Documents\My Games\OpenWolf\; ~/.OpenWolf/).
-qboolean FS_OW_RemoveFile(const char *qpath) {
-	char stripped[MAX_OSPATH];
-	char *ospath;
-	const char *c;
-	char *ext;
-
-	// make sure the given path doesn't try to climb up the file hierarchy.
-	if (strstr(qpath, "..") || strstr(qpath, "::")) {
-		Com_Printf("Warning: attempted to remove file with invalid path.\n");
-		return qfalse;
-	}
-	// prevent files in base directory from being removed - only files in subdirs can be.
-	for (c=qpath; *c == '/' || *c == '\\'; c++)
-		;
-	if (!strchr(c, '/') && !strchr(c, '\\')) {
-		Com_Printf("Warning: attempted to remove file from base directory.\n");
-		return qfalse;
-	}
-	// prevent id's packs from being removed.
-	// FS_idPak() takes a path without the pk3 extension.
-	Q_strncpyz(stripped, qpath, sizeof(stripped));
-	ext = stripped + strlen(stripped) -4;
-	if (ext > stripped && !strcmp(ext, ".pk3")) {
-		*ext = 0;
-		if (FS_idPak(stripped, "main")) {
-			Com_Printf("Warning: attempted to remove Id's game packs.\n");
-			return qfalse;
-		}
-	}
-	// remove
-	ospath = FS_BuildOSPath(fs_homepath->string, qpath, "");
-	ospath[strlen(ospath)-1] = 0;
-	if (!FS_Remove(ospath)) {
-		Com_Printf("Warning: failed to remove file: %s\n", ospath);
-		return qfalse;
-	}
-	return qtrue;
 }

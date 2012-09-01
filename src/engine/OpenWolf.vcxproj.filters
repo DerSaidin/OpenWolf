@@ -356,9 +356,6 @@
     <ClCompile Include="client\cl_console.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
-    <ClCompile Include="client\cl_download.cpp">
-      <Filter>Source Files\Client</Filter>
-    </ClCompile>
     <ClCompile Include="client\cl_input.cpp">
       <Filter>Source Files\Client</Filter>
     </ClCompile>
@@ -449,9 +446,6 @@
     <ClCompile Include="qcommon\cvar.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
-    <ClCompile Include="qcommon\files.cpp">
-      <Filter>Source Files\Qcommon</Filter>
-    </ClCompile>
     <ClCompile Include="qcommon\htable.cpp">
       <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
@@ -535,6 +529,9 @@
     </ClCompile>
     <ClCompile Include="FrameWork\KeyInput.cpp">
       <Filter>Source Files\FrameWork</Filter>
+    </ClCompile>
+    <ClCompile Include="qcommon\files.cpp">
+      <Filter>Source Files\Qcommon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

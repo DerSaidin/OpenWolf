@@ -33,6 +33,7 @@ Maryland 20850 USA.
 */
 
 // win_syscon.h
+#include "../idLib/precompiled.h"
 #include "../client/client.h"
 #include "resource.h"
 #include "sys_win32.h"
@@ -341,7 +342,7 @@ static void Win_FindMatches( const char *s ) {
 
 	// cut currentMatch to the amount common with s
 	for ( i = 0 ; s[i] ; i++ ) {
-		if ( tolower( win_currentMatch[i] ) != tolower( s[i] ) ) {
+		if ( idStr::ToLower( win_currentMatch[i] ) != idStr::ToLower( s[i] ) ) {
 			win_currentMatch[i] = 0;
 		}
 	}

@@ -3918,7 +3918,7 @@ static void FindMatches(const char *s)
 	// was wrong when s had fewer chars than shortestMatch
 	i = 0;
 	do {
-		if ( tolower(shortestMatch[i]) != tolower(s[i]) ) {
+		if ( idStr::ToLower(shortestMatch[i]) != idStr::ToLower(s[i]) ) {
 			shortestMatch[i] = 0;
 		}
 	} while (s[i++]);

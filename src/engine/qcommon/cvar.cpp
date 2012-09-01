@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // cvar.c -- dynamic variable tracking
 
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "qcommon.h"
 
@@ -69,7 +70,7 @@ static long generateHashValue(const char *fname)
 	i = 0;
 	while(fname[i] != '\0')
 	{
-		letter = tolower(fname[i]);
+		letter = idStr::ToLower(fname[i]);
 		hash += (long)(letter) * (i + 119);
 		i++;
 	}

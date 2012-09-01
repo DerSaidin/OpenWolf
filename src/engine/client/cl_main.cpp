@@ -5089,8 +5089,6 @@ void CL_Init(void)
 	autoupdateChecked = qfalse;
 	autoupdateStarted = qfalse;
 
-	OWDL_Init();
-
 	CL_InitTranslation(); // NERVE - SMF - localization
 
 	Com_Printf("----- Client Initialization Complete -----\n");
@@ -6279,7 +6277,7 @@ static long generateHashValue(const char *fname)
 	i = 0;
 	while(fname[i] != '\0')
 	{
-		letter = tolower(fname[i]);
+		letter = idStr::ToLower(fname[i]);
 		hash += (long)(letter) * (i + 119);
 		i++;
 	}

@@ -631,7 +631,7 @@ void Console_Key( int key )
 
 	//----(SA)	added some mousewheel functionality to the console
 	if ( ( key == K_MWHEELUP && keys[K_SHIFT].down ) || ( key == K_UPARROW ) || ( key == K_KP_UPARROW ) ||
-		 ( ( tolower( key ) == 'p' ) && keys[K_CTRL].down ) ) {
+		 ( ( idStr::ToLower( key ) == 'p' ) && keys[K_CTRL].down ) ) {
 		    Q_strncpyz( g_consoleField.buffer, Hist_Prev(), sizeof( g_consoleField.buffer ) );
 		    g_consoleField.cursor = strlen( g_consoleField.buffer );
 		    if ( g_consoleField.cursor >= g_consoleField.widthInChars ) {
@@ -644,7 +644,7 @@ void Console_Key( int key )
 
 	//----(SA)	added some mousewheel functionality to the console
 	if ( ( key == K_MWHEELDOWN && keys[K_SHIFT].down ) || ( key == K_DOWNARROW ) || ( key == K_KP_DOWNARROW ) ||
-		 ( ( tolower( key ) == 'n' ) && keys[K_CTRL].down ) ) {
+		 ( ( idStr::ToLower( key ) == 'n' ) && keys[K_CTRL].down ) ) {
 		  const char *history = Hist_Next();
 		  if ( history ) {
 			  Q_strncpyz( g_consoleField.buffer, history, sizeof( g_consoleField.buffer ) );

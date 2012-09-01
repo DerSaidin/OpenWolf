@@ -1579,77 +1579,6 @@ const char *Com_UnquoteStr (const char *str)
 ============================================================================
 */
 
-int Q_isprint( int c ) {
-	if ( c >= 0x20 && c <= 0x7E ) {
-		return ( 1 );
-	}
-	return ( 0 );
-}
-
-int Q_islower( int c ) {
-	if ( c >= 'a' && c <= 'z' ) {
-		return ( 1 );
-	}
-	return ( 0 );
-}
-
-int Q_isupper( int c ) {
-	if ( c >= 'A' && c <= 'Z' ) {
-		return ( 1 );
-	}
-	return ( 0 );
-}
-
-int Q_isalpha( int c ) {
-	if ( ( c >= 'a' && c <= 'z' ) || ( c >= 'A' && c <= 'Z' ) ) {
-		return ( 1 );
-	}
-	return ( 0 );
-}
-
-int Q_isnumeric( int c ) {
-	if ( c >= '0' && c <= '9' ) {
-		return ( 1 );
-	}
-	return ( 0 );
-}
-
-int Q_isalphanumeric( int c ) {
-	if ( Q_isalpha( c ) ||
-		 Q_isnumeric( c ) ) {
-		return( 1 );
-	}
-	return ( 0 );
-}
-
-int Q_isforfilename( int c ) {
-	if ( ( Q_isalphanumeric( c ) || c == '_' ) && c != ' ' ) { // space not allowed in filename
-		return( 1 );
-	}
-	return ( 0 );
-}
-
-char* Q_strrchr( const char* string, int c ) {
-	char cc = c;
-	char *s;
-	char *sp = (char *)0;
-
-	s = (char*)string;
-
-	while ( *s )
-	{
-		if ( *s == cc ) {
-			sp = s;
-		}
-		s++;
-	}
-	if ( cc == 0 ) {
-		sp = s;
-	}
-
-	return sp;
-}
-
 /*
 =============
 Q_strtoi/l
@@ -1661,18 +1590,6 @@ Returns true on success and vice versa.
 Demonstration of behavior of strtod and conversions: http://codepad.org/YQKxV94R
 -============
 */
-qboolean Q_strtol(const char* s, long * outNum) {
-	char *p;
-
-	if( *s == '\0' ) {
-		return qfalse;
-	}
-
-	*outNum = strtod( s, &p );
-
-	return (qboolean) (*p == '\0');
-}
-
 qboolean Q_strtoi(const char* s, int * outNum) {
 	char *p;
 	if ( *s== '\0' ) {

@@ -1385,15 +1385,10 @@ const char *Com_UnquoteStr (const char *str);
 
 //=============================================
 
-int Q_isprint( int c );
 int Q_islower( int c );
 int Q_isupper( int c );
-int Q_isalpha( int c );
 int Q_isnumeric( int c );
 int Q_isalphanumeric( int c );
-int Q_isforfilename( int c );
-
-qboolean        Q_strtol( const char *s, long* out );
 qboolean        Q_strtoi( const char *s, int* out);
 
 // portable case insensitive compare
@@ -1402,7 +1397,6 @@ int     Q_strncmp( const char *s1, const char *s2, int n );
 int     Q_stricmpn( const char *s1, const char *s2, int n );
 char    *Q_strlwr( char *s1 );
 char    *Q_strupr( char *s1 );
-char    *Q_strrchr( const char* string, int c );
 const char *Q_stristr( const char *s, const char *find);
 
 #ifdef _WIN32

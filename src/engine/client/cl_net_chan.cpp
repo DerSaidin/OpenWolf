@@ -32,7 +32,7 @@ Maryland 20850 USA.
 ===========================================================================
 */
 
-
+#include "../idLib/precompiled.h"
 #include "../qcommon/q_shared.h"
 #include "../qcommon/qcommon.h"
 #include "client.h"

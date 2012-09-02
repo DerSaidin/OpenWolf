@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 // tr_models.c -- model loading and caching
+
+#include "../idLib/precompiled.h"
 #include "tr_local.h"
 
 #define	LL(x) x=LittleLong(x)
@@ -415,7 +417,7 @@ void R_XMLError(void *ctx, const char *fmt, ...)
 	static char     msg[4096];
 
 	va_start(argptr, fmt);
-	Q_vsnprintf(msg, sizeof(msg), fmt, argptr);
+	idStr::vsnPrintf(msg, sizeof(msg), fmt, argptr);
 	va_end(argptr);
 
 	ri.Printf(PRINT_WARNING, "%s", msg);

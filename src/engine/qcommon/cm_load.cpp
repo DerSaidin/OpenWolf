@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // cmodel.c -- model loading
 
+#include "../idLib/precompiled.h"
 #include "cm_local.h"
 
 #ifdef BSPC

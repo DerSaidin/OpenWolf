@@ -34,6 +34,7 @@ Maryland 20850 USA.
 */
 // tr_model_mdm.c -- Enemy Territory .mdm model loading and caching
 
+#include "../idLib/precompiled.h"
 #include "tr_local.h"
 #include "tr_model_skel.h"
 

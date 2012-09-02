@@ -319,7 +319,7 @@ public:
 
 // We have expression parsing and evaluation code in multiple places:
 // materials, sound shaders, and guis. We should unify them.
-const int MAX_EXPRESSION_OPS = 4096;
+//const int MAX_EXPRESSION_OPS = 4096;
 const int MAX_EXPRESSION_REGISTERS = 4096;
 //
 //// renderer

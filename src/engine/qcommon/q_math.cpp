@@ -3667,4 +3667,3 @@ void QuatTransformVector(const quat_t q, const vec3_t in, vec3_t out)
 	MatrixTransformNormal(m, in, out);
 }
 
-NOGLOBALALIAS void Vec4_Cpy( vec4_t o, const vec4_t i ) { o[0] = i[0]; o[1] = i[1]; o[2] = i[2]; o[3] = i[3]; }

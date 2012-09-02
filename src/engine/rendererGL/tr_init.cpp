@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 ===========================================================================
 */
 // tr_init.c -- functions that are not called every frame
+
+#include "../idLib/precompiled.h"
 #include "tr_local.h"
 
 #if defined(__cplusplus)
@@ -1758,7 +1760,11 @@ qboolean R_Init(void)
 	int             i;
 
 	ri.Printf(PRINT_ALL, "----- R_Init -----\n");
-	
+
+#if defined (COMPAT_ET)
+	Swap_Init();
+#endif
+
 	// clear all our internal state
 	Com_Memset(&tr, 0, sizeof(tr));
 	Com_Memset(&backEnd, 0, sizeof(backEnd));
@@ -2415,7 +2421,7 @@ void QDECL Com_Printf(const char *msg, ...)
 	char            text[1024];
 
 	va_start(argptr, msg);
-	Q_vsnprintf(text, sizeof(text), msg, argptr);
+	idStr::vsnPrintf(text, sizeof(text), msg, argptr);
 	va_end(argptr);
 
 	ri.Printf(PRINT_ALL, "%s", text);
@@ -2427,7 +2433,7 @@ void QDECL Com_DPrintf(const char *msg, ...)
 	char            text[1024];
 
 	va_start(argptr, msg);
-	Q_vsnprintf(text, sizeof(text), msg, argptr);
+	idStr::vsnPrintf(text, sizeof(text), msg, argptr);
 	va_end(argptr);
 
 	ri.Printf(PRINT_DEVELOPER, "%s", text);
@@ -2439,7 +2445,7 @@ void QDECL Com_Error(int level, const char *error, ...)
 	char            text[1024];
 
 	va_start(argptr, error);
-	Q_vsnprintf(text, sizeof(text), error, argptr);
+	idStr::vsnPrintf(text, sizeof(text), error, argptr);
 	va_end(argptr);
 
 	ri.Error(level, "%s", text);

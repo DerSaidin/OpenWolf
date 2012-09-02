@@ -419,44 +419,6 @@ Maryland 20850 USA.
 #error "DLL_EXT not defined"
 #endif
 
-//endianness
-short ShortSwap (short l);
-int LongSwap (int l);
-float FloatSwap (float f);
-
-#if defined( Q3_BIG_ENDIAN ) && defined( Q3_LITTLE_ENDIAN )
-#error "Endianness defined as both big and little"
-#elif defined( Q3_BIG_ENDIAN )
-
-#define LittleShort(x) ShortSwap(x)
-#define LittleLong(x) LongSwap(x)
-#define LittleFloat(x) FloatSwap(&x)
-#define BigShort
-#define BigLong
-#define BigFloat
-
-#elif defined( Q3_LITTLE_ENDIAN )
-
-#define LittleShort
-#define LittleLong
-#define LittleFloat
-#define BigShort(x) ShortSwap(x)
-#define BigLong(x) LongSwap(x)
-#define BigFloat(x) FloatSwap(&x)
-
-#elif defined( Q3_VM )
-
-#define LittleShort
-#define LittleLong
-#define LittleFloat
-#define BigShort
-#define BigLong
-#define BigFloat
-
-#else
-#error "Endianness not defined"
-#endif
-
 //platform string
 #ifdef NDEBUG
 #define PLATFORM_STRING OS_STRING "-" ARCH_STRING

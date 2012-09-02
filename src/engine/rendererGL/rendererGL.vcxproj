@@ -699,6 +699,9 @@
     <ProjectReference Include="..\..\libs\libsdl\VisualC\SDL\SDL.vcxproj">
       <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\idLib\idLib.vcxproj">
+      <Project>{4b9edd89-0b65-46f0-94e0-6827116bbc6d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

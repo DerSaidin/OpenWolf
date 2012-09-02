@@ -49,7 +49,7 @@ Maryland 20850 USA.
 //  I need to ask Ryan if it's as simple as a constant index or
 // if some more coding needs to be done.
 
-
+#include "../idLib/precompiled.h"
 #include "client.h"
 #include "../snd_system/snd_local.h"
 #define MAXSIZE             8

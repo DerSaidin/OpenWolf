@@ -211,7 +211,7 @@ int MemStreamGetLong(memStream_t * s)
 	if(MemStreamRead(s, &c, 4) == 0)
 		return -1;
 
-	return LittleLong(c);
+	return c;// LongSwap(c);
 }
 
 int MemStreamGetShort(memStream_t * s)
@@ -224,7 +224,7 @@ int MemStreamGetShort(memStream_t * s)
 	if(MemStreamRead(s, &c, 2) == 0)
 		return -1;
 
-	return LittleShort(c);
+	return c;// ShortSwap(c);
 }
 
 float MemStreamGetFloat(memStream_t * s)
@@ -237,7 +237,7 @@ float MemStreamGetFloat(memStream_t * s)
 	if(MemStreamRead(s, &c.i, 4) == 0)
 		return -1;
 
-	return LittleFloat(c.f);
+	return c.f;// FloatSwap(c.f);
 }
 
 //=============================================================================
@@ -549,123 +549,6 @@ void COM_BitClear( int array[], int bitNum ) {
 
 	array[i] &= ~( 1 << bitNum );
 }
-//============================================================================
-
-/*
-============================================================================
-
-					BYTE ORDER FUNCTIONS
-
-============================================================================
-*/
-
-/*
-============================================================================
-
-					BYTE ORDER FUNCTIONS
-
-============================================================================
-*/
-/*
-// can't just use function pointers, or dll linkage can
-// mess up when qcommon is included in multiple places
-static short ( *_BigShort )( short l ) = NULL;
-static short ( *_LittleShort )( short l ) = NULL;
-static int ( *_BigLong )( int l ) = NULL;
-static int ( *_LittleLong )( int l ) = NULL;
-static qint64 ( *_BigLong64 )( qint64 l ) = NULL;
-static qint64 ( *_LittleLong64 )( qint64 l ) = NULL;
-static float ( *_BigFloat )( float l ) = NULL;
-static float ( *_LittleFloat )( float l ) = NULL;
-
-short   LittleShort( short l ) {return _LittleShort( l );}
-int     LittleLong( int l ) {return _LittleLong( l );}
-qint64  LittleLong64( qint64 l ) {return _LittleLong64( l );}
-float   LittleFloat( float l ) {return _LittleFloat( l );}
-
-short   BigShort( short l ) {return _BigShort( l );}
-int     BigLong( int l ) {return _BigLong( l );}
-qint64  BigLong64( qint64 l ) {return _BigLong64( l );}
-float   BigFloat( float l ) {return _BigFloat( l );}
-*/
-
-short   ShortSwap( short l ) {
-	byte b1,b2;
-
-	b1 = l & 255;
-	b2 = ( l >> 8 ) & 255;
-
-	return ( b1 << 8 ) + b2;
-}
-
-short   ShortNoSwap( short l ) {
-	return l;
-}
-
-int    LongSwap( int l ) {
-	byte b1,b2,b3,b4;
-
-	b1 = l & 255;
-	b2 = ( l >> 8 ) & 255;
-	b3 = ( l >> 16 ) & 255;
-	b4 = ( l >> 24 ) & 255;
-
-	return ( (int)b1 << 24 ) + ( (int)b2 << 16 ) + ( (int)b3 << 8 ) + b4;
-}
-
-int LongNoSwap( int l ) {
-	return l;
-}
-
-float FloatSwap( float f ) {
-	union
-	{
-		float f;
-		byte b[4];
-	} dat1, dat2;
-
-
-	dat1.f = f;
-	dat2.b[0] = dat1.b[3];
-	dat2.b[1] = dat1.b[2];
-	dat2.b[2] = dat1.b[1];
-	dat2.b[3] = dat1.b[0];
-	return dat2.f;
-}
-
-float FloatNoSwap( float f ) {
-	return f;
-}
-
-/*
-================
-Swap_Init
-================
-
-void Swap_Init( void ) {
-	byte swaptest[2] = {1,0};
-
-// set the byte swapping variables in a portable manner
-	if ( *(short *)swaptest == 1 ) {
-		_BigShort = ShortSwap;
-		_LittleShort = ShortNoSwap;
-		_BigLong = LongSwap;
-		_LittleLong = LongNoSwap;
-		_BigFloat = FloatSwap;
-		_LittleFloat = FloatNoSwap;
-	} else
-	{
-		_BigShort = ShortNoSwap;
-		_LittleShort = ShortSwap;
-		_BigLong = LongNoSwap;
-		_LittleLong = LongSwap;
-		_BigFloat = FloatNoSwap;
-		_LittleFloat = FloatSwap;
-	}
-
-}
-
-*/
 
 /*
 ============================================================================
@@ -1207,21 +1090,6 @@ char           *COM_ParseExt2(char **data_p, qboolean allowLineBreaks)
 }
 // *INDENT-ON*
 
-
-/*
-==================
-COM_MatchToken
-==================
-*/
-void COM_MatchToken( char **buf_p, char *match ) {
-	char    *token;
-
-	token = COM_Parse( buf_p );
-	if ( strcmp( token, match ) ) {
-		Com_Error( ERR_DROP, "MatchToken: %s != %s", token, match );
-	}
-}
-
 /*
 =================
 SkipBracedSection_Depth
@@ -1291,152 +1159,6 @@ void SkipRestOfLine( char **data ) {
 	}
 
 	*data = p;
-}
-
-
-void Parse1DMatrix( char **buf_p, int x, float *m, qboolean checkBrackets ) {
-	char    *token;
-	int i;
-
-	if(checkBrackets)
-	{
-		COM_MatchToken( buf_p, "(" );
-	}
-
-	for ( i = 0 ; i < x ; i++ ) {
-		token = COM_Parse( buf_p );
-		m[i] = atof( token );
-	}
-
-	if(checkBrackets) {
-		COM_MatchToken( buf_p, ")" );
-	}
-}
-
-void Parse2DMatrix( char **buf_p, int y, int x, float *m ) {
-	int i;
-
-	COM_MatchToken( buf_p, "(" );
-
-	for ( i = 0 ; i < y ; i++ ) {
-		Parse1DMatrix( buf_p, x, m + i * x, qtrue );
-	}
-
-	COM_MatchToken( buf_p, ")" );
-}
-
-void Parse3DMatrix( char **buf_p, int z, int y, int x, float *m ) {
-	int i;
-
-	COM_MatchToken( buf_p, "(" );
-
-	for ( i = 0 ; i < z ; i++ ) {
-		Parse2DMatrix( buf_p, y, x, m + i * x * y );
-	}
-
-	COM_MatchToken( buf_p, ")" );
-}
-
-
-/*
-===============
-COM_Parse2Infos
-===============
-*/
-int COM_Parse2Infos( char *buf, int max, char infos[][MAX_INFO_STRING] ) {
-	const char  *token;
-	int count;
-	char key[MAX_TOKEN_CHARS];
-
-	count = 0;
-
-	while ( 1 ) {
-		token = COM_Parse( &buf );
-		if ( !token[0] ) {
-			break;
-		}
-		if ( strcmp( token, "{" ) ) {
-			Com_Printf( "Missing { in info file\n" );
-			break;
-		}
-
-		if ( count == max ) {
-			Com_Printf( "Max infos exceeded\n" );
-			break;
-		}
-
-		infos[count][0] = 0;
-		while ( 1 ) {
-			token = COM_Parse( &buf );
-			if ( !token[0] ) {
-				Com_Printf( "Unexpected end of info file\n" );
-				break;
-			}
-			if ( !strcmp( token, "}" ) ) {
-				break;
-			}
-			Q_strncpyz( key, token, sizeof( key ) );
-
-			token = COM_ParseExt( &buf, qfalse );
-			if ( !token[0] ) {
-				token = "<NULL>";
-			}
-			Info_SetValueForKey( infos[count], key, token );
-		}
-		count++;
-	}
-
-	return count;
-}
-
-void COM_Parse21DMatrix(char **buf_p, int x, float *m, qboolean checkBrackets)
-{
-	char           *token;
-	int             i;
-
-	if(checkBrackets)
-	{
-		COM_MatchToken(buf_p, "(");
-	}
-
-	for(i = 0; i < x; i++)
-	{
-		token = COM_Parse2(buf_p);
-		m[i] = atof(token);
-	}
-
-	if(checkBrackets)
-	{
-		COM_MatchToken(buf_p, ")");
-	}
-}
-
-void COM_Parse22DMatrix(char **buf_p, int y, int x, float *m)
-{
-	int             i;
-
-	COM_MatchToken(buf_p, "(");
-
-	for(i = 0; i < y; i++)
-	{
-		COM_Parse21DMatrix(buf_p, x, m + i * x, qtrue);
-	}
-
-	COM_MatchToken(buf_p, ")");
-}
-
-void COM_Parse23DMatrix(char **buf_p, int z, int y, int x, float *m)
-{
-	int             i;
-
-	COM_MatchToken(buf_p, "(");
-
-	for(i = 0; i < z; i++)
-	{
-		COM_Parse22DMatrix(buf_p, y, x, m + i * x * y);
-	}
-
-	COM_MatchToken(buf_p, ")");
 }
 
 /*
@@ -2438,70 +2160,6 @@ qboolean Com_ClientListContains( const clientList_t *list, int clientNum )
 }
 
 /*
-============
-Com_ClientListAdd
-============
-*/
-void Com_ClientListAdd( clientList_t *list, int clientNum )
-{
-  if( clientNum < 0 || clientNum >= MAX_CLIENTS || !list )
-    return;
-  if( clientNum < 32 )
-    list->lo |= ( 1 << clientNum );
-  else
-    list->hi |= ( 1 << ( clientNum - 32 ) );
-}
-
-/*
-============
-Com_ClientListRemove
-============
-*/
-void Com_ClientListRemove( clientList_t *list, int clientNum )
-{
-  if( clientNum < 0 || clientNum >= MAX_CLIENTS || !list )
-    return;
-  if( clientNum < 32 )
-    list->lo &= ~( 1 << clientNum );
-  else
-    list->hi &= ~( 1 << ( clientNum - 32 ) );
-}
-
-/*
-============
-Com_ClientListString
-============
-*/
-char *Com_ClientListString( const clientList_t *list )
-{
-  static char s[ 17 ];
-
-  s[ 0 ] = '\0';
-  if( !list )
-    return s;
-  Com_sprintf( s, sizeof( s ), "%08x%08x", list->hi, list->lo );
-  return s;
-}
-
-/*
-============
-Com_ClientListParse
-============
-*/
-void Com_ClientListParse( clientList_t *list, const char *s )
-{
-  if( !list )
-    return;
-  list->lo = 0;
-  list->hi = 0;
-  if( !s )
-    return;
-  if( strlen( s ) != 16 )
-    return;
-  sscanf( s, "%x%x", &list->hi, &list->lo );
-}
-
-/*
 ================
 VectorMatrixMultiply
 ================
@@ -2513,89 +2171,12 @@ void VectorMatrixMultiply( const vec3_t p, vec3_t m[ 3 ], vec3_t out )
 	out[ 2 ] = m[ 0 ][ 2 ] * p[ 0 ] + m[ 1 ][ 2 ] * p[ 1 ] + m[ 2 ][ 2 ] * p[ 2 ];
 }
 
-void Q_ParseNewlines( char *dest, const char *src, int destsize ) {
-	for( ; *src && destsize > 1; src++, destsize-- )
-		*dest++ = ( ( *src == '\\' && *( ++src ) == 'n' ) ? '\n' : *src );
-	*dest++ = '\0';
-}
-
-
 #ifdef _MSC_VER
 float rint( float v ) {
 	if( v >= 0.5f ) return ceilf( v );
 	else return floorf( v );
 }
 #endif
-
-float QDECL fatof( const char *string )
-{
-	float	sign;
-	float	value;
-	int		c;
-
-
-	// skip whitespace
-	while ( *string <= ' ' ) {
-		if ( !*string ) {
-			return 0;
-		}
-		string++;
-	}
-
-	// check sign
-	switch ( *string ) {
-	case '+':
-		string++;
-		sign = 1.0f;
-		break;
-	case '-':
-		string++;
-		sign = -1.0f;
-		break;
-	default:
-		sign = 1.0f;
-		break;
-	}
-
-	// read digits
-	value = 0.0f;
-	c = string[0];
-	if ( c != '.' ) {
-		for( ; ; )
-		{
-			c = *string++;
-			if ( c < '0' || c > '9' ) {
-				break;
-			}
-			c -= '0';
-			value = value * 10.0f + c;
-		}
-	} else {
-		string++;
-	}
-
-	// check for decimal point
-	if ( c == '.' ) {
-		float fraction;
-
-		fraction = 0.1f;
-		for( ; ; )
-		{
-			c = *string++;
-			if ( c < '0' || c > '9' ) {
-				break;
-			}
-			c -= '0';
-			value += c * fraction;
-			fraction *= 0.1f;
-		}
-
-	}
-
-	// not handling 10e10 notation...
-
-	return value * sign;
-}
 
 void QDECL Com_FatalError( const char *error, ... ) {
 	va_list argptr;

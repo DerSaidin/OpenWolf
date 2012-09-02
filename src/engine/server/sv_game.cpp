@@ -34,6 +34,7 @@ Maryland 20850 USA.
 
 // sv_game.c -- interface to the game dll
 
+#include "../idLib/precompiled.h"
 #include "server.h"
 
 #include "../botlib/botlib.h"

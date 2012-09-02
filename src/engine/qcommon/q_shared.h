@@ -1307,13 +1307,10 @@ char    *COM_Parse( char **data_p );
 char           *COM_Parse2(char **data_p);
 char           *COM_ParseExt2(char **data_p, qboolean allowLineBreak);
 
-float	QDECL fatof( const char * );
-
 char    *COM_ParseExt( char **data_p, qboolean allowLineBreak );
 int     COM_Compress( char *data_p );
 void    COM_ParseError( char *format, ... ) _attribute( ( format( printf,1,2 ) ) );
 void    COM_ParseWarning( char *format, ... ) _attribute( ( format( printf,1,2 ) ) );
-int COM_Parse2Infos( char *buf, int max, char infos[][MAX_INFO_STRING] );
 
 qboolean COM_BitCheck( const int array[], int bitNum );
 void COM_BitSet( int array[], int bitNum );
@@ -1345,19 +1342,9 @@ typedef struct pc_token_s
 
 // data is an in/out parm, returns a parsed out token
 
-void    COM_MatchToken( char**buf_p, char *match );
-
-void    COM_Parse21DMatrix(char **buf_p, int x, float *m, qboolean checkBrackets);
-void    COM_Parse22DMatrix(char **buf_p, int y, int x, float *m);
-void    COM_Parse23DMatrix(char **buf_p, int z, int y, int x, float *m);
-
 qboolean SkipBracedSection( char **program );
 qboolean SkipBracedSection_Depth( char **program, int depth ); // start at given depth if already
 void SkipRestOfLine( char **data );
-
-void Parse1DMatrix( char **buf_p, int x, float *m, qboolean checkBrackets );
-void Parse2DMatrix( char **buf_p, int y, int x, float *m );
-void Parse3DMatrix( char **buf_p, int z, int y, int x, float *m );
 
 int QDECL Com_sprintf (char *dest, int size, const char *fmt, ...) __attribute__ ((format (printf, 3, 4)));
 
@@ -1425,42 +1412,11 @@ qboolean        Q_strreplace(char *dest, int destsize, const char *find, const c
 int Q_PrintStrlen( const char *string );
 // removes color sequences from string
 char *Q_CleanStr( char *string );
-// parse "\n" into '\n'
-void Q_ParseNewlines( char *dest, const char *src, int destsize );
 // Count the number of char tocount encountered in string
 int Q_CountChar(const char *string, char tocount);
 // removes whitespaces and other bad directory characters
 char *Q_CleanDirName( char *dirname );
 
-//=============================================
-
-// 64-bit integers for global rankings interface
-// implemented as a struct for qvm compatibility
-typedef struct
-{
-	byte b0;
-	byte b1;
-	byte b2;
-	byte b3;
-	byte b4;
-	byte b5;
-	byte b6;
-	byte b7;
-} qint64;
-
-/*
-short           LittleShort(short l);
-int             LittleLong(int l);
-qint64          LittleLong64(qint64 l);
-float           LittleFloat(float l);
-
-short           BigShort(short l);
-int             BigLong(int l);
-qint64          BigLong64(qint64 l);
-float           BigFloat(float l);
-
-void            Swap_Init(void);
-*/
 float   *tv( float x, float y, float z );
 
 char	* QDECL va(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
@@ -2463,10 +2419,6 @@ typedef struct  {
 } clientList_t;
 
 qboolean Com_ClientListContains( const clientList_t *list, int clientNum );
-void Com_ClientListAdd( clientList_t *list, int clientNum );
-void Com_ClientListRemove( clientList_t *list, int clientNum );
-char *Com_ClientListString( const clientList_t *list );
-void Com_ClientListParse( clientList_t *list, const char *s );
 
 #define SQR( a ) ( ( a ) * ( a ) )
 
@@ -2499,13 +2451,9 @@ enum {
 #define NOGLOBALALIAS
 #endif
 
-
-
 #ifndef REF_PARAM
 #define REF_PARAM( p ) p
 #endif
-
-NOGLOBALALIAS void Vec4_Cpy( vec4_t o, const vec4_t i );
 
 typedef enum {
 	CT_FRONT_SIDED,

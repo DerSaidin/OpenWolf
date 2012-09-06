@@ -228,7 +228,6 @@ void CMod_LoadNodes(lump_t * l) {
 			out->children[j] = child;
 		}
 	}
-
 }
 
 /*
@@ -266,6 +265,7 @@ void CMod_LoadBrushes(lump_t * l) {
 	count = l->filelen / sizeof(*in);
 
 	cm.brushes = (cbrush_t*)Hunk_Alloc((BOX_BRUSHES + count) * sizeof(*cm.brushes), h_high);
+	cm.brushCheckCounts = (int*)Hunk_Alloc( ( BOX_BRUSHES + count ) * sizeof( *cm.brushCheckCounts ), h_high );
 	cm.numBrushes = count;
 
 	out = cm.brushes;
@@ -283,6 +283,28 @@ void CMod_LoadBrushes(lump_t * l) {
 		CM_BoundBrush(out);
 	}
 
+}
+
+static void CMod_SetupAreasAndPortals( void )
+{
+	int i;
+	
+	for( i = 0; i < cm.numLeafs; i++ )
+	{
+		const cLeaf_t *l = cm.leafs + i;
+
+		if( l->cluster >= cm.numClusters )
+		{
+			cm.numClusters = l->cluster + 1;
+		}
+		if( l->area >= cm.numAreas )
+		{
+			cm.numAreas = l->area + 1;
+		}
+	}
+
+	cm.areas = (cArea_t*)Hunk_Alloc( cm.numAreas * sizeof( *cm.areas ), h_high );
+	cm.areaPortals = (int*)Hunk_Alloc( cm.numAreas * cm.numAreas * sizeof( *cm.areaPortals ), h_high );
 }
 
 /*
@@ -325,8 +347,7 @@ void CMod_LoadLeafs(lump_t * l) {
 		}
 	}
 
-	cm.areas = (cArea_t*)Hunk_Alloc(cm.numAreas * sizeof(*cm.areas), h_high);
-	cm.areaPortals = (int*)Hunk_Alloc(cm.numAreas * cm.numAreas * sizeof(*cm.areaPortals), h_high);
+	CMod_SetupAreasAndPortals();
 }
 
 /*
@@ -949,6 +970,10 @@ void CM_LoadMapOLD(const char *name, qboolean clientload, int *checksum) {
 	// we are NOT freeing the file, because it is cached for the ref
 	FS_FreeFile(buf);
 
+
+	cm.brushCheckCounts = (int*)Hunk_Alloc( cm.numBrushes * sizeof( int ), h_high );
+	CMod_SetupAreasAndPortals();
+
 	CM_InitBoxHull();
 
 	CM_FloodAreaConnections();
@@ -957,6 +982,7 @@ void CM_LoadMapOLD(const char *name, qboolean clientload, int *checksum) {
 	if(!clientload) {
 		Q_strncpyz(cm.name, name, sizeof(cm.name));
 	}
+
 }
 
 /*

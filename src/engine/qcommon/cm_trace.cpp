@@ -342,12 +342,12 @@ void CM_TestInLeaf(traceWork_t * tw, cLeaf_t * leaf) {
 	{
 		brushnum = cm.leafbrushes[leaf->firstLeafBrush + k];
 		b = &cm.brushes[brushnum];
-		if(b->checkcount == cm.checkcount) {
+		if( cm.brushCheckCounts[brushnum] == cm.checkcount) {
 			continue; // already checked this brush in another leaf
 		}
-		b->checkcount = cm.checkcount;
+		cm.brushCheckCounts[brushnum] = cm.checkcount;
 
-		if(!(b->contents & tw->contents)) {
+		if ( !(cm.shaders[b->shaderNum].contentFlags & tw->contents)) {
 			continue;
 		}
 
@@ -1181,12 +1181,12 @@ void CM_TraceThroughLeaf(traceWork_t * tw, cLeaf_t * leaf) {
 		brushnum = cm.leafbrushes[leaf->firstLeafBrush + k];
 
 		b = &cm.brushes[brushnum];
-		if(b->checkcount == cm.checkcount) {
+		if ( cm.brushCheckCounts[brushnum] == cm.checkcount ) {
 			continue; // already checked this brush in another leaf
 		}
-		b->checkcount = cm.checkcount;
+		cm.brushCheckCounts[brushnum] = cm.checkcount;
 
-		if(!(b->contents & tw->contents)) {
+		if ( !(cm.shaders[b->shaderNum].contentFlags & tw->contents) ) {
 			continue;
 		}
 

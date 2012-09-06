@@ -152,6 +152,7 @@ typedef struct {
 	cmodel_t       *cmodels;
 	int             numBrushes;
 	cbrush_t       *brushes;
+	int			   *brushCheckCounts;
 	int             numClusters;
 	int             clusterBytes;
 	byte           *visibility;

@@ -81,7 +81,7 @@ void VM_Init( void ) {
 	Cvar_Get( "vm_game", "0", CVAR_ARCHIVE, "test" );
 	Cvar_Get( "vm_ui", "0", CVAR_ARCHIVE, "test" );
 
-	Cmd_AddCommand ("vminfo", VM_VmInfo_f );
+	Cmd_AddCommand ("vminfo", VM_VmInfo_f, "test" );
 
 	Com_Memset( vmTable, 0, sizeof( vmTable ) );
 }

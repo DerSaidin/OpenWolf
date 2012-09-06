@@ -109,7 +109,7 @@ static qboolean Cvar_ValidateString(const char *s, qboolean isvalue)
 Cvar_FindVar
 ============
 */
-static convar_t  *Cvar_FindVar(const char *var_name)
+convar_t  *Cvar_FindVar(const char *var_name)
 {
 	convar_t         *var;
 	long            hash;
@@ -1374,22 +1374,22 @@ void Cvar_Init(void)
 {
 	cvar_cheats = Cvar_Get("sv_cheats", "1", CVAR_ROM | CVAR_SYSTEMINFO, "test");
 
-	Cmd_AddCommand("toggle", Cvar_Toggle_f);
+	Cmd_AddCommand("toggle", Cvar_Toggle_f, "test");
 	Cmd_SetCommandCompletionFunc( "toggle", Cvar_CompleteCvarName );
-	Cmd_AddCommand("cycle", Cvar_Cycle_f);	// ydnar
+	Cmd_AddCommand("cycle", Cvar_Cycle_f, "test");	// ydnar
 	Cmd_SetCommandCompletionFunc( "cycle", Cvar_CompleteCvarName );
-	Cmd_AddCommand("set", Cvar_Set_f);
+	Cmd_AddCommand("set", Cvar_Set_f, "test");
 	Cmd_SetCommandCompletionFunc( "set", Cvar_CompleteCvarName );
-	Cmd_AddCommand("sets", Cvar_SetS_f);
+	Cmd_AddCommand("sets", Cvar_SetS_f, "test");
 	Cmd_SetCommandCompletionFunc( "sets", Cvar_CompleteCvarName );
-	Cmd_AddCommand("setu", Cvar_SetU_f);
+	Cmd_AddCommand("setu", Cvar_SetU_f, "test");
 	Cmd_SetCommandCompletionFunc( "setu", Cvar_CompleteCvarName );
-	Cmd_AddCommand("seta", Cvar_SetA_f);
+	Cmd_AddCommand("seta", Cvar_SetA_f, "test");
 	Cmd_SetCommandCompletionFunc( "seta", Cvar_CompleteCvarName );
-	Cmd_AddCommand("reset", Cvar_Reset_f);
+	Cmd_AddCommand("reset", Cvar_Reset_f, "test");
 	Cmd_SetCommandCompletionFunc( "reset", Cvar_CompleteCvarName );
-	Cmd_AddCommand("cvarlist", Cvar_List_f);
-	Cmd_AddCommand("cvar_restart", Cvar_Restart_f);
+	Cmd_AddCommand("cvarlist", Cvar_List_f, "test");
+	Cmd_AddCommand("cvar_restart", Cvar_Restart_f, "test");
 
 	// NERVE - SMF - can't rely on autoexec to do this
 	Cvar_Get("devdll", "1", CVAR_ROM, "test");

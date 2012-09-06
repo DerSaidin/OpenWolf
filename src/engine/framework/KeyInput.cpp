@@ -1247,13 +1247,13 @@ void idKeyInput::Init( void ) {
 	keys = new idKey[MAX_KEYS];
 
 	// register our functions
-	Cmd_AddCommand( "bind",Key_Bind_f );
+	Cmd_AddCommand( "bind",Key_Bind_f, "test" );
 	Cmd_SetCommandCompletionFunc( "bind", Key_CompleteBind );
-	Cmd_AddCommand( "unbind",Key_Unbind_f );
+	Cmd_AddCommand( "unbind",Key_Unbind_f, "test" );
 	Cmd_SetCommandCompletionFunc( "unbind", Key_CompleteUnbind );
-	Cmd_AddCommand( "unbindall",Key_Unbindall_f );
-	Cmd_AddCommand( "bindlist",Key_Bindlist_f );
-	Cmd_AddCommand( "editbind",Key_EditBind_f );
+	Cmd_AddCommand( "unbindall",Key_Unbindall_f, "test" );
+	Cmd_AddCommand( "bindlist",Key_Bindlist_f, "test" );
+	Cmd_AddCommand( "editbind",Key_EditBind_f, "test" );
 	Cmd_SetCommandCompletionFunc( "editbind", Key_CompleteEditbind );
 }
 

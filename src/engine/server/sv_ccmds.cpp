@@ -870,28 +870,28 @@ void SV_AddOperatorCommands(void) {
 	}
 	initialized = qtrue;
 
-	Cmd_AddCommand("heartbeat", SV_Heartbeat_f);
-	Cmd_AddCommand("status", SV_Status_f);
-	Cmd_AddCommand("serverinfo", SV_Serverinfo_f);
-	Cmd_AddCommand("systeminfo", SV_Systeminfo_f);
-	Cmd_AddCommand("dumpuser", SV_DumpUser_f);
-	Cmd_AddCommand("map_restart", SV_MapRestart_f);
-	Cmd_AddCommand("fieldinfo", SV_FieldInfo_f);
-	Cmd_AddCommand("sectorlist", SV_SectorList_f);
-	Cmd_AddCommand("map", SV_Map_f);
+	Cmd_AddCommand("heartbeat", SV_Heartbeat_f, "test");
+	Cmd_AddCommand("status", SV_Status_f, "test");
+	Cmd_AddCommand("serverinfo", SV_Serverinfo_f, "test");
+	Cmd_AddCommand("systeminfo", SV_Systeminfo_f, "test");
+	Cmd_AddCommand("dumpuser", SV_DumpUser_f, "test");
+	Cmd_AddCommand("map_restart", SV_MapRestart_f, "test");
+	Cmd_AddCommand("fieldinfo", SV_FieldInfo_f, "test");
+	Cmd_AddCommand("sectorlist", SV_SectorList_f, "test");
+	Cmd_AddCommand("map", SV_Map_f, "test");
 	Cmd_SetCommandCompletionFunc( "map", SV_CompleteMapName );
-	Cmd_AddCommand("gameCompleteStatus", SV_GameCompleteStatus_f);	// NERVE - SMF
+	Cmd_AddCommand("gameCompleteStatus", SV_GameCompleteStatus_f, "test");	// NERVE - SMF
 #ifndef PRE_RELEASE_DEMO_NODEVMAP
-	Cmd_AddCommand("devmap", SV_Map_f);
+	Cmd_AddCommand("devmap", SV_Map_f, "test");
 	Cmd_SetCommandCompletionFunc( "devmap", SV_CompleteMapName );
-	Cmd_AddCommand("spmap", SV_Map_f);
+	Cmd_AddCommand("spmap", SV_Map_f, "test");
 	Cmd_SetCommandCompletionFunc( "devmap", SV_CompleteMapName );
-	Cmd_AddCommand("spdevmap", SV_Map_f);
+	Cmd_AddCommand("spdevmap", SV_Map_f, "test");
 	Cmd_SetCommandCompletionFunc( "devmap", SV_CompleteMapName );
 #endif
-	Cmd_AddCommand("loadgame", SV_LoadGame_f);
-	Cmd_AddCommand("killserver", SV_KillServer_f);
+	Cmd_AddCommand("loadgame", SV_LoadGame_f, "test");
+	Cmd_AddCommand("killserver", SV_KillServer_f, "test");
 	if(com_dedicated->integer) {
-		Cmd_AddCommand("say", SV_ConSay_f);
+		Cmd_AddCommand("say", SV_ConSay_f, "test");
 	}
 }

@@ -1692,10 +1692,10 @@ qboolean S_Base_Init( soundInterface_t *si ) {
 		return qfalse;
 	}
 
-	s_mixahead = Cvar_Get ("s_mixahead", "0.2", CVAR_ARCHIVE);
-	s_mixPreStep = Cvar_Get ("s_mixPreStep", "0.05", CVAR_ARCHIVE);
-	s_show = Cvar_Get ("s_show", "0", CVAR_CHEAT);
-	s_testsound = Cvar_Get ("s_testsound", "0", CVAR_CHEAT);
+	s_mixahead = Cvar_Get ("s_mixahead", "0.2", CVAR_ARCHIVE, "test");
+	s_mixPreStep = Cvar_Get ("s_mixPreStep", "0.05", CVAR_ARCHIVE, "test");
+	s_show = Cvar_Get ("s_show", "0", CVAR_CHEAT, "test");
+	s_testsound = Cvar_Get ("s_testsound", "0", CVAR_CHEAT, "test");
 
 	r = SNDDMA_Init();
 

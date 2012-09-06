@@ -500,12 +500,12 @@ void S_Init( void )
 
 		S_CodecInit( );
 
-		Cmd_AddCommand( "play", S_Play_f );
-		Cmd_AddCommand( "music", S_Music_f );
-		Cmd_AddCommand( "stopmusic", S_StopMusic_f );
-		Cmd_AddCommand( "s_list", S_SoundList );
-		Cmd_AddCommand( "s_stop", S_StopAllSounds );
-		Cmd_AddCommand( "s_info", S_SoundInfo );
+		Cmd_AddCommand( "play", S_Play_f, "test" );
+		Cmd_AddCommand( "music", S_Music_f, "test" );
+		Cmd_AddCommand( "stopmusic", S_StopMusic_f, "test" );
+		Cmd_AddCommand( "s_list", S_SoundList, "test" );
+		Cmd_AddCommand( "s_stop", S_StopAllSounds, "test" );
+		Cmd_AddCommand( "s_info", S_SoundInfo, "test" );
 
 		cv = Cvar_Get( "s_useOpenAL", "1", CVAR_ARCHIVE, "test" );
 		if( cv->integer ) {

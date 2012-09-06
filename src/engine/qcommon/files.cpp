@@ -3552,11 +3552,11 @@ static void FS_Startup( const char *gameName ) {
 #endif // PRE_RELEASE_DEMO
 
 	// add our commands
-	Cmd_AddCommand( "path", FS_Path_f );
-	Cmd_AddCommand( "dir", FS_Dir_f );
-	Cmd_AddCommand( "fdir", FS_NewDir_f );
-	Cmd_AddCommand( "touchFile", FS_TouchFile_f );
-	Cmd_AddCommand ("which", FS_Which_f );
+	Cmd_AddCommand( "path", FS_Path_f, "test" );
+	Cmd_AddCommand( "dir", FS_Dir_f, "test" );
+	Cmd_AddCommand( "fdir", FS_NewDir_f, "test" );
+	Cmd_AddCommand( "touchFile", FS_TouchFile_f, "test" );
+	Cmd_AddCommand ("which", FS_Which_f, "test" );
 
 	// show_bug.cgi?id=506
 	// reorder the pure pk3 files according to server order

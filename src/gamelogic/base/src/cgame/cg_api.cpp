@@ -164,8 +164,8 @@ void trap_SendConsoleCommand(const char *text) {
 }
 
 //21.
-//CL_AddCgameCommand(VMA(1));
-void trap_AddCommand(const char *cmdName) {
+//Cmd_AddCommand((char*)VMA(1), NULL, (char*)VMA(3));
+void trap_AddCommand(const char *cmdName, const char *cmdDesc) {
 	syscall(CG_ADDCOMMAND, cmdName);
 }
 

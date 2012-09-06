@@ -1849,13 +1849,13 @@ void Com_InitHunkMemory( void )
 
 	Hunk_Clear();
 
-	Cmd_AddCommand( "meminfo", Com_Meminfo_f );
+	Cmd_AddCommand( "meminfo", Com_Meminfo_f, "test" );
 #ifdef ZONE_DEBUG
-	Cmd_AddCommand( "zonelog", Z_LogHeap );
+	Cmd_AddCommand( "zonelog", Z_LogHeap, "test" );
 #endif
 #ifdef HUNK_DEBUG
-	Cmd_AddCommand( "hunklog", Hunk_Log );
-	Cmd_AddCommand( "hunksmalllog", Hunk_SmallLog );
+	Cmd_AddCommand( "hunklog", Hunk_Log, "test" );
+	Cmd_AddCommand( "hunksmalllog", Hunk_SmallLog, "test" );
 #endif
 }
 
@@ -3264,13 +3264,13 @@ void Com_Init(char *commandLine)
 
 	if(com_developer && com_developer->integer)
 	{
-		Cmd_AddCommand("error", Com_Error_f);
-		Cmd_AddCommand("crash", Com_Crash_f);
-		Cmd_AddCommand("freeze", Com_Freeze_f);
+		Cmd_AddCommand("error", Com_Error_f, "test");
+		Cmd_AddCommand("crash", Com_Crash_f, "test");
+		Cmd_AddCommand("freeze", Com_Freeze_f, "test");
 	}
-	Cmd_AddCommand("quit", Com_Quit_f);
-	Cmd_AddCommand("changeVectors", MSG_ReportChangeVectors_f);
-	Cmd_AddCommand("writeconfig", Com_WriteConfig_f);
+	Cmd_AddCommand("quit", Com_Quit_f, "test");
+	Cmd_AddCommand("changeVectors", MSG_ReportChangeVectors_f, "test");
+	Cmd_AddCommand("writeconfig", Com_WriteConfig_f, "test");
 
 	s = va("%s %s %s", Q3_VERSION, ARCH_STRING, __DATE__);
 	com_version = Cvar_Get("version", s, CVAR_ROM | CVAR_SERVERINFO, "test");

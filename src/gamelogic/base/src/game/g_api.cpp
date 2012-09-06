@@ -354,9 +354,9 @@ void trap_SendGameStat( const char *data ) {
 }
 
 //50.
-//Cmd_AddCommand( VMA(1), NULL );
-void trap_AddCommand( const char *cmdName ) {
-	syscall( G_ADDCOMMAND, cmdName );
+//Cmd_AddCommand((char*)VMA(1), NULL, (char*)VMA(3));
+void trap_AddCommand(const char *cmdName, const char *cmdDesc) {
+	syscall( G_ADDCOMMAND, cmdName, cmdDesc );
 }
 
 //51.

@@ -532,7 +532,7 @@ typedef void    (*xcommand_t) (void);
 
 void            Cmd_Init(void);
 qboolean		Cmd_Exists( const char *cmd_name );
-void            Cmd_AddCommand(const char *cmd_name, xcommand_t function);
+void            Cmd_AddCommand(const char *cmd_name, xcommand_t function, const char *cmd_desc);
 
 // called by the init functions of other parts of the program to
 // register commands and functions to call for them.
@@ -643,6 +643,7 @@ void            Cvar_SetValueLatched(const char *var_name, float value);
 
 // expands value to a string and calls Cvar_Set
 
+convar_t       *Cvar_FindVar(const char *var_name);
 float           Cvar_VariableValue(const char *var_name);
 int             Cvar_VariableIntegerValue(const char *var_name);
 

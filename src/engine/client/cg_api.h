@@ -338,7 +338,7 @@ void trap_FS_FCloseFile(fileHandle_t f);
 int trap_FS_GetFileList(const char *path, const char *extension, char *listbuf, int bufsize);
 int trap_FS_Delete(const char *filename);
 void trap_SendConsoleCommand(const char *text);
-void trap_AddCommand(const char *cmdName);
+void trap_AddCommand(const char *cmdName, const char *cmdDesc);
 void trap_RemoveCommand(const char *cmdName);
 void trap_SendClientCommand(const char *s);
 void trap_UpdateScreen(void);

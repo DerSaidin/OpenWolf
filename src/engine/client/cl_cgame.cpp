@@ -257,7 +257,7 @@ CL_AddCgameCommand
 */
 void CL_AddCgameCommand(const char *cmdName)
 {
-	Cmd_AddCommand(cmdName, NULL);
+	Cmd_AddCommand(cmdName, NULL, "");
 	Cmd_SetCommandCompletionFunc( cmdName, CL_CompleteCgameCommand );
 }
 
@@ -692,9 +692,7 @@ intptr_t CL_CgameSystemCalls(intptr_t * args) {
 			Cmd_ArgsBuffer((char*)VMA(1), args[2]);
 			return 0;
 		case CG_LITERAL_ARGS:
-			// Dushan : FIX ME
 			Cmd_LiteralArgsBuffer( (char*)VMA(1), args[2] );
-// 			Cmd_ArgsBuffer(VMA(1), args[2]);
 			return 0;
 		case CG_GETDEMOSTATE:
 			return CL_DemoState( );
@@ -1541,7 +1539,7 @@ void CL_FirstSnapshot(void)
 		}
 		clc.speexInitialized = qtrue;
 		clc.voipMuteAll = qfalse;
-		Cmd_AddCommand ("voip", CL_Voip_f);
+		Cmd_AddCommand ("voip", CL_Voip_f, "test");
 		Cvar_Set("cl_voipSendTarget", "spatial");
 		Com_Memset(clc.voipTargets, ~0, sizeof(clc.voipTargets));
 	}

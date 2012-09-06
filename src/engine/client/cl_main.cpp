@@ -4993,81 +4993,68 @@ void CL_Init(void)
 	//
 	// register our commands
 	//
-	Cmd_AddCommand("cmd", CL_ForwardToServer_f);
+	Cmd_AddCommand("cmd", CL_ForwardToServer_f, "test");
 #if defined (GUIDMASTER_SUPPORT)
-	Cmd_AddCommand("getguid", CL_CmdGetGuid_f);
+	Cmd_AddCommand("getguid", CL_CmdGetGuid_f, "test");
 #endif
-	Cmd_AddCommand("configstrings", CL_Configstrings_f);
-	Cmd_AddCommand("clientinfo", CL_Clientinfo_f);
-	Cmd_AddCommand("snd_reload", CL_Snd_Reload_f);
-	Cmd_AddCommand("snd_restart", CL_Snd_Restart_f);
-	Cmd_AddCommand("vid_restart", CL_Vid_Restart_f);
-	Cmd_AddCommand("ui_restart", CL_UI_Restart_f);	// NERVE - SMF
-	Cmd_AddCommand("disconnect", CL_Disconnect_f);
-	Cmd_AddCommand("record", CL_Record_f);
-	Cmd_AddCommand("demo", CL_PlayDemo_f);
+	Cmd_AddCommand("configstrings", CL_Configstrings_f, "test");
+	Cmd_AddCommand("clientinfo", CL_Clientinfo_f, "test");
+	Cmd_AddCommand("snd_reload", CL_Snd_Reload_f, "test");
+	Cmd_AddCommand("snd_restart", CL_Snd_Restart_f, "test");
+	Cmd_AddCommand("vid_restart", CL_Vid_Restart_f, "test");
+	Cmd_AddCommand("ui_restart", CL_UI_Restart_f, "test");	// NERVE - SMF
+	Cmd_AddCommand("disconnect", CL_Disconnect_f, "test");
+	Cmd_AddCommand("record", CL_Record_f, "test");
+	Cmd_AddCommand("demo", CL_PlayDemo_f, "test");
 	Cmd_SetCommandCompletionFunc( "demo", CL_CompleteDemoName );
-	Cmd_AddCommand("cinematic", CL_PlayCinematic_f);
-	Cmd_AddCommand("stoprecord", CL_StopRecord_f);
-	Cmd_AddCommand("connect", CL_Connect_f);
-	Cmd_AddCommand("reconnect", CL_Reconnect_f);
-	Cmd_AddCommand("localservers", CL_LocalServers_f);
-	Cmd_AddCommand("globalservers", CL_GlobalServers_f);
+	Cmd_AddCommand("cinematic", CL_PlayCinematic_f, "test");
+	Cmd_AddCommand("stoprecord", CL_StopRecord_f, "test");
+	Cmd_AddCommand("connect", CL_Connect_f, "test");
+	Cmd_AddCommand("reconnect", CL_Reconnect_f, "test");
+	Cmd_AddCommand("localservers", CL_LocalServers_f, "test");
+	Cmd_AddCommand("globalservers", CL_GlobalServers_f, "test");
 #if defined (USE_HTTP)
-	Cmd_AddCommand ("login", CL_Login_f);
-	Cmd_AddCommand ("highscore", CL_Highscore_f);
-	Cmd_AddCommand ("forgotpassword", CL_ForgotPassword_f);
-	Cmd_AddCommand ("createcharacter", CL_CreateCharacter_f);
-	Cmd_AddCommand ("deletecharacter", CL_DeleteCharacter_f);
-	Cmd_AddCommand ("getaccount", CL_GetAccount_f);
-	Cmd_AddCommand ("globalhighscores", CL_GlobalHighScores_f);
+	Cmd_AddCommand ("login", CL_Login_f, "test");
+	Cmd_AddCommand ("highscore", CL_Highscore_f, "test");
+	Cmd_AddCommand ("forgotpassword", CL_ForgotPassword_f, "test");
+	Cmd_AddCommand ("createcharacter", CL_CreateCharacter_f, "test");
+	Cmd_AddCommand ("deletecharacter", CL_DeleteCharacter_f, "test");
+	Cmd_AddCommand ("getaccount", CL_GetAccount_f, "test");
+	Cmd_AddCommand ("globalhighscores", CL_GlobalHighScores_f, "test");
 #endif
-	Cmd_AddCommand("openurl", CL_OpenUrl_f );
-	Cmd_AddCommand("rcon", CL_Rcon_f);
-	Cmd_AddCommand("setenv", CL_Setenv_f);
-	Cmd_AddCommand("ping", CL_Ping_f);
-	Cmd_AddCommand("serverstatus", CL_ServerStatus_f);
-	Cmd_AddCommand("showip", CL_ShowIP_f);
-	Cmd_AddCommand("fs_openedList", CL_OpenedPK3List_f);
-	Cmd_AddCommand("fs_referencedList", CL_ReferencedPK3List_f);
+	Cmd_AddCommand("openurl", CL_OpenUrl_f, "test");
+	Cmd_AddCommand("rcon", CL_Rcon_f, "test");
+	Cmd_AddCommand("setenv", CL_Setenv_f, "test");
+	Cmd_AddCommand("ping", CL_Ping_f, "test");
+	Cmd_AddCommand("serverstatus", CL_ServerStatus_f, "test");
+	Cmd_AddCommand("showip", CL_ShowIP_f, "test");
+	Cmd_AddCommand("fs_openedList", CL_OpenedPK3List_f, "test");
+	Cmd_AddCommand("fs_referencedList", CL_ReferencedPK3List_f, "test");
 
-	Cmd_AddCommand ("irc_connect", CL_OW_InitIRC);
-	Cmd_AddCommand ("irc_quit", CL_OW_IRCInitiateShutdown);
-	Cmd_AddCommand ("irc_say", CL_OW_IRCSay);
+	Cmd_AddCommand ("irc_connect", CL_OW_InitIRC, "test");
+	Cmd_AddCommand ("irc_quit", CL_OW_IRCInitiateShutdown, "test");
+	Cmd_AddCommand ("irc_say", CL_OW_IRCSay, "test");
 
 	// Ridah, startup-caching system
-	Cmd_AddCommand("cache_startgather", CL_Cache_StartGather_f);
-	Cmd_AddCommand("cache_usedfile", CL_Cache_UsedFile_f);
-	Cmd_AddCommand("cache_setindex", CL_Cache_SetIndex_f);
-	Cmd_AddCommand("cache_mapchange", CL_Cache_MapChange_f);
-	Cmd_AddCommand("cache_endgather", CL_Cache_EndGather_f);
+	Cmd_AddCommand("cache_startgather", CL_Cache_StartGather_f, "test");
+	Cmd_AddCommand("cache_usedfile", CL_Cache_UsedFile_f, "test");
+	Cmd_AddCommand("cache_setindex", CL_Cache_SetIndex_f, "test");
+	Cmd_AddCommand("cache_mapchange", CL_Cache_MapChange_f, "test");
+	Cmd_AddCommand("cache_endgather", CL_Cache_EndGather_f, "test");
 
-	Cmd_AddCommand("updatehunkusage", CL_UpdateLevelHunkUsage);
-	Cmd_AddCommand("updatescreen", SCR_UpdateScreen);
+	Cmd_AddCommand("updatehunkusage", CL_UpdateLevelHunkUsage, "test");
+	Cmd_AddCommand("updatescreen", SCR_UpdateScreen, "test");
 	// done.
 
-	Cmd_AddCommand("SaveTranslations", CL_SaveTranslations_f);	// NERVE - SMF - localization
-	Cmd_AddCommand("SaveNewTranslations", CL_SaveNewTranslations_f);	// NERVE - SMF - localization
-	Cmd_AddCommand("LoadTranslations", CL_LoadTranslations_f);	// NERVE - SMF - localization
+	Cmd_AddCommand("SaveTranslations", CL_SaveTranslations_f, "test");	// NERVE - SMF - localization
+	Cmd_AddCommand("SaveNewTranslations", CL_SaveNewTranslations_f, "test");	// NERVE - SMF - localization
+	Cmd_AddCommand("LoadTranslations", CL_LoadTranslations_f, "test");	// NERVE - SMF - localization
 
-	// NERVE - SMF - don't do this in multiplayer
-	// RF, add this command so clients can't bind a key to send client damage commands to the server
-//  Cmd_AddCommand ("cld", CL_ClientDamageCommand );
-
-//  Cmd_AddCommand ( "startSingleplayer", CL_startSingleplayer_f );     // NERVE - SMF
-//  fretn - unused
-//  Cmd_AddCommand ( "buyNow", CL_buyNow_f );                           // NERVE - SMF
-//  Cmd_AddCommand ( "singlePlayLink", CL_singlePlayLink_f );           // NERVE - SMF
-
-	Cmd_AddCommand("setRecommended", CL_SetRecommended_f);
-
-	Cmd_AddCommand("wav_record", CL_WavRecord_f);
-	Cmd_AddCommand("wav_stoprecord", CL_WavStopRecord_f);
-
-// XreaL BEGIN
-	Cmd_AddCommand("video", CL_Video_f);
-	Cmd_AddCommand("stopvideo", CL_StopVideo_f);
-// XreaL END
+	Cmd_AddCommand("setRecommended", CL_SetRecommended_f, "test");
+	Cmd_AddCommand("wav_record", CL_WavRecord_f, "test");
+	Cmd_AddCommand("wav_stoprecord", CL_WavStopRecord_f, "test");
+	Cmd_AddCommand("video", CL_Video_f, "test");
+	Cmd_AddCommand("stopvideo", CL_StopVideo_f, "test");
 
 	SCR_Init();
 

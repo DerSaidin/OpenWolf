@@ -969,7 +969,7 @@ intptr_t CL_UISystemCalls(intptr_t * args) {
 			Cbuf_ExecuteText(args[1], (char*)VMA(2));
 			return 0;
 		case UI_ADDCOMMAND:
-			Cmd_AddCommand((char*)VMA(1), NULL);
+			Cmd_AddCommand((char*)VMA(1), NULL, (char*)VMA(3));
 			return 0;
 		case UI_FS_FOPENFILE:
 			return FS_FOpenFileByMode((char*)VMA(1), (fileHandle_t*)VMA( 2 ), (fsMode_t)args[3] );

@@ -78,9 +78,10 @@ delayed_cmd_s delayed_cmd[MAX_DELAYED_COMMANDS];
 typedef struct cmd_function_s
 {
 	struct cmd_function_s *next;
-	char           *name;
-	xcommand_t      function;
-	completionFunc_t	complete;
+	char                  *name;
+	xcommand_t             function;
+	completionFunc_t	   complete;
+	char                  *desc;
 } cmd_function_t;
 
 typedef struct cmdContext_s
@@ -93,11 +94,6 @@ typedef struct cmdContext_s
 
 static cmdContext_t		cmd;
 static cmdContext_t		savedCmd;
-
-// static int      cmd.argc;
-// static char    *cmd.argv[MAX_STRING_TOKENS];	// points into cmd.tokenized
-// static char     cmd.tokenized[BIG_INFO_STRING + MAX_STRING_TOKENS];	// will have 0 bytes inserted
-// static char     cmd.cmd[BIG_INFO_STRING];	// the original command we received (no token processing)
 
 static cmd_function_t *cmd_functions;	// possible commands to execute
 
@@ -667,14 +663,14 @@ void Cmd_Alias_f(void)
 			alias->exec = CopyString(Cmd_ArgsFrom(2));
 			alias->next = cmd_aliases;
 			cmd_aliases = alias;
-			Cmd_AddCommand(name, Cmd_RunAlias_f);
+			Cmd_AddCommand(name, Cmd_RunAlias_f, "");
 		}
 		else
 		{
 			// Reallocate the exec string
 			Z_Free(alias->exec);
 			alias->exec = CopyString(Cmd_ArgsFrom(2));
-			Cmd_AddCommand(name, Cmd_RunAlias_f);
+			Cmd_AddCommand(name, Cmd_RunAlias_f, "");
 		}
 	}
 	
@@ -1187,27 +1183,28 @@ void Cmd_TokenizeStringParseCvar( const char *text_in ) {
 Cmd_AddCommand
 ============
 */
-void Cmd_AddCommand(const char *cmd_name, xcommand_t function)
+void Cmd_AddCommand(const char *cmd_name, xcommand_t function, const char *cmd_desc)
 {
 	cmd_function_t *cmd;
 
-	// fail if the command already exists
-	for(cmd = cmd_functions; cmd; cmd = cmd->next)
+	// fail if the command is a variable name
+	if( Cvar_FindVar( cmd_name ))
 	{
-		if(!strcmp(cmd_name, cmd->name))
-		{
-			// allow completion-only commands to be silently doubled
-			if(function != NULL)
-			{
-				Com_Printf("Cmd_AddCommand: %s already defined\n", cmd_name);
-			}
-			return;
-		}
+		Com_Printf( "Cmd_AddCommand: %s already defined as a var\n", cmd_name );
+		return;
+	}
+	
+	// fail if the command already exists
+	if( Cmd_Exists( cmd_name ))
+	{
+		Com_Printf( "Cmd_AddCommand: %s already defined\n", cmd_name );
+		return;
 	}
 
 	// use a small malloc to avoid zone fragmentation
 	cmd = (cmd_function_t*)S_Malloc(sizeof(cmd_function_t));
 	cmd->name = CopyString(cmd_name);
+	cmd->desc = CopyString(cmd_desc);
 	cmd->function = function;
 	cmd->next = cmd_functions;
 	cmd->complete = NULL;
@@ -1254,6 +1251,10 @@ void Cmd_RemoveCommand(const char *cmd_name)
 			if(cmd->name)
 			{
 				Z_Free(cmd->name);
+			}
+			if(cmd->desc)
+			{
+				Z_Free(cmd->desc);
 			}
 			Z_Free(cmd);
 			return;
@@ -1375,7 +1376,7 @@ Cmd_List_f
 void Cmd_List_f(void)
 {
 	cmd_function_t *cmd;
-	int             i;
+	int             i = 0;
 	char           *match;
 
 	if(Cmd_Argc() > 1)
@@ -1387,7 +1388,6 @@ void Cmd_List_f(void)
 		match = NULL;
 	}
 
-	i = 0;
 	for(cmd = cmd_functions; cmd; cmd = cmd->next)
 	{
 		if(match && !Com_Filter(match, cmd->name, qfalse))
@@ -1395,7 +1395,8 @@ void Cmd_List_f(void)
 			continue;
 		}
 
-		Com_Printf("%s\n", cmd->name);
+		Com_Printf("%s\%s\n", cmd->name, cmd->desc);
+		//Com_Printf( "%10s            %s\n", cmd->name, cmd->desc );
 		i++;
 	}
 	Com_Printf("%i commands\n", i);
@@ -1490,17 +1491,17 @@ Cmd_Init
 */
 void Cmd_Init(void)
 {
-	Cmd_AddCommand("cmdlist", Cmd_List_f);
-	Cmd_AddCommand("exec", Cmd_Exec_f);
+	Cmd_AddCommand("cmdlist", Cmd_List_f, "test");
+	Cmd_AddCommand("exec", Cmd_Exec_f, "test");
 	Cmd_SetCommandCompletionFunc( "exec", Cmd_CompleteCfgName );
-	Cmd_AddCommand("wait", Cmd_Wait_f);
+	Cmd_AddCommand("wait", Cmd_Wait_f, "test");
 	Cmd_SetCommandCompletionFunc( "math", Cvar_CompleteCvarName );
-	Cmd_AddCommand ("alias", Cmd_Alias_f);
+	Cmd_AddCommand ("alias", Cmd_Alias_f, "test");
 	Cmd_SetCommandCompletionFunc( "alias", Cmd_CompleteAliasName );
-	Cmd_AddCommand ("unalias", Cmd_UnAlias_f);
+	Cmd_AddCommand ("unalias", Cmd_UnAlias_f, "test");
 	Cmd_SetCommandCompletionFunc( "unalias", Cmd_CompleteAliasName );
-	Cmd_AddCommand ("aliaslist", Cmd_AliasList_f);
-	Cmd_AddCommand ("clearaliases", Cmd_ClearAliases_f);
+	Cmd_AddCommand ("aliaslist", Cmd_AliasList_f, "test");
+	Cmd_AddCommand ("clearaliases", Cmd_ClearAliases_f, "test");
 }
 
 

@@ -283,7 +283,7 @@ void trap_Cvar_InfoStringBuffer(int bit, char *buffer, int bufsize);
 int trap_Argc(void);
 void trap_Argv(int n, char *buffer, int bufferLength);
 void trap_Cmd_ExecuteText(int exec_when, const char *text);
-void trap_AddCommand(const char *cmdName);
+void trap_AddCommand(const char *cmdName, const char *cmdDesc);
 int trap_FS_FOpenFile( const char *qpath, fileHandle_t *f, fsMode_t mode );
 void trap_FS_Read(void *buffer, int len, fileHandle_t f);
 void trap_FS_Write(const void *buffer, int len, fileHandle_t f);

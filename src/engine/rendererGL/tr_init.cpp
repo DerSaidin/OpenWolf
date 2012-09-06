@@ -1724,28 +1724,28 @@ void R_Register(void)
 	r_detailTextures = ri.Cvar_Get("r_detailtextures", "1", CVAR_ARCHIVE | CVAR_LATCH, "test");
 
 	// make sure all the commands added here are also removed in R_Shutdown
-	ri.Cmd_AddCommand("imagelist", R_ImageList_f);
-	ri.Cmd_AddCommand("shaderlist", R_ShaderList_f);
-	ri.Cmd_AddCommand("shaderexp", R_ShaderExp_f);
-	ri.Cmd_AddCommand("skinlist", R_SkinList_f);
-	ri.Cmd_AddCommand("modellist", R_Modellist_f);
-	ri.Cmd_AddCommand("modelist", R_ModeList_f);
+	ri.Cmd_AddCommand("imagelist", R_ImageList_f, "test");
+	ri.Cmd_AddCommand("shaderlist", R_ShaderList_f, "test");
+	ri.Cmd_AddCommand("shaderexp", R_ShaderExp_f, "test");
+	ri.Cmd_AddCommand("skinlist", R_SkinList_f, "test");
+	ri.Cmd_AddCommand("modellist", R_Modellist_f, "test");
+	ri.Cmd_AddCommand("modelist", R_ModeList_f, "test");
 
 #if defined(USE_REFENTITY_ANIMATIONSYSTEM)
-	ri.Cmd_AddCommand("animationlist", R_AnimationList_f);
+	ri.Cmd_AddCommand("animationlist", R_AnimationList_f, "test");
 #endif
 
-	ri.Cmd_AddCommand("fbolist", R_FBOList_f);
-	ri.Cmd_AddCommand("vbolist", R_VBOList_f);
-	ri.Cmd_AddCommand("screenshot", R_ScreenShot_f);
-	ri.Cmd_AddCommand("screenshotJPEG", R_ScreenShotJPEG_f);
-	ri.Cmd_AddCommand("screenshotPNG", R_ScreenShotPNG_f);
-	ri.Cmd_AddCommand("gfxinfo", GfxInfo_f);
+	ri.Cmd_AddCommand("fbolist", R_FBOList_f, "test");
+	ri.Cmd_AddCommand("vbolist", R_VBOList_f, "test");
+	ri.Cmd_AddCommand("screenshot", R_ScreenShot_f, "test");
+	ri.Cmd_AddCommand("screenshotJPEG", R_ScreenShotJPEG_f, "test");
+	ri.Cmd_AddCommand("screenshotPNG", R_ScreenShotPNG_f, "test");
+	ri.Cmd_AddCommand("gfxinfo", GfxInfo_f, "test");
 //	ri.Cmd_AddCommand("generatemtr", R_GenerateMaterialFile_f);
-	ri.Cmd_AddCommand("buildcubemaps", R_BuildCubeMaps);
+	ri.Cmd_AddCommand("buildcubemaps", R_BuildCubeMaps, "test");
 
 #if !defined(USE_D3D10)
-	ri.Cmd_AddCommand("glsl_restart", GLSL_restart_f);
+	ri.Cmd_AddCommand("glsl_restart", GLSL_restart_f, "test");
 #endif
 }
 

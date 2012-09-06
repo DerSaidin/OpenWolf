@@ -612,7 +612,7 @@ intptr_t SV_GameSystemCalls(intptr_t * args) {
 			SV_MasterGameStat( (char*)VMA(1) );
 			return 0;
 		case G_ADDCOMMAND:
-			Cmd_AddCommand( (char*)VMA(1), NULL );
+			Cmd_AddCommand( (char*)VMA(1), NULL, (char*)VMA(3) );
 			return 0;
 		case G_REMOVECOMMAND:
 			Cmd_RemoveCommand( (char*)VMA(1) );

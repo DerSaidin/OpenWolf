@@ -141,9 +141,9 @@ void trap_Cmd_ExecuteText(int exec_when, const char *text) {
 }
 
 //16.
-//Cmd_AddCommand(VMA(1), NULL);
-void trap_AddCommand(const char *cmdName) {
-	syscall(UI_ADDCOMMAND, cmdName);
+//Cmd_AddCommand((char*)VMA(1), NULL, (char*)VMA(3));
+void trap_AddCommand(const char *cmdName, const char *cmdDesc) {
+	syscall(UI_ADDCOMMAND, cmdName, cmdDesc);
 }
 
 //17.

@@ -1544,127 +1544,126 @@ CL_InitInput
 */
 void CL_InitInput(void)
 {
-//	Cmd_AddCommand ("centerview", IN_CenterView);
+//	Cmd_AddCommand ("centerview", IN_CenterView, "test");
 
-	Cmd_AddCommand("+moveup", IN_UpDown);
-	Cmd_AddCommand("-moveup", IN_UpUp);
-	Cmd_AddCommand("+movedown", IN_DownDown);
-	Cmd_AddCommand("-movedown", IN_DownUp);
-	Cmd_AddCommand("+left", IN_LeftDown);
-	Cmd_AddCommand("-left", IN_LeftUp);
-	Cmd_AddCommand("+right", IN_RightDown);
-	Cmd_AddCommand("-right", IN_RightUp);
-	Cmd_AddCommand("+forward", IN_ForwardDown);
-	Cmd_AddCommand("-forward", IN_ForwardUp);
-	Cmd_AddCommand("+back", IN_BackDown);
-	Cmd_AddCommand("-back", IN_BackUp);
-	Cmd_AddCommand("+lookup", IN_LookupDown);
-	Cmd_AddCommand("-lookup", IN_LookupUp);
-	Cmd_AddCommand("+lookdown", IN_LookdownDown);
-	Cmd_AddCommand("-lookdown", IN_LookdownUp);
-	Cmd_AddCommand("+strafe", IN_StrafeDown);
-	Cmd_AddCommand("-strafe", IN_StrafeUp);
-	Cmd_AddCommand("+moveleft", IN_MoveleftDown);
-	Cmd_AddCommand("-moveleft", IN_MoveleftUp);
-	Cmd_AddCommand("+moveright", IN_MoverightDown);
-	Cmd_AddCommand("-moveright", IN_MoverightUp);
-	Cmd_AddCommand("+speed", IN_SpeedDown);
-	Cmd_AddCommand("-speed", IN_SpeedUp);
+	Cmd_AddCommand("+moveup", IN_UpDown, "test");
+	Cmd_AddCommand("-moveup", IN_UpUp, "test");
+	Cmd_AddCommand("+movedown", IN_DownDown, "test");
+	Cmd_AddCommand("-movedown", IN_DownUp, "test");
+	Cmd_AddCommand("+left", IN_LeftDown, "test");
+	Cmd_AddCommand("-left", IN_LeftUp, "test");
+	Cmd_AddCommand("+right", IN_RightDown, "test");
+	Cmd_AddCommand("-right", IN_RightUp, "test");
+	Cmd_AddCommand("+forward", IN_ForwardDown, "test");
+	Cmd_AddCommand("-forward", IN_ForwardUp, "test");
+	Cmd_AddCommand("+back", IN_BackDown, "test");
+	Cmd_AddCommand("-back", IN_BackUp, "test");
+	Cmd_AddCommand("+lookup", IN_LookupDown, "test");
+	Cmd_AddCommand("-lookup", IN_LookupUp, "test");
+	Cmd_AddCommand("+lookdown", IN_LookdownDown, "test");
+	Cmd_AddCommand("-lookdown", IN_LookdownUp, "test");
+	Cmd_AddCommand("+strafe", IN_StrafeDown, "test");
+	Cmd_AddCommand("-strafe", IN_StrafeUp, "test");
+	Cmd_AddCommand("+moveleft", IN_MoveleftDown, "test");
+	Cmd_AddCommand("-moveleft", IN_MoveleftUp, "test");
+	Cmd_AddCommand("+moveright", IN_MoverightDown, "test");
+	Cmd_AddCommand("-moveright", IN_MoverightUp, "test");
+	Cmd_AddCommand("+speed", IN_SpeedDown, "test");
+	Cmd_AddCommand("-speed", IN_SpeedUp, "test");
 
-	Cmd_AddCommand("+attack", IN_Button0Down);	// ---- id   (primary firing)
-	Cmd_AddCommand("-attack", IN_Button0Up);
+	Cmd_AddCommand("+attack", IN_Button0Down, "test");	// ---- id   (primary firing)
+	Cmd_AddCommand("-attack", IN_Button0Up, "test");
 
-    Cmd_AddCommand ("+button0", IN_Button0Down);
-    Cmd_AddCommand ("-button0", IN_Button0Up);
+    Cmd_AddCommand ("+button0", IN_Button0Down, "test");
+    Cmd_AddCommand ("-button0", IN_Button0Up, "test");
 
-	Cmd_AddCommand("+button1", IN_Button1Down);
-	Cmd_AddCommand("-button1", IN_Button1Up);
+	Cmd_AddCommand("+button1", IN_Button1Down, "test");
+	Cmd_AddCommand("-button1", IN_Button1Up, "test");
 
-	Cmd_AddCommand ("+button2", IN_Button2Down);
-	Cmd_AddCommand ("-button2", IN_Button2Up);
+	Cmd_AddCommand ("+button2", IN_Button2Down, "test");
+	Cmd_AddCommand ("-button2", IN_Button2Up, "test");
 
-	Cmd_AddCommand("+useitem", IN_UseItemDown);
-	Cmd_AddCommand("-useitem", IN_UseItemUp);
+	Cmd_AddCommand("+useitem", IN_UseItemDown, "test");
+	Cmd_AddCommand("-useitem", IN_UseItemUp, "test");
 
-	Cmd_AddCommand("+salute", IN_Button3Down);	//----(SA) salute
-	Cmd_AddCommand("-salute", IN_Button3Up);
-    Cmd_AddCommand ("+button3", IN_Button3Down);
-    Cmd_AddCommand ("-button3", IN_Button3Up);
+	Cmd_AddCommand("+salute", IN_Button3Down, "test");	//----(SA) salute
+	Cmd_AddCommand("-salute", IN_Button3Up, "test");
+    Cmd_AddCommand ("+button3", IN_Button3Down, "test");
+    Cmd_AddCommand ("-button3", IN_Button3Up, "test");
 
-	Cmd_AddCommand("+button4", IN_Button4Down);
-	Cmd_AddCommand("-button4", IN_Button4Up);
+	Cmd_AddCommand("+button4", IN_Button4Down, "test");
+	Cmd_AddCommand("-button4", IN_Button4Up, "test");
 
-	Cmd_AddCommand ("+button5", IN_Button5Down);
-	Cmd_AddCommand ("-button5", IN_Button5Up);
+	Cmd_AddCommand ("+button5", IN_Button5Down, "test");
+	Cmd_AddCommand ("-button5", IN_Button5Up, "test");
 
-	Cmd_AddCommand ("+button6", IN_Button6Down);
-	Cmd_AddCommand ("-button6", IN_Button6Up);
+	Cmd_AddCommand ("+button6", IN_Button6Down, "test");
+	Cmd_AddCommand ("-button6", IN_Button6Up, "test");
 
-	Cmd_AddCommand ("+button7", IN_Button7Down);
-	Cmd_AddCommand ("-button7", IN_Button7Up);
+	Cmd_AddCommand ("+button7", IN_Button7Down, "test");
+	Cmd_AddCommand ("-button7", IN_Button7Up, "test");
 
-	Cmd_AddCommand ("+button8", IN_Button8Down);
-	Cmd_AddCommand ("-button8", IN_Button8Up);
+	Cmd_AddCommand ("+button8", IN_Button8Down, "test");
+	Cmd_AddCommand ("-button8", IN_Button8Up, "test");
 
-	Cmd_AddCommand ("+button9", IN_Button9Down);
-	Cmd_AddCommand ("-button9", IN_Button9Up);
+	Cmd_AddCommand ("+button9", IN_Button9Down, "test");
+	Cmd_AddCommand ("-button9", IN_Button9Up, "test");
 
-	Cmd_AddCommand ("+button10", IN_Button10Down);
-	Cmd_AddCommand ("-button10", IN_Button10Up);
+	Cmd_AddCommand ("+button10", IN_Button10Down, "test");
+	Cmd_AddCommand ("-button10", IN_Button10Up, "test");
 
-	Cmd_AddCommand ("+button11", IN_Button11Down);
-	Cmd_AddCommand ("-button11", IN_Button11Up);
+	Cmd_AddCommand ("+button11", IN_Button11Down, "test");
+	Cmd_AddCommand ("-button11", IN_Button11Up, "test");
 
-	Cmd_AddCommand ("+button12", IN_Button12Down);
-	Cmd_AddCommand ("-button12", IN_Button12Up);
+	Cmd_AddCommand ("+button12", IN_Button12Down, "test");
+	Cmd_AddCommand ("-button12", IN_Button12Up, "test");
 
-	Cmd_AddCommand ("+button13", IN_Button13Down);
-	Cmd_AddCommand ("-button13", IN_Button13Up);
+	Cmd_AddCommand ("+button13", IN_Button13Down, "test");
+	Cmd_AddCommand ("-button13", IN_Button13Up, "test");
 
-	Cmd_AddCommand ("+button14", IN_Button14Down);
-	Cmd_AddCommand ("-button14", IN_Button14Up);
+	Cmd_AddCommand ("+button14", IN_Button14Down, "test");
+	Cmd_AddCommand ("-button14", IN_Button14Up, "test");
 
 	// Rafael Activate
-	Cmd_AddCommand("+activate", IN_ActivateDown);
-	Cmd_AddCommand("-activate", IN_ActivateUp);
+	Cmd_AddCommand("+activate", IN_ActivateDown, "test");
+	Cmd_AddCommand("-activate", IN_ActivateUp, "test");
 	// done.
 
 	// Rafael Kick
 	// Arnout: now prone
-	Cmd_AddCommand("+prone", IN_ProneDown);
-	Cmd_AddCommand("-prone", IN_ProneUp);
+	Cmd_AddCommand("+prone", IN_ProneDown, "test");
+	Cmd_AddCommand("-prone", IN_ProneUp, "test");
 	// done
 	
-	Cmd_AddCommand("+dodge", IN_ProneDown);
-	Cmd_AddCommand("-dodge", IN_ProneUp);
+	Cmd_AddCommand("+dodge", IN_ProneDown, "test");
+	Cmd_AddCommand("-dodge", IN_ProneUp, "test");
 	
-	Cmd_AddCommand("+sprint", IN_SprintDown);
-	Cmd_AddCommand("-sprint", IN_SprintUp);
-
+	Cmd_AddCommand("+sprint", IN_SprintDown, "test");
+	Cmd_AddCommand("-sprint", IN_SprintUp, "test");
 
 	// wolf buttons
-	Cmd_AddCommand("+attack2", IN_Wbutton0Down);	//----(SA) secondary firing
-	Cmd_AddCommand("-attack2", IN_Wbutton0Up);
-	Cmd_AddCommand("+zoom", IN_ZoomDown);	//
-	Cmd_AddCommand("-zoom", IN_ZoomUp);
-	Cmd_AddCommand("+reload", IN_ReloadDown);	//
-	Cmd_AddCommand("-reload", IN_ReloadUp);
-	Cmd_AddCommand("+leanleft", IN_LeanLeftDown);
-	Cmd_AddCommand("-leanleft", IN_LeanLeftUp);
-	Cmd_AddCommand("+leanright", IN_LeanRightDown);
-	Cmd_AddCommand("-leanright", IN_LeanRightUp);
+	Cmd_AddCommand("+attack2", IN_Wbutton0Down, "test");	//----(SA) secondary firing
+	Cmd_AddCommand("-attack2", IN_Wbutton0Up, "test");
+	Cmd_AddCommand("+zoom", IN_ZoomDown, "test");	//
+	Cmd_AddCommand("-zoom", IN_ZoomUp, "test");
+	Cmd_AddCommand("+reload", IN_ReloadDown, "test");	//
+	Cmd_AddCommand("-reload", IN_ReloadUp, "test");
+	Cmd_AddCommand("+leanleft", IN_LeanLeftDown, "test");
+	Cmd_AddCommand("-leanleft", IN_LeanLeftUp, "test");
+	Cmd_AddCommand("+leanright", IN_LeanRightDown, "test");
+	Cmd_AddCommand("-leanright", IN_LeanRightUp, "test");
 
 
-	Cmd_AddCommand("+mlook", IN_MLookDown);
-	Cmd_AddCommand("-mlook", IN_MLookUp);
+	Cmd_AddCommand("+mlook", IN_MLookDown, "test");
+	Cmd_AddCommand("-mlook", IN_MLookUp, "test");
 
 
 	//Cmd_AddCommand ("notebook",IN_Notebook);
-	Cmd_AddCommand("help", IN_Help);
+	Cmd_AddCommand("help", IN_Help, "test");
 
 #ifdef USE_VOIP
-	Cmd_AddCommand ("+voiprecord", IN_VoipRecordDown);
-	Cmd_AddCommand ("-voiprecord", IN_VoipRecordUp);
+	Cmd_AddCommand ("+voiprecord", IN_VoipRecordDown, "test");
+	Cmd_AddCommand ("-voiprecord", IN_VoipRecordUp, "test");
 #endif	
 	
 	cl_nodelta = Cvar_Get("cl_nodelta", "0", 0, "test");

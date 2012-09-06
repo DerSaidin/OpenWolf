@@ -225,7 +225,7 @@ typedef struct
 	void            (*Cvar_Set) (const char *name, const char *value);
 	void            (*Cvar_CheckRange) (convar_t * cv, float minVal, float maxVal, qboolean shouldBeIntegral);
 
-	void            (*Cmd_AddCommand) (const char *name, void (*cmd) (void));
+	void            (*Cmd_AddCommand) (const char *name, void (*cmd) (void), const char *cmd_desc);
 	void            (*Cmd_RemoveCommand) (const char *name);
 
 	int             (*Cmd_Argc) (void);

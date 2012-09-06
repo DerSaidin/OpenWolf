@@ -544,17 +544,17 @@ void Con_Init(void)
 	Field_Clear(&g_consoleField);
 	g_consoleField.widthInChars = g_console_field_width;
 
-	Cmd_AddCommand("toggleConsole", Con_ToggleConsole_f);
-	Cmd_AddCommand("clear", Con_Clear_f);
-	Cmd_AddCommand("condump", Con_Dump_f);
-	Cmd_AddCommand ("search", Con_Search_f);
-	Cmd_AddCommand ("searchDown", Con_Search_f);
-	Cmd_AddCommand ("grep", Con_Grep_f);
+	Cmd_AddCommand("toggleConsole", Con_ToggleConsole_f, "test");
+	Cmd_AddCommand("clear", Con_Clear_f, "test");
+	Cmd_AddCommand("condump", Con_Dump_f, "test");
+	Cmd_AddCommand ("search", Con_Search_f, "test");
+	Cmd_AddCommand ("searchDown", Con_Search_f, "test");
+	Cmd_AddCommand ("grep", Con_Grep_f, "test");
 	
 	// ydnar: these are deprecated in favor of cgame/ui based version
-	Cmd_AddCommand("clMessageMode", Con_MessageMode_f);
-	Cmd_AddCommand("clMessageMode2", Con_MessageMode2_f);
-	Cmd_AddCommand("clMessageMode3", Con_MessageMode3_f);
+	Cmd_AddCommand("clMessageMode", Con_MessageMode_f, "test");
+	Cmd_AddCommand("clMessageMode2", Con_MessageMode2_f, "test");
+	Cmd_AddCommand("clMessageMode3", Con_MessageMode3_f, "test");
 
 	Com_Printf("Console initialized.\n");
 }

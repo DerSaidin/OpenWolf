@@ -329,9 +329,9 @@ extern void Sys_ClearViewlog_f( void );
 #endif
 
 void Sys_Init(void) {
-	Cmd_AddCommand( "in_restart", Sys_In_Restart_f );
+	Cmd_AddCommand( "in_restart", Sys_In_Restart_f, "test" );
 #if defined (_WIN32) && !defined (_DEBUG)
-	Cmd_AddCommand( "clearviewlog", Sys_ClearViewlog_f );
+	Cmd_AddCommand( "clearviewlog", Sys_ClearViewlog_f, "test" );
 
 	Sys_PrintCpuInfo();
 	Sys_PrintOSInfo();

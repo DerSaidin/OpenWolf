@@ -107,6 +107,9 @@ convar_t         *sv_wwwBaseURL;	// base URL for redirect
 convar_t         *sv_wwwDlDisconnected;
 convar_t         *sv_wwwFallbackURL;	// URL to send to if an http/ftp fails or is refused client side
 
+convar_t         *sv_WhiteListRcon;		// file containing IP addresses allowed to execute RCON commands, default
+										// "whitelist.dat" (use "" to disable)
+
 //bani
 convar_t         *sv_cheats;
 convar_t         *sv_packetloss;
@@ -114,6 +117,9 @@ convar_t         *sv_packetdelay;
 
 // fretn
 convar_t         *sv_fullmsg;
+
+serverRcon_t rconWhitelist[MAX_RCON_WHITELIST];
+int rconWhitelistCount = 0;
 
 void            SVC_GameCompleteStatus(netadr_t from);	// NERVE - SMF
 
@@ -992,6 +998,50 @@ qboolean SV_CheckDRDoS(netadr_t from) {
 }
 
 /*
+==================
+SV_IsRconWhitelisted
+
+Check whether a certain address is RCON whitelisted
+==================
+*/
+
+static qboolean SV_IsRconWhitelisted(netadr_t *from)
+{
+	int index;
+	serverRcon_t *curban;
+
+	for(index = 0; index < rconWhitelistCount; index++)
+	{
+		curban = &rconWhitelist[index];
+
+		if(NET_CompareBaseAdrMask(curban->ip, *from, curban->subnet))
+			return qtrue;
+	}
+
+	return qfalse;
+}
+
+static void SV_DropClientsByAddress(netadr_t *drop, const char *reason)
+{
+	int		i;
+	client_t	*cl;
+
+	// for all clients
+	for (i = 0, cl = svs.clients; i < sv_maxclients->integer; i++, cl++) {
+		// skip free slots
+		if (cl->state == CS_FREE) {
+			continue;
+		}
+		// skip other addresses
+		if (!NET_CompareBaseAdr(*drop, cl->netchan.remoteAddress)) {
+			continue;
+		}
+		// address matches, drop this one
+		SV_DropClient(cl, reason);
+	}
+}
+
+/*
 ===============
 SVC_RemoteCommand
 
@@ -1016,6 +1066,19 @@ void SVC_RemoteCommand(netadr_t from, msg_t * msg) {
 
 	// TTimo - show_bug.cgi?id=534
     time = Com_Milliseconds();
+
+	// Do we have a whitelist for rcon?
+	if(sv_WhiteListRcon->string && *sv_WhiteListRcon->string) {
+		// Prevent use of rcon from addresses that have not been whitelisted
+		if(!SV_IsRconWhitelisted(&from))
+		{
+			Com_Printf( "SVC_RemoteCommand: attempt from %s who is not whitelisted\n", NET_AdrToString( from ) );
+			NET_OutOfBandPrint(NS_SERVER, from, "print\nClient not found whitelist data.\n");
+			SV_DropClientsByAddress(&from, "Client tried to access to RCON password.");
+			return;
+		}
+	}
+
     if ( !strlen( sv_rconPassword->string ) || strcmp (Cmd_Argv(1), sv_rconPassword->string) ) {
         // MaJ - If the rconpassword is bad and one just happned recently, don't spam the log file, just die.
         if ( (unsigned)( time - lasttime ) < 500u ) {

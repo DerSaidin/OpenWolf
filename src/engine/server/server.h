@@ -364,6 +364,16 @@ typedef struct
 	int				queryDone;
 } serverStatic_t;
 
+// Structure for managing rcons
+typedef struct
+{
+	netadr_t ip;
+	// For a CIDR-Notation type suffix
+	int subnet;
+	
+	qboolean isexception;
+} serverRcon_t;
+
 #if defined (UPDATE_SERVER)
 
 typedef struct {
@@ -428,6 +438,8 @@ extern convar_t  *sv_showAverageBPS;	// NERVE - SMF - net debugging
 
 extern convar_t  *sv_requireValidGuid;
 
+extern convar_t  *sv_WhiteListRcon;
+
 extern convar_t  *sv_ircchannel;
 
 extern convar_t  *g_gameType;
@@ -463,6 +475,10 @@ extern convar_t  *sv_voip;
 #endif
 
 extern convar_t  *sv_IPmaxGetstatusPerSecond;
+
+#define MAX_RCON_WHITELIST 32
+extern	serverRcon_t rconWhitelist[MAX_RCON_WHITELIST];
+extern	int rconWhitelistCount;
 
 //===========================================================
 

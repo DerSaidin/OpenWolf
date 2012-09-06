@@ -510,6 +510,112 @@ static void SV_MapRestart_f(void) {
 }
 
 /*
+==================
+SV_RehashServerRconFile
+
+Helper to reload a "serverRcon_t" type of file
+Returns number of entries loaded
+==================
+*/
+static int SV_RehashServerRconFile(convar_t *fileName, int maxEntries, serverRcon_t buffer[])
+{
+	int index, filelen, numEntries = 0;
+	fileHandle_t readfrom;
+	char *textbuf, *curpos, *maskpos, *newlinepos, *endpos, filepath[MAX_QPATH];
+
+	if(!fileName->string || !*fileName->string)
+	{
+		goto exit;
+	}
+
+	if(!(curpos = Cvar_VariableString("fs_game")) || !*curpos)
+	{
+		curpos = BASEGAME;
+	}
+
+	Com_sprintf(filepath, sizeof(filepath), "%s/%s", curpos, fileName->string);
+
+	if((filelen = FS_SV_FOpenFileRead(filepath, &readfrom)) < 0)
+	{
+		Com_Printf("SV_RehashServerRconFile: failed to open %s\n", filepath);
+		goto exit;
+	}
+
+	if(filelen < 2)
+	{
+		// Don't bother if file is too short.
+		FS_FCloseFile(readfrom);
+		goto exit;
+	}
+
+	curpos = textbuf = (char*)Z_Malloc(filelen);
+
+	filelen = FS_Read(textbuf, filelen, readfrom);
+	FS_FCloseFile(readfrom);
+
+	endpos = textbuf + filelen;
+
+	for(index = 0; index < maxEntries && curpos + 2 < endpos; index++)
+	{
+		// find the end of the address string
+		for(maskpos = curpos + 2; maskpos < endpos && *maskpos != ' '; maskpos++);
+
+		if(maskpos + 1 >= endpos)
+		{
+			break;
+		}
+
+		*maskpos = '\0';
+		maskpos++;
+
+		// find the end of the subnet specifier
+		for(newlinepos = maskpos; newlinepos < endpos && *newlinepos != '\n'; newlinepos++);
+
+		if(newlinepos >= endpos)
+		{
+			break;
+		}
+
+		*newlinepos = '\0';
+
+		if(NET_StringToAdr(curpos + 2, &buffer[index].ip, NA_UNSPEC))
+		{
+			buffer[index].isexception = (qboolean)(curpos[0] != '0');
+			buffer[index].subnet = atoi(maskpos);
+
+			if(buffer[index].ip.type == NA_IP && (buffer[index].subnet < 1 || buffer[index].subnet > 32))
+			{
+				buffer[index].subnet = 32;
+			}
+			else if(buffer[index].ip.type == NA_IP6 && (buffer[index].subnet < 1 || buffer[index].subnet > 128))
+			{
+				buffer[index].subnet = 128;
+			}
+		}
+
+		curpos = newlinepos + 1;
+	}
+
+	Z_Free(textbuf);
+	numEntries = index;
+
+exit:
+	return numEntries;
+}
+
+/*
+==================
+SV_RehashRconWhitelist_f
+
+Load RCON whitelist from file.
+==================
+*/
+static void SV_RehashRconWhitelist_f(void)
+{
+	rconWhitelistCount = SV_RehashServerRconFile(sv_WhiteListRcon, MAX_RCON_WHITELIST, rconWhitelist);
+}
+
+/*
 =================
 SV_LoadGame_f
 =================
@@ -895,4 +1001,5 @@ void SV_AddOperatorCommands(void) {
 	if(com_dedicated->integer) {
 		Cmd_AddCommand("say", SV_ConSay_f, "^1Say something to everyone on the server.");
 	}
+	Cmd_AddCommand("rehashrconwhitelist", SV_RehashRconWhitelist_f, "^1Load RCON whitelist from file.");
 }

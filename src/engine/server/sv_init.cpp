@@ -1052,6 +1052,8 @@ void SV_Init(void) {
 
 	sv_requireValidGuid = Cvar_Get ("sv_requireValidGuid", "0", CVAR_ARCHIVE, "test" );
 
+	sv_WhiteListRcon = Cvar_Get ("sv_WhiteListRcon", "rconwhitelist.dat", CVAR_ARCHIVE, "^1Restrict rcon commands to fixed IPs/CIDRs address." );
+
 	// initialize bot cvars so they arelisted and can be set before loading the botlib
 	SV_BotInitCvars();
 

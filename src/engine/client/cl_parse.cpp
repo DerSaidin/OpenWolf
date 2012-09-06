@@ -1109,6 +1109,17 @@ void CL_ParseVoip ( msg_t *msg ) {
 
 /*
 =====================
+CL_GetReliableServerCommand
+=====================
+*/
+char * CL_GetReliableServerCommand( int index )
+{
+	char * cmd = clc.serverCommands[ index & (MAX_RELIABLE_COMMANDS-1) ];
+	return cmd?cmd:"";
+}
+
+/*
+=====================
 CL_ParseCommandString
 
 Command strings are just saved off until cgame asks for them
@@ -1117,9 +1128,8 @@ when it transitions a snapshot
 */
 void CL_ParseCommandString(msg_t * msg)
 {
-	char           *s;
-	int             seq;
-	int             index;
+	char	*s, *c;
+	int		seq, index;
 
 	seq = MSG_ReadLong(msg);
 	s = MSG_ReadString(msg);
@@ -1132,7 +1142,19 @@ void CL_ParseCommandString(msg_t * msg)
 	clc.serverCommandSequence = seq;
 
 	index = seq & (MAX_RELIABLE_COMMANDS - 1);
-	Q_strncpyz(clc.serverCommands[index], s, sizeof(clc.serverCommands[index]));
+	c = Q_strcpy_ringbuffer(	clc.serverCommandBuffer,
+								sizeof( clc.serverCommandBuffer ),
+								clc.serverCommands[ (clc.lastExecutedServerCommand-1) & (MAX_RELIABLE_COMMANDS-1) ],
+								clc.serverCommands[ (clc.serverCommandSequence-1) & (MAX_RELIABLE_COMMANDS-1) ],
+								s
+							);
+
+	if ( !c )
+	{
+		Com_Error( ERR_DROP, "client command buffer overflow.\n" );
+	}
+
+	clc.serverCommands[ index ] = c;
 }
 
 /*

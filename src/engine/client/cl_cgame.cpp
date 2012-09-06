@@ -377,7 +377,7 @@ qboolean CL_GetServerCommand(int serverCommandNumber)
 		return qfalse;
 	}
 
-	s = clc.serverCommands[serverCommandNumber & (MAX_RELIABLE_COMMANDS - 1)];
+	s = CL_GetReliableServerCommand( serverCommandNumber );
 	clc.lastExecutedServerCommand = serverCommandNumber;
 
 	if(cl_showServerCommands->integer)

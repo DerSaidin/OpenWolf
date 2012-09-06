@@ -191,7 +191,8 @@ typedef struct client_s
 	char            userinfo[MAX_INFO_STRING];	// name, etc
 	char			userinfobuffer[MAX_INFO_STRING]; //used for buffering of user info
 
-	char            reliableCommands[MAX_RELIABLE_COMMANDS][MAX_STRING_CHARS];
+	char           *reliableCommands[MAX_RELIABLE_COMMANDS];
+	char			reliableCommandBuffer[ MAX_RELIABLE_BUFFER ];
 	int             reliableSequence;	// last added reliable message, not necesarily sent or acknowledged yet
 	int             reliableAcknowledge;	// last acknowledged reliable message
 	int             reliableSent;	// last sent reliable message, not necesarily acknowledged yet
@@ -559,6 +560,7 @@ void            SV_TempBanNetAddress(netadr_t address, int length);
 // sv_snapshot.c
 //
 void            SV_AddServerCommand(client_t * client, const char *cmd);
+char           *SV_GetServerCommand( client_t * client, int index );
 void            SV_UpdateServerCommandsToClient(client_t * client, msg_t * msg);
 void            SV_WriteFrameToClient(client_t * client, msg_t * msg);
 void            SV_SendMessageToClient(msg_t * msg, client_t * client);

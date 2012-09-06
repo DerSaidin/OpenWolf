@@ -225,7 +225,7 @@ void SV_UpdateServerCommandsToClient(client_t * client, msg_t * msg) {
 	for(i = client->reliableAcknowledge + 1; i <= client->reliableSequence; i++) {
 		MSG_WriteByte(msg, svc_serverCommand);
 		MSG_WriteLong(msg, i);
-		MSG_WriteString(msg, client->reliableCommands[i & (MAX_RELIABLE_COMMANDS - 1)]);
+		MSG_WriteString( msg, SV_GetServerCommand( client, i ) );
 	}
 	client->reliableSent = client->reliableSequence;
 }

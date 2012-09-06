@@ -1323,6 +1323,48 @@ qboolean Q_strtoi(const char* s, int * outNum) {
 	return (qboolean) (*p == '\0');
 }
 
+char * Q_strcpy_ringbuffer( char * buffer, int size, char * first, char * last, const char * s ) {
+
+	int i;
+
+	if ( !first ) {
+		first = buffer + size;
+	} else {
+		while ( *first ) first++;
+		first++;
+	}
+
+	if ( !last ) {
+		last = buffer;
+	} else {
+		while ( *last ) last++;
+		last++;
+	}
+
+	if ( last == first ) {
+		first = buffer + ((last-buffer)-1)%size;
+	}
+
+	for ( i=0; ; i++ ) {
+
+		if ( last + i >= buffer + size ) {
+			last = buffer;
+			i = 0;
+		}
+
+		if ( last + i == first ) {
+			return 0;
+		}
+
+		last[ i ] = s[ i ];
+
+		if ( s[ i ] == '\0' )
+			break;
+	}
+
+	return last;
+}
+
 /*
 =============
 Q_strncpyz

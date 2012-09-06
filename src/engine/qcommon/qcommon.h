@@ -167,6 +167,7 @@ NET
 //#define   MAX_RELIABLE_COMMANDS   64          // max string commands buffered for restransmit
 //#define   MAX_RELIABLE_COMMANDS   128         // max string commands buffered for restransmit
 #define MAX_RELIABLE_COMMANDS   256	// bigger!
+#define MAX_RELIABLE_BUFFER		10240
 
 typedef enum {
 	NA_BOT,

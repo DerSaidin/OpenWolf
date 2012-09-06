@@ -166,6 +166,17 @@ char *SV_ExpandNewlines(char *in) {
 }
 
 /*
+=====================
+SV_GetServerCommand
+=====================
+*/
+char * SV_GetServerCommand( client_t * client, int index )
+{
+	char * cmd = client->reliableCommands[ index & (MAX_RELIABLE_COMMANDS-1) ];
+	return cmd?cmd:"";
+}
+
+/*
 ======================
 SV_AddServerCommand
 
@@ -184,14 +195,24 @@ void SV_AddServerCommand(client_t * client, const char *cmd) {
 	if(client->reliableSequence - client->reliableAcknowledge == MAX_RELIABLE_COMMANDS + 1) {
 		Com_Printf("===== pending server commands =====\n");
 		for(i = client->reliableAcknowledge + 1; i <= client->reliableSequence; i++) {
-			Com_Printf("cmd %5d: %s\n", i, client->reliableCommands[i & (MAX_RELIABLE_COMMANDS - 1)]);
+			Com_Printf("cmd %5d: %s\n", i, SV_GetServerCommand( client, i ) );
 		}
 		Com_Printf("cmd %5d: %s\n", i, cmd);
 		SV_DropClient(client, "Server command overflow");
 		return;
 	}
 	index = client->reliableSequence & (MAX_RELIABLE_COMMANDS - 1);
-	Q_strncpyz(client->reliableCommands[index], cmd, sizeof(client->reliableCommands[index]));
+
+	client->reliableCommands[ index ] = Q_strcpy_ringbuffer(	client->reliableCommandBuffer,
+																sizeof( client->reliableCommandBuffer ),
+																client->reliableCommands[ (client->reliableAcknowledge) & ( MAX_RELIABLE_COMMANDS - 1 ) ],
+																client->reliableCommands[ (client->reliableSequence - 1) & ( MAX_RELIABLE_COMMANDS - 1 ) ],
+																cmd
+															);
+
+	if ( !client->reliableCommands[ index ] ) {
+		SV_DropClient( client, "Server command buffer overflow" );
+	}
 }
 
 

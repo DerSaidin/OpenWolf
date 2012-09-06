@@ -204,7 +204,8 @@ typedef struct {
 	int						reliableSequence;
 	int						reliableAcknowledge;										// the last one the server has executed
 																						// TTimo - NOTE: incidentally, reliableCommands[0] is never used (always start at reliableAcknowledge+1)
-	char					reliableCommands[MAX_RELIABLE_COMMANDS][MAX_TOKEN_CHARS];
+	char                   *reliableCommands[MAX_RELIABLE_COMMANDS];
+	char			        reliableCommandBuffer[ MAX_RELIABLE_BUFFER ];
 																						// unreliable binary data to send to server
 	int						binaryMessageLength;
 	char					binaryMessage[MAX_BINARY_MESSAGE];
@@ -218,7 +219,9 @@ typedef struct {
 																						// reliable messages received from server
 	int						serverCommandSequence;
 	int						lastExecutedServerCommand;									// last server command grabbed or executed with CL_GetServerCommand
-	char					serverCommands[MAX_RELIABLE_COMMANDS][MAX_TOKEN_CHARS];
+	char                   *serverCommands[MAX_RELIABLE_COMMANDS];
+	char		            serverCommandBuffer[ MAX_RELIABLE_BUFFER ];
+
 																						// file transfer from server
 	fileHandle_t			download;
 	int						downloadNumber;
@@ -528,6 +531,7 @@ void            CL_Init(void);
 void            CL_FlushMemory(void);
 void            CL_ShutdownAll(void);
 void            CL_AddReliableCommand(const char *cmd);
+char           *CL_GetReliableCommand( int index );
 
 void            CL_StartHunkUsers(void);
 
@@ -665,6 +669,7 @@ void            CL_Voip_f( void );
 
 void            CL_SystemInfoChanged(void);
 void            CL_ParseServerMessage(msg_t * msg);
+char           *CL_GetReliableServerCommand( int index );
 
 //====================================================================
 

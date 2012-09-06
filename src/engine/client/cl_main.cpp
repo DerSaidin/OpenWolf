@@ -683,6 +683,17 @@ CLIENT RELIABLE COMMAND COMMUNICATION
 */
 
 /*
+=====================
+CL_GetReliableCommand
+=====================
+*/
+char * CL_GetReliableCommand( int index )
+{
+	char * cmd = clc.reliableCommands[ index & (MAX_RELIABLE_COMMANDS-1) ];
+	return cmd?cmd:"";
+}
+
+/*
 ======================
 CL_AddReliableCommand
 
@@ -702,7 +713,18 @@ void CL_AddReliableCommand(const char *cmd)
 	}
 	clc.reliableSequence++;
 	index = clc.reliableSequence & (MAX_RELIABLE_COMMANDS - 1);
-	Q_strncpyz(clc.reliableCommands[index], cmd, sizeof(clc.reliableCommands[index]));
+
+	clc.reliableCommands[ index ] = Q_strcpy_ringbuffer(	clc.reliableCommandBuffer,
+															sizeof( clc.reliableCommandBuffer ),
+															clc.reliableCommands[ (clc.reliableAcknowledge) & ( MAX_RELIABLE_COMMANDS - 1 ) ],
+															clc.reliableCommands[ (clc.reliableSequence-1) & ( MAX_RELIABLE_COMMANDS - 1 ) ],
+															cmd
+														);
+
+	if ( !clc.reliableCommands[ index ] )
+	{
+		Com_Error( ERR_DROP, "Client command buffer overflow" );
+	}
 }
 
 /*

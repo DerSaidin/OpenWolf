@@ -1362,7 +1362,7 @@ void CL_WritePacket(void)
 	{
 		MSG_WriteByte(&buf, clc_clientCommand);
 		MSG_WriteLong(&buf, i);
-		MSG_WriteString(&buf, clc.reliableCommands[i & (MAX_RELIABLE_COMMANDS - 1)]);
+		MSG_WriteString( &buf, CL_GetReliableCommand( i ) );
 	}
 
 	// we want to send all the usercmds that were generated in the last
@@ -1459,7 +1459,7 @@ void CL_WritePacket(void)
 		// also use the message acknowledge
 		key ^= clc.serverMessageSequence;
 		// also use the last acknowledged server command in the key
-		key ^= Com_HashKey(clc.serverCommands[clc.serverCommandSequence & (MAX_RELIABLE_COMMANDS - 1)], 32);
+		key ^= Com_HashKey( CL_GetReliableServerCommand( clc.serverCommandSequence ), 32);
 
 		// write all the commands, including the predicted command
 		for(i = 0; i < count; i++)

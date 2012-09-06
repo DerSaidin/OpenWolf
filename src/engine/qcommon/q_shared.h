@@ -1377,6 +1377,7 @@ int Q_isupper( int c );
 int Q_isnumeric( int c );
 int Q_isalphanumeric( int c );
 qboolean        Q_strtoi( const char *s, int* out);
+char * Q_strcpy_ringbuffer( char * buffer, int size, char * first, char * last, const char * s );
 
 // portable case insensitive compare
 int     Q_stricmp( const char *s1, const char *s2 );

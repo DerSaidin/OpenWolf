@@ -269,6 +269,10 @@ static void Sys_Exit( int exitCode ) {
 		remove( Sys_PIDFileName( ) );
 	}
 
+#if defined (WIN32)
+	Sys_PlatformExit( );
+#endif
+
 	exit( exitCode );
 }
 
@@ -500,7 +504,7 @@ void Sys_Error( const char *error, ... ) {
 	CL_Shutdown( );
 	Sys_ErrorDialog( string );
 
-	Sys_Exit( 3 );
+	Sys_Exit( 1 );
 }
 
 /*

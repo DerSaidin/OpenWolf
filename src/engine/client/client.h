@@ -402,117 +402,117 @@ extern struct rsa_private_key private_key;
 //
 // cvars
 //
-extern cvar_t  *cl_nodelta;
-extern cvar_t  *cl_debugMove;
-extern cvar_t  *cl_noprint;
-extern cvar_t  *cl_timegraph;
-extern cvar_t  *cl_maxpackets;
-extern cvar_t  *cl_packetdup;
-extern cvar_t  *cl_shownet;
-extern cvar_t  *cl_shownuments;			// DHM - Nerve
-extern cvar_t  *cl_visibleClients;		// DHM - Nerve
-extern cvar_t  *cl_showSend;
-extern cvar_t  *cl_showServerCommands;	// NERVE - SMF
-extern cvar_t  *cl_timeNudge;
-extern cvar_t  *cl_showTimeDelta;
-extern cvar_t  *cl_freezeDemo;
+extern convar_t  *cl_nodelta;
+extern convar_t  *cl_debugMove;
+extern convar_t  *cl_noprint;
+extern convar_t  *cl_timegraph;
+extern convar_t  *cl_maxpackets;
+extern convar_t  *cl_packetdup;
+extern convar_t  *cl_shownet;
+extern convar_t  *cl_shownuments;			// DHM - Nerve
+extern convar_t  *cl_visibleClients;		// DHM - Nerve
+extern convar_t  *cl_showSend;
+extern convar_t  *cl_showServerCommands;	// NERVE - SMF
+extern convar_t  *cl_timeNudge;
+extern convar_t  *cl_showTimeDelta;
+extern convar_t  *cl_freezeDemo;
 
-extern cvar_t  *cl_yawspeed;
-extern cvar_t  *cl_pitchspeed;
-extern cvar_t  *cl_run;
-extern cvar_t  *cl_anglespeedkey;
+extern convar_t  *cl_yawspeed;
+extern convar_t  *cl_pitchspeed;
+extern convar_t  *cl_run;
+extern convar_t  *cl_anglespeedkey;
 
-extern cvar_t  *cl_recoilPitch;	// RF
+extern convar_t  *cl_recoilPitch;	// RF
 
-extern cvar_t  *cl_bypassMouseInput;	// NERVE - SMF
+extern convar_t  *cl_bypassMouseInput;	// NERVE - SMF
 
-extern cvar_t  *cl_doubletapdelay;
+extern convar_t  *cl_doubletapdelay;
 
-extern cvar_t  *cl_sensitivity;
-extern cvar_t  *cl_freelook;
+extern convar_t  *cl_sensitivity;
+extern convar_t  *cl_freelook;
 
-extern cvar_t  *cl_xbox360ControllerAvailable;
+extern convar_t  *cl_xbox360ControllerAvailable;
 
-extern cvar_t  *cl_mouseAccel;
-extern cvar_t  *cl_mouseAccelOffset;
-extern cvar_t  *cl_mouseAccelStyle;
-extern cvar_t  *cl_showMouseRate;
+extern convar_t  *cl_mouseAccel;
+extern convar_t  *cl_mouseAccelOffset;
+extern convar_t  *cl_mouseAccelStyle;
+extern convar_t  *cl_showMouseRate;
 
-extern cvar_t  *m_pitch;
-extern cvar_t  *m_yaw;
-extern cvar_t  *m_forward;
-extern cvar_t  *m_side;
-extern cvar_t  *m_filter;
+extern convar_t  *m_pitch;
+extern convar_t  *m_yaw;
+extern convar_t  *m_forward;
+extern convar_t  *m_side;
+extern convar_t  *m_filter;
 
-extern cvar_t  *j_pitch;
-extern cvar_t  *j_yaw;
-extern cvar_t  *j_forward;
-extern cvar_t  *j_side;
-extern cvar_t  *j_up;
-extern cvar_t  *j_up_axis;
-extern cvar_t  *j_pitch_axis;
-extern cvar_t  *j_yaw_axis;
-extern cvar_t  *j_forward_axis;
-extern cvar_t  *j_side_axis;
+extern convar_t  *j_pitch;
+extern convar_t  *j_yaw;
+extern convar_t  *j_forward;
+extern convar_t  *j_side;
+extern convar_t  *j_up;
+extern convar_t  *j_up_axis;
+extern convar_t  *j_pitch_axis;
+extern convar_t  *j_yaw_axis;
+extern convar_t  *j_forward_axis;
+extern convar_t  *j_side_axis;
 
-extern cvar_t  *cl_IRC_connect_at_startup;
-extern cvar_t  *cl_IRC_server;
-extern cvar_t  *cl_IRC_channel;
-extern cvar_t  *cl_IRC_port;
-extern cvar_t  *cl_IRC_override_nickname;
-extern cvar_t  *cl_IRC_nickname;
-extern cvar_t  *cl_IRC_kick_rejoin;
-extern cvar_t  *cl_IRC_reconnect_delay;
+extern convar_t  *cl_IRC_connect_at_startup;
+extern convar_t  *cl_IRC_server;
+extern convar_t  *cl_IRC_channel;
+extern convar_t  *cl_IRC_port;
+extern convar_t  *cl_IRC_override_nickname;
+extern convar_t  *cl_IRC_nickname;
+extern convar_t  *cl_IRC_kick_rejoin;
+extern convar_t  *cl_IRC_reconnect_delay;
 
-extern cvar_t  *cl_timedemo;
+extern convar_t  *cl_timedemo;
 
-extern cvar_t  *cl_activeAction;
-extern cvar_t  *cl_autorecord;
+extern convar_t  *cl_activeAction;
+extern convar_t  *cl_autorecord;
 
-extern cvar_t  *cl_allowDownload;
-extern cvar_t  *cl_conXOffset;
-extern cvar_t  *cl_inGameVideo;
-extern cvar_t  *cl_authserver;
+extern convar_t  *cl_allowDownload;
+extern convar_t  *cl_conXOffset;
+extern convar_t  *cl_inGameVideo;
+extern convar_t  *cl_authserver;
 
-extern cvar_t  *cl_missionStats;
-extern cvar_t  *cl_waitForFire;
-extern cvar_t  *cl_altTab;
+extern convar_t  *cl_missionStats;
+extern convar_t  *cl_waitForFire;
+extern convar_t  *cl_altTab;
 
 // NERVE - SMF - localization
-extern cvar_t  *cl_language;
+extern convar_t  *cl_language;
 // -NERVE - SMF
 
-extern cvar_t  *cl_profile;
-extern cvar_t  *cl_defaultProfile;
+extern convar_t  *cl_profile;
+extern convar_t  *cl_defaultProfile;
 
-extern cvar_t  *cl_consoleKeys;
-extern cvar_t  *cl_consoleFont;
-extern cvar_t  *cl_consoleFontSize;
-extern cvar_t  *cl_consoleFontKerning;
-extern cvar_t  *cl_consolePrompt;
-extern cvar_t  *cl_aviFrameRate;
-extern cvar_t  *cl_aviMotionJpeg;
+extern convar_t  *cl_consoleKeys;
+extern convar_t  *cl_consoleFont;
+extern convar_t  *cl_consoleFontSize;
+extern convar_t  *cl_consoleFontKerning;
+extern convar_t  *cl_consolePrompt;
+extern convar_t  *cl_aviFrameRate;
+extern convar_t  *cl_aviMotionJpeg;
 
-extern cvar_t  *cl_pubkeyID;
+extern convar_t  *cl_pubkeyID;
 
 #ifdef USE_MUMBLE
-extern cvar_t  *cl_useMumble;
-extern cvar_t  *cl_mumbleScale;
+extern convar_t  *cl_useMumble;
+extern convar_t  *cl_mumbleScale;
 #endif
 
 #ifdef USE_VOIP
 // cl_voipSendTarget is a string: "all" to broadcast to everyone, "none" to
 //  send to no one, or a comma-separated list of client numbers:
 //  "0,7,2,23" ... an empty string is treated like "all".
-extern	cvar_t	*cl_voipUseVAD;
-extern	cvar_t	*cl_voipVADThreshold;
-extern	cvar_t	*cl_voipSend;
-extern	cvar_t	*cl_voipSendTarget;
-extern	cvar_t	*cl_voipGainDuringCapture;
-extern	cvar_t	*cl_voipCaptureMult;
-extern	cvar_t	*cl_voipShowMeter;
-extern	cvar_t	*cl_voipShowSender;
-extern	cvar_t	*cl_voip;
+extern	convar_t	*cl_voipUseVAD;
+extern	convar_t	*cl_voipVADThreshold;
+extern	convar_t	*cl_voipSend;
+extern	convar_t	*cl_voipSendTarget;
+extern	convar_t	*cl_voipGainDuringCapture;
+extern	convar_t	*cl_voipCaptureMult;
+extern	convar_t	*cl_voipShowMeter;
+extern	convar_t	*cl_voipShowSender;
+extern	convar_t	*cl_voip;
 #endif
 
 //bani

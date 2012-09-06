@@ -248,7 +248,7 @@ void idCollisionModelManagerLocal::WriteCollisionModelsToFile( const char *filen
 	name = filename;
 	name.SetFileExtension( CM_FILE_EXT );
 
-	Com_Printf( "writing %s\n", name.c_str() );
+	Com_Printf( "idCollisionModelManagerLocal::WriteCollisionModelsToFile: %s\n", name.c_str() );
 	// _D3XP was saving to fs_cdpath
 	fp = FS_FOpenFileWrite( name );
 	if ( !fp ) {

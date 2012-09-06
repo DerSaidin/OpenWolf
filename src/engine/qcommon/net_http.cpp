@@ -57,8 +57,8 @@ typedef struct {
 static httpInfo_t		http;
 static httpTaskInfo_t	tasks[ 8 ];
 
-cvar_t	*http_bugauth;
-cvar_t *	http_usernameandpassword;
+convar_t	*http_bugauth;
+convar_t *	http_usernameandpassword;
 
 /*
 ==================
@@ -404,10 +404,10 @@ extern const char* Con_GetText ( int console );
 
 void HTTP_PostBug( const char *fileName ) {
 
-	cvar_t * map		= Cvar_Get( "mapname", "", 0 );
-	cvar_t * bugreport	= Cvar_Get( "r_bugreport", "", 0 );
-	cvar_t * challenge	= Cvar_Get( "gamename", "", 0 );
-	cvar_t * username	= Cvar_Get( "ui_username", "", 0 );
+	convar_t * map		= Cvar_Get( "mapname", "", 0 );
+	convar_t * bugreport	= Cvar_Get( "r_bugreport", "", 0 );
+	convar_t * challenge	= Cvar_Get( "gamename", "", 0 );
+	convar_t * username	= Cvar_Get( "ui_username", "", 0 );
 
 	char comment[ 512 ];
 	const char *condump;
@@ -486,9 +486,9 @@ void HTTP_PostBug( const char *fileName ) {
 
 void HTTP_PostErrorNotice( const char *type, const char *msg )
 {
-	cvar_t * map		= Cvar_Get( "mapname", "", 0 );
-	cvar_t * challenge	= Cvar_Get( "gamename", "", 0 );
-	cvar_t * username	= Cvar_Get( "ui_username", "", 0 );
+	convar_t * map		= Cvar_Get( "mapname", "", 0 );
+	convar_t * challenge	= Cvar_Get( "gamename", "", 0 );
+	convar_t * username	= Cvar_Get( "ui_username", "", 0 );
 
 	char comment[ 512 ];
 	const char *condump;

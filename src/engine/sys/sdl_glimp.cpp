@@ -453,10 +453,10 @@ typedef enum
 static SDL_Surface         *screen = NULL;
 static const SDL_VideoInfo *videoInfo = NULL;
 
-cvar_t                     *r_allowResize; // make window resizable
-cvar_t                     *r_centerWindow;
-cvar_t                     *r_sdlDriver;
-cvar_t                     *r_minimize;
+convar_t                     *r_allowResize; // make window resizable
+convar_t                     *r_centerWindow;
+convar_t                     *r_sdlDriver;
+convar_t                     *r_minimize;
 
 /*
 ===============
@@ -1714,10 +1714,10 @@ qboolean GLimp_Init(void)
 
 	glConfig.driverType = GLDRV_ICD;
 
-	r_sdlDriver = ri.Cvar_Get( "r_sdlDriver", "", CVAR_ROM );
-	r_allowResize = ri.Cvar_Get( "r_allowResize", "0", CVAR_ARCHIVE );
-	r_centerWindow = ri.Cvar_Get( "r_centerWindow", "0", CVAR_ARCHIVE );
-	r_minimize = ri.Cvar_Get( "r_minimize", "0", CVAR_ARCHIVE );
+	r_sdlDriver = ri.Cvar_Get( "r_sdlDriver", "", CVAR_ROM, "test" );
+	r_allowResize = ri.Cvar_Get( "r_allowResize", "0", CVAR_ARCHIVE, "test" );
+	r_centerWindow = ri.Cvar_Get( "r_centerWindow", "0", CVAR_ARCHIVE, "test" );
+	r_minimize = ri.Cvar_Get( "r_minimize", "0", CVAR_ARCHIVE, "test" );
 
 	if ( ri.Cvar_VariableIntegerValue( "com_abnormalExit" ) )
 	{
@@ -1912,11 +1912,11 @@ success:
 
 	{ 
 		// allow overriding where the user really does know better
-		cvar_t          *forceGL;
+		convar_t          *forceGL;
 		glDriverType_t   driverType   = GLDRV_UNKNOWN;
 		glHardwareType_t hardwareType = GLHW_UNKNOWN;
 
-		forceGL = ri.Cvar_Get( "r_glForceDriver", "", CVAR_LATCH );
+		forceGL = ri.Cvar_Get( "r_glForceDriver", "", CVAR_LATCH, "test" );
 
 		if      ( !Q_stricmp( forceGL->string, "icd" ))
 		{
@@ -1939,7 +1939,7 @@ success:
 			driverType = GLDRV_MESA;
 		}
 
-		forceGL = ri.Cvar_Get( "r_glForceHardware", "", CVAR_LATCH );
+		forceGL = ri.Cvar_Get( "r_glForceHardware", "", CVAR_LATCH, "test" );
 
 		if      ( !Q_stricmp( forceGL->string, "generic" ))
 		{
@@ -1995,7 +1995,7 @@ success:
 	GLimp_InitExtensions();
 #endif
 
-	ri.Cvar_Get( "r_availableModes", "", CVAR_ROM );
+	ri.Cvar_Get( "r_availableModes", "", CVAR_ROM, "test" );
 
 	// This depends on SDL_INIT_VIDEO, hence having it here
 	ri.IN_Init();

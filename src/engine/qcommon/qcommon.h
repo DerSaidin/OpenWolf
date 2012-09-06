@@ -531,7 +531,7 @@ then searches for a command or variable that matches the first token.
 typedef void    (*xcommand_t) (void);
 
 void            Cmd_Init(void);
-
+qboolean		Cmd_Exists( const char *cmd_name );
 void            Cmd_AddCommand(const char *cmd_name, xcommand_t function);
 
 // called by the init functions of other parts of the program to
@@ -597,7 +597,7 @@ CVAR
 
 /*
 
-cvar_t variables are used to hold scalar or string variables that can be changed
+convar_t variables are used to hold scalar or string variables that can be changed
 or displayed at the console or prog code as well as accessed directly
 in C code.
 
@@ -614,7 +614,7 @@ modules of the program.
 
 */
 
-cvar_t         *Cvar_Get(const char *var_name, const char *value, int flags);
+convar_t         *Cvar_Get( const char *var_name, const char *var_value, int flags, const char *var_desc );
 
 // creates the variable if it doesn't exist, or returns the existing one
 // if it exists, the value will not be changed, but flags will be ORed in
@@ -686,7 +686,7 @@ char           *Cvar_InfoString_Big(int bit);
 // returns an info string containing all the cvars that have the given bit set
 // in their flags ( CVAR_USERINFO, CVAR_SERVERINFO, CVAR_SYSTEMINFO, etc )
 void            Cvar_InfoStringBuffer(int bit, char *buff, int buffsize);
-void            Cvar_CheckRange( cvar_t *cv, float minVal, float maxVal, qboolean shouldBeIntegral );
+void            Cvar_CheckRange( convar_t *cv, float minVal, float maxVal, qboolean shouldBeIntegral );
 
 void            Cvar_Restart_f(void);
 
@@ -1050,47 +1050,47 @@ void            Com_TrackProfile(char *profile_path);
 qboolean        Com_CheckProfile(char *profile_path);
 qboolean        Com_WriteProfile(char *profile_path);
 
-extern cvar_t  *com_crashed;
+extern convar_t  *com_crashed;
 
-extern cvar_t  *com_ignorecrash;	//bani
+extern convar_t  *com_ignorecrash;	//bani
 
-extern cvar_t  *com_protocol;
-extern cvar_t  *com_pid;		//bani
+extern convar_t  *com_protocol;
+extern convar_t  *com_pid;		//bani
 
-extern cvar_t  *com_developer;
-extern cvar_t  *com_dedicated;
-extern cvar_t  *com_speeds;
-extern cvar_t  *com_timescale;
-extern cvar_t  *com_sv_running;
-extern cvar_t  *com_cl_running;
-extern cvar_t  *com_viewlog;	// 0 = hidden, 1 = visible, 2 = minimized
-extern cvar_t  *com_version;
+extern convar_t  *com_developer;
+extern convar_t  *com_dedicated;
+extern convar_t  *com_speeds;
+extern convar_t  *com_timescale;
+extern convar_t  *com_sv_running;
+extern convar_t  *com_cl_running;
+extern convar_t  *com_viewlog;	// 0 = hidden, 1 = visible, 2 = minimized
+extern convar_t  *com_version;
 
-//extern    cvar_t  *com_blood;
-extern cvar_t  *com_buildScript;	// for building release pak files
-extern cvar_t  *com_journal;
-extern cvar_t  *com_cameraMode;
-extern cvar_t  *com_ansiColor;
-extern cvar_t  *com_logosPlaying;
+//extern    convar_t  *com_blood;
+extern convar_t  *com_buildScript;	// for building release pak files
+extern convar_t  *com_journal;
+extern convar_t  *com_cameraMode;
+extern convar_t  *com_ansiColor;
+extern convar_t  *com_logosPlaying;
 
-extern cvar_t  *com_unfocused;
-extern cvar_t  *com_minimized;
+extern convar_t  *com_unfocused;
+extern convar_t  *com_minimized;
 
 
 // watchdog
-extern cvar_t  *com_watchdog;
-extern cvar_t  *com_watchdog_cmd;
+extern convar_t  *com_watchdog;
+extern convar_t  *com_watchdog_cmd;
 
 #if defined (USE_HTTP)
-extern cvar_t  *com_sessionid;
+extern convar_t  *com_sessionid;
 #endif
 
 // both client and server must agree to pause
-extern cvar_t  *cl_paused;
-extern cvar_t  *sv_paused;
+extern convar_t  *cl_paused;
+extern convar_t  *sv_paused;
 
-extern cvar_t  *cl_packetdelay;
-extern cvar_t  *sv_packetdelay;
+extern convar_t  *cl_packetdelay;
+extern convar_t  *sv_packetdelay;
 
 // com_speeds times
 extern int      time_game;
@@ -1173,7 +1173,6 @@ void            Hunk_Log(void);
 
 void            Com_TouchMemory(void);
 void            Com_ReleaseMemory( void );
-
 // commandLine should not include the executable name (argv[0])
 void            Com_Init(char *commandLine);
 void            Com_Frame(void);
@@ -1394,6 +1393,7 @@ char           *Sys_DefaultAppPath(void);
 void           Sys_SetDefaultLibPath(const char *path);
 char          *Sys_DefaultLibPath(void);
 
+void			Sys_PlatformExit( void );
 char           *Sys_DefaultHomePath( char * buffer, int size );
 qboolean        Sys_Fork( const char *path, const char *cmdLine );
 const char     *Sys_TempPath(void);

@@ -121,7 +121,7 @@ cm_model_t *idCollisionModelManagerLocal::CollisionModelForBSPSubModel( int inde
 	cm_model_t *model;
 	idPlane plane;
 	idBounds bounds;
-	bool collisionSurface;
+//	bool collisionSurface;
 	dsurface_t *surf;
 	idMaterial *surfShader = this->declManager_FindMaterial("defaultShader");
 
@@ -221,10 +221,12 @@ void idCollisionModelManagerLocal::BuildModelsBSP( const char *fname ) {
 
 	if ( 1 || !LoadCollisionModelFile( fname, 0 ) ) {
 		dheader_t *h;
+		int length = FS_ReadFile( fname, (void **)&h );
 		
 		dplane_t *planes = (dplane_t *)(((byte*)h) + h->lumps[LUMP_PLANES].fileofs);
 		dnode_t *nodes = (dnode_t *)(((byte*)h) + h->lumps[LUMP_NODES].fileofs);
 		int numNodes = h->lumps[LUMP_NODES].filelen / sizeof(dnode_t);
+
 		// load the nodes from bsp for data optimisation
 		ParseBSPNodes(nodes,numNodes,planes);
 
@@ -236,7 +238,7 @@ void idCollisionModelManagerLocal::BuildModelsBSP( const char *fname ) {
 		dsurface_t *surfs = (dsurface_t *)(((byte*)h) + h->lumps[LUMP_SURFACES].fileofs);
 		int *indexes = (int *)(((byte*)h) + h->lumps[LUMP_DRAWINDEXES].fileofs);
 	
-		///convert brushes and patches to collision data
+		// convert brushes and patches to collision data
 		for ( int i = 0; i < numSubModels; i++ ) {
 			dmodel_t *in = models + i;
 
@@ -246,7 +248,7 @@ void idCollisionModelManagerLocal::BuildModelsBSP( const char *fname ) {
 			}
 			this->models[numModels] = CollisionModelForBSPSubModel( i, in, brushes, brushSides, planes, verts, surfs, indexes );
 			if ( this->models[numModels] == 0) {
-				//Com_FatalError("CollisionModelForBSPSubModel faield\n");
+				//Com_FatalError("CollisionModelForBSPSubModel failed\n");
 			}
 			numModels++;
 		}
@@ -267,6 +269,6 @@ void idCollisionModelManagerLocal::BuildModelsBSP( const char *fname ) {
 	Com_Printf( "collision data:\n" );
 	Com_Printf( "%6i models\n", numModels );
 	PrintModelInfo( &model );
-	Com_Printf( "%.0f msec to load collision data.\n", timer.Milliseconds() );
+	Com_Printf( "%i msec to load collision data.\n", Sys_Milliseconds() );
 }
 

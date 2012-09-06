@@ -29,10 +29,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "../client/client.h"
 
-cvar_t         *cl_shownet;
+convar_t         *cl_shownet;
 
 // TTimo: win32 dedicated
-cvar_t         *cl_language;
+convar_t         *cl_language;
 
 void CL_Shutdown(void)
 {
@@ -40,9 +40,9 @@ void CL_Shutdown(void)
 
 void CL_Init(void)
 {
-	cl_shownet = Cvar_Get("cl_shownet", "0", CVAR_TEMP);
+	cl_shownet = Cvar_Get("cl_shownet", "0", CVAR_TEMP, "test");
 	// TTimo: localisation, prolly not any use in dedicated / null client
-	cl_language = Cvar_Get("cl_language", "0", CVAR_ARCHIVE);
+	cl_language = Cvar_Get("cl_language", "0", CVAR_ARCHIVE, "test");
 }
 
 void CL_MouseEvent(int dx, int dy, int time)

@@ -400,14 +400,14 @@ static void Cmd_ExecFile( char *f )
 
 	COM_Compress (f);
 	
-	Cvar_Get( "arg_all", Cmd_ArgsFrom(2), CVAR_TEMP | CVAR_ROM | CVAR_USER_CREATED );
+	Cvar_Get( "arg_all", Cmd_ArgsFrom(2), CVAR_TEMP | CVAR_ROM | CVAR_USER_CREATED, "" );
 	Cvar_Set( "arg_all", Cmd_ArgsFrom(2) );
-	Cvar_Get( "arg_count", va( "%i", Cmd_Argc() - 2 ), CVAR_TEMP | CVAR_ROM | CVAR_USER_CREATED );
+	Cvar_Get( "arg_count", va( "%i", Cmd_Argc() - 2 ), CVAR_TEMP | CVAR_ROM | CVAR_USER_CREATED, "" );
 	Cvar_Set( "arg_count", va( "%i", Cmd_Argc() - 2 ) );
 
 	for (i = Cmd_Argc() - 2; i; i--)
 	{
-		Cvar_Get( va("arg_%i", i), Cmd_Argv( i + 1 ), CVAR_TEMP | CVAR_ROM | CVAR_USER_CREATED );
+		Cvar_Get( va("arg_%i", i), Cmd_Argv( i + 1 ), CVAR_TEMP | CVAR_ROM | CVAR_USER_CREATED, "" );
 		Cvar_Set( va("arg_%i", i), Cmd_Argv( i + 1 ) );
 	}
 
@@ -1501,4 +1501,22 @@ void Cmd_Init(void)
 	Cmd_SetCommandCompletionFunc( "unalias", Cmd_CompleteAliasName );
 	Cmd_AddCommand ("aliaslist", Cmd_AliasList_f);
 	Cmd_AddCommand ("clearaliases", Cmd_ClearAliases_f);
+}
+
+
+/*
+============
+Cmd_Exists
+============
+*/
+qboolean Cmd_Exists( const char *cmd_name )
+{
+	cmd_function_t	*cmd;
+
+	for( cmd = cmd_functions; cmd; cmd = cmd->next )
+	{
+		if( !idStr::Cmp( cmd_name, cmd->name ))
+			return qtrue;
+	}
+	return qfalse;
 }

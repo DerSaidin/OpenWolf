@@ -230,11 +230,11 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 		SetTimer( hWnd, 1, 1000, NULL );
 		break;
 	case WM_ERASEBKGND:
-#if 1
+#if 0
 		HDC hdcScaled;
 		HGDIOBJ oldObject;
 
-#if 1   // a single, large image
+#if 0   // a single, large image
 		hdcScaled = CreateCompatibleDC( ( HDC ) wParam );
 		assert( hdcScaled != 0 );
 

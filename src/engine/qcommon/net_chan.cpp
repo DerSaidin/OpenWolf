@@ -67,9 +67,9 @@ to the new value before sending out any replies.
 
 #define	FRAGMENT_BIT	(1<<31)
 
-cvar_t		*showpackets;
-cvar_t		*showdrop;
-cvar_t		*qport;
+convar_t		*showpackets;
+convar_t		*showdrop;
+convar_t		*qport;
 
 static char *netsrcString[2] = {
 	"client",
@@ -84,9 +84,9 @@ Netchan_Init
 */
 void Netchan_Init( int port ) {
 	port &= 0xffff;
-	showpackets = Cvar_Get ("showpackets", "0", CVAR_TEMP );
-	showdrop = Cvar_Get ("showdrop", "0", CVAR_TEMP );
-	qport = Cvar_Get ("net_qport", va("%i", port), CVAR_INIT );
+	showpackets = Cvar_Get ("showpackets", "0", CVAR_TEMP, "test" );
+	showdrop = Cvar_Get ("showdrop", "0", CVAR_TEMP, "test" );
+	qport = Cvar_Get ("net_qport", va("%i", port), CVAR_INIT, "test" );
 }
 
 /*

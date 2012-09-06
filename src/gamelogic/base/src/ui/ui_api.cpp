@@ -111,8 +111,8 @@ void trap_Cvar_Reset(const char *name) {
 }
 
 //11.
-//Cvar_Get(VMA(1), VMA(2), args[3]);
-void trap_Cvar_Create(const char *var_name, const char *var_value, int flags) {
+//Cvar_Get( const char *var_name, const char *var_value, int flags, const char *var_desc );
+void trap_Cvar_Create(const char *var_name, const char *var_value, int flags, const char *var_desc ) {
 	syscall(UI_CVAR_CREATE, var_name, var_value, flags);
 }
 

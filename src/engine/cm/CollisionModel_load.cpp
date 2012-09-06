@@ -127,13 +127,13 @@ void idCollisionModelManagerLocal::LoadProcBSP( const char *name ) {
 	filename.SetFileExtension( PROC_FILE_EXT );
 	src = new idLexer( filename, LEXFL_NOSTRINGCONCAT | LEXFL_NODOLLARPRECOMPILE );
 	if ( !src->IsLoaded() ) {
-		Com_Warning( "idCollisionModelManagerLocal::LoadProcBSP: couldn't load %s", filename.c_str() );
+		Com_Warning( "idCollisionModelManagerLocal::LoadProcBSP: couldn't load %s\n", filename.c_str() );
 		delete src;
 		return;
 	}
 
 	if ( !src->ReadToken( &token ) || token.Icmp( PROC_FILE_ID ) ) {
-		Com_Warning( "idCollisionModelManagerLocal::LoadProcBSP: bad id '%s' instead of '%s'", token.c_str(), PROC_FILE_ID );
+		Com_Warning( "idCollisionModelManagerLocal::LoadProcBSP: bad id '%s' instead of '%s'\n", token.c_str(), PROC_FILE_ID );
 		delete src;
 		return;
 	}

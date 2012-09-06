@@ -629,22 +629,22 @@ void IN_Help(void)
 
 //==========================================================================
 
-cvar_t         *cl_upspeed;
-cvar_t         *cl_forwardspeed;
-cvar_t         *cl_sidespeed;
+convar_t         *cl_upspeed;
+convar_t         *cl_forwardspeed;
+convar_t         *cl_sidespeed;
 
-cvar_t         *cl_yawspeed;
-cvar_t         *cl_pitchspeed;
+convar_t         *cl_yawspeed;
+convar_t         *cl_pitchspeed;
 
-cvar_t         *cl_run;
+convar_t         *cl_run;
 
-cvar_t         *cl_anglespeedkey;
+convar_t         *cl_anglespeedkey;
 
-cvar_t         *cl_recoilPitch;
+convar_t         *cl_recoilPitch;
 
-cvar_t         *cl_bypassMouseInput;	// NERVE - SMF
+convar_t         *cl_bypassMouseInput;	// NERVE - SMF
 
-cvar_t         *cl_doubletapdelay;
+convar_t         *cl_doubletapdelay;
 
 /*
 ================
@@ -1667,8 +1667,8 @@ void CL_InitInput(void)
 	Cmd_AddCommand ("-voiprecord", IN_VoipRecordUp);
 #endif	
 	
-	cl_nodelta = Cvar_Get("cl_nodelta", "0", 0);
-	cl_debugMove = Cvar_Get("cl_debugMove", "0", 0);
+	cl_nodelta = Cvar_Get("cl_nodelta", "0", 0, "test");
+	cl_debugMove = Cvar_Get("cl_debugMove", "0", 0, "test");
 }
 
 

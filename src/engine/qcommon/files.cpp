@@ -263,22 +263,22 @@ typedef struct searchpath_s {
 
 //bani - made fs_gamedir non-static
 char fs_gamedir[MAX_OSPATH];        // this will be a single file name with no separators
-static cvar_t      *fs_debug;
-static cvar_t      *fs_homepath;
-static cvar_t      *fs_basepath;
-static cvar_t      *fs_libpath;
+static convar_t      *fs_debug;
+static convar_t      *fs_homepath;
+static convar_t      *fs_basepath;
+static convar_t      *fs_libpath;
 
 #ifdef MACOS_X
 // Also search the .app bundle for .pk3 files
-static  cvar_t     *fs_apppath;
+static  convar_t     *fs_apppath;
 #endif
 
-static cvar_t      *fs_buildpath;
-static cvar_t      *fs_buildgame;
-static cvar_t      *fs_basegame;
-static cvar_t      *fs_copyfiles;
-static cvar_t      *fs_gamedirvar;
-static cvar_t      *fs_restrict;
+static convar_t      *fs_buildpath;
+static convar_t      *fs_buildgame;
+static convar_t      *fs_basegame;
+static convar_t      *fs_copyfiles;
+static convar_t      *fs_gamedirvar;
+static convar_t      *fs_restrict;
 static searchpath_t    *fs_searchpaths;
 static int fs_readCount;                    // total bytes read
 static int fs_loadCount;                    // total files read
@@ -3492,15 +3492,15 @@ static void FS_Startup( const char *gameName ) {
 
 	Com_Printf( "----- FS_Startup -----\n" );
 
-	fs_debug = Cvar_Get( "fs_debug", "0", 0 );
-	fs_copyfiles = Cvar_Get( "fs_copyfiles", "0", CVAR_INIT );
-	fs_basepath = Cvar_Get( "fs_basepath", Sys_DefaultInstallPath(), CVAR_INIT );
-	fs_buildpath = Cvar_Get( "fs_buildpath", "", CVAR_INIT );
-	fs_buildgame = Cvar_Get( "fs_buildgame", BASEGAME, CVAR_INIT );
-	fs_basegame = Cvar_Get( "fs_basegame", "", CVAR_INIT );
-	fs_libpath = Cvar_Get ("fs_libpath", Sys_DefaultLibPath(), CVAR_INIT );
+	fs_debug = Cvar_Get( "fs_debug", "0", 0, "test" );
+	fs_copyfiles = Cvar_Get( "fs_copyfiles", "0", CVAR_INIT, "test" );
+	fs_basepath = Cvar_Get( "fs_basepath", Sys_DefaultInstallPath(), CVAR_INIT, "test" );
+	fs_buildpath = Cvar_Get( "fs_buildpath", "", CVAR_INIT, "test" );
+	fs_buildgame = Cvar_Get( "fs_buildgame", BASEGAME, CVAR_INIT, "test" );
+	fs_basegame = Cvar_Get( "fs_basegame", "", CVAR_INIT, "test" );
+	fs_libpath = Cvar_Get ("fs_libpath", Sys_DefaultLibPath(), CVAR_INIT, "test" );
 #ifdef MACOS_X
-	fs_apppath = Cvar_Get ("fs_apppath", Sys_DefaultAppPath(), CVAR_INIT );
+	fs_apppath = Cvar_Get ("fs_apppath", Sys_DefaultAppPath(), CVAR_INIT, "test" );
 #endif
 	homePath = Sys_DefaultHomePath(tmp, sizeof(tmp));
 
@@ -3508,9 +3508,9 @@ static void FS_Startup( const char *gameName ) {
 		homePath = fs_basepath->string;
 	}
 
-	fs_homepath = Cvar_Get( "fs_homepath", homePath, CVAR_INIT );
-	fs_gamedirvar = Cvar_Get( "fs_game", "", CVAR_INIT | CVAR_SYSTEMINFO );
-	fs_restrict = Cvar_Get( "fs_restrict", "", CVAR_INIT );
+	fs_homepath = Cvar_Get( "fs_homepath", homePath, CVAR_INIT, "test" );
+	fs_gamedirvar = Cvar_Get( "fs_game", "", CVAR_INIT | CVAR_SYSTEMINFO, "test" );
+	fs_restrict = Cvar_Get( "fs_restrict", "", CVAR_INIT, "test" );
 
 	// add search path elements in reverse priority order
 	if ( fs_basepath->string[0] ) {

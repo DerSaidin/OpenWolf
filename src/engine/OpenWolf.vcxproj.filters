@@ -84,9 +84,6 @@
     <Filter Include="Source Files\SYS">
       <UniqueIdentifier>{cc4f70cc-68e6-4783-a17a-9ecc02d9e5b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Console">
-      <UniqueIdentifier>{d515d4c0-53ca-46fc-855f-391e2ec82544}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Network">
       <UniqueIdentifier>{c3281191-1779-4ef5-9f01-17a2728c476e}</UniqueIdentifier>
     </Filter>
@@ -116,6 +113,9 @@
     </Filter>
     <Filter Include="Source Files\FrameWork">
       <UniqueIdentifier>{30518ec2-5b89-4b1e-888f-0bfecde49fe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Console">
+      <UniqueIdentifier>{d515d4c0-53ca-46fc-855f-391e2ec82544}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

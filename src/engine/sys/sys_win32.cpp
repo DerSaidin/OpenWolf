@@ -55,6 +55,9 @@ Maryland 20850 USA.
 #include <float.h>
 #include <setjmp.h>
 
+#ifndef DEDICATED
+static UINT timerResolution = 0;
+#endif
 
 // Used to determine where to store user-specific files
 static char homePath[ MAX_OSPATH ] = { 0 };
@@ -133,6 +136,23 @@ char *Sys_DefaultHomePath( char * buffer, int size ) {
 
 	return buffer;
 }
+
+
+/*
+==============
+Sys_PlatformExit
+
+Windows specific initialisation
+==============
+*/
+void Sys_PlatformExit( void )
+{
+#ifndef DEDICATED
+	if(timerResolution)
+		timeEndPeriod(timerResolution);
+#endif
+}
+
 
 /*
 ================
@@ -705,13 +725,10 @@ Sys_PlatformInit
 Windows specific initialisation
 ==============
 */
-static void resetTime(void) { 
-	timeEndPeriod(1); 
-}
-
 void Sys_PlatformInit( void ) {
 #ifndef DEDICATED
-	const char *SDL_VIDEODRIVER = getenv( "SDL_VIDEODRIVER" );
+	TIMECAPS		ptc;
+	const char		*SDL_VIDEODRIVER = getenv( "SDL_VIDEODRIVER" );
 #endif
 
 	Sys_SetFloatEnv();
@@ -724,14 +741,20 @@ void Sys_PlatformInit( void ) {
 	} else {
 		SDL_VIDEODRIVER_externallySet = qfalse;
 	}
+
+	if(timeGetDevCaps(&ptc, sizeof(ptc)) == MMSYSERR_NOERROR) {
+		timerResolution = ptc.wPeriodMin;
+
+		if(timerResolution > 1) {
+			Com_Printf("Warning: Minimum supported timer resolution is %ums "
+				"on this system, recommended resolution 1ms\n", timerResolution);
+		}
+		
+		timeBeginPeriod(timerResolution);				
+	} else {
+		timerResolution = 0;
+	}
 #endif
-
-	// Handle Ctrl-C or other console termination
-	SetConsoleCtrlHandler( CON_CtrlHandler, TRUE );
-
-	// Increase sleep resolution
-	timeBeginPeriod(1);
-	atexit(resetTime);
 }
 
 /*

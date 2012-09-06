@@ -176,13 +176,13 @@ typedef struct {
 extern clipMap_t cm;
 extern int      c_pointcontents;
 extern int      c_traces, c_brush_traces, c_patch_traces, c_trisoup_traces;
-extern cvar_t  *cm_noAreas;
-extern cvar_t  *cm_noCurves;
-extern cvar_t  *cm_playerCurveClip;
-extern cvar_t  *cm_forceTriangles;
-extern cvar_t  *cm_optimize;
-extern cvar_t  *cm_showCurves;
-extern cvar_t  *cm_showTriangles;
+extern convar_t  *cm_noAreas;
+extern convar_t  *cm_noCurves;
+extern convar_t  *cm_playerCurveClip;
+extern convar_t  *cm_forceTriangles;
+extern convar_t  *cm_optimize;
+extern convar_t  *cm_showCurves;
+extern convar_t  *cm_showTriangles;
 
 // cm_test.c
 

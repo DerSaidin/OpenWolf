@@ -78,13 +78,13 @@ int             c_pointcontents, c_traces, c_brush_traces, c_patch_traces, c_tri
 byte           *cmod_base;
 
 #ifndef BSPC
-cvar_t         *cm_noAreas;
-cvar_t         *cm_noCurves;
-cvar_t         *cm_forceTriangles;
-cvar_t         *cm_playerCurveClip;
-cvar_t         *cm_optimize;
-cvar_t         *cm_showCurves;
-cvar_t         *cm_showTriangles;
+convar_t         *cm_noAreas;
+convar_t         *cm_noCurves;
+convar_t         *cm_forceTriangles;
+convar_t         *cm_playerCurveClip;
+convar_t         *cm_optimize;
+convar_t         *cm_showCurves;
+convar_t         *cm_showTriangles;
 #endif
 
 cmodel_t        box_model;
@@ -869,13 +869,13 @@ void CM_LoadMapOLD(const char *name, qboolean clientload, int *checksum) {
 	}
 
 #ifndef BSPC
-	cm_noAreas = Cvar_Get("cm_noAreas", "0", CVAR_CHEAT);
-	cm_noCurves = Cvar_Get("cm_noCurves", "0", CVAR_CHEAT);
-	cm_forceTriangles = Cvar_Get("cm_forceTriangles", "0", CVAR_CHEAT | CVAR_LATCH);
-	cm_playerCurveClip = Cvar_Get("cm_playerCurveClip", "1", CVAR_ARCHIVE | CVAR_CHEAT);
-	cm_optimize = Cvar_Get("cm_optimize", "1", CVAR_CHEAT);
-	cm_showCurves = Cvar_Get("cm_showCurves", "0", CVAR_CHEAT);
-	cm_showTriangles = Cvar_Get("cm_showTriangles", "0", CVAR_CHEAT);
+	cm_noAreas = Cvar_Get("cm_noAreas", "0", CVAR_CHEAT, "test");
+	cm_noCurves = Cvar_Get("cm_noCurves", "0", CVAR_CHEAT, "test");
+	cm_forceTriangles = Cvar_Get("cm_forceTriangles", "0", CVAR_CHEAT | CVAR_LATCH, "test");
+	cm_playerCurveClip = Cvar_Get("cm_playerCurveClip", "1", CVAR_ARCHIVE | CVAR_CHEAT, "test");
+	cm_optimize = Cvar_Get("cm_optimize", "1", CVAR_CHEAT, "test");
+	cm_showCurves = Cvar_Get("cm_showCurves", "0", CVAR_CHEAT, "test");
+	cm_showTriangles = Cvar_Get("cm_showTriangles", "0", CVAR_CHEAT, "test");
 #endif
 	Com_DPrintf("CM_LoadMap( %s, %i )\n", name, clientload);
 

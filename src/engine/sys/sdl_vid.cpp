@@ -101,9 +101,9 @@ typedef enum
 
 static SDL_Surface *screen = NULL;
 
-cvar_t         *r_allowResize;	// make window resizable
-cvar_t         *r_centerWindow;
-cvar_t         *r_sdlDriver;
+convar_t         *r_allowResize;	// make window resizable
+convar_t         *r_centerWindow;
+convar_t         *r_sdlDriver;
 
 /*
 ===============

@@ -278,7 +278,7 @@ void trap_Cvar_VariableStringBuffer( const char *var_name, char *buffer, int buf
 void trap_Cvar_LatchedVariableStringBuffer(const char *var_name, char *buffer, int bufsize);
 void trap_Cvar_SetValue(const char *var_name, float value);
 void trap_Cvar_Reset(const char *name);
-void trap_Cvar_Create(const char *var_name, const char *var_value, int flags);
+void trap_Cvar_Create(const char *var_name, const char *var_value, int flags, const char *var_desc );
 void trap_Cvar_InfoStringBuffer(int bit, char *buffer, int bufsize);
 int trap_Argc(void);
 void trap_Argv(int n, char *buffer, int bufferLength);

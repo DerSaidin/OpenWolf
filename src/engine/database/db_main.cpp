@@ -27,24 +27,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef ET_MYSQL
 
 //cvars
-cvar_t *db_enable;
-cvar_t *db_backend;
-cvar_t *db_statusmaster;
-cvar_t *db_statusslave;
+convar_t *db_enable;
+convar_t *db_backend;
+convar_t *db_statusmaster;
+convar_t *db_statusslave;
 
 // MySQL Master Server related
-cvar_t *db_addressMaster;
-cvar_t *db_portMaster;
-cvar_t *db_usernameMaster;
-cvar_t *db_passwordMaster;
-cvar_t *db_databaseMaster;
+convar_t *db_addressMaster;
+convar_t *db_portMaster;
+convar_t *db_usernameMaster;
+convar_t *db_passwordMaster;
+convar_t *db_databaseMaster;
 
 // MySQL Slave Server Related
-cvar_t *db_addressSlave;
-cvar_t *db_portSlave;
-cvar_t *db_usernameSlave;
-cvar_t *db_passwordSlave;
-cvar_t *db_databaseSlave;
+convar_t *db_addressSlave;
+convar_t *db_portSlave;
+convar_t *db_usernameSlave;
+convar_t *db_passwordSlave;
+convar_t *db_databaseSlave;
 
 static dbinterface_t dbi;
 
@@ -76,24 +76,24 @@ void OW_Init( void ) {
 
 	Com_Printf( "------ Initializing Database ------\n" );
 
-	db_enable = Cvar_Get( "db_enable", "1", CVAR_SERVERINFO | CVAR_ARCHIVE );
-	db_backend = Cvar_Get( "db_backend", "MySQL", CVAR_ARCHIVE );
-	db_statusmaster = Cvar_Get( "db_statusmaster", "0", CVAR_ARCHIVE );
-	db_statusslave = Cvar_Get( "db_statusslave", "0", CVAR_ARCHIVE );
+	db_enable = Cvar_Get( "db_enable", "1", CVAR_SERVERINFO | CVAR_ARCHIVE, "test" );
+	db_backend = Cvar_Get( "db_backend", "MySQL", CVAR_ARCHIVE, "test" );
+	db_statusmaster = Cvar_Get( "db_statusmaster", "0", CVAR_ARCHIVE, "test" );
+	db_statusslave = Cvar_Get( "db_statusslave", "0", CVAR_ARCHIVE, "test" );
 
 	// MySQL Master Server
-	db_addressMaster = Cvar_Get( "db_addressmaster", "localhost", CVAR_ARCHIVE );
-	db_portMaster = Cvar_Get( "db_portmaster", "0", CVAR_ARCHIVE );
-	db_usernameMaster = Cvar_Get( "db_usernamemaster", "root", CVAR_ARCHIVE );
-	db_passwordMaster = Cvar_Get( "db_passwordmaster", "", CVAR_ARCHIVE );
-	db_databaseMaster = Cvar_Get( "db_databasemaster", "testdb", CVAR_ARCHIVE );
+	db_addressMaster = Cvar_Get( "db_addressmaster", "localhost", CVAR_ARCHIVE, "test" );
+	db_portMaster = Cvar_Get( "db_portmaster", "0", CVAR_ARCHIVE, "test" );
+	db_usernameMaster = Cvar_Get( "db_usernamemaster", "root", CVAR_ARCHIVE, "test" );
+	db_passwordMaster = Cvar_Get( "db_passwordmaster", "", CVAR_ARCHIVE, "test" );
+	db_databaseMaster = Cvar_Get( "db_databasemaster", "testdb", CVAR_ARCHIVE, "test" );
 
 	// MySQL Slave Server
-	db_addressSlave = Cvar_Get("db_addressslave", "localhost", CVAR_ARCHIVE);
-	db_portSlave = Cvar_Get( "db_portslave", "0", CVAR_ARCHIVE );
-	db_usernameSlave = Cvar_Get( "db_usernameslave", "root", CVAR_ARCHIVE );
-	db_passwordSlave = Cvar_Get( "db_passwordslave", "", CVAR_ARCHIVE );
-	db_databaseSlave = Cvar_Get( "db_databaseslave", "test", CVAR_ARCHIVE );
+	db_addressSlave = Cvar_Get("db_addressslave", "localhost", CVAR_ARCHIVE, "test");
+	db_portSlave = Cvar_Get( "db_portslave", "0", CVAR_ARCHIVE, "test" );
+	db_usernameSlave = Cvar_Get( "db_usernameslave", "root", CVAR_ARCHIVE, "test" );
+	db_passwordSlave = Cvar_Get( "db_passwordslave", "", CVAR_ARCHIVE, "test" );
+	db_databaseSlave = Cvar_Get( "db_databaseslave", "test", CVAR_ARCHIVE, "test" );
  
 	if( db_enable->integer == 0 ) {
 		Com_Printf( "Database Disabled.\n" );

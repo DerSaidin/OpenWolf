@@ -57,7 +57,7 @@ Maryland 20850 USA.
 #include <IOKit/hidsystem/event_status_driver.h>
 #endif
 
-static cvar_t *in_keyboardDebug     = NULL;
+static convar_t *in_keyboardDebug     = NULL;
 
 static SDL_Joystick *stick = NULL;
 
@@ -65,24 +65,24 @@ static qboolean mouseAvailable = qfalse;
 static qboolean mouseActive = qfalse;
 static qboolean keyRepeatEnabled = qfalse;
 
-static cvar_t *in_mouse             = NULL;
+static convar_t *in_mouse             = NULL;
 #ifdef MACOS_X_ACCELERATION_HACK
-static cvar_t *in_disablemacosxmouseaccel = NULL;
+static convar_t *in_disablemacosxmouseaccel = NULL;
 static double originalMouseSpeed = -1.0;
 #endif
-static cvar_t *in_nograb;
+static convar_t *in_nograb;
 
-static cvar_t *in_joystick          = NULL;
-static cvar_t *in_joystickDebug     = NULL;
-static cvar_t *in_joystickThreshold = NULL;
-static cvar_t *in_joystickNo        = NULL;
-static cvar_t *in_joystickUseAnalog = NULL;
+static convar_t *in_joystick          = NULL;
+static convar_t *in_joystickDebug     = NULL;
+static convar_t *in_joystickThreshold = NULL;
+static convar_t *in_joystickNo        = NULL;
+static convar_t *in_joystickUseAnalog = NULL;
 
-static cvar_t  *in_fullscreen = NULL;
+static convar_t  *in_fullscreen = NULL;
 
-static cvar_t  *in_xbox360Controller = NULL;
-static cvar_t  *in_xbox360ControllerAvailable = NULL;
-static cvar_t  *in_xbox360ControllerDebug = NULL;
+static convar_t  *in_xbox360Controller = NULL;
+static convar_t  *in_xbox360ControllerAvailable = NULL;
+static convar_t  *in_xbox360ControllerDebug = NULL;
 
 static int vidRestartTime = 0;
 
@@ -624,11 +624,11 @@ static void IN_InitJoystick( void )
 	for (i = 0; i < total; i++)
 		Com_DPrintf("[%d] %s\n", i, SDL_JoystickName(i));
 
-	in_joystickNo = Cvar_Get( "in_joystickNo", "0", CVAR_ARCHIVE );
+	in_joystickNo = Cvar_Get( "in_joystickNo", "0", CVAR_ARCHIVE, "test" );
 	if( in_joystickNo->integer < 0 || in_joystickNo->integer >= total )
 		Cvar_Set( "in_joystickNo", "0" );
 
-	in_joystickUseAnalog = Cvar_Get( "in_joystickUseAnalog", "0", CVAR_ARCHIVE );
+	in_joystickUseAnalog = Cvar_Get( "in_joystickUseAnalog", "0", CVAR_ARCHIVE, "test" );
 
 	stick = SDL_JoystickOpen( in_joystickNo->integer );
 
@@ -1306,23 +1306,23 @@ void IN_Init( void )
 
 	Com_DPrintf( "\n------- Input Initialization -------\n" );
 
-	in_keyboardDebug = Cvar_Get( "in_keyboardDebug", "0", CVAR_ARCHIVE );
+	in_keyboardDebug = Cvar_Get( "in_keyboardDebug", "0", CVAR_ARCHIVE, "test" );
 
 	// mouse variables
-	in_mouse = Cvar_Get( "in_mouse", "1", CVAR_ARCHIVE );
-	in_nograb = Cvar_Get( "in_nograb", "0", CVAR_ARCHIVE );
+	in_mouse = Cvar_Get( "in_mouse", "1", CVAR_ARCHIVE, "test" );
+	in_nograb = Cvar_Get( "in_nograb", "0", CVAR_ARCHIVE, "test" );
 
-	in_joystick = Cvar_Get( "in_joystick", "0", CVAR_ARCHIVE|CVAR_LATCH );
-	in_joystickDebug = Cvar_Get( "in_joystickDebug", "0", CVAR_TEMP );
-	in_joystickThreshold = Cvar_Get( "in_joystickThreshold", "0.15", CVAR_ARCHIVE );
+	in_joystick = Cvar_Get( "in_joystick", "0", CVAR_ARCHIVE|CVAR_LATCH, "test" );
+	in_joystickDebug = Cvar_Get( "in_joystickDebug", "0", CVAR_TEMP, "test" );
+	in_joystickThreshold = Cvar_Get( "in_joystickThreshold", "0.15", CVAR_ARCHIVE, "test" );
 
 #ifdef MACOS_X_ACCELERATION_HACK
 	in_disablemacosxmouseaccel = Cvar_Get( "in_disablemacosxmouseaccel", "1", CVAR_ARCHIVE );
 #endif
 
-	in_xbox360Controller = Cvar_Get("in_xbox360Controller", "1", CVAR_TEMP);
-	in_xbox360ControllerAvailable = Cvar_Get("in_xbox360ControllerAvailable", "0", CVAR_ROM);
-	in_xbox360ControllerDebug = Cvar_Get("in_xbox360ControllerDebug", "0", CVAR_TEMP);
+	in_xbox360Controller = Cvar_Get("in_xbox360Controller", "1", CVAR_TEMP, "test");
+	in_xbox360ControllerAvailable = Cvar_Get("in_xbox360ControllerAvailable", "0", CVAR_ROM, "test");
+	in_xbox360ControllerDebug = Cvar_Get("in_xbox360ControllerDebug", "0", CVAR_TEMP, "test");
 
 	SDL_EnableUNICODE( 1 );
 	SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );

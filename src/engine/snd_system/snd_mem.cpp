@@ -77,10 +77,10 @@ redo:
 
 void SND_setup(void) {
 	sndBuffer *p, *q;
-	cvar_t	*cv;
+	convar_t *cv;
 	int scs;
 
-	cv = Cvar_Get( "com_soundMegs", DEF_COMSOUNDMEGS, CVAR_LATCH | CVAR_ARCHIVE );
+	cv = Cvar_Get( "com_soundMegs", DEF_COMSOUNDMEGS, CVAR_LATCH | CVAR_ARCHIVE, "test" );
 
 	scs = (cv->integer*1536);
 

@@ -59,7 +59,7 @@ void idLib::Init( void ) {
 	assert( sizeof( bool ) == 1 );
 
 	// initialize little/big endian conversion
-	//Swap_Init();
+	Swap_Init();
 
 	// initialize memory manager
 	Mem_Init();

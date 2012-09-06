@@ -1608,162 +1608,162 @@ extern float    displayAspect;	// FIXME
 //
 // cvars
 //
-extern cvar_t  *r_flareSize;
-extern cvar_t  *r_flareFade;
+extern convar_t  *r_flareSize;
+extern convar_t  *r_flareFade;
 
-extern cvar_t  *r_railWidth;
-extern cvar_t  *r_railCoreWidth;
-extern cvar_t  *r_railSegmentLength;
+extern convar_t  *r_railWidth;
+extern convar_t  *r_railCoreWidth;
+extern convar_t  *r_railSegmentLength;
 
-extern cvar_t  *r_ignore;		// used for debugging anything
-extern cvar_t  *r_verbose;		// used for verbose debug spew
-extern cvar_t  *r_ignoreFastPath;	// allows us to ignore our Tess fast paths
+extern convar_t  *r_ignore;		// used for debugging anything
+extern convar_t  *r_verbose;		// used for verbose debug spew
+extern convar_t  *r_ignoreFastPath;	// allows us to ignore our Tess fast paths
 
-extern cvar_t  *r_znear;		// near Z clip plane
-extern cvar_t  *r_zfar;			// far Z clip plane
+extern convar_t  *r_znear;		// near Z clip plane
+extern convar_t  *r_zfar;			// far Z clip plane
 
-extern cvar_t  *r_stencilbits;	// number of desired stencil bits
-extern cvar_t  *r_depthbits;	// number of desired depth bits
-extern cvar_t  *r_colorbits;	// number of desired color bits, only relevant for fullscreen
-extern cvar_t  *r_stereo;		// desired pixelformat stereo flag
-extern cvar_t  *r_texturebits;	// number of desired texture bits
+extern convar_t  *r_stencilbits;	// number of desired stencil bits
+extern convar_t  *r_depthbits;	// number of desired depth bits
+extern convar_t  *r_colorbits;	// number of desired color bits, only relevant for fullscreen
+extern convar_t  *r_stereo;		// desired pixelformat stereo flag
+extern convar_t  *r_texturebits;	// number of desired texture bits
 
 										// 0 = use framebuffer depth
 										// 16 = use 16-bit textures
 										// 32 = use 32-bit textures
 										// all else = error
 
-extern cvar_t  *r_measureOverdraw;	// enables stencil buffer overdraw measurement
+extern convar_t  *r_measureOverdraw;	// enables stencil buffer overdraw measurement
 
-extern cvar_t  *r_lodbias;		// push/pull LOD transitions
-extern cvar_t  *r_lodscale;
+extern convar_t  *r_lodbias;		// push/pull LOD transitions
+extern convar_t  *r_lodscale;
 
-extern cvar_t  *r_primitives;	// "0" = based on compiled vertex array existance
+extern convar_t  *r_primitives;	// "0" = based on compiled vertex array existance
 
 										// "1" = glDrawElemet tristrips
 										// "2" = glDrawElements triangles
 										// "-1" = no drawing
 
-extern cvar_t  *r_inGameVideo;	// controls whether in game video should be draw
-extern cvar_t  *r_fastsky;		// controls whether sky should be cleared or drawn
-extern cvar_t  *r_drawSun;		// controls drawing of sun quad
+extern convar_t  *r_inGameVideo;	// controls whether in game video should be draw
+extern convar_t  *r_fastsky;		// controls whether sky should be cleared or drawn
+extern convar_t  *r_drawSun;		// controls drawing of sun quad
 
 										// "0" no sun
 										// "1" draw sun
 										// "2" also draw lens flare effect centered on sun
-extern cvar_t  *r_dynamiclight;	// dynamic lights enabled/disabled
-extern cvar_t  *r_dlightBacks;	// dlight non-facing surfaces for continuity
+extern convar_t  *r_dynamiclight;	// dynamic lights enabled/disabled
+extern convar_t  *r_dlightBacks;	// dlight non-facing surfaces for continuity
 
-extern cvar_t  *r_norefresh;	// bypasses the ref rendering
-extern cvar_t  *r_drawentities;	// disable/enable entity rendering
-extern cvar_t  *r_drawworld;	// disable/enable world rendering
-extern cvar_t  *r_drawfoliage;	// ydnar: disable/enable foliage rendering
-extern cvar_t  *r_speeds;		// various levels of information display
-extern cvar_t  *r_detailTextures;	// enables/disables detail texturing stages
-extern cvar_t  *r_novis;		// disable/enable usage of PVS
-extern cvar_t  *r_nocull;
-extern cvar_t  *r_facePlaneCull;	// enables culling of planar surfaces with back side test
-extern cvar_t  *r_nocurves;
-extern cvar_t  *r_showcluster;
+extern convar_t  *r_norefresh;	// bypasses the ref rendering
+extern convar_t  *r_drawentities;	// disable/enable entity rendering
+extern convar_t  *r_drawworld;	// disable/enable world rendering
+extern convar_t  *r_drawfoliage;	// ydnar: disable/enable foliage rendering
+extern convar_t  *r_speeds;		// various levels of information display
+extern convar_t  *r_detailTextures;	// enables/disables detail texturing stages
+extern convar_t  *r_novis;		// disable/enable usage of PVS
+extern convar_t  *r_nocull;
+extern convar_t  *r_facePlaneCull;	// enables culling of planar surfaces with back side test
+extern convar_t  *r_nocurves;
+extern convar_t  *r_showcluster;
 
-extern cvar_t  *r_mode;			// video mode
-extern cvar_t  *r_oldMode;		// ydnar: previous "good" video mode
-extern cvar_t  *r_fullscreen;
-extern cvar_t  *r_gamma;
-extern cvar_t  *r_displayRefresh;	// optional display refresh option
-extern cvar_t  *r_ignorehwgamma;	// overrides hardware gamma capabilities
+extern convar_t  *r_mode;			// video mode
+extern convar_t  *r_oldMode;		// ydnar: previous "good" video mode
+extern convar_t  *r_fullscreen;
+extern convar_t  *r_gamma;
+extern convar_t  *r_displayRefresh;	// optional display refresh option
+extern convar_t  *r_ignorehwgamma;	// overrides hardware gamma capabilities
 
-extern cvar_t  *r_allowExtensions;	// global enable/disable of OpenGL extensions
-extern cvar_t  *r_ext_compressed_textures;	// these control use of specific extensions
-extern cvar_t  *r_ext_gamma_control;
-extern cvar_t  *r_ext_texenv_op;
-extern cvar_t  *r_ext_multitexture;
-extern cvar_t  *r_ext_compiled_vertex_array;
-extern cvar_t  *r_ext_texture_env_add;
-extern cvar_t  *r_ext_texture_filter_anisotropic;	//DAJ from EF
-extern cvar_t  *r_ati_fsaa_samples;	//DAJ
+extern convar_t  *r_allowExtensions;	// global enable/disable of OpenGL extensions
+extern convar_t  *r_ext_compressed_textures;	// these control use of specific extensions
+extern convar_t  *r_ext_gamma_control;
+extern convar_t  *r_ext_texenv_op;
+extern convar_t  *r_ext_multitexture;
+extern convar_t  *r_ext_compiled_vertex_array;
+extern convar_t  *r_ext_texture_env_add;
+extern convar_t  *r_ext_texture_filter_anisotropic;	//DAJ from EF
+extern convar_t  *r_ati_fsaa_samples;	//DAJ
 
-extern cvar_t  *r_clampToEdge;	// ydnar: opengl 1.2 GL_CLAMP_TO_EDGE support
+extern convar_t  *r_clampToEdge;	// ydnar: opengl 1.2 GL_CLAMP_TO_EDGE support
 
 // TTimo
-extern cvar_t  *r_ext_NV_fog_dist;
-extern cvar_t  *r_nv_fogdist_mode;
+extern convar_t  *r_ext_NV_fog_dist;
+extern convar_t  *r_nv_fogdist_mode;
 
-extern cvar_t  *r_nobind;		// turns off binding to appropriate textures
-extern cvar_t  *r_singleShader;	// make most world faces use default shader
-extern cvar_t  *r_roundImagesDown;
-extern cvar_t  *r_rmse;			// reduces textures to this root mean square error
-extern cvar_t  *r_colorMipLevels;	// development aid to see texture mip usage
-extern cvar_t  *r_picmip;		// controls picmip values
-extern cvar_t  *r_finish;
-extern cvar_t  *r_drawBuffer;
-extern cvar_t  *r_glDriver;
-extern cvar_t  *r_glIgnoreWicked3D;
-extern cvar_t  *r_swapInterval;
-extern cvar_t  *r_textureMode;
-extern cvar_t  *r_textureAnisotropy;
-extern cvar_t  *r_offsetFactor;
-extern cvar_t  *r_offsetUnits;
+extern convar_t  *r_nobind;		// turns off binding to appropriate textures
+extern convar_t  *r_singleShader;	// make most world faces use default shader
+extern convar_t  *r_roundImagesDown;
+extern convar_t  *r_rmse;			// reduces textures to this root mean square error
+extern convar_t  *r_colorMipLevels;	// development aid to see texture mip usage
+extern convar_t  *r_picmip;		// controls picmip values
+extern convar_t  *r_finish;
+extern convar_t  *r_drawBuffer;
+extern convar_t  *r_glDriver;
+extern convar_t  *r_glIgnoreWicked3D;
+extern convar_t  *r_swapInterval;
+extern convar_t  *r_textureMode;
+extern convar_t  *r_textureAnisotropy;
+extern convar_t  *r_offsetFactor;
+extern convar_t  *r_offsetUnits;
 
-extern cvar_t  *r_lightmap;		// render lightmaps only
-extern cvar_t  *r_uiFullScreen;	// ui is running fullscreen
+extern convar_t  *r_lightmap;		// render lightmaps only
+extern convar_t  *r_uiFullScreen;	// ui is running fullscreen
 
-extern cvar_t  *r_logFile;		// number of frames to emit GL logs
-extern cvar_t  *r_showtris;		// enables wireframe rendering of the world
-extern cvar_t  *r_trisColor;	// enables modifying of the wireframe colour (in 0xRRGGBB[AA] format, alpha defaults to FF)
-extern cvar_t  *r_showsky;		// forces sky in front of all surfaces
-extern cvar_t  *r_shownormals;	// draws wireframe normals
-extern cvar_t  *r_normallength;	// length of the normals
-extern cvar_t  *r_showmodelbounds;
-extern cvar_t  *r_clear;		// force screen clear every frame
+extern convar_t  *r_logFile;		// number of frames to emit GL logs
+extern convar_t  *r_showtris;		// enables wireframe rendering of the world
+extern convar_t  *r_trisColor;	// enables modifying of the wireframe colour (in 0xRRGGBB[AA] format, alpha defaults to FF)
+extern convar_t  *r_showsky;		// forces sky in front of all surfaces
+extern convar_t  *r_shownormals;	// draws wireframe normals
+extern convar_t  *r_normallength;	// length of the normals
+extern convar_t  *r_showmodelbounds;
+extern convar_t  *r_clear;		// force screen clear every frame
 
-extern cvar_t  *r_shadows;		// controls shadows: 0 = none, 1 = blur, 2 = stencil, 3 = black planar projection
-extern cvar_t  *r_flares;		// light flares
+extern convar_t  *r_shadows;		// controls shadows: 0 = none, 1 = blur, 2 = stencil, 3 = black planar projection
+extern convar_t  *r_flares;		// light flares
 
-extern cvar_t  *r_portalsky;	// (SA) added
-extern cvar_t  *r_intensity;
+extern convar_t  *r_portalsky;	// (SA) added
+extern convar_t  *r_intensity;
 
-extern cvar_t  *r_lockpvs;
-extern cvar_t  *r_noportals;
-extern cvar_t  *r_portalOnly;
+extern convar_t  *r_lockpvs;
+extern convar_t  *r_noportals;
+extern convar_t  *r_portalOnly;
 
-extern cvar_t  *r_subdivisions;
-extern cvar_t  *r_lodCurveError;
-extern cvar_t  *r_smp;
-extern cvar_t  *r_showSmp;
-extern cvar_t  *r_skipBackEnd;
+extern convar_t  *r_subdivisions;
+extern convar_t  *r_lodCurveError;
+extern convar_t  *r_smp;
+extern convar_t  *r_showSmp;
+extern convar_t  *r_skipBackEnd;
 
-extern cvar_t  *r_ignoreGLErrors;
+extern convar_t  *r_ignoreGLErrors;
 
-extern cvar_t  *r_overBrightBits;
-extern cvar_t  *r_mapOverBrightBits;
+extern convar_t  *r_overBrightBits;
+extern convar_t  *r_mapOverBrightBits;
 
-extern cvar_t  *r_debugSurface;
-extern cvar_t  *r_simpleMipMaps;
+extern convar_t  *r_debugSurface;
+extern convar_t  *r_simpleMipMaps;
 
-extern cvar_t  *r_showImages;
-extern cvar_t  *r_debugSort;
+extern convar_t  *r_showImages;
+extern convar_t  *r_debugSort;
 
-extern cvar_t  *r_printShaders;
-extern cvar_t  *r_saveFontData;
+extern convar_t  *r_printShaders;
+extern convar_t  *r_saveFontData;
 
 // Ridah
-extern cvar_t  *r_cache;
-extern cvar_t  *r_cacheShaders;
-extern cvar_t  *r_cacheModels;
+extern convar_t  *r_cache;
+extern convar_t  *r_cacheShaders;
+extern convar_t  *r_cacheModels;
 
-extern cvar_t  *r_cacheGathering;
+extern convar_t  *r_cacheGathering;
 
-extern cvar_t  *r_bonesDebug;
+extern convar_t  *r_bonesDebug;
 
 // done.
 
 // Rafael - wolf fog
-extern cvar_t  *r_wolffog;
+extern convar_t  *r_wolffog;
 
 // done
 
-extern cvar_t  *r_highQualityVideo;
+extern convar_t  *r_highQualityVideo;
 
 //====================================================================
 

@@ -30,20 +30,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "qal.h"
 
 // Console variables specific to OpenAL
-cvar_t *s_alPrecache;
-cvar_t *s_alGain;
-cvar_t *s_alSources;
-cvar_t *s_alDopplerFactor;
-cvar_t *s_alDopplerSpeed;
-cvar_t *s_alMinDistance;
-cvar_t *s_alMaxDistance;
-cvar_t *s_alRolloff;
-cvar_t *s_alGraceDistance;
-cvar_t *s_alDriver;
-cvar_t *s_alDevice;
-cvar_t *s_alInputDevice;
-cvar_t *s_alAvailableDevices;
-cvar_t *s_alAvailableInputDevices;
+convar_t *s_alPrecache;
+convar_t *s_alGain;
+convar_t *s_alSources;
+convar_t *s_alDopplerFactor;
+convar_t *s_alDopplerSpeed;
+convar_t *s_alMinDistance;
+convar_t *s_alMaxDistance;
+convar_t *s_alRolloff;
+convar_t *s_alGraceDistance;
+convar_t *s_alDriver;
+convar_t *s_alDevice;
+convar_t *s_alInputDevice;
+convar_t *s_alAvailableDevices;
+convar_t *s_alAvailableInputDevices;
 
 static qboolean enumeration_ext = qfalse;
 static qboolean enumeration_all_ext = qfalse;
@@ -2121,7 +2121,7 @@ static ALCdevice *alDevice;
 static ALCcontext *alContext;
 
 static ALCdevice *alCaptureDevice;
-static cvar_t *s_alCapture;
+static convar_t *s_alCapture;
 
 #ifdef _WIN32
 #define ALDRIVER_DEFAULT "OpenAL32.dll"
@@ -2414,20 +2414,20 @@ qboolean S_AL_Init( soundInterface_t *si )
 	}
 
 	// New console variables
-	s_alPrecache = Cvar_Get( "s_alPrecache", "1", CVAR_ARCHIVE );
-	s_alGain = Cvar_Get( "s_alGain", "1.0", CVAR_ARCHIVE );
-	s_alSources = Cvar_Get( "s_alSources", "96", CVAR_ARCHIVE );
-	s_alDopplerFactor = Cvar_Get( "s_alDopplerFactor", "1.0", CVAR_ARCHIVE );
-	s_alDopplerSpeed = Cvar_Get( "s_alDopplerSpeed", "2200", CVAR_ARCHIVE );
-	s_alMinDistance = Cvar_Get( "s_alMinDistance", "120", CVAR_CHEAT );
-	s_alMaxDistance = Cvar_Get("s_alMaxDistance", "1024", CVAR_CHEAT);
-	s_alRolloff = Cvar_Get( "s_alRolloff", "2", CVAR_CHEAT);
-	s_alGraceDistance = Cvar_Get("s_alGraceDistance", "512", CVAR_CHEAT);
+	s_alPrecache = Cvar_Get( "s_alPrecache", "1", CVAR_ARCHIVE, "test" );
+	s_alGain = Cvar_Get( "s_alGain", "1.0", CVAR_ARCHIVE, "test" );
+	s_alSources = Cvar_Get( "s_alSources", "96", CVAR_ARCHIVE, "test" );
+	s_alDopplerFactor = Cvar_Get( "s_alDopplerFactor", "1.0", CVAR_ARCHIVE, "test" );
+	s_alDopplerSpeed = Cvar_Get( "s_alDopplerSpeed", "2200", CVAR_ARCHIVE, "test" );
+	s_alMinDistance = Cvar_Get( "s_alMinDistance", "120", CVAR_CHEAT, "test" );
+	s_alMaxDistance = Cvar_Get("s_alMaxDistance", "1024", CVAR_CHEAT, "test");
+	s_alRolloff = Cvar_Get( "s_alRolloff", "2", CVAR_CHEAT, "test");
+	s_alGraceDistance = Cvar_Get("s_alGraceDistance", "512", CVAR_CHEAT, "test");
 
-	s_alDriver = Cvar_Get( "s_alDriver", ALDRIVER_DEFAULT, CVAR_ARCHIVE | CVAR_LATCH );
+	s_alDriver = Cvar_Get( "s_alDriver", ALDRIVER_DEFAULT, CVAR_ARCHIVE | CVAR_LATCH, "test" );
 
-	s_alInputDevice = Cvar_Get( "s_alInputDevice", "", CVAR_ARCHIVE | CVAR_LATCH );
-	s_alDevice = Cvar_Get("s_alDevice", "", CVAR_ARCHIVE | CVAR_LATCH);
+	s_alInputDevice = Cvar_Get( "s_alInputDevice", "", CVAR_ARCHIVE | CVAR_LATCH, "test" );
+	s_alDevice = Cvar_Get("s_alDevice", "", CVAR_ARCHIVE | CVAR_LATCH, "test");
 
 	// Load QAL
 	if( !QAL_Init( s_alDriver->string ) )
@@ -2500,7 +2500,7 @@ qboolean S_AL_Init( soundInterface_t *si )
 		else
 			devicelist = "";
 
-		s_alAvailableDevices = Cvar_Get("s_alAvailableDevices", devicenames, CVAR_ROM | CVAR_NORESTART);
+		s_alAvailableDevices = Cvar_Get("s_alAvailableDevices", devicenames, CVAR_ROM | CVAR_NORESTART, "test");
 	}
 
 	alDevice = qalcOpenDevice(device);
@@ -2541,7 +2541,7 @@ qboolean S_AL_Init( soundInterface_t *si )
 	// !!! FIXME: some of these alcCaptureOpenDevice() values should be cvars.
 	// !!! FIXME: add support for capture device enumeration.
 	// !!! FIXME: add some better error reporting.
-	s_alCapture = Cvar_Get( "s_alCapture", "1", CVAR_ARCHIVE | CVAR_LATCH );
+	s_alCapture = Cvar_Get( "s_alCapture", "1", CVAR_ARCHIVE | CVAR_LATCH, "test" );
 	if (!s_alCapture->integer)
 	{
 		Com_Printf("OpenAL capture support disabled by user ('+set s_alCapture 1' to enable)\n");
@@ -2588,7 +2588,7 @@ qboolean S_AL_Init( soundInterface_t *si )
 				inputdevicelist += curlen + 1;
 			}
 
-			s_alAvailableInputDevices = Cvar_Get("s_alAvailableInputDevices", inputdevicenames, CVAR_ROM | CVAR_NORESTART);
+			s_alAvailableInputDevices = Cvar_Get("s_alAvailableInputDevices", inputdevicenames, CVAR_ROM | CVAR_NORESTART, "test");
 
 			// !!! FIXME: 8000Hz is what Speex narrowband mode needs, but we
 			// !!! FIXME:  should probably open the capture device after

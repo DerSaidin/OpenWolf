@@ -222,9 +222,9 @@ typedef struct
 	void            (*Free) (void *buf);
 	void            (*Tag_Free) (void);
 
-	cvar_t         *(*Cvar_Get) (const char *name, const char *value, int flags);
+	convar_t         *(*Cvar_Get) ( const char *var_name, const char *var_value, int flags, const char *var_desc );
 	void            (*Cvar_Set) (const char *name, const char *value);
-	void            (*Cvar_CheckRange) (cvar_t * cv, float minVal, float maxVal, qboolean shouldBeIntegral);
+	void            (*Cvar_CheckRange) (convar_t * cv, float minVal, float maxVal, qboolean shouldBeIntegral);
 
 	void            (*Cmd_AddCommand) (const char *name, void (*cmd) (void));
 	void            (*Cmd_RemoveCommand) (const char *name);

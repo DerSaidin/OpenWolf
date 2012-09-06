@@ -36,6 +36,8 @@ Maryland 20850 USA.
 #ifndef __KEYINPUT_H__
 #define __KEYINPUT_H__
 
+#include "../qcommon/q_shared.h"
+
 /*
 ===============================================================================
 

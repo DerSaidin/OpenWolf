@@ -31,21 +31,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef ET_MYSQL
 
 //cvars
-extern cvar_t *db_backend;
-extern cvar_t *db_statusmaster;
-extern cvar_t *db_statusslave;
+extern convar_t *db_backend;
+extern convar_t *db_statusmaster;
+extern convar_t *db_statusslave;
 
-extern cvar_t *db_addressMaster;
-extern cvar_t *db_portMaster;
-extern cvar_t *db_usernameMaster;
-extern cvar_t *db_passwordMaster;
-extern cvar_t *db_databaseMaster;
+extern convar_t *db_addressMaster;
+extern convar_t *db_portMaster;
+extern convar_t *db_usernameMaster;
+extern convar_t *db_passwordMaster;
+extern convar_t *db_databaseMaster;
 
-extern cvar_t *db_addressSlave;
-extern cvar_t *db_portSlave;
-extern cvar_t *db_usernameSlave;
-extern cvar_t *db_passwordSlave;
-extern cvar_t *db_databaseSlave;
+extern convar_t *db_addressSlave;
+extern convar_t *db_portSlave;
+extern convar_t *db_usernameSlave;
+extern convar_t *db_passwordSlave;
+extern convar_t *db_databaseSlave;
 
 
 //databse interface object

@@ -118,7 +118,7 @@ BotDrawDebugPolygons
 ==================
 */
 void BotDrawDebugPolygons(BotPolyFunc drawPoly, int value) {
-	static cvar_t  *bot_debug, *bot_groundonly, *bot_reachability, *bot_highlightarea, *bot_testhidepos, *debugSurface;
+	static convar_t  *bot_debug, *bot_groundonly, *bot_reachability, *bot_highlightarea, *bot_testhidepos, *debugSurface;
 	bot_debugpoly_t *poly;
 	int             i, parm0;
 
@@ -132,27 +132,27 @@ void BotDrawDebugPolygons(BotPolyFunc drawPoly, int value) {
 	}
 	//bot debugging
 	if(!bot_debug) {
-		bot_debug = Cvar_Get("bot_debug", "0", 0);
+		bot_debug = Cvar_Get("bot_debug", "0", 0, "test");
 	}
 	//show reachabilities
 	if(!bot_reachability) {
-		bot_reachability = Cvar_Get("bot_reachability", "0", 0);
+		bot_reachability = Cvar_Get("bot_reachability", "0", 0, "test");
 	}
 	//show ground faces only
 	if(!bot_groundonly) {
-		bot_groundonly = Cvar_Get("bot_groundonly", "1", 0);
+		bot_groundonly = Cvar_Get("bot_groundonly", "1", 0, "test");
 	}
 	//get the hightlight area
 	if(!bot_highlightarea) {
-		bot_highlightarea = Cvar_Get("bot_highlightarea", "0", 0);
+		bot_highlightarea = Cvar_Get("bot_highlightarea", "0", 0, "test");
 	}
 	//
 	if(!bot_testhidepos) {
-		bot_testhidepos = Cvar_Get("bot_testhidepos", "0", 0);
+		bot_testhidepos = Cvar_Get("bot_testhidepos", "0", 0, "test");
 	}
 	//
 	if(!debugSurface) {
-		debugSurface = Cvar_Get("r_debugSurface", "0", 0);
+		debugSurface = Cvar_Get("r_debugSurface", "0", 0, "test");
 	}
 	//
 	if(bot_debug->integer == 1 || bot_debug->integer == 9) {
@@ -570,7 +570,7 @@ SV_BotLibSetup
 ===============
 */
 int SV_BotLibSetup(void) {
-	static cvar_t  *bot_norcd, *bot_frameroutingupdates;
+	static convar_t  *bot_norcd, *bot_frameroutingupdates;
 
 #ifdef PRE_RELEASE_DEMO
 	return 0;
@@ -586,14 +586,14 @@ int SV_BotLibSetup(void) {
 	}
 
 	// RF, set RCD calculation status
-	bot_norcd = Cvar_Get("bot_norcd", "0", 0);
+	bot_norcd = Cvar_Get("bot_norcd", "0", 0, "test");
 	botlib_export->BotLibVarSet("bot_norcd", bot_norcd->string);
 
 	// RF, set AAS routing max per frame
 	if(SV_GameIsSinglePlayer()) {
-		bot_frameroutingupdates = Cvar_Get("bot_frameroutingupdates", "9999999", 0);
+		bot_frameroutingupdates = Cvar_Get("bot_frameroutingupdates", "9999999", 0, "test");
 	} else { // more restrictive in multiplayer
-		bot_frameroutingupdates = Cvar_Get("bot_frameroutingupdates", "1000", 0);
+		bot_frameroutingupdates = Cvar_Get("bot_frameroutingupdates", "1000", 0, "test");
 	}
 	botlib_export->BotLibVarSet("bot_frameroutingupdates", bot_frameroutingupdates->string);
 
@@ -625,20 +625,20 @@ SV_BotInitCvars
 ==================
 */
 void SV_BotInitCvars(void) {
-	Cvar_Get("bot_enable", "0", 0);				//enable the bot
-	Cvar_Get("bot_developer", "0", 0);			//bot developer mode
-	Cvar_Get("bot_debug", "0", 0);				//enable bot debugging
-	Cvar_Get("bot_groundonly", "1", 0);			//only show ground faces of areas
-	Cvar_Get("bot_reachability", "0", 0);		//show all reachabilities to other areas
-	Cvar_Get("bot_thinktime", "50", 0);			//msec the bots thinks
-	Cvar_Get("bot_reloadcharacters", "0", 0);	//reload the bot characters each time
-	Cvar_Get("bot_testichat", "0", 0);			//test ichats
-	Cvar_Get("bot_testrchat", "0", 0);			//test rchats
-	Cvar_Get("bot_fastchat", "0", 0);			//fast chatting bots
-	Cvar_Get("bot_nochat", "1", 0);				//disable chats
-	Cvar_Get("bot_grapple", "0", 0);			//enable grapple
-	Cvar_Get("bot_rocketjump", "0", 0);			//enable rocket jumping
-	Cvar_Get("bot_norcd", "0", 0);				//enable creation of RCD file
+	Cvar_Get("bot_enable", "0", 0, "test");				//enable the bot
+	Cvar_Get("bot_developer", "0", 0, "test");			//bot developer mode
+	Cvar_Get("bot_debug", "0", 0, "test");				//enable bot debugging
+	Cvar_Get("bot_groundonly", "1", 0, "test");			//only show ground faces of areas
+	Cvar_Get("bot_reachability", "0", 0, "test");		//show all reachabilities to other areas
+	Cvar_Get("bot_thinktime", "50", 0, "test");			//msec the bots thinks
+	Cvar_Get("bot_reloadcharacters", "0", 0, "test");	//reload the bot characters each time
+	Cvar_Get("bot_testichat", "0", 0, "test");			//test ichats
+	Cvar_Get("bot_testrchat", "0", 0, "test");			//test rchats
+	Cvar_Get("bot_fastchat", "0", 0, "test");			//fast chatting bots
+	Cvar_Get("bot_nochat", "1", 0, "test");				//disable chats
+	Cvar_Get("bot_grapple", "0", 0, "test");			//enable grapple
+	Cvar_Get("bot_rocketjump", "0", 0, "test");			//enable rocket jumping
+	Cvar_Get("bot_norcd", "0", 0, "test");				//enable creation of RCD file
 
 	bot_enable = Cvar_VariableIntegerValue("bot_enable");
 }

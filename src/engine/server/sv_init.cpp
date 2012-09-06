@@ -334,7 +334,7 @@ SV_BoundMaxClients
 */
 void SV_BoundMaxClients(int minimum) {
 	// get the current maxclients value
-	Cvar_Get("sv_maxclients", "20", 0);
+	Cvar_Get("sv_maxclients", "20", 0, "test");
 
 	// START    xkan, 10/03/2002
 	// allow many bots in single player. note that this pretty much means all previous
@@ -685,7 +685,7 @@ void SV_SpawnServer(char *server, qboolean killBots) {
 
 	Cvar_Set("sv_mapChecksum", va("%i", checksum));
 
-	sv_newGameShlib = Cvar_Get ("sv_newGameShlib", "", CVAR_TEMP );
+	sv_newGameShlib = Cvar_Get ("sv_newGameShlib", "", CVAR_TEMP, "test" );
 
 	// serverid should be different each time
 	sv.serverId = com_frameTime;
@@ -919,138 +919,138 @@ void SV_Init(void) {
 	SV_AddOperatorCommands();
 
 	// serverinfo vars
-	Cvar_Get("dmflags", "0", /*CVAR_SERVERINFO */ 0);
-	Cvar_Get("fraglimit", "0", /*CVAR_SERVERINFO */ 0);
-	Cvar_Get("timelimit", "0", CVAR_SERVERINFO);
+	Cvar_Get("dmflags", "0", /*CVAR_SERVERINFO */ 0, "test");
+	Cvar_Get("fraglimit", "0", /*CVAR_SERVERINFO */ 0, "test");
+	Cvar_Get("timelimit", "0", CVAR_SERVERINFO, "test");
 
 	// Rafael gameskill
-//  sv_gameskill = Cvar_Get ("g_gameskill", "3", CVAR_SERVERINFO | CVAR_LATCH );
+//  sv_gameskill = Cvar_Get ("g_gameskill", "3", CVAR_SERVERINFO | CVAR_LATCH , "test");
 	// done
 
-	Cvar_Get("sv_keywords", "", CVAR_SERVERINFO);
-	Cvar_Get("protocol", va("%i", ETPROTOCOL_VERSION), CVAR_SERVERINFO | CVAR_ARCHIVE);
-	sv_mapname = Cvar_Get("mapname", "nomap", CVAR_SERVERINFO | CVAR_ROM);
-	sv_privateClients = Cvar_Get("sv_privateClients", "0", CVAR_SERVERINFO);
-	sv_hostname = Cvar_Get("sv_hostname", "OpenWolf Host", CVAR_SERVERINFO | CVAR_ARCHIVE);
+	Cvar_Get("sv_keywords", "", CVAR_SERVERINFO, "test");
+	Cvar_Get("protocol", va("%i", ETPROTOCOL_VERSION), CVAR_SERVERINFO | CVAR_ARCHIVE, "test");
+	sv_mapname = Cvar_Get("mapname", "nomap", CVAR_SERVERINFO | CVAR_ROM, "test");
+	sv_privateClients = Cvar_Get("sv_privateClients", "0", CVAR_SERVERINFO, "test");
+	sv_hostname = Cvar_Get("sv_hostname", "OpenWolf Host", CVAR_SERVERINFO | CVAR_ARCHIVE, "test");
 	//
 #ifdef __MACOS__
-	sv_maxclients = Cvar_Get("sv_maxclients", "16", CVAR_SERVERINFO | CVAR_LATCH);	//DAJ HOG
+	sv_maxclients = Cvar_Get("sv_maxclients", "16", CVAR_SERVERINFO | CVAR_LATCH, "test");	//DAJ HOG
 #else
-	sv_maxclients = Cvar_Get("sv_maxclients", "20", CVAR_SERVERINFO | CVAR_LATCH);	// NERVE - SMF - changed to 20 from 8
+	sv_maxclients = Cvar_Get("sv_maxclients", "20", CVAR_SERVERINFO | CVAR_LATCH, "test");	// NERVE - SMF - changed to 20 from 8
 #endif
 
-	sv_maxRate = Cvar_Get("sv_maxRate", "0", CVAR_ARCHIVE | CVAR_SERVERINFO);
-	sv_minPing = Cvar_Get("sv_minPing", "0", CVAR_ARCHIVE | CVAR_SERVERINFO);
-	sv_maxPing = Cvar_Get("sv_maxPing", "0", CVAR_ARCHIVE | CVAR_SERVERINFO);
-	sv_floodProtect = Cvar_Get("sv_floodProtect", "1", CVAR_ARCHIVE | CVAR_SERVERINFO);
-	sv_allowAnonymous = Cvar_Get("sv_allowAnonymous", "0", CVAR_SERVERINFO);
-	sv_friendlyFire = Cvar_Get("g_friendlyFire", "1", CVAR_SERVERINFO | CVAR_ARCHIVE);	// NERVE - SMF
-	sv_maxlives = Cvar_Get("g_maxlives", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SERVERINFO);	// NERVE - SMF
-	sv_needpass = Cvar_Get("g_needpass", "0", CVAR_SERVERINFO | CVAR_ROM);
+	sv_maxRate = Cvar_Get("sv_maxRate", "0", CVAR_ARCHIVE | CVAR_SERVERINFO, "test");
+	sv_minPing = Cvar_Get("sv_minPing", "0", CVAR_ARCHIVE | CVAR_SERVERINFO, "test");
+	sv_maxPing = Cvar_Get("sv_maxPing", "0", CVAR_ARCHIVE | CVAR_SERVERINFO, "test");
+	sv_floodProtect = Cvar_Get("sv_floodProtect", "1", CVAR_ARCHIVE | CVAR_SERVERINFO, "test");
+	sv_allowAnonymous = Cvar_Get("sv_allowAnonymous", "0", CVAR_SERVERINFO, "test");
+	sv_friendlyFire = Cvar_Get("g_friendlyFire", "1", CVAR_SERVERINFO | CVAR_ARCHIVE, "test");	// NERVE - SMF
+	sv_maxlives = Cvar_Get("g_maxlives", "0", CVAR_ARCHIVE | CVAR_LATCH | CVAR_SERVERINFO, "test");	// NERVE - SMF
+	sv_needpass = Cvar_Get("g_needpass", "0", CVAR_SERVERINFO | CVAR_ROM, "test");
 
 	// systeminfo
-	//bani - added cvar_t for sv_cheats so server engine can reference it
-	sv_cheats = Cvar_Get("sv_cheats", "1", CVAR_SYSTEMINFO | CVAR_ROM);
-	sv_serverid = Cvar_Get("sv_serverid", "0", CVAR_SYSTEMINFO | CVAR_ROM);
-	sv_pure = Cvar_Get("sv_pure", "1", CVAR_SYSTEMINFO);
+	//bani - added convar_t for sv_cheats so server engine can reference it
+	sv_cheats = Cvar_Get("sv_cheats", "1", CVAR_SYSTEMINFO | CVAR_ROM, "test");
+	sv_serverid = Cvar_Get("sv_serverid", "0", CVAR_SYSTEMINFO | CVAR_ROM, "test");
+	sv_pure = Cvar_Get("sv_pure", "1", CVAR_SYSTEMINFO, "test");
 #ifdef USE_VOIP
 	sv_voip = Cvar_Get ("sv_voip", "1", CVAR_SYSTEMINFO | CVAR_LATCH);
 	Cvar_CheckRange( sv_voip, 0, 1, qtrue );
 #endif	
-	Cvar_Get("sv_paks", "", CVAR_SYSTEMINFO | CVAR_ROM);
-	Cvar_Get("sv_pakNames", "", CVAR_SYSTEMINFO | CVAR_ROM);
-	Cvar_Get("sv_referencedPaks", "", CVAR_SYSTEMINFO | CVAR_ROM);
-	Cvar_Get("sv_referencedPakNames", "", CVAR_SYSTEMINFO | CVAR_ROM);
+	Cvar_Get("sv_paks", "", CVAR_SYSTEMINFO | CVAR_ROM, "test");
+	Cvar_Get("sv_pakNames", "", CVAR_SYSTEMINFO | CVAR_ROM, "test");
+	Cvar_Get("sv_referencedPaks", "", CVAR_SYSTEMINFO | CVAR_ROM, "test");
+	Cvar_Get("sv_referencedPakNames", "", CVAR_SYSTEMINFO | CVAR_ROM, "test");
 
 	// server vars
-	sv_rconPassword = Cvar_Get("rconPassword", "", CVAR_TEMP);
-	sv_privatePassword = Cvar_Get("sv_privatePassword", "", CVAR_TEMP);
-	sv_fps = Cvar_Get("sv_fps", "60", CVAR_TEMP);
-	sv_timeout = Cvar_Get("sv_timeout", "240", CVAR_TEMP);
-	sv_zombietime = Cvar_Get("sv_zombietime", "2", CVAR_TEMP);
-	Cvar_Get("nextmap", "", CVAR_TEMP);
+	sv_rconPassword = Cvar_Get("rconPassword", "", CVAR_TEMP, "test");
+	sv_privatePassword = Cvar_Get("sv_privatePassword", "", CVAR_TEMP, "test");
+	sv_fps = Cvar_Get("sv_fps", "60", CVAR_TEMP, "test");
+	sv_timeout = Cvar_Get("sv_timeout", "240", CVAR_TEMP, "test");
+	sv_zombietime = Cvar_Get("sv_zombietime", "2", CVAR_TEMP, "test");
+	Cvar_Get("nextmap", "", CVAR_TEMP, "test");
 
-	sv_allowDownload = Cvar_Get("sv_allowDownload", "1", CVAR_ARCHIVE);
-	sv_master[0] = Cvar_Get("sv_master1", MASTER_SERVER_NAME, 0);
-	sv_master[1] = Cvar_Get("sv_master2", "", CVAR_ARCHIVE);
-	sv_master[2] = Cvar_Get("sv_master3", "", CVAR_ARCHIVE);
-	sv_master[3] = Cvar_Get("sv_master4", "", CVAR_ARCHIVE);
-	sv_master[4] = Cvar_Get("sv_master5", "", CVAR_ARCHIVE);
+	sv_allowDownload = Cvar_Get("sv_allowDownload", "1", CVAR_ARCHIVE, "test");
+	sv_master[0] = Cvar_Get("sv_master1", MASTER_SERVER_NAME, 0, "test");
+	sv_master[1] = Cvar_Get("sv_master2", "", CVAR_ARCHIVE, "test");
+	sv_master[2] = Cvar_Get("sv_master3", "", CVAR_ARCHIVE, "test");
+	sv_master[3] = Cvar_Get("sv_master4", "", CVAR_ARCHIVE, "test");
+	sv_master[4] = Cvar_Get("sv_master5", "", CVAR_ARCHIVE, "test");
 #if defined (USE_PHP)
-	sv_httpmaster[0] = Cvar_Get("sv_httpmaster1", "", 0);
-	sv_httpmaster[1] = Cvar_Get("sv_httpmaster2", "", CVAR_ARCHIVE);
-	sv_httpmaster[2] = Cvar_Get("sv_httpmaster3", "", CVAR_ARCHIVE);
-	sv_httpmaster[3] = Cvar_Get("sv_httpmaster4", "", CVAR_ARCHIVE);
-	sv_httpmaster[4] = Cvar_Get("sv_httpmaster5", "", CVAR_ARCHIVE);
+	sv_httpmaster[0] = Cvar_Get("sv_httpmaster1", "", 0, "test");
+	sv_httpmaster[1] = Cvar_Get("sv_httpmaster2", "", CVAR_ARCHIVE, "test");
+	sv_httpmaster[2] = Cvar_Get("sv_httpmaster3", "", CVAR_ARCHIVE, "test");
+	sv_httpmaster[3] = Cvar_Get("sv_httpmaster4", "", CVAR_ARCHIVE, "test");
+	sv_httpmaster[4] = Cvar_Get("sv_httpmaster5", "", CVAR_ARCHIVE, "test");
 #endif
-	sv_reconnectlimit = Cvar_Get("sv_reconnectlimit", "3", 0);
+	sv_reconnectlimit = Cvar_Get("sv_reconnectlimit", "3", 0, "test");
 	sv_tempbanmessage =
-		Cvar_Get("sv_tempbanmessage", "You have been kicked and are temporarily banned from joining this server.", 0);
-	sv_showloss = Cvar_Get("sv_showloss", "0", 0);
-	sv_padPackets = Cvar_Get("sv_padPackets", "0", 0);
-	sv_killserver = Cvar_Get("sv_killserver", "0", 0);
-	sv_mapChecksum = Cvar_Get("sv_mapChecksum", "", CVAR_ROM);
+		Cvar_Get("sv_tempbanmessage", "You have been kicked and are temporarily banned from joining this server.", 0, "test");
+	sv_showloss = Cvar_Get("sv_showloss", "0", 0, "test");
+	sv_padPackets = Cvar_Get("sv_padPackets", "0", 0, "test");
+	sv_killserver = Cvar_Get("sv_killserver", "0", 0, "test");
+	sv_mapChecksum = Cvar_Get("sv_mapChecksum", "", CVAR_ROM, "test");
 
-	sv_reloading = Cvar_Get("g_reloading", "0", CVAR_ROM);
+	sv_reloading = Cvar_Get("g_reloading", "0", CVAR_ROM, "test");
 
-	sv_lanForceRate = Cvar_Get("sv_lanForceRate", "1", CVAR_ARCHIVE);
+	sv_lanForceRate = Cvar_Get("sv_lanForceRate", "1", CVAR_ARCHIVE, "test");
 
-	sv_onlyVisibleClients = Cvar_Get("sv_onlyVisibleClients", "0", 0);	// DHM - Nerve
+	sv_onlyVisibleClients = Cvar_Get("sv_onlyVisibleClients", "0", 0, "test");	// DHM - Nerve
 
-	sv_showAverageBPS = Cvar_Get("sv_showAverageBPS", "0", 0);	// NERVE - SMF - net debugging
+	sv_showAverageBPS = Cvar_Get("sv_showAverageBPS", "0", 0, "test");	// NERVE - SMF - net debugging
 
 	// NERVE - SMF - create user set cvars
-	Cvar_Get("g_userTimeLimit", "0", 0);
-	Cvar_Get("g_userAlliedRespawnTime", "0", 0);
-	Cvar_Get("g_userAxisRespawnTime", "0", 0);
-	Cvar_Get("g_maxlives", "0", 0);
-	Cvar_Get("g_altStopwatchMode", "0", CVAR_ARCHIVE);
-	Cvar_Get("g_minGameClients", "8", CVAR_SERVERINFO);
-	Cvar_Get("g_complaintlimit", "6", CVAR_ARCHIVE);
-	Cvar_Get("gamestate", "-1", CVAR_WOLFINFO | CVAR_ROM);
-	Cvar_Get("g_currentRound", "0", CVAR_WOLFINFO);
-	Cvar_Get("g_nextTimeLimit", "0", CVAR_WOLFINFO);
+	Cvar_Get("g_userTimeLimit", "0", 0, "test");
+	Cvar_Get("g_userAlliedRespawnTime", "0", 0, "test");
+	Cvar_Get("g_userAxisRespawnTime", "0", 0, "test");
+	Cvar_Get("g_maxlives", "0", 0, "test");
+	Cvar_Get("g_altStopwatchMode", "0", CVAR_ARCHIVE, "test");
+	Cvar_Get("g_minGameClients", "8", CVAR_SERVERINFO, "test");
+	Cvar_Get("g_complaintlimit", "6", CVAR_ARCHIVE, "test");
+	Cvar_Get("gamestate", "-1", CVAR_WOLFINFO | CVAR_ROM, "test");
+	Cvar_Get("g_currentRound", "0", CVAR_WOLFINFO, "test");
+	Cvar_Get("g_nextTimeLimit", "0", CVAR_WOLFINFO, "test");
 	// -NERVE - SMF
 
 	// TTimo - some UI additions
 	// NOTE: sucks to have this hardcoded really, I suppose this should be in UI
-	Cvar_Get("g_axismaxlives", "0", 0);
-	Cvar_Get("g_alliedmaxlives", "0", 0);
-	Cvar_Get("g_fastres", "0", CVAR_ARCHIVE);
-	Cvar_Get("g_fastResMsec", "1000", CVAR_ARCHIVE);
+	Cvar_Get("g_axismaxlives", "0", 0, "test");
+	Cvar_Get("g_alliedmaxlives", "0", 0, "test");
+	Cvar_Get("g_fastres", "0", CVAR_ARCHIVE, "test");
+	Cvar_Get("g_fastResMsec", "1000", CVAR_ARCHIVE, "test");
 
 	// ATVI Tracker Wolfenstein Misc #273
-	Cvar_Get("g_voteFlags", "0", CVAR_ROM | CVAR_SERVERINFO);
+	Cvar_Get("g_voteFlags", "0", CVAR_ROM | CVAR_SERVERINFO, "test");
 
 	// ATVI Tracker Wolfenstein Misc #263
-	Cvar_Get("g_antilag", "1", CVAR_ARCHIVE | CVAR_SERVERINFO);
+	Cvar_Get("g_antilag", "1", CVAR_ARCHIVE | CVAR_SERVERINFO, "test");
 
-	Cvar_Get("g_needpass", "0", CVAR_SERVERINFO);
+	Cvar_Get("g_needpass", "0", CVAR_SERVERINFO, "test");
 
-	g_gameType = Cvar_Get("g_gametype", va("%i", com_gameInfo.defaultGameType), CVAR_SERVERINFO | CVAR_LATCH);
+	g_gameType = Cvar_Get("g_gametype", va("%i", com_gameInfo.defaultGameType), CVAR_SERVERINFO | CVAR_LATCH, "test");
 
 #if !defined (UPDATE_SERVER)
 	// the download netcode tops at 18/20 kb/s, no need to make you think you can go above
-	sv_dl_maxRate = Cvar_Get( "sv_dl_maxRate", "42000", CVAR_ARCHIVE );
+	sv_dl_maxRate = Cvar_Get( "sv_dl_maxRate", "42000", CVAR_ARCHIVE, "test" );
 #else
 	// the update server is on steroids, sv_fps 60 and no snapshotMsec limitation, it can go up to 30 kb/s
-	sv_dl_maxRate = Cvar_Get( "sv_dl_maxRate", "60000", CVAR_ARCHIVE );
+	sv_dl_maxRate = Cvar_Get( "sv_dl_maxRate", "60000", CVAR_ARCHIVE, "test" );
 #endif
 
-	sv_wwwDownload = Cvar_Get("sv_wwwDownload", "0", CVAR_ARCHIVE);
-	sv_wwwBaseURL = Cvar_Get("sv_wwwBaseURL", "", CVAR_ARCHIVE);
-	sv_wwwDlDisconnected = Cvar_Get("sv_wwwDlDisconnected", "0", CVAR_ARCHIVE);
-	sv_wwwFallbackURL = Cvar_Get("sv_wwwFallbackURL", "", CVAR_ARCHIVE);
+	sv_wwwDownload = Cvar_Get("sv_wwwDownload", "0", CVAR_ARCHIVE, "test");
+	sv_wwwBaseURL = Cvar_Get("sv_wwwBaseURL", "", CVAR_ARCHIVE, "test");
+	sv_wwwDlDisconnected = Cvar_Get("sv_wwwDlDisconnected", "0", CVAR_ARCHIVE, "test");
+	sv_wwwFallbackURL = Cvar_Get("sv_wwwFallbackURL", "", CVAR_ARCHIVE, "test");
 
 	//bani
-	sv_packetloss = Cvar_Get("sv_packetloss", "0", CVAR_CHEAT);
-	sv_packetdelay = Cvar_Get("sv_packetdelay", "0", CVAR_CHEAT);
+	sv_packetloss = Cvar_Get("sv_packetloss", "0", CVAR_CHEAT, "test");
+	sv_packetdelay = Cvar_Get("sv_packetdelay", "0", CVAR_CHEAT, "test");
 
 	// fretn - note: redirecting of clients to other servers relies on this,
 	// ET://someserver.com
-	sv_fullmsg = Cvar_Get("sv_fullmsg", "Server is full.", CVAR_ARCHIVE);
+	sv_fullmsg = Cvar_Get("sv_fullmsg", "Server is full.", CVAR_ARCHIVE, "test");
 
-	sv_requireValidGuid = Cvar_Get ("sv_requireValidGuid", "0", CVAR_ARCHIVE );
+	sv_requireValidGuid = Cvar_Get ("sv_requireValidGuid", "0", CVAR_ARCHIVE, "test" );
 
 	// initialize bot cvars so they arelisted and can be set before loading the botlib
 	SV_BotInitCvars();

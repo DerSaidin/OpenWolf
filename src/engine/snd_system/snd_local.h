@@ -213,12 +213,12 @@ extern  streamingSound_t streamingSounds[MAX_STREAMING_SOUNDS];
 extern	portable_samplepair_t s_rawsamples[MAX_RAW_STREAMS][MAX_RAW_SAMPLES];
 extern	int		s_rawend[MAX_RAW_STREAMS];
 
-extern cvar_t *s_volume;
-extern cvar_t *s_musicVolume;
-extern cvar_t *s_muted;
-extern cvar_t *s_doppler;
+extern convar_t *s_volume;
+extern convar_t *s_musicVolume;
+extern convar_t *s_muted;
+extern convar_t *s_doppler;
 
-extern cvar_t *s_testsound;
+extern convar_t *s_testsound;
 
 qboolean S_LoadSound( sfx_t *sfx );
 

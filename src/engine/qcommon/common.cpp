@@ -78,68 +78,68 @@ static fileHandle_t logfile;
 fileHandle_t    com_journalFile;	// events are written here
 fileHandle_t    com_journalDataFile;	// config files are written here
 
-cvar_t         *com_crashed = NULL;	// ydnar: set in case of a crash, prevents CVAR_UNSAFE variables from being set from a cfg
+convar_t         *com_crashed = NULL;	// ydnar: set in case of a crash, prevents CVAR_UNSAFE variables from being set from a cfg
 
 //bani - explicit NULL to make win32 teh happy
 
-cvar_t         *com_ignorecrash = NULL;	// bani - let experienced users ignore crashes, explicit NULL to make win32 teh happy
-cvar_t         *com_pid;		// bani - process id
+convar_t         *com_ignorecrash = NULL;	// bani - let experienced users ignore crashes, explicit NULL to make win32 teh happy
+convar_t         *com_pid;		// bani - process id
 
-cvar_t         *com_viewlog;
-cvar_t         *com_speeds;
-cvar_t         *com_developer;
-cvar_t         *com_dedicated;
-cvar_t         *com_timescale;
-cvar_t         *com_fixedtime;
-cvar_t         *com_dropsim;	// 0.0 to 1.0, simulated packet drops
-cvar_t         *com_journal;
-cvar_t         *com_maxfps;
-cvar_t         *com_timedemo;
-cvar_t         *com_sv_running;
-cvar_t         *com_cl_running;
-cvar_t         *com_logfile;	// 1 = buffer log, 2 = flush after each print
-cvar_t         *com_showtrace;
-cvar_t         *com_version;
+convar_t         *com_viewlog;
+convar_t         *com_speeds;
+convar_t         *com_developer;
+convar_t         *com_dedicated;
+convar_t         *com_timescale;
+convar_t         *com_fixedtime;
+convar_t         *com_dropsim;	// 0.0 to 1.0, simulated packet drops
+convar_t         *com_journal;
+convar_t         *com_maxfps;
+convar_t         *com_timedemo;
+convar_t         *com_sv_running;
+convar_t         *com_cl_running;
+convar_t         *com_logfile;	// 1 = buffer log, 2 = flush after each print
+convar_t         *com_showtrace;
+convar_t         *com_version;
 
-//cvar_t    *com_blood;
-cvar_t         *com_buildScript;	// for automated data building scripts
-cvar_t         *con_drawnotify;
-cvar_t         *com_ansiColor;
+//convar_t    *com_blood;
+convar_t         *com_buildScript;	// for automated data building scripts
+convar_t         *con_drawnotify;
+convar_t         *com_ansiColor;
 
-cvar_t         *com_unfocused;
-cvar_t         *com_minimized;
+convar_t         *com_unfocused;
+convar_t         *com_minimized;
 
-cvar_t         *com_introPlayed;
-cvar_t         *com_logosPlaying;
-cvar_t         *cl_paused;
-cvar_t         *sv_paused;
+convar_t         *com_introPlayed;
+convar_t         *com_logosPlaying;
+convar_t         *cl_paused;
+convar_t         *sv_paused;
 #if defined (DEDICATED)
-cvar_t		   *cl_packetdelay;
+convar_t		   *cl_packetdelay;
 #endif
-//cvar_t		   *sv_packetdelay;
-cvar_t         *com_cameraMode;
-cvar_t         *com_maxfpsUnfocused;
-cvar_t         *com_maxfpsMinimized;
-cvar_t         *com_abnormalExit;
+//convar_t		   *sv_packetdelay;
+convar_t         *com_cameraMode;
+convar_t         *com_maxfpsUnfocused;
+convar_t         *com_maxfpsMinimized;
+convar_t         *com_abnormalExit;
 
 #if defined (USE_HTTP)
-cvar_t         *com_webhost;
-cvar_t	       *com_sessionid;
+convar_t         *com_webhost;
+convar_t	       *com_sessionid;
 #endif
 
 #if defined( _WIN32 ) && defined( _DEBUG )
-cvar_t         *com_noErrorInterrupt;
+convar_t         *com_noErrorInterrupt;
 #endif
-cvar_t         *com_recommendedSet;
+convar_t         *com_recommendedSet;
 
-cvar_t         *com_watchdog;
-cvar_t         *com_watchdog_cmd;
+convar_t         *com_watchdog;
+convar_t         *com_watchdog_cmd;
 
 // Rafael Notebook
-cvar_t         *cl_notebook;
+convar_t         *cl_notebook;
 
-cvar_t         *com_hunkused;	// Ridah
-cvar_t         *com_protocol;
+convar_t         *com_hunkused;	// Ridah
+convar_t         *com_protocol;
 
 #if idx64
 	int (*Q_VMftol)(void);
@@ -575,7 +575,7 @@ void Com_StartupVariable(const char *match)
 {
 	int             i;
 	char           *s;
-	cvar_t         *cv;
+	convar_t         *cv;
 
 	for(i = 0; i < com_numConsoleLines; i++)
 	{
@@ -589,7 +589,7 @@ void Com_StartupVariable(const char *match)
 		if(!match || !strcmp(s, match))
 		{
 			Cvar_Set(s, Cmd_Argv(2));
-			cv = Cvar_Get(s, "", 0);
+			cv = Cvar_Get(s, "", 0, "");
 			cv->flags |= CVAR_USER_CREATED;
 //          com_consoleLines[i] = 0;
 		}
@@ -923,7 +923,6 @@ int Com_RealTime(qtime_t * qtime)
 	}
 	return t;
 }
-
 
 /*
 ==============================================================================
@@ -1694,11 +1693,11 @@ void Com_InitSmallZoneMemory( void ) {
 }
 
 void Com_InitZoneMemory( void ) {
-	cvar_t	*cv;
+	convar_t	*cv;
 
 	// allocate the random block zone
 	Com_StartupVariable("com_zoneMegs"); // config files and command line options haven't been taken in account yet
-	cv = Cvar_Get( "com_zoneMegs", DEF_COMZONEMEGS_S, CVAR_INIT );
+	cv = Cvar_Get( "com_zoneMegs", DEF_COMZONEMEGS_S, CVAR_INIT, "test" );
 
 	if ( cv->integer < 20 ) {
 		s_zoneTotal = 1024 * 1024 * 16;
@@ -1802,7 +1801,7 @@ Com_InitZoneMemory
 */
 void Com_InitHunkMemory( void )
 {
-	cvar_t	*cv;
+	convar_t	*cv;
 	int nMinAlloc;
 	char *pMsg = NULL;
 
@@ -1817,7 +1816,7 @@ void Com_InitHunkMemory( void )
 	}
 
 	// allocate the stack based hunk allocator
-	cv = Cvar_Get( "com_hunkMegs", DEF_COMHUNKMEGS_S, CVAR_LATCH | CVAR_ARCHIVE );
+	cv = Cvar_Get( "com_hunkMegs", DEF_COMHUNKMEGS_S, CVAR_LATCH | CVAR_ARCHIVE, "test" );
 
 	// if we are not dedicated min allocation is 56, otherwise min is 1
 	if (com_dedicated && com_dedicated->integer) {
@@ -2144,7 +2143,7 @@ static byte *s_frameStackEnd = 0;
 
 static void Hunk_FrameInit( void )
 {
-	int megs = Cvar_Get( "com_hunkFrameMegs", "1", CVAR_LATCH | CVAR_ARCHIVE )->integer;
+	int megs = Cvar_Get( "com_hunkFrameMegs", "1", CVAR_LATCH | CVAR_ARCHIVE, "test" )->integer;
 	size_t cb;
 
 	if( megs < 1 )
@@ -2255,7 +2254,7 @@ void Com_InitJournaling( void ) {
 	int i;
 
 	Com_StartupVariable( "journal" );
-	com_journal = Cvar_Get ("journal", "0", CVAR_INIT);
+	com_journal = Cvar_Get ("journal", "0", CVAR_INIT, "test");
 	if ( !com_journal->integer ) {
 		if ( com_journal->string && com_journal->string[ 0 ] == '_' ) {
 			Com_Printf( "Replaying journaled events\n");
@@ -2808,12 +2807,12 @@ char            cl_cdkey[34] = "123456789";
 #endif
 
 void Com_SetRecommended() {
-	cvar_t         *r_highQualityVideo, *com_recommended;
+	convar_t         *r_highQualityVideo, *com_recommended;
 	qboolean        goodVideo;
 
 	// will use this for recommended settings as well.. do i outside the lower check so it gets done even with command line stuff
-	r_highQualityVideo = Cvar_Get("r_highQualityVideo", "1", CVAR_ARCHIVE);
-	com_recommended = Cvar_Get("com_recommended", "-1", CVAR_ARCHIVE);
+	r_highQualityVideo = Cvar_Get("r_highQualityVideo", "1", CVAR_ARCHIVE, "test");
+	com_recommended = Cvar_Get("com_recommended", "-1", CVAR_ARCHIVE, "test");
 	goodVideo = (qboolean)(r_highQualityVideo && r_highQualityVideo->integer);
 
 	if(goodVideo)
@@ -3070,7 +3069,6 @@ void Com_Init(char *commandLine)
 	// cvar and command buffer management
 	Com_ParseCommandLine(commandLine);
 
-	Swap_Init();
 	Cbuf_Init();
 
 	Com_InitZoneMemory();
@@ -3084,10 +3082,10 @@ void Com_Init(char *commandLine)
 
 	// bani: init this early
 	Com_StartupVariable("com_ignorecrash");
-	com_ignorecrash = Cvar_Get("com_ignorecrash", "0", 0);
+	com_ignorecrash = Cvar_Get("com_ignorecrash", "0", 0, "test");
 
 	// ydnar: init crashed variable as early as possible
-	com_crashed = Cvar_Get("com_crashed", "0", CVAR_TEMP);
+	com_crashed = Cvar_Get("com_crashed", "0", CVAR_TEMP, "test");
 
 	// bani: init pid
 #ifdef _WIN32
@@ -3096,7 +3094,7 @@ void Com_Init(char *commandLine)
 	pid = getpid();
 #endif
 	s = va("%d", pid);
-	com_pid = Cvar_Get("com_pid", s, CVAR_ROM);
+	com_pid = Cvar_Get("com_pid", s, CVAR_ROM, "test");
 
 	// done early so bind command exists
 	idKeyInput::Init();
@@ -3184,13 +3182,13 @@ void Com_Init(char *commandLine)
 	Com_StartupVariable(NULL);
 
 #ifdef UPDATE_SERVER
-	com_dedicated = Cvar_Get( "dedicated", "1", CVAR_LATCH );
+	com_dedicated = Cvar_Get( "dedicated", "1", CVAR_LATCH, "test" );
 #elif DEDICATED
 	// TTimo: default to internet dedicated, not LAN dedicated
-	com_dedicated = Cvar_Get("dedicated", "2", CVAR_ROM);
+	com_dedicated = Cvar_Get("dedicated", "2", CVAR_ROM, "test");
 	Cvar_CheckRange(com_dedicated, 1, 2, qtrue);
 #else
-	com_dedicated = Cvar_Get("dedicated", "0", CVAR_LATCH);
+	com_dedicated = Cvar_Get("dedicated", "0", CVAR_LATCH, "test");
 	Cvar_CheckRange(com_dedicated, 0, 2, qtrue);
 #endif
 	// allocate the stack based hunk allocator
@@ -3204,56 +3202,56 @@ void Com_Init(char *commandLine)
 	// init commands and vars
 	//
 	// Gordon: no need to latch this in ET, our recoil is framerate independant
-	com_maxfps = Cvar_Get("com_maxfps", "125", CVAR_ARCHIVE /*|CVAR_LATCH */ );
-//  com_blood = Cvar_Get ("com_blood", "1", CVAR_ARCHIVE); // Gordon: no longer used?
+	com_maxfps = Cvar_Get("com_maxfps", "125", CVAR_ARCHIVE /*|CVAR_LATCH */, "test" );
+//  com_blood = Cvar_Get ("com_blood", "1", CVAR_ARCHIVE, "test"); // Gordon: no longer used?
 
-	com_developer = Cvar_Get("developer", "0", CVAR_TEMP);
+	com_developer = Cvar_Get("developer", "0", CVAR_TEMP, "test");
 
-	com_logfile = Cvar_Get("logfile", "0", CVAR_TEMP);
+	com_logfile = Cvar_Get("logfile", "0", CVAR_TEMP, "test");
 
-	com_timescale = Cvar_Get("timescale", "1", CVAR_CHEAT | CVAR_SYSTEMINFO);
-	com_fixedtime = Cvar_Get("fixedtime", "0", CVAR_CHEAT);
-	com_showtrace = Cvar_Get("com_showtrace", "0", CVAR_CHEAT);
-	com_dropsim = Cvar_Get("com_dropsim", "0", CVAR_CHEAT);
-	com_viewlog = Cvar_Get("viewlog", "1", CVAR_CHEAT);
-	com_speeds = Cvar_Get("com_speeds", "0", 0);
-	com_timedemo = Cvar_Get("timedemo", "0", CVAR_CHEAT);
-	com_cameraMode = Cvar_Get("com_cameraMode", "0", CVAR_CHEAT);
+	com_timescale = Cvar_Get("timescale", "1", CVAR_CHEAT | CVAR_SYSTEMINFO, "test");
+	com_fixedtime = Cvar_Get("fixedtime", "0", CVAR_CHEAT, "test");
+	com_showtrace = Cvar_Get("com_showtrace", "0", CVAR_CHEAT, "test");
+	com_dropsim = Cvar_Get("com_dropsim", "0", CVAR_CHEAT, "test");
+	com_viewlog = Cvar_Get("viewlog", "1", CVAR_CHEAT, "test");
+	com_speeds = Cvar_Get("com_speeds", "0", 0, "test");
+	com_timedemo = Cvar_Get("timedemo", "0", CVAR_CHEAT, "test");
+	com_cameraMode = Cvar_Get("com_cameraMode", "0", CVAR_CHEAT, "test");
 
-	com_watchdog = Cvar_Get("com_watchdog", "60", CVAR_ARCHIVE);
-	com_watchdog_cmd = Cvar_Get("com_watchdog_cmd", "", CVAR_ARCHIVE);
+	com_watchdog = Cvar_Get("com_watchdog", "60", CVAR_ARCHIVE, "test");
+	com_watchdog_cmd = Cvar_Get("com_watchdog_cmd", "", CVAR_ARCHIVE, "test");
 
-	cl_paused = Cvar_Get("cl_paused", "0", CVAR_ROM);
-	sv_paused = Cvar_Get("sv_paused", "0", CVAR_ROM);
-	com_sv_running = Cvar_Get("sv_running", "0", CVAR_ROM);
-	com_cl_running = Cvar_Get("cl_running", "0", CVAR_ROM);
-	com_buildScript = Cvar_Get("com_buildScript", "0", 0);
+	cl_paused = Cvar_Get("cl_paused", "0", CVAR_ROM, "test");
+	sv_paused = Cvar_Get("sv_paused", "0", CVAR_ROM, "test");
+	com_sv_running = Cvar_Get("sv_running", "0", CVAR_ROM, "test");
+	com_cl_running = Cvar_Get("cl_running", "0", CVAR_ROM, "test");
+	com_buildScript = Cvar_Get("com_buildScript", "0", 0, "test");
 
-	con_drawnotify = Cvar_Get("con_drawnotify", "0", CVAR_CHEAT);
+	con_drawnotify = Cvar_Get("con_drawnotify", "0", CVAR_CHEAT, "test");
 
-	com_introPlayed = Cvar_Get("com_introplayed", "0", CVAR_ARCHIVE);
-	com_ansiColor = Cvar_Get( "com_ansiColor", "0", CVAR_ARCHIVE );
-	com_logosPlaying = Cvar_Get("com_logosPlaying", "0", CVAR_ROM);
-	com_recommendedSet = Cvar_Get("com_recommendedSet", "0", CVAR_ARCHIVE);
+	com_introPlayed = Cvar_Get("com_introplayed", "0", CVAR_ARCHIVE, "test");
+	com_ansiColor = Cvar_Get( "com_ansiColor", "0", CVAR_ARCHIVE, "test" );
+	com_logosPlaying = Cvar_Get("com_logosPlaying", "0", CVAR_ROM, "test");
+	com_recommendedSet = Cvar_Get("com_recommendedSet", "0", CVAR_ARCHIVE, "test");
 
-	com_unfocused = Cvar_Get("com_unfocused", "0", CVAR_ROM);
-	com_minimized = Cvar_Get("com_minimized", "0", CVAR_ROM);
-	com_maxfpsUnfocused = Cvar_Get("com_maxfpsUnfocused", "0", CVAR_ARCHIVE);
-	com_maxfpsMinimized = Cvar_Get("com_maxfpsMinimized", "0", CVAR_ARCHIVE);
-	com_abnormalExit = Cvar_Get( "com_abnormalExit", "0", CVAR_ROM );
+	com_unfocused = Cvar_Get("com_unfocused", "0", CVAR_ROM, "test");
+	com_minimized = Cvar_Get("com_minimized", "0", CVAR_ROM, "test");
+	com_maxfpsUnfocused = Cvar_Get("com_maxfpsUnfocused", "0", CVAR_ARCHIVE, "test");
+	com_maxfpsMinimized = Cvar_Get("com_maxfpsMinimized", "0", CVAR_ARCHIVE, "test");
+	com_abnormalExit = Cvar_Get( "com_abnormalExit", "0", CVAR_ROM, "test" );
 
 #if defined (USE_HTTP)
-	com_webhost	= Cvar_Get( "com_webhost", "http://localhost", CVAR_INIT | CVAR_ARCHIVE | CVAR_SYSTEMINFO );
-	com_sessionid = Cvar_Get( "com_sessionid", "", CVAR_INIT );
+	com_webhost	= Cvar_Get( "com_webhost", "http://localhost", CVAR_INIT | CVAR_ARCHIVE | CVAR_SYSTEMINFO, "test" );
+	com_sessionid = Cvar_Get( "com_sessionid", "", CVAR_INIT, "test" );
 #endif
 
-	Cvar_Get("savegame_loading", "0", CVAR_ROM);
+	Cvar_Get("savegame_loading", "0", CVAR_ROM, "test");
 
 #if defined( _WIN32 ) && defined( _DEBUG )
 	com_noErrorInterrupt = Cvar_Get("com_noErrorInterrupt", "0", 0);
 #endif
 
-	com_hunkused = Cvar_Get("com_hunkused", "0", 0);
+	com_hunkused = Cvar_Get("com_hunkused", "0", 0, "test");
 	com_hunkusedvalue = 0;
 
 	if(com_dedicated->integer)
@@ -3275,8 +3273,8 @@ void Com_Init(char *commandLine)
 	Cmd_AddCommand("writeconfig", Com_WriteConfig_f);
 
 	s = va("%s %s %s", Q3_VERSION, ARCH_STRING, __DATE__);
-	com_version = Cvar_Get("version", s, CVAR_ROM | CVAR_SERVERINFO);
-	com_protocol = Cvar_Get ("protocol", va("%i", ETPROTOCOL_VERSION), CVAR_SERVERINFO | CVAR_ARCHIVE);
+	com_version = Cvar_Get("version", s, CVAR_ROM | CVAR_SERVERINFO, "test");
+	com_protocol = Cvar_Get ("protocol", va("%i", ETPROTOCOL_VERSION), CVAR_SERVERINFO | CVAR_ARCHIVE, "test");
 
 	Sys_Init();
 
@@ -3299,9 +3297,9 @@ void Com_Init(char *commandLine)
 
 	if (!Crypto_Init()) {
 		// Disable all crypto functions 
-		Cvar_Get("g_adminPubkeyID", "0", CVAR_ROM); 
+		Cvar_Get("g_adminPubkeyID", "0", CVAR_ROM, "test"); 
 #ifndef DEDICATED
-		Cvar_Get("cl_pubkeyID", "0", CVAR_ROM); 
+		Cvar_Get("cl_pubkeyID", "0", CVAR_ROM, "test"); 
 #endif
 	}
 
@@ -3647,7 +3645,7 @@ void Com_Frame(void)
 	if(com_dedicated->modified)
 	{
 		// get the latched value
-		Cvar_Get("dedicated", "0", 0);
+		Cvar_Get("dedicated", "0", 0, "test");
 		com_dedicated->modified = qfalse;
 		if(!com_dedicated->integer)
 		{

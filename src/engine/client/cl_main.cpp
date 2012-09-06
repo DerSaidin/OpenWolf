@@ -55,7 +55,7 @@ Maryland 20850 USA.
 #include "../sys/sys_loadlib.h"
 #include "../sys/sys_local.h"
 
-cvar_t         *cl_wavefilerecord;
+convar_t         *cl_wavefilerecord;
 
 #include "../qcommon/crypto.h"
 
@@ -64,138 +64,138 @@ cvar_t         *cl_wavefilerecord;
 #endif
 
 #ifdef USE_MUMBLE
-cvar_t         *cl_useMumble;
-cvar_t         *cl_mumbleScale;
+convar_t         *cl_useMumble;
+convar_t         *cl_mumbleScale;
 #endif
 
 #ifdef USE_VOIP
-cvar_t         *cl_voipUseVAD;
-cvar_t         *cl_voipVADThreshold;
-cvar_t         *cl_voipSend;
-cvar_t         *cl_voipSendTarget;
-cvar_t         *cl_voipGainDuringCapture;
-cvar_t         *cl_voipCaptureMult;
-cvar_t         *cl_voipShowMeter;
-cvar_t	       *cl_voipShowSender;
-cvar_t         *cl_voip;
+convar_t         *cl_voipUseVAD;
+convar_t         *cl_voipVADThreshold;
+convar_t         *cl_voipSend;
+convar_t         *cl_voipSendTarget;
+convar_t         *cl_voipGainDuringCapture;
+convar_t         *cl_voipCaptureMult;
+convar_t         *cl_voipShowMeter;
+convar_t	       *cl_voipShowSender;
+convar_t         *cl_voip;
 #endif
 
-cvar_t         *cl_nodelta;
-cvar_t         *cl_debugMove;
+convar_t         *cl_nodelta;
+convar_t         *cl_debugMove;
 
-cvar_t         *cl_noprint;
-cvar_t         *cl_motd;
-cvar_t         *cl_autoupdate;	// DHM - Nerve
+convar_t         *cl_noprint;
+convar_t         *cl_motd;
+convar_t         *cl_autoupdate;	// DHM - Nerve
 
-cvar_t         *rcon_client_password;
-cvar_t         *rconAddress;
+convar_t         *rcon_client_password;
+convar_t         *rconAddress;
 
-cvar_t         *cl_timeout;
-cvar_t         *cl_maxpackets;
-cvar_t         *cl_packetdup;
-cvar_t         *cl_timeNudge;
-cvar_t         *cl_showTimeDelta;
-cvar_t         *cl_freezeDemo;
+convar_t         *cl_timeout;
+convar_t         *cl_maxpackets;
+convar_t         *cl_packetdup;
+convar_t         *cl_timeNudge;
+convar_t         *cl_showTimeDelta;
+convar_t         *cl_freezeDemo;
 
-cvar_t         *cl_shownet = NULL;	// NERVE - SMF - This is referenced in msg.c and we need to make sure it is NULL
-cvar_t         *cl_shownuments;	// DHM - Nerve
-cvar_t         *cl_visibleClients;	// DHM - Nerve
-cvar_t         *cl_showSend;
-cvar_t         *cl_showServerCommands;	// NERVE - SMF
-cvar_t         *cl_timedemo;
+convar_t         *cl_shownet = NULL;	// NERVE - SMF - This is referenced in msg.c and we need to make sure it is NULL
+convar_t         *cl_shownuments;	// DHM - Nerve
+convar_t         *cl_visibleClients;	// DHM - Nerve
+convar_t         *cl_showSend;
+convar_t         *cl_showServerCommands;	// NERVE - SMF
+convar_t         *cl_timedemo;
 
-cvar_t         *cl_aviFrameRate;
-cvar_t         *cl_forceavidemo;
+convar_t         *cl_aviFrameRate;
+convar_t         *cl_forceavidemo;
 
-cvar_t         *cl_freelook;
-cvar_t         *cl_sensitivity;
-cvar_t         *cl_xbox360ControllerAvailable;
+convar_t         *cl_freelook;
+convar_t         *cl_sensitivity;
+convar_t         *cl_xbox360ControllerAvailable;
 
-cvar_t         *cl_mouseAccelOffset; 
-cvar_t         *cl_mouseAccel;
-cvar_t         *cl_mouseAccelStyle; 
-cvar_t         *cl_showMouseRate;
+convar_t         *cl_mouseAccelOffset; 
+convar_t         *cl_mouseAccel;
+convar_t         *cl_mouseAccelStyle; 
+convar_t         *cl_showMouseRate;
 
-cvar_t         *m_pitch;
-cvar_t         *m_yaw;
-cvar_t         *m_forward;
-cvar_t         *m_side;
-cvar_t         *m_filter;
+convar_t         *m_pitch;
+convar_t         *m_yaw;
+convar_t         *m_forward;
+convar_t         *m_side;
+convar_t         *m_filter;
 
-cvar_t	       *j_pitch;
-cvar_t	       *j_yaw;
-cvar_t	       *j_forward;
-cvar_t	       *j_side;
-cvar_t         *j_up;
-cvar_t	       *j_pitch_axis;
-cvar_t	       *j_yaw_axis;
-cvar_t	       *j_forward_axis;
-cvar_t	       *j_side_axis;
-cvar_t         *j_up_axis;
+convar_t	       *j_pitch;
+convar_t	       *j_yaw;
+convar_t	       *j_forward;
+convar_t	       *j_side;
+convar_t         *j_up;
+convar_t	       *j_pitch_axis;
+convar_t	       *j_yaw_axis;
+convar_t	       *j_forward_axis;
+convar_t	       *j_side_axis;
+convar_t         *j_up_axis;
 
-cvar_t         *cl_activeAction;
+convar_t         *cl_activeAction;
 
-cvar_t         *cl_autorecord;
+convar_t         *cl_autorecord;
 
-cvar_t         *cl_motdString;
+convar_t         *cl_motdString;
 
-cvar_t         *cl_allowDownload;
-cvar_t         *cl_wwwDownload;
-cvar_t         *cl_conXOffset;
-cvar_t         *cl_inGameVideo;
+convar_t         *cl_allowDownload;
+convar_t         *cl_wwwDownload;
+convar_t         *cl_conXOffset;
+convar_t         *cl_inGameVideo;
 
-cvar_t         *cl_serverStatusResendTime;
-cvar_t         *cl_trn;
-cvar_t         *cl_missionStats;
-cvar_t         *cl_waitForFire;
+convar_t         *cl_serverStatusResendTime;
+convar_t         *cl_trn;
+convar_t         *cl_missionStats;
+convar_t         *cl_waitForFire;
 
 // NERVE - SMF - localization
-cvar_t         *cl_language;
-cvar_t         *cl_debugTranslation;
+convar_t         *cl_language;
+convar_t         *cl_debugTranslation;
 
 // -NERVE - SMF
 // DHM - Nerve :: Auto-Update
-cvar_t         *cl_updateavailable;
-cvar_t         *cl_updatefiles;
+convar_t         *cl_updateavailable;
+convar_t         *cl_updatefiles;
 
-cvar_t         *cl_pubkeyID;
+convar_t         *cl_pubkeyID;
 
 // DHM - Nerve
 
-cvar_t         *cl_authserver;
+convar_t         *cl_authserver;
 
-cvar_t         *cl_profile;
-cvar_t         *cl_defaultProfile;
+convar_t         *cl_profile;
+convar_t         *cl_defaultProfile;
 
-cvar_t         *cl_demorecording;	// fretn
-cvar_t         *cl_demofilename;	// bani
-cvar_t         *cl_demooffset;	// bani
+convar_t         *cl_demorecording;	// fretn
+convar_t         *cl_demofilename;	// bani
+convar_t         *cl_demooffset;	// bani
 
-cvar_t         *cl_waverecording;	//bani
-cvar_t         *cl_wavefilename;	//bani
-cvar_t         *cl_waveoffset;	//bani
+convar_t         *cl_waverecording;	//bani
+convar_t         *cl_wavefilename;	//bani
+convar_t         *cl_waveoffset;	//bani
 
-cvar_t         *cl_packetloss;	//bani
-cvar_t         *cl_packetdelay;	//bani
+convar_t         *cl_packetloss;	//bani
+convar_t         *cl_packetdelay;	//bani
 extern qboolean sv_cheats;		//bani
 
-cvar_t         *cl_consoleKeys;
-cvar_t         *cl_consoleFont;
-cvar_t         *cl_consoleFontSize;
-cvar_t         *cl_consoleFontKerning;
-cvar_t	       *cl_consolePrompt;
+convar_t         *cl_consoleKeys;
+convar_t         *cl_consoleFont;
+convar_t         *cl_consoleFontSize;
+convar_t         *cl_consoleFontKerning;
+convar_t	       *cl_consolePrompt;
 
 struct rsa_public_key public_key; 
 struct rsa_private_key private_key; 
 
-cvar_t         *cl_gamename;
-cvar_t         *cl_altTab;
+convar_t         *cl_gamename;
+convar_t         *cl_altTab;
 
-static cvar_t  *cl_renderer = NULL;
+static convar_t  *cl_renderer = NULL;
 static void    *rendererLib = NULL;
 
 // XreaL BEGIN
-cvar_t         *cl_aviMotionJpeg;
+convar_t         *cl_aviMotionJpeg;
 // XreaL END
 
 clientActive_t  cl;
@@ -4742,120 +4742,117 @@ void CL_Init(void)
 	//
 	// register our variables
 	//
-	cl_renderer = Cvar_Get("cl_renderer", "GL3,GL", CVAR_ARCHIVE|CVAR_LATCH);
+	cl_renderer = Cvar_Get("cl_renderer", "GL3,GL", CVAR_ARCHIVE|CVAR_LATCH, "test");
 
-	cl_noprint = Cvar_Get("cl_noprint", "0", 0);
-	cl_motd = Cvar_Get("cl_motd", "1", 0);
-	cl_autoupdate = Cvar_Get("cl_autoupdate", "1", CVAR_ARCHIVE);
+	cl_noprint = Cvar_Get("cl_noprint", "0", 0, "test");
+	cl_motd = Cvar_Get("cl_motd", "1", 0, "test");
+	cl_autoupdate = Cvar_Get("cl_autoupdate", "1", CVAR_ARCHIVE, "test");
 
-	cl_timeout = Cvar_Get("cl_timeout", "200", 0);
+	cl_timeout = Cvar_Get("cl_timeout", "200", 0, "test");
 
-	cl_wavefilerecord = Cvar_Get("cl_wavefilerecord", "0", CVAR_TEMP);
+	cl_wavefilerecord = Cvar_Get("cl_wavefilerecord", "0", CVAR_TEMP, "test");
 
-	cl_timeNudge = Cvar_Get("cl_timeNudge", "0", CVAR_TEMP);
-	cl_shownet = Cvar_Get("cl_shownet", "0", CVAR_TEMP);
-	cl_shownuments = Cvar_Get("cl_shownuments", "0", CVAR_TEMP);
-	cl_visibleClients = Cvar_Get("cl_visibleClients", "0", CVAR_TEMP);
-	cl_showServerCommands = Cvar_Get("cl_showServerCommands", "0", 0);
-	cl_showSend = Cvar_Get("cl_showSend", "0", CVAR_TEMP);
-	cl_showTimeDelta = Cvar_Get("cl_showTimeDelta", "0", CVAR_TEMP);
-	cl_freezeDemo = Cvar_Get("cl_freezeDemo", "0", CVAR_TEMP);
-	rcon_client_password = Cvar_Get("rconPassword", "", CVAR_TEMP);
-	cl_activeAction = Cvar_Get("activeAction", "", CVAR_TEMP);
-	cl_autorecord = Cvar_Get("cl_autorecord", "0", CVAR_TEMP);
+	cl_timeNudge = Cvar_Get("cl_timeNudge", "0", CVAR_TEMP, "test");
+	cl_shownet = Cvar_Get("cl_shownet", "0", CVAR_TEMP, "test");
+	cl_shownuments = Cvar_Get("cl_shownuments", "0", CVAR_TEMP, "test");
+	cl_visibleClients = Cvar_Get("cl_visibleClients", "0", CVAR_TEMP, "test");
+	cl_showServerCommands = Cvar_Get("cl_showServerCommands", "0", 0, "test");
+	cl_showSend = Cvar_Get("cl_showSend", "0", CVAR_TEMP, "test");
+	cl_showTimeDelta = Cvar_Get("cl_showTimeDelta", "0", CVAR_TEMP, "test");
+	cl_freezeDemo = Cvar_Get("cl_freezeDemo", "0", CVAR_TEMP, "test");
+	rcon_client_password = Cvar_Get("rconPassword", "", CVAR_TEMP, "test");
+	cl_activeAction = Cvar_Get("activeAction", "", CVAR_TEMP, "test");
+	cl_autorecord = Cvar_Get("cl_autorecord", "0", CVAR_TEMP, "test");
 
-	cl_timedemo = Cvar_Get("timedemo", "0", 0);
-	cl_forceavidemo = Cvar_Get("cl_forceavidemo", "0", 0);
-	cl_aviFrameRate = Cvar_Get("cl_aviFrameRate", "25", CVAR_ARCHIVE);
+	cl_timedemo = Cvar_Get("timedemo", "0", 0, "test");
+	cl_forceavidemo = Cvar_Get("cl_forceavidemo", "0", 0, "test");
+	cl_aviFrameRate = Cvar_Get("cl_aviFrameRate", "25", CVAR_ARCHIVE, "test");
+	cl_aviMotionJpeg = Cvar_Get("cl_aviMotionJpeg", "1", CVAR_ARCHIVE, "test");
 
-	// XreaL BEGIN
-	cl_aviMotionJpeg = Cvar_Get("cl_aviMotionJpeg", "1", CVAR_ARCHIVE);
-	// XreaL END
+	rconAddress = Cvar_Get("rconAddress", "", 0, "test");
 
-	rconAddress = Cvar_Get("rconAddress", "", 0);
+	cl_yawspeed = Cvar_Get("cl_yawspeed", "140", CVAR_ARCHIVE, "test");
+	cl_pitchspeed = Cvar_Get("cl_pitchspeed", "140", CVAR_ARCHIVE, "test");
+	cl_anglespeedkey = Cvar_Get("cl_anglespeedkey", "1.5", 0, "test");
 
-	cl_yawspeed = Cvar_Get("cl_yawspeed", "140", CVAR_ARCHIVE);
-	cl_pitchspeed = Cvar_Get("cl_pitchspeed", "140", CVAR_ARCHIVE);
-	cl_anglespeedkey = Cvar_Get("cl_anglespeedkey", "1.5", 0);
+	cl_maxpackets = Cvar_Get("cl_maxpackets", "30", CVAR_ARCHIVE, "test");
+	cl_packetdup = Cvar_Get("cl_packetdup", "1", CVAR_ARCHIVE, "test");
 
-	cl_maxpackets = Cvar_Get("cl_maxpackets", "30", CVAR_ARCHIVE);
-	cl_packetdup = Cvar_Get("cl_packetdup", "1", CVAR_ARCHIVE);
+	cl_run = Cvar_Get("cl_run", "1", CVAR_ARCHIVE, "test");
+	cl_sensitivity = Cvar_Get("sensitivity", "5", CVAR_ARCHIVE, "test");
+	cl_mouseAccel = Cvar_Get("cl_mouseAccel", "0", CVAR_ARCHIVE, "test");
+	cl_freelook = Cvar_Get("cl_freelook", "1", CVAR_ARCHIVE, "test");
 
-	cl_run = Cvar_Get("cl_run", "1", CVAR_ARCHIVE);
-	cl_sensitivity = Cvar_Get("sensitivity", "5", CVAR_ARCHIVE);
-	cl_mouseAccel = Cvar_Get("cl_mouseAccel", "0", CVAR_ARCHIVE);
-	cl_freelook = Cvar_Get("cl_freelook", "1", CVAR_ARCHIVE);
-
-	cl_xbox360ControllerAvailable = Cvar_Get("in_xbox360ControllerAvailable", "0", CVAR_ROM);
+	cl_xbox360ControllerAvailable = Cvar_Get("in_xbox360ControllerAvailable", "0", CVAR_ROM, "test");
 
 	// 0: legacy mouse acceleration 
 	// 1: new implementation 
 
-	cl_mouseAccelStyle = Cvar_Get( "cl_mouseAccelStyle", "0", CVAR_ARCHIVE ); 
+	cl_mouseAccelStyle = Cvar_Get( "cl_mouseAccelStyle", "0", CVAR_ARCHIVE, "test" ); 
 	// offset for the power function (for style 1, ignored otherwise) 
 	// this should be set to the max rate value 
-	cl_mouseAccelOffset = Cvar_Get( "cl_mouseAccelOffset", "5", CVAR_ARCHIVE ); 
+	cl_mouseAccelOffset = Cvar_Get( "cl_mouseAccelOffset", "5", CVAR_ARCHIVE, "test" ); 
 
 
-	cl_showMouseRate = Cvar_Get("cl_showmouserate", "0", 0);
+	cl_showMouseRate = Cvar_Get("cl_showmouserate", "0", 0, "test");
 
-	cl_allowDownload = Cvar_Get("cl_allowDownload", "1", CVAR_ARCHIVE);
-	cl_wwwDownload = Cvar_Get("cl_wwwDownload", "1", CVAR_USERINFO | CVAR_ARCHIVE);
+	cl_allowDownload = Cvar_Get("cl_allowDownload", "1", CVAR_ARCHIVE, "test");
+	cl_wwwDownload = Cvar_Get("cl_wwwDownload", "1", CVAR_USERINFO | CVAR_ARCHIVE, "test");
 
-	cl_profile = Cvar_Get("cl_profile", "", CVAR_ROM);
-	cl_defaultProfile = Cvar_Get("cl_defaultProfile", "", CVAR_ROM);
+	cl_profile = Cvar_Get("cl_profile", "", CVAR_ROM, "test");
+	cl_defaultProfile = Cvar_Get("cl_defaultProfile", "", CVAR_ROM, "test");
 
 #if defined (USE_HTTP)
-	cl_authserver = Cvar_Get( "cl_authserver", "localhost", CVAR_INIT );
+	cl_authserver = Cvar_Get( "cl_authserver", "localhost", CVAR_INIT, "test" );
 #endif
 
 	// init autoswitch so the ui will have it correctly even
 	// if the cgame hasn't been started
 	// -NERVE - SMF - disabled autoswitch by default
-	Cvar_Get("cg_autoswitch", "0", CVAR_ARCHIVE);
+	Cvar_Get("cg_autoswitch", "0", CVAR_ARCHIVE, "test");
 
 	// Rafael - particle switch
-	Cvar_Get("cg_wolfparticles", "1", CVAR_ARCHIVE);
+	Cvar_Get("cg_wolfparticles", "1", CVAR_ARCHIVE, "test");
 	// done
 
-	cl_conXOffset = Cvar_Get("cl_conXOffset", "3", 0);
-	cl_inGameVideo = Cvar_Get("r_inGameVideo", "1", CVAR_ARCHIVE);
+	cl_conXOffset = Cvar_Get("cl_conXOffset", "3", 0, "test");
+	cl_inGameVideo = Cvar_Get("r_inGameVideo", "1", CVAR_ARCHIVE, "test");
 
-	cl_serverStatusResendTime = Cvar_Get("cl_serverStatusResendTime", "750", 0);
+	cl_serverStatusResendTime = Cvar_Get("cl_serverStatusResendTime", "750", 0, "test");
 
 	// RF
-	cl_recoilPitch = Cvar_Get("cg_recoilPitch", "0", CVAR_ROM);
+	cl_recoilPitch = Cvar_Get("cg_recoilPitch", "0", CVAR_ROM, "test");
 
-	cl_bypassMouseInput = Cvar_Get("cl_bypassMouseInput", "0", 0);	//CVAR_ROM );          // NERVE - SMF
+	cl_bypassMouseInput = Cvar_Get("cl_bypassMouseInput", "0", 0, "test");	//CVAR_ROM );          // NERVE - SMF
 
-	cl_doubletapdelay = Cvar_Get("cl_doubletapdelay", "100", CVAR_ARCHIVE);	// Arnout: double tap
+	cl_doubletapdelay = Cvar_Get("cl_doubletapdelay", "100", CVAR_ARCHIVE, "test");	// Arnout: double tap
 
 #if defined (USE_HTTP)
 	// Initialize ui_logged_in to -1(not logged in)
 	// -2 - login in progress
 	// 0 - invalid login
 	// 1 - logged in
-	Cvar_Get ("ui_logged_in", "-1", CVAR_ROM);
+	Cvar_Get ("ui_logged_in", "-1", CVAR_ROM, "test");
 	//force ui_logged in to -1 so we can't reset it on the command line
 	Cvar_Set( "ui_logged_in", "-1" );
 #endif
 
-	m_pitch = Cvar_Get("m_pitch", "0.022", CVAR_ARCHIVE);
-	m_yaw = Cvar_Get("m_yaw", "0.022", CVAR_ARCHIVE);
-	m_forward = Cvar_Get("m_forward", "0.25", CVAR_ARCHIVE);
-	m_side = Cvar_Get("m_side", "0.25", CVAR_ARCHIVE);
-	m_filter = Cvar_Get("m_filter", "0", CVAR_ARCHIVE);
+	m_pitch = Cvar_Get("m_pitch", "0.022", CVAR_ARCHIVE, "test");
+	m_yaw = Cvar_Get("m_yaw", "0.022", CVAR_ARCHIVE, "test");
+	m_forward = Cvar_Get("m_forward", "0.25", CVAR_ARCHIVE, "test");
+	m_side = Cvar_Get("m_side", "0.25", CVAR_ARCHIVE, "test");
+	m_filter = Cvar_Get("m_filter", "0", CVAR_ARCHIVE, "test");
 
-	j_pitch = Cvar_Get ("j_pitch", "0.022", CVAR_ARCHIVE);
-	j_yaw = Cvar_Get ("j_yaw", "-0.022", CVAR_ARCHIVE);
-	j_forward = Cvar_Get ("j_forward", "-0.25", CVAR_ARCHIVE);
-	j_side = Cvar_Get ("j_side", "0.25", CVAR_ARCHIVE);
-	j_up = Cvar_Get ("j_up", "1", CVAR_ARCHIVE);
-	j_pitch_axis = Cvar_Get ("j_pitch_axis", "3", CVAR_ARCHIVE);
-	j_yaw_axis = Cvar_Get ("j_yaw_axis", "4", CVAR_ARCHIVE);
-	j_forward_axis = Cvar_Get ("j_forward_axis", "1", CVAR_ARCHIVE);
-	j_side_axis = Cvar_Get ("j_side_axis", "0", CVAR_ARCHIVE);
-	j_up_axis = Cvar_Get ("j_up_axis", "2", CVAR_ARCHIVE);
+	j_pitch = Cvar_Get ("j_pitch", "0.022", CVAR_ARCHIVE, "test");
+	j_yaw = Cvar_Get ("j_yaw", "-0.022", CVAR_ARCHIVE, "test");
+	j_forward = Cvar_Get ("j_forward", "-0.25", CVAR_ARCHIVE, "test");
+	j_side = Cvar_Get ("j_side", "0.25", CVAR_ARCHIVE, "test");
+	j_up = Cvar_Get ("j_up", "1", CVAR_ARCHIVE, "test");
+	j_pitch_axis = Cvar_Get ("j_pitch_axis", "3", CVAR_ARCHIVE, "test");
+	j_yaw_axis = Cvar_Get ("j_yaw_axis", "4", CVAR_ARCHIVE, "test");
+	j_forward_axis = Cvar_Get ("j_forward_axis", "1", CVAR_ARCHIVE, "test");
+	j_side_axis = Cvar_Get ("j_side_axis", "0", CVAR_ARCHIVE, "test");
+	j_up_axis = Cvar_Get ("j_up_axis", "2", CVAR_ARCHIVE, "test");
 
 	Cvar_CheckRange(j_pitch_axis, 0, MAX_JOYSTICK_AXIS-1, qtrue);
 	Cvar_CheckRange(j_yaw_axis, 0, MAX_JOYSTICK_AXIS-1, qtrue);
@@ -4863,32 +4860,32 @@ void CL_Init(void)
 	Cvar_CheckRange(j_side_axis, 0, MAX_JOYSTICK_AXIS-1, qtrue);
 	Cvar_CheckRange(j_up_axis, 0, MAX_JOYSTICK_AXIS-1, qtrue);
 
-	cl_motdString = Cvar_Get("cl_motdString", "", CVAR_ROM);
+	cl_motdString = Cvar_Get("cl_motdString", "", CVAR_ROM, "test");
 
 	// ~ and `, as keys and characters
-	cl_consoleKeys = Cvar_Get("cl_consoleKeys", "~ ` 0x7e 0x60", CVAR_ARCHIVE);
+	cl_consoleKeys = Cvar_Get("cl_consoleKeys", "~ ` 0x7e 0x60", CVAR_ARCHIVE, "test");
 
-	cl_consoleFont = Cvar_Get ("cl_consoleFont", "", CVAR_ARCHIVE | CVAR_LATCH);
-	cl_consoleFontSize = Cvar_Get ("cl_consoleFontSize", "16", CVAR_ARCHIVE | CVAR_LATCH);
-	cl_consoleFontKerning = Cvar_Get ("cl_consoleFontKerning", "0", CVAR_ARCHIVE);
-	cl_consolePrompt = Cvar_Get ("cl_consolePrompt", "^3->", CVAR_ARCHIVE);
+	cl_consoleFont = Cvar_Get ("cl_consoleFont", "", CVAR_ARCHIVE | CVAR_LATCH, "test");
+	cl_consoleFontSize = Cvar_Get ("cl_consoleFontSize", "16", CVAR_ARCHIVE | CVAR_LATCH, "test");
+	cl_consoleFontKerning = Cvar_Get ("cl_consoleFontKerning", "0", CVAR_ARCHIVE, "test");
+	cl_consolePrompt = Cvar_Get ("cl_consolePrompt", "^3->", CVAR_ARCHIVE, "test");
 
-	cl_gamename = Cvar_Get("cl_gamename", GAMENAME_FOR_MASTER, CVAR_TEMP);
-	cl_altTab = Cvar_Get ("cl_altTab", "1", CVAR_ARCHIVE);
+	cl_gamename = Cvar_Get("cl_gamename", GAMENAME_FOR_MASTER, CVAR_TEMP, "test");
+	cl_altTab = Cvar_Get ("cl_altTab", "1", CVAR_ARCHIVE, "test");
 
 	//bani - make these cvars visible to cgame
-	cl_demorecording = Cvar_Get("cl_demorecording", "0", CVAR_ROM);
-	cl_demofilename = Cvar_Get("cl_demofilename", "", CVAR_ROM);
-	cl_demooffset = Cvar_Get("cl_demooffset", "0", CVAR_ROM);
-	cl_waverecording = Cvar_Get("cl_waverecording", "0", CVAR_ROM);
-	cl_wavefilename = Cvar_Get("cl_wavefilename", "", CVAR_ROM);
-	cl_waveoffset = Cvar_Get("cl_waveoffset", "0", CVAR_ROM);
+	cl_demorecording = Cvar_Get("cl_demorecording", "0", CVAR_ROM, "test");
+	cl_demofilename = Cvar_Get("cl_demofilename", "", CVAR_ROM, "test");
+	cl_demooffset = Cvar_Get("cl_demooffset", "0", CVAR_ROM, "test");
+	cl_waverecording = Cvar_Get("cl_waverecording", "0", CVAR_ROM, "test");
+	cl_wavefilename = Cvar_Get("cl_wavefilename", "", CVAR_ROM, "test");
+	cl_waveoffset = Cvar_Get("cl_waveoffset", "0", CVAR_ROM, "test");
 
 	//bani
-	cl_packetloss = Cvar_Get("cl_packetloss", "0", CVAR_CHEAT);
-	cl_packetdelay = Cvar_Get("cl_packetdelay", "0", CVAR_CHEAT);
+	cl_packetloss = Cvar_Get("cl_packetloss", "0", CVAR_CHEAT, "test");
+	cl_packetdelay = Cvar_Get("cl_packetdelay", "0", CVAR_CHEAT, "test");
 
-	Cvar_Get("cl_maxPing", "800", CVAR_ARCHIVE);
+	Cvar_Get("cl_maxPing", "800", CVAR_ARCHIVE, "test");
 #if 0 // Leftover from RTCW singleplayer days. All this is set in the gamecode now.
 	// NERVE - SMF
 	Cvar_Get("cg_drawCompass", "1", CVAR_ARCHIVE);
@@ -4917,39 +4914,39 @@ void CL_Init(void)
 	// -NERVE - SMF
 #endif
 	// userinfo
-	Cvar_Get("name", "UnnamedPlayer", CVAR_USERINFO | CVAR_ARCHIVE);
-	Cvar_Get("rate", "25000", CVAR_USERINFO | CVAR_ARCHIVE);	// Dushan - changed from 5000
-	Cvar_Get("snaps", "20", CVAR_USERINFO | CVAR_ARCHIVE);
+	Cvar_Get("name", "UnnamedPlayer", CVAR_USERINFO | CVAR_ARCHIVE, "test");
+	Cvar_Get("rate", "25000", CVAR_USERINFO | CVAR_ARCHIVE, "test");	// Dushan - changed from 5000
+	Cvar_Get("snaps", "20", CVAR_USERINFO | CVAR_ARCHIVE, "test");
 //  Cvar_Get ("model", "american", CVAR_USERINFO | CVAR_ARCHIVE );  // temp until we have an skeletal american model
 //  Arnout - no need // Cvar_Get ("model", "multi", CVAR_USERINFO | CVAR_ARCHIVE );
 //  Arnout - no need // Cvar_Get ("head", "default", CVAR_USERINFO | CVAR_ARCHIVE );
 //  Arnout - no need // Cvar_Get ("color", "4", CVAR_USERINFO | CVAR_ARCHIVE );
 //  Arnout - no need // Cvar_Get ("handicap", "0", CVAR_USERINFO | CVAR_ARCHIVE );
 //  Cvar_Get ("sex", "male", CVAR_USERINFO | CVAR_ARCHIVE );
-	Cvar_Get("cl_anonymous", "0", CVAR_USERINFO | CVAR_ARCHIVE);
+	Cvar_Get("cl_anonymous", "0", CVAR_USERINFO | CVAR_ARCHIVE, "test");
 
-	cl_pubkeyID = Cvar_Get ("cl_pubkeyID", "1", CVAR_ARCHIVE | CVAR_USERINFO); 
+	cl_pubkeyID = Cvar_Get ("cl_pubkeyID", "1", CVAR_ARCHIVE | CVAR_USERINFO, "test"); 
 
-	Cvar_Get("password", "", CVAR_USERINFO);
-	Cvar_Get("cg_predictItems", "1", CVAR_ARCHIVE);
+	Cvar_Get("password", "", CVAR_USERINFO, "test");
+	Cvar_Get("cg_predictItems", "1", CVAR_ARCHIVE, "test");
 
 #ifdef USE_MUMBLE
-	cl_useMumble = Cvar_Get ("cl_useMumble", "0", CVAR_ARCHIVE | CVAR_LATCH);
-	cl_mumbleScale = Cvar_Get ("cl_mumbleScale", "0.0254", CVAR_ARCHIVE);
+	cl_useMumble = Cvar_Get ("cl_useMumble", "0", CVAR_ARCHIVE | CVAR_LATCH, "test");
+	cl_mumbleScale = Cvar_Get ("cl_mumbleScale", "0.0254", CVAR_ARCHIVE, "test");
 #endif
 
 #ifdef USE_VOIP
-	cl_voipSend = Cvar_Get ("cl_voipSend", "0", 0);
-	cl_voipSendTarget = Cvar_Get ("cl_voipSendTarget", "all", 0);
-	cl_voipGainDuringCapture = Cvar_Get ("cl_voipGainDuringCapture", "0.2", CVAR_ARCHIVE);
-	cl_voipCaptureMult = Cvar_Get ("cl_voipCaptureMult", "2.0", CVAR_ARCHIVE);
-	cl_voipUseVAD = Cvar_Get ("cl_voipUseVAD", "0", CVAR_ARCHIVE);
-	cl_voipVADThreshold = Cvar_Get ("cl_voipVADThreshold", "0.25", CVAR_ARCHIVE);
-	cl_voipShowMeter = Cvar_Get ("cl_voipShowMeter", "1", CVAR_ARCHIVE);
-	cl_voipShowSender = Cvar_Get ("cl_voipShowSender", "1", CVAR_ARCHIVE);
+	cl_voipSend = Cvar_Get ("cl_voipSend", "0", 0, "test");
+	cl_voipSendTarget = Cvar_Get ("cl_voipSendTarget", "all", 0, "test");
+	cl_voipGainDuringCapture = Cvar_Get ("cl_voipGainDuringCapture", "0.2", CVAR_ARCHIVE, "test");
+	cl_voipCaptureMult = Cvar_Get ("cl_voipCaptureMult", "2.0", CVAR_ARCHIVE, "test");
+	cl_voipUseVAD = Cvar_Get ("cl_voipUseVAD", "0", CVAR_ARCHIVE, "test");
+	cl_voipVADThreshold = Cvar_Get ("cl_voipVADThreshold", "0.25", CVAR_ARCHIVE, "test");
+	cl_voipShowMeter = Cvar_Get ("cl_voipShowMeter", "1", CVAR_ARCHIVE, "test");
+	cl_voipShowSender = Cvar_Get ("cl_voipShowSender", "1", CVAR_ARCHIVE, "test");
 
 	// This is a protocol version number.
-	cl_voip = Cvar_Get ("cl_voip", "1", CVAR_USERINFO | CVAR_ARCHIVE | CVAR_LATCH);
+	cl_voip = Cvar_Get ("cl_voip", "1", CVAR_USERINFO | CVAR_ARCHIVE | CVAR_LATCH, "test");
 	Cvar_CheckRange( cl_voip, 0, 1, qtrue );
 
 	// If your data rate is too low, you'll get Connection Interrupted warnings
@@ -4966,25 +4963,25 @@ void CL_Init(void)
 #endif	
 	
 //----(SA) added
-	Cvar_Get("cg_autoactivate", "1", CVAR_ARCHIVE);
+	Cvar_Get("cg_autoactivate", "1", CVAR_ARCHIVE, "test");
 //----(SA) end
 
 	// cgame might not be initialized before menu is used
-	Cvar_Get("cg_viewsize", "100", CVAR_ARCHIVE);
+	Cvar_Get("cg_viewsize", "100", CVAR_ARCHIVE, "test");
 
-	Cvar_Get("cg_autoReload", "1", CVAR_ARCHIVE);
+	Cvar_Get("cg_autoReload", "1", CVAR_ARCHIVE, "test");
 
-	cl_missionStats = Cvar_Get("g_missionStats", "0", CVAR_ROM);
-	cl_waitForFire = Cvar_Get("cl_waitForFire", "0", CVAR_ROM);
+	cl_missionStats = Cvar_Get("g_missionStats", "0", CVAR_ROM, "test");
+	cl_waitForFire = Cvar_Get("cl_waitForFire", "0", CVAR_ROM, "test");
 
 	// NERVE - SMF - localization
-	cl_language = Cvar_Get("cl_language", "0", CVAR_ARCHIVE);
-	cl_debugTranslation = Cvar_Get("cl_debugTranslation", "0", 0);
+	cl_language = Cvar_Get("cl_language", "0", CVAR_ARCHIVE, "test");
+	cl_debugTranslation = Cvar_Get("cl_debugTranslation", "0", 0, "test");
 	// -NERVE - SMF
 
 	// DHM - Nerve :: Auto-update
-	cl_updateavailable = Cvar_Get("cl_updateavailable", "0", CVAR_ROM);
-	cl_updatefiles = Cvar_Get("cl_updatefiles", "", CVAR_ROM);
+	cl_updateavailable = Cvar_Get("cl_updateavailable", "0", CVAR_ROM, "test");
+	cl_updatefiles = Cvar_Get("cl_updatefiles", "", CVAR_ROM, "test");
 
 	Q_strncpyz(cls.autoupdateServerNames[0], AUTOUPDATE_SERVER1_NAME, MAX_QPATH);
 	Q_strncpyz(cls.autoupdateServerNames[1], AUTOUPDATE_SERVER2_NAME, MAX_QPATH);
@@ -5078,7 +5075,7 @@ void CL_Init(void)
 
 	Cvar_Set("cl_running", "1");
 
-	Cvar_Get("cl_guid", "", CVAR_USERINFO | CVAR_ROM);
+	Cvar_Get("cl_guid", "", CVAR_USERINFO | CVAR_ROM, "test");
 	CL_UpdateGUID();
 
 	if (cl_pubkeyID->integer) {

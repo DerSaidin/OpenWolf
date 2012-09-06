@@ -36,7 +36,7 @@ Maryland 20850 USA.
 #include "server.h"
 
 #ifdef USE_VOIP
-cvar_t         *sv_voip;
+convar_t         *sv_voip;
 #endif
 
 serverStatic_t  svs;			// persistant server info
@@ -48,72 +48,72 @@ versionMapping_t  versionMap[MAX_UPDATE_VERSIONS];
 int               numVersions = 0;
 #endif
 
-cvar_t         *sv_fps;			// time rate for running non-clients
-cvar_t         *sv_timeout;		// seconds without any message
-cvar_t         *sv_zombietime;	// seconds to sink messages after disconnect
-cvar_t         *sv_rconPassword;	// password for remote server commands
-cvar_t         *sv_privatePassword;	// password for the privateClient slots
-cvar_t         *sv_allowDownload;
-cvar_t         *sv_maxclients;
+convar_t         *sv_fps;			// time rate for running non-clients
+convar_t         *sv_timeout;		// seconds without any message
+convar_t         *sv_zombietime;	// seconds to sink messages after disconnect
+convar_t         *sv_rconPassword;	// password for remote server commands
+convar_t         *sv_privatePassword;	// password for the privateClient slots
+convar_t         *sv_allowDownload;
+convar_t         *sv_maxclients;
 
-cvar_t         *sv_privateClients;	// number of clients reserved for password
-cvar_t         *sv_hostname;
-cvar_t         *sv_master[MAX_MASTER_SERVERS];	// master server ip address
+convar_t         *sv_privateClients;	// number of clients reserved for password
+convar_t         *sv_hostname;
+convar_t         *sv_master[MAX_MASTER_SERVERS];	// master server ip address
 #if defined (USE_PHP)
-cvar_t         *sv_httpmaster[MAX_MASTER_SERVERS];
+convar_t         *sv_httpmaster[MAX_MASTER_SERVERS];
 #endif
-cvar_t         *sv_reconnectlimit;	// minimum seconds between connect messages
-cvar_t         *sv_tempbanmessage;
-cvar_t         *sv_showloss;	// report when usercmds are lost
-cvar_t         *sv_padPackets;	// add nop bytes to messages
-cvar_t         *sv_killserver;	// menu system can set to 1 to shut server down
-cvar_t         *sv_mapname;
-cvar_t         *sv_mapChecksum;
-cvar_t         *sv_serverid;
-cvar_t         *sv_maxRate;
-cvar_t         *sv_minPing;
-cvar_t         *sv_maxPing;
+convar_t         *sv_reconnectlimit;	// minimum seconds between connect messages
+convar_t         *sv_tempbanmessage;
+convar_t         *sv_showloss;	// report when usercmds are lost
+convar_t         *sv_padPackets;	// add nop bytes to messages
+convar_t         *sv_killserver;	// menu system can set to 1 to shut server down
+convar_t         *sv_mapname;
+convar_t         *sv_mapChecksum;
+convar_t         *sv_serverid;
+convar_t         *sv_maxRate;
+convar_t         *sv_minPing;
+convar_t         *sv_maxPing;
 
-//cvar_t    *sv_gametype;
-cvar_t         *sv_pure;
-cvar_t         *sv_newGameShlib;
-cvar_t         *sv_floodProtect;
-cvar_t         *sv_allowAnonymous;
-cvar_t         *sv_lanForceRate;	// TTimo - dedicated 1 (LAN) server forces local client rates to 99999 (bug #491)
-cvar_t         *sv_onlyVisibleClients;	// DHM - Nerve
-cvar_t         *sv_friendlyFire;	// NERVE - SMF
-cvar_t         *sv_maxlives;	// NERVE - SMF
-cvar_t         *sv_needpass;
+//convar_t    *sv_gametype;
+convar_t         *sv_pure;
+convar_t         *sv_newGameShlib;
+convar_t         *sv_floodProtect;
+convar_t         *sv_allowAnonymous;
+convar_t         *sv_lanForceRate;	// TTimo - dedicated 1 (LAN) server forces local client rates to 99999 (bug #491)
+convar_t         *sv_onlyVisibleClients;	// DHM - Nerve
+convar_t         *sv_friendlyFire;	// NERVE - SMF
+convar_t         *sv_maxlives;	// NERVE - SMF
+convar_t         *sv_needpass;
 
-cvar_t         *sv_dl_maxRate;
+convar_t         *sv_dl_maxRate;
 
-cvar_t         *g_gameType;
+convar_t         *g_gameType;
 
-cvar_t         *sv_requireValidGuid;   // whether client userinfo must contain a cl_guid, string of length 32 consisting
+convar_t         *sv_requireValidGuid;   // whether client userinfo must contain a cl_guid, string of length 32 consisting
                                        // of characters '0' through '9' and 'A' through 'F', default 0 don't require
 // Rafael gameskill
-//cvar_t    *sv_gameskill;
+//convar_t    *sv_gameskill;
 // done
 
-cvar_t         *sv_reloading;
+convar_t         *sv_reloading;
 
-cvar_t         *sv_showAverageBPS;	// NERVE - SMF - net debugging
+convar_t         *sv_showAverageBPS;	// NERVE - SMF - net debugging
 
-cvar_t         *sv_wwwDownload;	// server does a www dl redirect
-cvar_t         *sv_wwwBaseURL;	// base URL for redirect
+convar_t         *sv_wwwDownload;	// server does a www dl redirect
+convar_t         *sv_wwwBaseURL;	// base URL for redirect
 
 // tell clients to perform their downloads while disconnected from the server
 // this gets you a better throughput, but you loose the ability to control the download usage
-cvar_t         *sv_wwwDlDisconnected;
-cvar_t         *sv_wwwFallbackURL;	// URL to send to if an http/ftp fails or is refused client side
+convar_t         *sv_wwwDlDisconnected;
+convar_t         *sv_wwwFallbackURL;	// URL to send to if an http/ftp fails or is refused client side
 
 //bani
-cvar_t         *sv_cheats;
-cvar_t         *sv_packetloss;
-cvar_t         *sv_packetdelay;
+convar_t         *sv_cheats;
+convar_t         *sv_packetloss;
+convar_t         *sv_packetdelay;
 
 // fretn
-cvar_t         *sv_fullmsg;
+convar_t         *sv_fullmsg;
 
 void            SVC_GameCompleteStatus(netadr_t from);	// NERVE - SMF
 
@@ -299,7 +299,7 @@ void *thr_SV_cURL_SendHeartBeat( void *ptr ) {
 	CURL *curl;
 	CURLcode res;
 	char request[1024];
-	cvar_t  *net_port;
+	convar_t  *net_port;
 
 	MemoryStruct chunk;
 	chunk.memory=NULL;
@@ -309,7 +309,7 @@ void *thr_SV_cURL_SendHeartBeat( void *ptr ) {
 
 	if(!curl) return NULL;
 
-	net_port = Cvar_Get("net_port", va("%i", PORT_SERVER), CVAR_LATCH);
+	net_port = Cvar_Get("net_port", va("%i", PORT_SERVER), CVAR_LATCH, "test");
 	sprintf(request, "heartbeat=%s&port=%d", HEARTBEAT_GAME, net_port->integer);
 
 	curl_easy_setopt(curl, CURLOPT_URL, "http://localhost/masterserver/heartbeat.php");

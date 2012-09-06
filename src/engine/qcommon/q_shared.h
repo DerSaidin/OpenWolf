@@ -1495,13 +1495,14 @@ typedef enum cvar_flags_s {
 } cvar_flags_t;
 
 // nothing outside the Cvar_*() functions should modify these fields!
-typedef struct cvar_s
+typedef struct convar_s
 {
 	char           *name;
 	char           *string;
 	char           *resetString;	// cvar_restart will reset to this value
 	char           *latchedString;	// for CVAR_LATCH vars
 	int             flags;
+	char		   *description;	// variable descrition info
 	qboolean        modified;	// set each time the cvar is changed
 	int             modificationCount;	// incremented each time the cvar is changed
 	float           value;		// atof( string )
@@ -1511,15 +1512,15 @@ typedef struct cvar_s
 	float           min;
 	float           max;
 
-	struct cvar_s  *next;
-	struct cvar_s  *hashNext;
-} cvar_t;
+	struct convar_s  *next;
+	struct convar_s  *hashNext;
+} convar_t;
 
 #define MAX_CVAR_VALUE_STRING   256
 
 typedef int cvarHandle_t;
 
-// the modules that run in the virtual machine can't access the cvar_t directly,
+// the modules that run in the virtual machine can't access the convar_t directly,
 // so they must ask for structured updates
 typedef struct {
 	cvarHandle_t handle;

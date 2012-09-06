@@ -810,9 +810,9 @@ CLUI_GetCDKey
 */
 static void CLUI_GetCDKey(char *buf, int buflen)
 {
-	cvar_t         *fs;
+	convar_t         *fs;
 
-	fs = Cvar_Get("fs_game", "", CVAR_INIT | CVAR_SYSTEMINFO);
+	fs = Cvar_Get("fs_game", "", CVAR_INIT | CVAR_SYSTEMINFO, "test");
 	if(UI_usesUniqueCDKey() && fs && fs->string[0] != 0)
 	{
 		memcpy(buf, &cl_cdkey[16], 16);
@@ -833,9 +833,9 @@ CLUI_SetCDKey
 */
 static void CLUI_SetCDKey(char *buf)
 {
-	cvar_t         *fs;
+	convar_t         *fs;
 
-	fs = Cvar_Get("fs_game", "", CVAR_INIT | CVAR_SYSTEMINFO);
+	fs = Cvar_Get("fs_game", "", CVAR_INIT | CVAR_SYSTEMINFO, "test");
 	if(UI_usesUniqueCDKey() && fs && fs->string[0] != 0)
 	{
 		memcpy(&cl_cdkey[16], buf, 16);
@@ -955,7 +955,7 @@ intptr_t CL_UISystemCalls(intptr_t * args) {
 			Cvar_Reset((char*)VMA(1));
 			return 0;
 		case UI_CVAR_CREATE:
-			Cvar_Get((char*)VMA(1), (char*)VMA(2), args[3]);
+			Cvar_Get((char*)VMA(1), (char*)VMA(2), args[3], (char*)VMA(4));
 			return 0;
 		case UI_CVAR_INFOSTRINGBUFFER:
 			Cvar_InfoStringBuffer(args[1], (char*)VMA(2), args[3]);

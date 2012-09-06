@@ -26,6 +26,7 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
+#include "../framework/KeyInput.h"
 #include "../client/client.h"
 
 void IN_Init(void)
@@ -54,5 +55,21 @@ void IN_MouseEvent(int mstate)
 }
 
 void IN_Activate(qboolean active)
+{
+}
+
+void idKeyInput::Shutdown( void )
+{
+}
+
+void idKeyInput::KeyEvent( int key, int down, unsigned time )
+{
+}
+
+void idKeyInput::Init( void )
+{
+}
+
+void idKeyInput::CharEvent( int key )
 {
 }

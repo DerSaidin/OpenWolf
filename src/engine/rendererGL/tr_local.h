@@ -1582,7 +1582,7 @@ typedef struct shaderProgram_s
 #define LOG_GLSL_UNIFORMS 1
 
 #if defined(LOG_GLSL_UNIFORMS)
-extern cvar_t  *r_logFile;		// number of frames to emit GL logs
+extern convar_t  *r_logFile;		// number of frames to emit GL logs
 void            GLimp_LogComment(const char *comment);
 #endif
 
@@ -3962,299 +3962,299 @@ extern float    displayAspect;	// FIXME
 //
 // cvars
 //
-extern cvar_t  *r_glMajorVersion;  // override GL version autodetect (for testing)
-extern cvar_t  *r_glMinorVersion;
-extern cvar_t  *r_glDebugProfile;
-extern cvar_t  *r_glCoreProfile;
+extern convar_t  *r_glMajorVersion;  // override GL version autodetect (for testing)
+extern convar_t  *r_glMinorVersion;
+extern convar_t  *r_glDebugProfile;
+extern convar_t  *r_glCoreProfile;
 
 #ifdef USE_GLSL_OPTIMIZER
-extern cvar_t  *r_glslOptimizer;
+extern convar_t  *r_glslOptimizer;
 #endif
 
-extern cvar_t  *r_flares;		// light flares
-extern cvar_t  *r_flareSize;
-extern cvar_t  *r_flareFade;
+extern convar_t  *r_flares;		// light flares
+extern convar_t  *r_flareSize;
+extern convar_t  *r_flareFade;
 
-extern cvar_t  *r_railWidth;
-extern cvar_t  *r_railCoreWidth;
-extern cvar_t  *r_railSegmentLength;
+extern convar_t  *r_railWidth;
+extern convar_t  *r_railCoreWidth;
+extern convar_t  *r_railSegmentLength;
 
-extern cvar_t  *r_ignore;		// used for debugging anything
-extern cvar_t  *r_verbose;		// used for verbose debug spew
+extern convar_t  *r_ignore;		// used for debugging anything
+extern convar_t  *r_verbose;		// used for verbose debug spew
 
-extern cvar_t  *r_znear;		// near Z clip plane
-extern cvar_t  *r_zfar;
+extern convar_t  *r_znear;		// near Z clip plane
+extern convar_t  *r_zfar;
 
-extern cvar_t  *r_stencilbits;	// number of desired stencil bits
-extern cvar_t  *r_depthbits;	// number of desired depth bits
-extern cvar_t  *r_colorbits;	// number of desired color bits, only relevant for fullscreen
-extern cvar_t  *r_stereo;		// desired pixelformat stereo flag
+extern convar_t  *r_stencilbits;	// number of desired stencil bits
+extern convar_t  *r_depthbits;	// number of desired depth bits
+extern convar_t  *r_colorbits;	// number of desired color bits, only relevant for fullscreen
+extern convar_t  *r_stereo;		// desired pixelformat stereo flag
 
-extern cvar_t  *r_measureOverdraw;	// enables stencil buffer overdraw measurement
+extern convar_t  *r_measureOverdraw;	// enables stencil buffer overdraw measurement
 
-extern cvar_t  *r_lodBias;		// push/pull LOD transitions
-extern cvar_t  *r_lodScale;
-extern cvar_t  *r_lodTest;
+extern convar_t  *r_lodBias;		// push/pull LOD transitions
+extern convar_t  *r_lodScale;
+extern convar_t  *r_lodTest;
 
 
-extern cvar_t  *r_forceFog;
-extern cvar_t  *r_wolfFog;
-extern cvar_t  *r_noFog;
+extern convar_t  *r_forceFog;
+extern convar_t  *r_wolfFog;
+extern convar_t  *r_noFog;
 
-extern cvar_t  *r_forceAmbient;
-extern cvar_t  *r_ambientScale;
-extern cvar_t  *r_lightScale;
-extern cvar_t  *r_debugLight;
+extern convar_t  *r_forceAmbient;
+extern convar_t  *r_ambientScale;
+extern convar_t  *r_lightScale;
+extern convar_t  *r_debugLight;
 
-extern cvar_t  *r_inGameVideo;	// controls whether in game video should be draw
-extern cvar_t  *r_fastsky;		// controls whether sky should be cleared or drawn
-extern cvar_t  *r_drawSun;		// controls drawing of sun quad
-extern cvar_t  *r_dynamicLight;	// dynamic lights enabled/disabled
-extern cvar_t  *r_staticLight;	// static lights enabled/disabled
-extern cvar_t  *r_dynamicLightCastShadows;
-extern cvar_t  *r_precomputedLighting;
-extern cvar_t  *r_vertexLighting;
-extern cvar_t  *r_compressDiffuseMaps;
-extern cvar_t  *r_compressSpecularMaps;
-extern cvar_t  *r_compressNormalMaps;
-extern cvar_t  *r_heatHazeFix;
-extern cvar_t  *r_noMarksOnTrisurfs;
-extern cvar_t  *r_recompileShaders;
+extern convar_t  *r_inGameVideo;	// controls whether in game video should be draw
+extern convar_t  *r_fastsky;		// controls whether sky should be cleared or drawn
+extern convar_t  *r_drawSun;		// controls drawing of sun quad
+extern convar_t  *r_dynamicLight;	// dynamic lights enabled/disabled
+extern convar_t  *r_staticLight;	// static lights enabled/disabled
+extern convar_t  *r_dynamicLightCastShadows;
+extern convar_t  *r_precomputedLighting;
+extern convar_t  *r_vertexLighting;
+extern convar_t  *r_compressDiffuseMaps;
+extern convar_t  *r_compressSpecularMaps;
+extern convar_t  *r_compressNormalMaps;
+extern convar_t  *r_heatHazeFix;
+extern convar_t  *r_noMarksOnTrisurfs;
+extern convar_t  *r_recompileShaders;
 
-extern cvar_t  *r_norefresh;	// bypasses the ref rendering
-extern cvar_t  *r_drawentities;	// disable/enable entity rendering
-extern cvar_t  *r_drawworld;	// disable/enable world rendering
-extern cvar_t  *r_drawpolies;	// disable/enable world rendering
-extern cvar_t  *r_speeds;		// various levels of information display
-extern cvar_t  *r_novis;		// disable/enable usage of PVS
-extern cvar_t  *r_nocull;
-extern cvar_t  *r_facePlaneCull;	// enables culling of planar surfaces with back side test
-extern cvar_t  *r_nocurves;
-extern cvar_t  *r_nobatching;
-extern cvar_t  *r_noLightScissors;
-extern cvar_t  *r_noLightVisCull;
-extern cvar_t  *r_noInteractionSort;
-extern cvar_t  *r_showcluster;
+extern convar_t  *r_norefresh;	// bypasses the ref rendering
+extern convar_t  *r_drawentities;	// disable/enable entity rendering
+extern convar_t  *r_drawworld;	// disable/enable world rendering
+extern convar_t  *r_drawpolies;	// disable/enable world rendering
+extern convar_t  *r_speeds;		// various levels of information display
+extern convar_t  *r_novis;		// disable/enable usage of PVS
+extern convar_t  *r_nocull;
+extern convar_t  *r_facePlaneCull;	// enables culling of planar surfaces with back side test
+extern convar_t  *r_nocurves;
+extern convar_t  *r_nobatching;
+extern convar_t  *r_noLightScissors;
+extern convar_t  *r_noLightVisCull;
+extern convar_t  *r_noInteractionSort;
+extern convar_t  *r_showcluster;
 
-extern cvar_t  *r_mode;			// video mode
-extern cvar_t  *r_fullscreen;
-extern cvar_t  *r_gamma;
-extern cvar_t  *r_displayRefresh;	// optional display refresh option
-extern cvar_t  *r_ignorehwgamma;	// overrides hardware gamma capabilities
+extern convar_t  *r_mode;			// video mode
+extern convar_t  *r_fullscreen;
+extern convar_t  *r_gamma;
+extern convar_t  *r_displayRefresh;	// optional display refresh option
+extern convar_t  *r_ignorehwgamma;	// overrides hardware gamma capabilities
 
-extern cvar_t  *r_ext_compressed_textures;	// these control use of specific extensions
-extern cvar_t  *r_ext_occlusion_query;
-extern cvar_t  *r_ext_texture_non_power_of_two;
-extern cvar_t  *r_ext_draw_buffers;
-extern cvar_t  *r_ext_vertex_array_object;
-extern cvar_t  *r_ext_half_float_pixel;
-extern cvar_t  *r_ext_texture_float;
-extern cvar_t  *r_ext_stencil_wrap;
-extern cvar_t  *r_ext_texture_filter_anisotropic;
-extern cvar_t  *r_ext_stencil_two_side;
-extern cvar_t  *r_ext_separate_stencil;
-extern cvar_t  *r_ext_depth_bounds_test;
-extern cvar_t  *r_ext_framebuffer_object;
-extern cvar_t  *r_ext_packed_depth_stencil;
-extern cvar_t  *r_ext_framebuffer_blit;
-extern cvar_t  *r_extx_framebuffer_mixed_formats;
-extern cvar_t  *r_ext_generate_mipmap;
+extern convar_t  *r_ext_compressed_textures;	// these control use of specific extensions
+extern convar_t  *r_ext_occlusion_query;
+extern convar_t  *r_ext_texture_non_power_of_two;
+extern convar_t  *r_ext_draw_buffers;
+extern convar_t  *r_ext_vertex_array_object;
+extern convar_t  *r_ext_half_float_pixel;
+extern convar_t  *r_ext_texture_float;
+extern convar_t  *r_ext_stencil_wrap;
+extern convar_t  *r_ext_texture_filter_anisotropic;
+extern convar_t  *r_ext_stencil_two_side;
+extern convar_t  *r_ext_separate_stencil;
+extern convar_t  *r_ext_depth_bounds_test;
+extern convar_t  *r_ext_framebuffer_object;
+extern convar_t  *r_ext_packed_depth_stencil;
+extern convar_t  *r_ext_framebuffer_blit;
+extern convar_t  *r_extx_framebuffer_mixed_formats;
+extern convar_t  *r_ext_generate_mipmap;
 
-extern cvar_t  *r_nobind;		// turns off binding to appropriate textures
-extern cvar_t  *r_collapseStages;
-extern cvar_t  *r_singleShader;	// make most world faces use default shader
-extern cvar_t  *r_roundImagesDown;
-extern cvar_t  *r_colorMipLevels;	// development aid to see texture mip usage
-extern cvar_t  *r_picmip;		// controls picmip values
-extern cvar_t  *r_finish;
-extern cvar_t  *r_drawBuffer;
-extern cvar_t  *r_swapInterval;
-extern cvar_t  *r_textureMode;
-extern cvar_t  *r_offsetFactor;
-extern cvar_t  *r_offsetUnits;
-extern cvar_t  *r_forceSpecular;
-extern cvar_t  *r_specularExponent;
-extern cvar_t  *r_specularExponent2;
-extern cvar_t  *r_specularScale;
-extern cvar_t  *r_normalScale;
-extern cvar_t  *r_normalMapping;
-extern cvar_t  *r_wrapAroundLighting;
-extern cvar_t  *r_halfLambertLighting;
-extern cvar_t  *r_rimLighting;
-extern cvar_t  *r_rimExponent;
+extern convar_t  *r_nobind;		// turns off binding to appropriate textures
+extern convar_t  *r_collapseStages;
+extern convar_t  *r_singleShader;	// make most world faces use default shader
+extern convar_t  *r_roundImagesDown;
+extern convar_t  *r_colorMipLevels;	// development aid to see texture mip usage
+extern convar_t  *r_picmip;		// controls picmip values
+extern convar_t  *r_finish;
+extern convar_t  *r_drawBuffer;
+extern convar_t  *r_swapInterval;
+extern convar_t  *r_textureMode;
+extern convar_t  *r_offsetFactor;
+extern convar_t  *r_offsetUnits;
+extern convar_t  *r_forceSpecular;
+extern convar_t  *r_specularExponent;
+extern convar_t  *r_specularExponent2;
+extern convar_t  *r_specularScale;
+extern convar_t  *r_normalScale;
+extern convar_t  *r_normalMapping;
+extern convar_t  *r_wrapAroundLighting;
+extern convar_t  *r_halfLambertLighting;
+extern convar_t  *r_rimLighting;
+extern convar_t  *r_rimExponent;
 
-extern cvar_t  *r_uiFullScreen;	// ui is running fullscreen
+extern convar_t  *r_uiFullScreen;	// ui is running fullscreen
 
-extern cvar_t  *r_logFile;		// number of frames to emit GL logs
+extern convar_t  *r_logFile;		// number of frames to emit GL logs
 
-extern cvar_t  *r_clear;		// force screen clear every frame
+extern convar_t  *r_clear;		// force screen clear every frame
 
-extern cvar_t  *r_shadows;		// controls shadows: 0 = none, 1 = blur, 2 = black planar projection,
+extern convar_t  *r_shadows;		// controls shadows: 0 = none, 1 = blur, 2 = black planar projection,
 
 								// 3 = stencil shadow volumes
 								// 4 = shadow mapping
-extern cvar_t  *r_softShadows;
-extern cvar_t  *r_shadowBlur;
+extern convar_t  *r_softShadows;
+extern convar_t  *r_shadowBlur;
 
-extern cvar_t  *r_shadowMapQuality;
-extern cvar_t  *r_shadowMapSizeUltra;
-extern cvar_t  *r_shadowMapSizeVeryHigh;
-extern cvar_t  *r_shadowMapSizeHigh;
-extern cvar_t  *r_shadowMapSizeMedium;
-extern cvar_t  *r_shadowMapSizeLow;
+extern convar_t  *r_shadowMapQuality;
+extern convar_t  *r_shadowMapSizeUltra;
+extern convar_t  *r_shadowMapSizeVeryHigh;
+extern convar_t  *r_shadowMapSizeHigh;
+extern convar_t  *r_shadowMapSizeMedium;
+extern convar_t  *r_shadowMapSizeLow;
 
-extern cvar_t  *r_shadowMapSizeSunUltra;
-extern cvar_t  *r_shadowMapSizeSunVeryHigh;
-extern cvar_t  *r_shadowMapSizeSunHigh;
-extern cvar_t  *r_shadowMapSizeSunMedium;
-extern cvar_t  *r_shadowMapSizeSunLow;
+extern convar_t  *r_shadowMapSizeSunUltra;
+extern convar_t  *r_shadowMapSizeSunVeryHigh;
+extern convar_t  *r_shadowMapSizeSunHigh;
+extern convar_t  *r_shadowMapSizeSunMedium;
+extern convar_t  *r_shadowMapSizeSunLow;
 
-extern cvar_t  *r_shadowOffsetFactor;
-extern cvar_t  *r_shadowOffsetUnits;
-extern cvar_t  *r_shadowLodBias;
-extern cvar_t  *r_shadowLodScale;
-extern cvar_t  *r_noShadowPyramids;
-extern cvar_t  *r_cullShadowPyramidFaces;
-extern cvar_t  *r_cullShadowPyramidCurves;
-extern cvar_t  *r_cullShadowPyramidTriangles;
-extern cvar_t  *r_debugShadowMaps;
-extern cvar_t  *r_noShadowFrustums;
-extern cvar_t  *r_noLightFrustums;
-extern cvar_t  *r_shadowMapLuminanceAlpha;
-extern cvar_t  *r_shadowMapLinearFilter;
-extern cvar_t  *r_lightBleedReduction;
-extern cvar_t  *r_overDarkeningFactor;
-extern cvar_t  *r_shadowMapDepthScale;
-extern cvar_t  *r_parallelShadowSplits;
-extern cvar_t  *r_parallelShadowSplitWeight;
-extern cvar_t  *r_lightSpacePerspectiveWarping;
+extern convar_t  *r_shadowOffsetFactor;
+extern convar_t  *r_shadowOffsetUnits;
+extern convar_t  *r_shadowLodBias;
+extern convar_t  *r_shadowLodScale;
+extern convar_t  *r_noShadowPyramids;
+extern convar_t  *r_cullShadowPyramidFaces;
+extern convar_t  *r_cullShadowPyramidCurves;
+extern convar_t  *r_cullShadowPyramidTriangles;
+extern convar_t  *r_debugShadowMaps;
+extern convar_t  *r_noShadowFrustums;
+extern convar_t  *r_noLightFrustums;
+extern convar_t  *r_shadowMapLuminanceAlpha;
+extern convar_t  *r_shadowMapLinearFilter;
+extern convar_t  *r_lightBleedReduction;
+extern convar_t  *r_overDarkeningFactor;
+extern convar_t  *r_shadowMapDepthScale;
+extern convar_t  *r_parallelShadowSplits;
+extern convar_t  *r_parallelShadowSplitWeight;
+extern convar_t  *r_lightSpacePerspectiveWarping;
 
-extern cvar_t  *r_intensity;
+extern convar_t  *r_intensity;
 
-extern cvar_t  *r_lockpvs;
-extern cvar_t  *r_noportals;
-extern cvar_t  *r_portalOnly;
-extern cvar_t  *r_portalSky;
+extern convar_t  *r_lockpvs;
+extern convar_t  *r_noportals;
+extern convar_t  *r_portalOnly;
+extern convar_t  *r_portalSky;
 
-extern cvar_t  *r_subdivisions;
-extern cvar_t  *r_stitchCurves;
+extern convar_t  *r_subdivisions;
+extern convar_t  *r_stitchCurves;
 
-extern cvar_t  *r_smp;
-extern cvar_t  *r_showSmp;
-extern cvar_t  *r_skipBackEnd;
-extern cvar_t  *r_skipLightBuffer;
+extern convar_t  *r_smp;
+extern convar_t  *r_showSmp;
+extern convar_t  *r_skipBackEnd;
+extern convar_t  *r_skipLightBuffer;
 
-extern cvar_t  *r_ignoreGLErrors;
+extern convar_t  *r_ignoreGLErrors;
 
-extern cvar_t  *r_overBrightBits;
-extern cvar_t  *r_mapOverBrightBits;
+extern convar_t  *r_overBrightBits;
+extern convar_t  *r_mapOverBrightBits;
 
-extern cvar_t  *r_debugSurface;
-extern cvar_t  *r_simpleMipMaps;
+extern convar_t  *r_debugSurface;
+extern convar_t  *r_simpleMipMaps;
 
-extern cvar_t  *r_showImages;
-extern cvar_t  *r_debugSort;
+extern convar_t  *r_showImages;
+extern convar_t  *r_debugSort;
 
-extern cvar_t  *r_printShaders;
+extern convar_t  *r_printShaders;
 
-extern cvar_t  *r_maxPolys;
-extern cvar_t  *r_maxPolyVerts;
+extern convar_t  *r_maxPolys;
+extern convar_t  *r_maxPolyVerts;
 
-extern cvar_t  *r_showTris;		// enables wireframe rendering of the world
-extern cvar_t  *r_showSky;		// forces sky in front of all surfaces
-extern cvar_t  *r_showShadowVolumes;
-extern cvar_t  *r_showShadowLod;
-extern cvar_t  *r_showShadowMaps;
-extern cvar_t  *r_showSkeleton;
-extern cvar_t  *r_showEntityTransforms;
-extern cvar_t  *r_showLightTransforms;
-extern cvar_t  *r_showLightInteractions;
-extern cvar_t  *r_showLightScissors;
-extern cvar_t  *r_showLightBatches;
-extern cvar_t  *r_showLightGrid;
-extern cvar_t  *r_showOcclusionQueries;
-extern cvar_t  *r_showBatches;
-extern cvar_t  *r_showLightMaps;	// render lightmaps only
-extern cvar_t  *r_showDeluxeMaps;
-extern cvar_t  *r_showAreaPortals;
-extern cvar_t  *r_showCubeProbes;
-extern cvar_t  *r_showBspNodes;
-extern cvar_t  *r_showParallelShadowSplits;
-extern cvar_t  *r_showDecalProjectors;
+extern convar_t  *r_showTris;		// enables wireframe rendering of the world
+extern convar_t  *r_showSky;		// forces sky in front of all surfaces
+extern convar_t  *r_showShadowVolumes;
+extern convar_t  *r_showShadowLod;
+extern convar_t  *r_showShadowMaps;
+extern convar_t  *r_showSkeleton;
+extern convar_t  *r_showEntityTransforms;
+extern convar_t  *r_showLightTransforms;
+extern convar_t  *r_showLightInteractions;
+extern convar_t  *r_showLightScissors;
+extern convar_t  *r_showLightBatches;
+extern convar_t  *r_showLightGrid;
+extern convar_t  *r_showOcclusionQueries;
+extern convar_t  *r_showBatches;
+extern convar_t  *r_showLightMaps;	// render lightmaps only
+extern convar_t  *r_showDeluxeMaps;
+extern convar_t  *r_showAreaPortals;
+extern convar_t  *r_showCubeProbes;
+extern convar_t  *r_showBspNodes;
+extern convar_t  *r_showParallelShadowSplits;
+extern convar_t  *r_showDecalProjectors;
 
-extern cvar_t  *r_showDeferredDiffuse;
-extern cvar_t  *r_showDeferredNormal;
-extern cvar_t  *r_showDeferredSpecular;
-extern cvar_t  *r_showDeferredPosition;
-extern cvar_t  *r_showDeferredRender;
-extern cvar_t  *r_showDeferredLight;
+extern convar_t  *r_showDeferredDiffuse;
+extern convar_t  *r_showDeferredNormal;
+extern convar_t  *r_showDeferredSpecular;
+extern convar_t  *r_showDeferredPosition;
+extern convar_t  *r_showDeferredRender;
+extern convar_t  *r_showDeferredLight;
 
-extern cvar_t  *r_vboFaces;
-extern cvar_t  *r_vboCurves;
-extern cvar_t  *r_vboTriangles;
-extern cvar_t  *r_vboShadows;
-extern cvar_t  *r_vboLighting;
-extern cvar_t  *r_vboModels;
-extern cvar_t  *r_vboOptimizeVertices;
-extern cvar_t  *r_vboVertexSkinning;
-extern cvar_t  *r_vboDeformVertexes;
-extern cvar_t  *r_vboSmoothNormals;
+extern convar_t  *r_vboFaces;
+extern convar_t  *r_vboCurves;
+extern convar_t  *r_vboTriangles;
+extern convar_t  *r_vboShadows;
+extern convar_t  *r_vboLighting;
+extern convar_t  *r_vboModels;
+extern convar_t  *r_vboOptimizeVertices;
+extern convar_t  *r_vboVertexSkinning;
+extern convar_t  *r_vboDeformVertexes;
+extern convar_t  *r_vboSmoothNormals;
 
 #if defined(USE_BSP_CLUSTERSURFACE_MERGING)
-extern cvar_t  *r_mergeClusterSurfaces;
-extern cvar_t  *r_mergeClusterFaces;
-extern cvar_t  *r_mergeClusterCurves;
-extern cvar_t  *r_mergeClusterTriangles;
+extern convar_t  *r_mergeClusterSurfaces;
+extern convar_t  *r_mergeClusterFaces;
+extern convar_t  *r_mergeClusterCurves;
+extern convar_t  *r_mergeClusterTriangles;
 #endif
 
-extern cvar_t  *r_deferredShading;
-extern cvar_t  *r_parallaxMapping;
-extern cvar_t  *r_parallaxDepthScale;
+extern convar_t  *r_deferredShading;
+extern convar_t  *r_parallaxMapping;
+extern convar_t  *r_parallaxDepthScale;
 
-extern cvar_t  *r_dynamicBspOcclusionCulling;
-extern cvar_t  *r_dynamicEntityOcclusionCulling;
-extern cvar_t  *r_dynamicLightOcclusionCulling;
-extern cvar_t  *r_chcMaxPrevInvisNodesBatchSize;
-extern cvar_t  *r_chcMaxVisibleFrames;
-extern cvar_t  *r_chcVisibilityThreshold;
-extern cvar_t  *r_chcIgnoreLeaves;
+extern convar_t  *r_dynamicBspOcclusionCulling;
+extern convar_t  *r_dynamicEntityOcclusionCulling;
+extern convar_t  *r_dynamicLightOcclusionCulling;
+extern convar_t  *r_chcMaxPrevInvisNodesBatchSize;
+extern convar_t  *r_chcMaxVisibleFrames;
+extern convar_t  *r_chcVisibilityThreshold;
+extern convar_t  *r_chcIgnoreLeaves;
 
-extern cvar_t  *r_hdrRendering;
-extern cvar_t  *r_hdrMinLuminance;
-extern cvar_t  *r_hdrMaxLuminance;
-extern cvar_t  *r_hdrKey;
-extern cvar_t  *r_hdrContrastThreshold;
-extern cvar_t  *r_hdrContrastOffset;
-extern cvar_t  *r_hdrLightmap;
-extern cvar_t  *r_hdrLightmapExposure;
-extern cvar_t  *r_hdrLightmapGamma;
-extern cvar_t  *r_hdrLightmapCompensate;
-extern cvar_t  *r_hdrToneMappingOperator;
-extern cvar_t  *r_hdrGamma;
-extern cvar_t  *r_hdrDebug;
+extern convar_t  *r_hdrRendering;
+extern convar_t  *r_hdrMinLuminance;
+extern convar_t  *r_hdrMaxLuminance;
+extern convar_t  *r_hdrKey;
+extern convar_t  *r_hdrContrastThreshold;
+extern convar_t  *r_hdrContrastOffset;
+extern convar_t  *r_hdrLightmap;
+extern convar_t  *r_hdrLightmapExposure;
+extern convar_t  *r_hdrLightmapGamma;
+extern convar_t  *r_hdrLightmapCompensate;
+extern convar_t  *r_hdrToneMappingOperator;
+extern convar_t  *r_hdrGamma;
+extern convar_t  *r_hdrDebug;
 
 #ifdef EXPERIMENTAL
-extern cvar_t  *r_screenSpaceAmbientOcclusion;
+extern convar_t  *r_screenSpaceAmbientOcclusion;
 #endif
 #ifdef EXPERIMENTAL
-extern cvar_t  *r_depthOfField;
+extern convar_t  *r_depthOfField;
 #endif
 
-extern cvar_t  *r_reflectionMapping;
-extern cvar_t  *r_highQualityNormalMapping;
+extern convar_t  *r_reflectionMapping;
+extern convar_t  *r_highQualityNormalMapping;
 
-extern cvar_t  *r_bloom;
-extern cvar_t  *r_bloomBlur;
-extern cvar_t  *r_bloomPasses;
-extern cvar_t  *r_rotoscope;
-extern cvar_t  *r_rotoscopeBlur;
-extern cvar_t  *r_cameraPostFX;
-extern cvar_t  *r_cameraVignette;
-extern cvar_t  *r_cameraFilmGrain;
-extern cvar_t  *r_cameraFilmGrainScale;
+extern convar_t  *r_bloom;
+extern convar_t  *r_bloomBlur;
+extern convar_t  *r_bloomPasses;
+extern convar_t  *r_rotoscope;
+extern convar_t  *r_rotoscopeBlur;
+extern convar_t  *r_cameraPostFX;
+extern convar_t  *r_cameraVignette;
+extern convar_t  *r_cameraFilmGrain;
+extern convar_t  *r_cameraFilmGrainScale;
 
-extern cvar_t  *r_evsmPostProcess;
-extern cvar_t  *r_detailTextures;
+extern convar_t  *r_evsmPostProcess;
+extern convar_t  *r_detailTextures;
 
 //====================================================================
 

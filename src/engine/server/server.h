@@ -385,84 +385,84 @@ extern serverStatic_t svs;		// persistant server info across maps
 extern server_t sv;				// cleared each map
 extern vm_t    *gvm;			// game virtual machine
 
-extern cvar_t  *sv_fps;
-extern cvar_t  *sv_timeout;
-extern cvar_t  *sv_zombietime;
-extern cvar_t  *sv_rconPassword;
-extern cvar_t  *sv_privatePassword;
-extern cvar_t  *sv_allowDownload;
-extern cvar_t  *sv_friendlyFire;	// NERVE - SMF
-extern cvar_t  *sv_maxlives;	// NERVE - SMF
-extern cvar_t  *sv_maxclients;
-extern cvar_t  *sv_needpass;
+extern convar_t  *sv_fps;
+extern convar_t  *sv_timeout;
+extern convar_t  *sv_zombietime;
+extern convar_t  *sv_rconPassword;
+extern convar_t  *sv_privatePassword;
+extern convar_t  *sv_allowDownload;
+extern convar_t  *sv_friendlyFire;	// NERVE - SMF
+extern convar_t  *sv_maxlives;	// NERVE - SMF
+extern convar_t  *sv_maxclients;
+extern convar_t  *sv_needpass;
 
-extern cvar_t  *sv_privateClients;
-extern cvar_t  *sv_hostname;
-extern cvar_t  *sv_master[MAX_MASTER_SERVERS];
+extern convar_t  *sv_privateClients;
+extern convar_t  *sv_hostname;
+extern convar_t  *sv_master[MAX_MASTER_SERVERS];
 #if defined (USE_PHP)
-extern cvar_t  *sv_httpmaster[MAX_MASTER_SERVERS];
+extern convar_t  *sv_httpmaster[MAX_MASTER_SERVERS];
 #endif
-extern cvar_t  *sv_reconnectlimit;
-extern cvar_t  *sv_tempbanmessage;
-extern cvar_t  *sv_showloss;
-extern cvar_t  *sv_padPackets;
-extern cvar_t  *sv_killserver;
-extern cvar_t  *sv_mapname;
-extern cvar_t  *sv_mapChecksum;
-extern cvar_t  *sv_serverid;
-extern cvar_t  *sv_maxRate;
-extern cvar_t  *sv_minPing;
-extern cvar_t  *sv_maxPing;
+extern convar_t  *sv_reconnectlimit;
+extern convar_t  *sv_tempbanmessage;
+extern convar_t  *sv_showloss;
+extern convar_t  *sv_padPackets;
+extern convar_t  *sv_killserver;
+extern convar_t  *sv_mapname;
+extern convar_t  *sv_mapChecksum;
+extern convar_t  *sv_serverid;
+extern convar_t  *sv_maxRate;
+extern convar_t  *sv_minPing;
+extern convar_t  *sv_maxPing;
 
-//extern    cvar_t  *sv_gametype;
+//extern    convar_t  *sv_gametype;
 
-extern cvar_t  *sv_newGameShlib;
+extern convar_t  *sv_newGameShlib;
 
-extern cvar_t  *sv_pure;
-extern cvar_t  *sv_floodProtect;
-extern cvar_t  *sv_allowAnonymous;
-extern cvar_t  *sv_lanForceRate;
-extern cvar_t  *sv_onlyVisibleClients;
+extern convar_t  *sv_pure;
+extern convar_t  *sv_floodProtect;
+extern convar_t  *sv_allowAnonymous;
+extern convar_t  *sv_lanForceRate;
+extern convar_t  *sv_onlyVisibleClients;
 
-extern cvar_t  *sv_showAverageBPS;	// NERVE - SMF - net debugging
+extern convar_t  *sv_showAverageBPS;	// NERVE - SMF - net debugging
 
-extern cvar_t  *sv_requireValidGuid;
+extern convar_t  *sv_requireValidGuid;
 
-extern cvar_t  *sv_ircchannel;
+extern convar_t  *sv_ircchannel;
 
-extern cvar_t  *g_gameType;
+extern convar_t  *g_gameType;
 
 // Rafael gameskill
-//extern    cvar_t  *sv_gameskill;
+//extern    convar_t  *sv_gameskill;
 // done
 
-extern cvar_t  *sv_reloading;
+extern convar_t  *sv_reloading;
 
 // TTimo - autodl
-extern cvar_t  *sv_dl_maxRate;
+extern convar_t  *sv_dl_maxRate;
 
 // TTimo
-extern cvar_t  *sv_wwwDownload;	// general flag to enable/disable www download redirects
-extern cvar_t  *sv_wwwBaseURL;	// the base URL of all the files
+extern convar_t  *sv_wwwDownload;	// general flag to enable/disable www download redirects
+extern convar_t  *sv_wwwBaseURL;	// the base URL of all the files
 
 // tell clients to perform their downloads while disconnected from the server
 // this gets you a better throughput, but you loose the ability to control the download usage
-extern cvar_t  *sv_wwwDlDisconnected;
-extern cvar_t  *sv_wwwFallbackURL;
+extern convar_t  *sv_wwwDlDisconnected;
+extern convar_t  *sv_wwwFallbackURL;
 
 //bani
-extern cvar_t  *sv_cheats;
-extern cvar_t  *sv_packetloss;
-extern cvar_t  *sv_packetdelay;
+extern convar_t  *sv_cheats;
+extern convar_t  *sv_packetloss;
+extern convar_t  *sv_packetdelay;
 
 //fretn
-extern cvar_t  *sv_fullmsg;
+extern convar_t  *sv_fullmsg;
 
 #ifdef USE_VOIP
-extern cvar_t  *sv_voip;
+extern convar_t  *sv_voip;
 #endif
 
-extern cvar_t  *sv_IPmaxGetstatusPerSecond;
+extern convar_t  *sv_IPmaxGetstatusPerSecond;
 
 //===========================================================
 

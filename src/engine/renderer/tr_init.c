@@ -45,171 +45,171 @@ float           displayAspect = 0.0f;
 
 static void     GfxInfo_f(void);
 
-cvar_t         *r_flareSize;
-cvar_t         *r_flareFade;
+convar_t         *r_flareSize;
+convar_t         *r_flareFade;
 
-cvar_t         *r_railWidth;
-cvar_t         *r_railCoreWidth;
-cvar_t         *r_railSegmentLength;
+convar_t         *r_railWidth;
+convar_t         *r_railCoreWidth;
+convar_t         *r_railSegmentLength;
 
-cvar_t         *r_ignoreFastPath;
+convar_t         *r_ignoreFastPath;
 
-cvar_t         *r_verbose;
-cvar_t         *r_ignore;
+convar_t         *r_verbose;
+convar_t         *r_ignore;
 
-cvar_t         *r_displayRefresh;
+convar_t         *r_displayRefresh;
 
-cvar_t         *r_detailTextures;
+convar_t         *r_detailTextures;
 
-cvar_t         *r_znear;
-cvar_t         *r_zfar;
+convar_t         *r_znear;
+convar_t         *r_zfar;
 
-cvar_t         *r_smp;
-cvar_t         *r_showSmp;
-cvar_t         *r_skipBackEnd;
+convar_t         *r_smp;
+convar_t         *r_showSmp;
+convar_t         *r_skipBackEnd;
 
-cvar_t         *r_ignorehwgamma;
-cvar_t         *r_measureOverdraw;
+convar_t         *r_ignorehwgamma;
+convar_t         *r_measureOverdraw;
 
-cvar_t         *r_inGameVideo;
-cvar_t         *r_fastsky;
-cvar_t         *r_drawSun;
-cvar_t         *r_dynamiclight;
-cvar_t         *r_dlightBacks;
+convar_t         *r_inGameVideo;
+convar_t         *r_fastsky;
+convar_t         *r_drawSun;
+convar_t         *r_dynamiclight;
+convar_t         *r_dlightBacks;
 
-cvar_t         *r_lodbias;
-cvar_t         *r_lodscale;
+convar_t         *r_lodbias;
+convar_t         *r_lodscale;
 
-cvar_t         *r_norefresh;
-cvar_t         *r_drawentities;
-cvar_t         *r_drawworld;
-cvar_t         *r_drawfoliage;	// ydnar
-cvar_t         *r_speeds;
+convar_t         *r_norefresh;
+convar_t         *r_drawentities;
+convar_t         *r_drawworld;
+convar_t         *r_drawfoliage;	// ydnar
+convar_t         *r_speeds;
 
-//cvar_t    *r_fullbright; // JPW NERVE removed per atvi request
-cvar_t         *r_novis;
-cvar_t         *r_nocull;
-cvar_t         *r_facePlaneCull;
-cvar_t         *r_showcluster;
-cvar_t         *r_nocurves;
+//convar_t    *r_fullbright; // JPW NERVE removed per atvi request
+convar_t         *r_novis;
+convar_t         *r_nocull;
+convar_t         *r_facePlaneCull;
+convar_t         *r_showcluster;
+convar_t         *r_nocurves;
 
-cvar_t         *r_allowExtensions;
+convar_t         *r_allowExtensions;
 
-cvar_t         *r_ext_compressed_textures;
-cvar_t         *r_ext_gamma_control;
-cvar_t         *r_ext_multitexture;
-cvar_t         *r_ext_compiled_vertex_array;
-cvar_t         *r_ext_texture_env_add;
+convar_t         *r_ext_compressed_textures;
+convar_t         *r_ext_gamma_control;
+convar_t         *r_ext_multitexture;
+convar_t         *r_ext_compiled_vertex_array;
+convar_t         *r_ext_texture_env_add;
 
-cvar_t         *r_clampToEdge;	// ydnar: opengl 1.2 GL_CLAMP_TO_EDGE SUPPORT
+convar_t         *r_clampToEdge;	// ydnar: opengl 1.2 GL_CLAMP_TO_EDGE SUPPORT
 
 //----(SA)  added
-cvar_t         *r_ext_texture_filter_anisotropic;
+convar_t         *r_ext_texture_filter_anisotropic;
 
-cvar_t         *r_ext_NV_fog_dist;
-cvar_t         *r_nv_fogdist_mode;
+convar_t         *r_ext_NV_fog_dist;
+convar_t         *r_nv_fogdist_mode;
 
-cvar_t         *r_ext_ATI_pntriangles;
-cvar_t         *r_ati_truform_tess;	//
-cvar_t         *r_ati_truform_normalmode;	// linear/quadratic
-cvar_t         *r_ati_truform_pointmode;	// linear/cubic
+convar_t         *r_ext_ATI_pntriangles;
+convar_t         *r_ati_truform_tess;	//
+convar_t         *r_ati_truform_normalmode;	// linear/quadratic
+convar_t         *r_ati_truform_pointmode;	// linear/cubic
 
 //----(SA)  end
 
-cvar_t         *r_ati_fsaa_samples;	//DAJ valids are 1, 2, 4
+convar_t         *r_ati_fsaa_samples;	//DAJ valids are 1, 2, 4
 
-cvar_t         *r_ignoreGLErrors;
-cvar_t         *r_logFile;
+convar_t         *r_ignoreGLErrors;
+convar_t         *r_logFile;
 
-cvar_t         *r_stencilbits;
-cvar_t         *r_depthbits;
-cvar_t         *r_colorbits;
-cvar_t         *r_stereo;
-cvar_t         *r_primitives;
-cvar_t         *r_texturebits;
+convar_t         *r_stencilbits;
+convar_t         *r_depthbits;
+convar_t         *r_colorbits;
+convar_t         *r_stereo;
+convar_t         *r_primitives;
+convar_t         *r_texturebits;
 
-cvar_t         *r_drawBuffer;
-cvar_t         *r_glDriver;
-cvar_t         *r_glIgnoreWicked3D;
-cvar_t         *r_lightmap;
-cvar_t         *r_uiFullScreen;
-cvar_t         *r_shadows;
-cvar_t         *r_portalsky;	//----(SA)  added
-cvar_t         *r_flares;
-cvar_t         *r_mode;
-cvar_t         *r_oldMode;		// ydnar
-cvar_t         *r_nobind;
-cvar_t         *r_singleShader;
-cvar_t         *r_roundImagesDown;
-cvar_t         *r_colorMipLevels;
-cvar_t         *r_picmip;
-cvar_t         *r_showtris;
-cvar_t         *r_trisColor;
-cvar_t         *r_showsky;
-cvar_t         *r_shownormals;
-cvar_t         *r_normallength;
-cvar_t         *r_showmodelbounds;
-cvar_t         *r_finish;
-cvar_t         *r_clear;
-cvar_t         *r_swapInterval;
-cvar_t         *r_textureMode;
-cvar_t         *r_textureAnisotropy;
-cvar_t         *r_offsetFactor;
-cvar_t         *r_offsetUnits;
-cvar_t         *r_gamma;
-cvar_t         *r_intensity;
-cvar_t         *r_lockpvs;
-cvar_t         *r_noportals;
-cvar_t         *r_portalOnly;
+convar_t         *r_drawBuffer;
+convar_t         *r_glDriver;
+convar_t         *r_glIgnoreWicked3D;
+convar_t         *r_lightmap;
+convar_t         *r_uiFullScreen;
+convar_t         *r_shadows;
+convar_t         *r_portalsky;	//----(SA)  added
+convar_t         *r_flares;
+convar_t         *r_mode;
+convar_t         *r_oldMode;		// ydnar
+convar_t         *r_nobind;
+convar_t         *r_singleShader;
+convar_t         *r_roundImagesDown;
+convar_t         *r_colorMipLevels;
+convar_t         *r_picmip;
+convar_t         *r_showtris;
+convar_t         *r_trisColor;
+convar_t         *r_showsky;
+convar_t         *r_shownormals;
+convar_t         *r_normallength;
+convar_t         *r_showmodelbounds;
+convar_t         *r_finish;
+convar_t         *r_clear;
+convar_t         *r_swapInterval;
+convar_t         *r_textureMode;
+convar_t         *r_textureAnisotropy;
+convar_t         *r_offsetFactor;
+convar_t         *r_offsetUnits;
+convar_t         *r_gamma;
+convar_t         *r_intensity;
+convar_t         *r_lockpvs;
+convar_t         *r_noportals;
+convar_t         *r_portalOnly;
 
-cvar_t         *r_subdivisions;
-cvar_t         *r_lodCurveError;
+convar_t         *r_subdivisions;
+convar_t         *r_lodCurveError;
 
-cvar_t         *r_fullscreen;
+convar_t         *r_fullscreen;
 
-cvar_t         *r_customwidth;
-cvar_t         *r_customheight;
-cvar_t         *r_customaspect;
+convar_t         *r_customwidth;
+convar_t         *r_customheight;
+convar_t         *r_customaspect;
 
-cvar_t         *r_overBrightBits;
-cvar_t         *r_mapOverBrightBits;
+convar_t         *r_overBrightBits;
+convar_t         *r_mapOverBrightBits;
 
-cvar_t         *r_debugSurface;
-cvar_t         *r_simpleMipMaps;
+convar_t         *r_debugSurface;
+convar_t         *r_simpleMipMaps;
 
-cvar_t         *r_showImages;
+convar_t         *r_showImages;
 
-cvar_t         *r_ambientScale;
-cvar_t         *r_directedScale;
-cvar_t         *r_debugLight;
-cvar_t         *r_debugSort;
-cvar_t         *r_printShaders;
-cvar_t         *r_saveFontData;
+convar_t         *r_ambientScale;
+convar_t         *r_directedScale;
+convar_t         *r_debugLight;
+convar_t         *r_debugSort;
+convar_t         *r_printShaders;
+convar_t         *r_saveFontData;
 
 // Ridah
-cvar_t         *r_cache;
-cvar_t         *r_cacheShaders;
-cvar_t         *r_cacheModels;
+convar_t         *r_cache;
+convar_t         *r_cacheShaders;
+convar_t         *r_cacheModels;
 
-cvar_t         *r_cacheGathering;
+convar_t         *r_cacheGathering;
 
-cvar_t         *r_buildScript;
+convar_t         *r_buildScript;
 
-cvar_t         *r_bonesDebug;
+convar_t         *r_bonesDebug;
 
 // done.
 
 // Rafael - wolf fog
-cvar_t         *r_wolffog;
+convar_t         *r_wolffog;
 
 // done
 
-cvar_t         *r_highQualityVideo;
-cvar_t         *r_rmse;
+convar_t         *r_highQualityVideo;
+convar_t         *r_rmse;
 
-cvar_t         *r_maxpolys;
+convar_t         *r_maxpolys;
 int             max_polys;
-cvar_t         *r_maxpolyverts;
+convar_t         *r_maxpolyverts;
 int             max_polyverts;
 
 vec4hack_t      tess_xyz[SHADER_MAX_VERTEXES];
@@ -257,7 +257,7 @@ MAX_PN_TRIANGLES_TESSELATION_LEVEL_ATI	GetIntegerv Z+		1											-
 //----(SA)  end
 
 
-static void AssertCvarRange(cvar_t * cv, float minVal, float maxVal, qboolean shouldBeIntegral)
+static void AssertCvarRange(convar_t * cv, float minVal, float maxVal, qboolean shouldBeIntegral)
 {
 	if(shouldBeIntegral)
 	{
@@ -935,7 +935,7 @@ GfxInfo_f
 */
 void GfxInfo_f(void)
 {
-	cvar_t         *sys_cpustring = ri.Cvar_Get("sys_cpustring", "", 0);
+	convar_t         *sys_cpustring = ri.Cvar_Get("sys_cpustring", "", 0);
 	const char     *enablestrings[] = {
 		"disabled",
 		"enabled"

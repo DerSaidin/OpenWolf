@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    include <mysql/mysql.h>
 #endif
 
-extern cvar_t *db_enable;
+extern convar_t *db_enable;
 
 #define MAX_QUERYS_RESULTS 100
 

@@ -563,7 +563,7 @@ void CM_TracePointThroughSurfaceCollide(traceWork_t * tw, const cSurfaceCollide_
 	const cPlane_t *planes;
 	const cFacet_t *facet;
 	int             i, j, k;
-	static cvar_t  *cv;
+	static convar_t  *cv;
 
 	if(!tw->isPoint) {
 		return;
@@ -617,7 +617,7 @@ void CM_TracePointThroughSurfaceCollide(traceWork_t * tw, const cSurfaceCollide_
 		if(j == facet->numBorders) {
 			// we hit this facet
 			if(!cv) {
-				cv = Cvar_Get("r_debugSurfaceUpdate", "1", 0);
+				cv = Cvar_Get("r_debugSurfaceUpdate", "1", 0, "test");
 			}
 
 			if(cv->integer) {
@@ -703,7 +703,7 @@ void CM_TraceThroughSurfaceCollide(traceWork_t * tw, const cSurfaceCollide_t * s
 	cPlane_t       *planes;
 	cFacet_t       *facet;
 	vec3_t          startp, endp;
-	static cvar_t  *cv;
+	static convar_t  *cv;
 
 	if(!CM_BoundsIntersect(tw->bounds[0], tw->bounds[1], sc->bounds[0], sc->bounds[1])) {
 		return;
@@ -809,7 +809,7 @@ void CM_TraceThroughSurfaceCollide(traceWork_t * tw, const cSurfaceCollide_t * s
 				}
 
 				if(!cv) {
-					cv = Cvar_Get("r_debugSurfaceUpdate", "1", 0);
+					cv = Cvar_Get("r_debugSurfaceUpdate", "1", 0, "test");
 				}
 				if(cv && cv->integer) {
 					debugSurfaceCollide = sc;
@@ -2100,7 +2100,7 @@ Called from the renderer
 ==================
 */
 void CM_DrawDebugSurface(void (*drawPoly) (int color, int numPoints, float *points)) {
-	static cvar_t           *cv, *cv2;
+	static convar_t           *cv, *cv2;
 	const cSurfaceCollide_t *pc;
 	cFacet_t                *facet;
 	winding_t               *w;
@@ -2108,7 +2108,7 @@ void CM_DrawDebugSurface(void (*drawPoly) (int color, int numPoints, float *poin
 	float                    plane[4];
 
 	if(!cv2) {
-		cv2 = Cvar_Get("r_debugSurface", "0", 0);
+		cv2 = Cvar_Get("r_debugSurface", "0", 0, "test");
 	}
 
 	if(!debugSurfaceCollide) {
@@ -2116,7 +2116,7 @@ void CM_DrawDebugSurface(void (*drawPoly) (int color, int numPoints, float *poin
 	}
 
 	if(!cv) {
-		cv = Cvar_Get("cm_debugSize", "2", 0);
+		cv = Cvar_Get("cm_debugSize", "2", 0, "test");
 	}
 
 	pc = debugSurfaceCollide;

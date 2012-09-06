@@ -72,30 +72,30 @@ typedef struct {
 
 console_t       con;
 
-cvar_t         *con_debug;
-cvar_t         *con_conspeed;
-cvar_t         *con_notifytime;
-cvar_t         *con_autoclear;
+convar_t         *con_debug;
+convar_t         *con_conspeed;
+convar_t         *con_notifytime;
+convar_t         *con_autoclear;
 
 // Color and alpha for console
-cvar_t		*scr_conUseShader;
+convar_t		*scr_conUseShader;
 
-cvar_t		*scr_conColorAlpha;
-cvar_t		*scr_conColorRed;
-cvar_t		*scr_conColorBlue;
-cvar_t		*scr_conColorGreen;
+convar_t		*scr_conColorAlpha;
+convar_t		*scr_conColorRed;
+convar_t		*scr_conColorBlue;
+convar_t		*scr_conColorGreen;
 
 // Color and alpha for bar under console
-cvar_t		*scr_conBarHeight;
+convar_t		*scr_conBarHeight;
 
-cvar_t		*scr_conBarColorAlpha;
-cvar_t		*scr_conBarColorRed;
-cvar_t		*scr_conBarColorBlue;
-cvar_t		*scr_conBarColorGreen;
+convar_t		*scr_conBarColorAlpha;
+convar_t		*scr_conBarColorRed;
+convar_t		*scr_conBarColorBlue;
+convar_t		*scr_conBarColorGreen;
 
-cvar_t		*scr_conUseOld;
-cvar_t		*scr_conBarSize;
-cvar_t		*scr_conHeight;
+convar_t		*scr_conUseOld;
+convar_t		*scr_conBarSize;
+convar_t		*scr_conHeight;
 
 vec4_t          console_highlightcolor = { 0.5, 0.5, 0.2, 0.45 };
 
@@ -513,31 +513,31 @@ void Con_Init(void)
 {
 	Com_Printf("\n----- Console Initialization -------\n");
 
-	con_notifytime = Cvar_Get("con_notifytime", "7", 0);	// JPW NERVE increased per id req for obits
-	con_conspeed = Cvar_Get("scr_conspeed", "3", 0);
-	con_debug = Cvar_Get("con_debug", "0", CVAR_ARCHIVE);	//----(SA)    added
-	con_autoclear = Cvar_Get("con_autoclear", "1", CVAR_ARCHIVE);
+	con_notifytime = Cvar_Get("con_notifytime", "7", 0, "test");	// JPW NERVE increased per id req for obits
+	con_conspeed = Cvar_Get("scr_conspeed", "3", 0, "test");
+	con_debug = Cvar_Get("con_debug", "0", CVAR_ARCHIVE, "test");	//----(SA)    added
+	con_autoclear = Cvar_Get("con_autoclear", "1", CVAR_ARCHIVE, "test");
 	
 	// Defines cvar for color and alpha for console/bar under console
-	scr_conUseShader = Cvar_Get ("scr_conUseShader", "0", CVAR_ARCHIVE);
+	scr_conUseShader = Cvar_Get ("scr_conUseShader", "0", CVAR_ARCHIVE, "test");
 	
-	scr_conColorAlpha = Cvar_Get ("scr_conColorAlpha", "0.5", CVAR_ARCHIVE);
-	scr_conColorRed = Cvar_Get ("scr_conColorRed", "0", CVAR_ARCHIVE);
-	scr_conColorBlue = Cvar_Get ("scr_conColorBlue", "0.3", CVAR_ARCHIVE);
-	scr_conColorGreen = Cvar_Get ("scr_conColorGreen", "0.23", CVAR_ARCHIVE);
+	scr_conColorAlpha = Cvar_Get ("scr_conColorAlpha", "0.5", CVAR_ARCHIVE, "test");
+	scr_conColorRed = Cvar_Get ("scr_conColorRed", "0", CVAR_ARCHIVE, "test");
+	scr_conColorBlue = Cvar_Get ("scr_conColorBlue", "0.3", CVAR_ARCHIVE, "test");
+	scr_conColorGreen = Cvar_Get ("scr_conColorGreen", "0.23", CVAR_ARCHIVE, "test");
 	
-	scr_conUseOld = Cvar_Get ("scr_conUseOld", "0", CVAR_ARCHIVE);
+	scr_conUseOld = Cvar_Get ("scr_conUseOld", "0", CVAR_ARCHIVE, "test");
 	
-	scr_conBarHeight = Cvar_Get ("scr_conBarHeight", "2", CVAR_ARCHIVE);
+	scr_conBarHeight = Cvar_Get ("scr_conBarHeight", "2", CVAR_ARCHIVE, "test");
 	
-	scr_conBarColorAlpha = Cvar_Get ("scr_conBarColorAlpha", "0.3", CVAR_ARCHIVE);
-	scr_conBarColorRed = Cvar_Get ("scr_conBarColorRed", "1", CVAR_ARCHIVE);
-	scr_conBarColorBlue = Cvar_Get ("scr_conBarColorBlue", "1", CVAR_ARCHIVE);
-	scr_conBarColorGreen = Cvar_Get ("scr_conBarColorGreen", "1", CVAR_ARCHIVE);
+	scr_conBarColorAlpha = Cvar_Get ("scr_conBarColorAlpha", "0.3", CVAR_ARCHIVE, "test");
+	scr_conBarColorRed = Cvar_Get ("scr_conBarColorRed", "1", CVAR_ARCHIVE, "test");
+	scr_conBarColorBlue = Cvar_Get ("scr_conBarColorBlue", "1", CVAR_ARCHIVE, "test");
+	scr_conBarColorGreen = Cvar_Get ("scr_conBarColorGreen", "1", CVAR_ARCHIVE, "test");
 	
-	scr_conHeight = Cvar_Get ("scr_conHeight", "50", CVAR_ARCHIVE);
+	scr_conHeight = Cvar_Get ("scr_conHeight", "50", CVAR_ARCHIVE, "test");
 	
-	scr_conBarSize = Cvar_Get ("scr_conBarSize", "2", CVAR_ARCHIVE);
+	scr_conBarSize = Cvar_Get ("scr_conBarSize", "2", CVAR_ARCHIVE, "test");
 
 	// Done defining cvars for console colors
 	
@@ -1183,7 +1183,7 @@ void Con_DrawSolidConsole( float frac ) {
 
 	re.SetColor( NULL );
 }
-extern cvar_t  *con_drawnotify;
+extern convar_t  *con_drawnotify;
 
 /*
 ==================

@@ -78,10 +78,10 @@ int			s_numSfx = 0;
 #define		LOOP_HASH		128
 static	sfx_t		*sfxHash[LOOP_HASH];
 
-cvar_t		*s_testsound;
-cvar_t		*s_show;
-cvar_t		*s_mixahead;
-cvar_t		*s_mixPreStep;
+convar_t		*s_testsound;
+convar_t		*s_show;
+convar_t		*s_mixahead;
+convar_t		*s_mixPreStep;
 
 static loopSound_t		loopSounds[MAX_GENTITIES];
 static	channel_t		*freelist = NULL;

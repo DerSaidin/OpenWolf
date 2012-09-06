@@ -38,11 +38,11 @@ Maryland 20850 USA.
 
 qboolean        scr_initialized;	// ready to draw
 
-cvar_t         *cl_timegraph;
-cvar_t         *cl_debuggraph;
-cvar_t         *cl_graphheight;
-cvar_t         *cl_graphscale;
-cvar_t         *cl_graphshift;
+convar_t         *cl_timegraph;
+convar_t         *cl_debuggraph;
+convar_t         *cl_graphheight;
+convar_t         *cl_graphscale;
+convar_t         *cl_graphshift;
 
 /*
 ================
@@ -565,11 +565,11 @@ SCR_Init
 */
 void SCR_Init(void)
 {
-	cl_timegraph = Cvar_Get("timegraph", "0", CVAR_CHEAT);
-	cl_debuggraph = Cvar_Get("debuggraph", "0", CVAR_CHEAT);
-	cl_graphheight = Cvar_Get("graphheight", "32", CVAR_CHEAT);
-	cl_graphscale = Cvar_Get("graphscale", "1", CVAR_CHEAT);
-	cl_graphshift = Cvar_Get("graphshift", "0", CVAR_CHEAT);
+	cl_timegraph = Cvar_Get("timegraph", "0", CVAR_CHEAT, "test");
+	cl_debuggraph = Cvar_Get("debuggraph", "0", CVAR_CHEAT, "test");
+	cl_graphheight = Cvar_Get("graphheight", "32", CVAR_CHEAT, "test");
+	cl_graphscale = Cvar_Get("graphscale", "1", CVAR_CHEAT, "test");
+	cl_graphshift = Cvar_Get("graphshift", "0", CVAR_CHEAT, "test");
 
 	scr_initialized = qtrue;
 }
@@ -695,7 +695,7 @@ void SCR_UpdateScreen(void)
 	if( uivm || com_dedicated->integer )
 	{
 		// XXX
-		extern cvar_t* r_anaglyphMode;
+		extern convar_t* r_anaglyphMode;
 		// if running in stereo, we need to draw the frame twice
 		if(cls.glconfig.stereoEnabled) {
 			SCR_DrawScreenField( STEREO_LEFT );

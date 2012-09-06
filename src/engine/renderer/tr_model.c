@@ -51,7 +51,7 @@ qboolean R_LoadMD5(model_t * mod, void *buffer, int bufferSize, const char *name
 
 model_t        *loadmodel;
 
-extern cvar_t  *r_buildScript;
+extern convar_t  *r_buildScript;
 
 /*
 ** R_GetModelByHandle

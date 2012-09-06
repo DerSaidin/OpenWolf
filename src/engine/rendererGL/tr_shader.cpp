@@ -1063,34 +1063,35 @@ static genFunc_t NameToGenFunc(const char *funcname)
 NameToStencilOp
 ===============
 */
-static int NameToStencilOp( char *name )
+static int NameToStencilOp(char *name)
 {
-	if ( !Q_stricmp( name, "keep" ) )
+	if (!Q_stricmp(name, "keep"))
 	{
 		return STO_KEEP;
 	}
-	else if ( !Q_stricmp( name, "zero" ) )
+	else if (!Q_stricmp(name, "zero"))
 	{
 		return STO_ZERO;
 	}
-	else if ( !Q_stricmp( name, "replace" ) )
+	else if (!Q_stricmp(name, "replace"))
 	{
 		return STO_REPLACE;
 	}
-	else if ( !Q_stricmp( name, "invert" ) )
+	else if (!Q_stricmp(name, "invert"))
 	{
 		return STO_INVERT;
 	}
-	else if ( !Q_stricmp( name, "incr" ) )
+	else if (!Q_stricmp(name, "incr"))
 	{
 		return STO_INCR;
 	}
-	else if ( !Q_stricmp( name, "decr" ) )
+	else if (!Q_stricmp(name, "decr"))
 	{
 		return STO_DECR;
 	}
-	else {
-		ri.Printf( PRINT_WARNING, "WARNING: invalid stencil op name '%s' in shader '%s'\n", name, shader.name );
+	else
+	{
+		ri.Printf(PRINT_WARNING, "WARNING: invalid stencil op name '%s' in shader '%s'\n", name, shader.name);
 		return STO_KEEP;
 	}
 }
@@ -1111,13 +1112,13 @@ static void ParseStencil( char **text, stencil_t *stencil )
 	// [mask <mask>]
 	token = COM_ParseExt( text, qfalse );
 
-	if ( token[ 0 ] == 0 )
+	if (token[ 0 ] == 0)
 	{
 		ri.Printf( PRINT_WARNING, "WARNING: missing stencil ref value in shader '%s'\n", shader.name );
 		return;
 	}
 
-	if ( !Q_stricmp( token, "mask" ) ) {
+	if (!Q_stricmp(token, "mask")) {
 		token = COM_ParseExt( text, qfalse );
 		if ( token[ 0 ] == 0 )
 		{
@@ -1129,23 +1130,23 @@ static void ParseStencil( char **text, stencil_t *stencil )
 		token = COM_ParseExt( text, qfalse );
 	}
 
-        if ( token[ 0 ] == 0 )
-        {
-                ri.Printf( PRINT_WARNING, "WARNING: missing stencil ref value in shader '%s'\n", shader.name );
-                return;
-        }
+	if (token[ 0 ] == 0)
+	{
+		ri.Printf(PRINT_WARNING, "WARNING: missing stencil ref value in shader '%s'\n", shader.name);
+		return;
+	}
 
-        if ( !Q_stricmp( token, "writeMask" ) ) {
-                token = COM_ParseExt( text, qfalse );
-                if ( token[ 0 ] == 0 )
-                {
-                        ri.Printf( PRINT_WARNING, "WARNING: missing stencil writeMask value in shader '%s'\n", shader.name );
-                        return;
-                }
-                stencil->writeMask = atoi(token);
+	if (!Q_stricmp(token, "writeMask")) {
+		token = COM_ParseExt(text, qfalse);
+		if (token[ 0 ] == 0)
+		{
+			ri.Printf(PRINT_WARNING, "WARNING: missing stencil writeMask value in shader '%s'\n", shader.name);
+			return;
+		}
+		stencil->writeMask = atoi(token);
 
-                token = COM_ParseExt( text, qfalse );
-        }
+		token = Com_ParseExt( text, qfalse );
+	}
 
 	// <ref>
 	if ( token[ 0 ] == 0 )
@@ -1164,73 +1165,73 @@ static void ParseStencil( char **text, stencil_t *stencil )
 		ri.Printf( PRINT_WARNING, "WARNING: missing stencil test op in shader '%s'\n", shader.name );
 		return;
 	}
-	else if ( !Q_stricmp( token, "always" ) )
+	else if (!Q_stricmp( token, "always"))
 	{
 		stencil->flags |= STF_ALWAYS;
 	}
-	else if ( !Q_stricmp( token, "never" ) )
+	else if (!Q_stricmp( token, "never"))
 	{
 		stencil->flags |= STF_NEVER;
 	}
-	else if ( !Q_stricmp( token, "less" ) )
+	else if (!Q_stricmp( token, "less"))
 	{
 		stencil->flags |= STF_LESS;
 	}
-	else if ( !Q_stricmp( token, "lequal" ) )
+	else if (!Q_stricmp( token, "lequal"))
 	{
 		stencil->flags |= STF_LEQUAL;
 	}
-	else if ( !Q_stricmp( token, "greater" ) )
+	else if (!Q_stricmp( token, "greater"))
 	{
 		stencil->flags |= STF_GREATER;
 	}
-	else if ( !Q_stricmp( token, "gequal" ) )
+	else if (!Q_stricmp( token, "gequal"))
 	{
 		stencil->flags |= STF_GEQUAL;
 	}
-	else if ( !Q_stricmp( token, "equal" ) )
+	else if (!Q_stricmp( token, "equal"))
 	{
 		stencil->flags |= STF_EQUAL;
 	}
-	else if ( !Q_stricmp( token, "nequal" ) )
+	else if (!Q_stricmp( token, "nequal"))
 	{
 		stencil->flags |= STF_NEQUAL;
 	}
 	else
 	{
-		ri.Printf( PRINT_WARNING, "WARNING: missing stencil test op in shader '%s'\n", shader.name );
+		ri.Printf(PRINT_WARNING, "WARNING: missing stencil test op in shader '%s'\n", shader.name);
 		return;
 	}
 
 	// <sfail>
 	token = COM_ParseExt( text, qfalse );
 
-	if ( token[ 0 ] == 0 )
+	if (token[ 0 ] == 0)
 	{
-		ri.Printf( PRINT_WARNING, "WARNING: missing stencil sfail op in shader '%s'\n", shader.name );
+		ri.Printf(PRINT_WARNING, "WARNING: missing stencil sfail op in shader '%s'\n", shader.name);
 		return;
 	}
-	stencil->flags |= NameToStencilOp( token ) << STS_SFAIL;
+	stencil->flags |= NameToStencilOp(token) << STS_SFAIL;
 
 	// <zfail>
 	token = COM_ParseExt( text, qfalse );
 
-	if ( token[ 0 ] == 0 )
+	if (token[ 0 ] == 0)
 	{
-		ri.Printf( PRINT_WARNING, "WARNING: missing stencil zfail op in shader '%s'\n", shader.name );
+		ri.Printf(PRINT_WARNING, "WARNING: missing stencil zfail op in shader '%s'\n", shader.name);
 		return;
 	}
-	stencil->flags |= NameToStencilOp( token ) << STS_ZFAIL;
+	stencil->flags |= NameToStencilOp(token) << STS_ZFAIL;
 
 	// <zpass>
 	token = COM_ParseExt( text, qfalse );
 
-	if ( token[ 0 ] == 0 )
+	if (token[ 0 ] == 0)
 	{
-		ri.Printf( PRINT_WARNING, "WARNING: missing stencil zpass op in shader '%s'\n", shader.name );
+		ri.Printf(PRINT_WARNING, "WARNING: missing stencil zpass op in shader '%s'\n", shader.name);
 		return;
 	}
-	stencil->flags |= NameToStencilOp( token ) << STS_ZPASS;
+	stencil->flags |= NameToStencilOp(token) << STS_ZPASS;
 }
 
 /*
@@ -6559,7 +6560,8 @@ static void ScanAndLoadShaderFiles(void)
 	}
 
 	// build single large buffer
-	for(i = 0; i < numShaderFiles; i++) {
+	for(i = 0; i < numShaderFiles; i++)
+	{
 		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i]);
 		sum += ri.FS_ReadFile(filename, NULL);
 	}
@@ -6573,16 +6575,18 @@ static void ScanAndLoadShaderFiles(void)
 	for ( i = 0; i < numShaderFiles; i++ )
 	{
 #if defined(COMPAT_Q3A) || defined(COMPAT_ET)
-		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i] );
+		Com_sprintf(filename, sizeof(filename), "scripts/%s", shaderFiles[i]);
 #else
 		Com_sprintf(filename, sizeof(filename), "materials/%s", shaderFiles[i]);
 #endif
 
-		ri.Printf( PRINT_DEVELOPER, "...loading '%s'\n", filename );
-		summand = ri.FS_ReadFile( filename, (void **)&buffers[i] );
+		ri.Printf(PRINT_DEVELOPER, "...loading '%s'\n", filename);
+		summand = ri.FS_ReadFile(filename, (void **)&buffers[i]);
 
-		if ( !buffers[i] )
-			ri.Error( ERR_DROP, "Couldn't load %s", filename );
+		if(!buffers[i])
+		{
+			ri.Error(ERR_DROP, "Couldn't load %s", filename);
+		}
 
 		p = buffers[i];
 		while(1) {
@@ -6712,10 +6716,11 @@ static void ScanAndLoadShaderFiles(void)
 
 	hashMem = (char*)ri.Hunk_Alloc(size * sizeof(char *), h_low);
 
-	for (i = 0; i < MAX_SHADERTEXT_HASH; i++) {
-		shaderTextHashTable[i] = (char **) hashMem;
-		hashMem = ((char *) hashMem) + ((shaderTextHashTableSizes[i] + 1) * sizeof(char *));
- 	}
+	for(i = 0; i < MAX_SHADERTEXT_HASH; i++)
+	{
+		shaderTextHashTable[i] = (char **)hashMem;
+		hashMem = ((char *)hashMem) + ((shaderTextHashTableSizes[i] + 1) * sizeof(char *));
+	}
 
 	Com_Memset(shaderTextHashTableSizes, 0, sizeof(shaderTextHashTableSizes));
 

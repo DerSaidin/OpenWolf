@@ -3934,7 +3934,7 @@ void Tess_StageIteratorGeneric()
 			continue;
 		}
 
-#if 1
+#if defined(COMPAT_ET)
 		// Ridah, per stage fogging (detail textures)
 		if(tess.surfaceShader->noFog && pStage->isFogged)
 		{

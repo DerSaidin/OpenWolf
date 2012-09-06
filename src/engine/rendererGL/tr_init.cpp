@@ -493,9 +493,9 @@ void GL_CheckErrors_(const char *fileName, int line)
 */
 typedef struct vidmode_s
 {
-	const char *description;
-	int        width, height;
-	float      pixelAspect; // pixel width / height
+	const char     *description;
+	int             width, height;
+	float           pixelAspect;	// pixel width / height
 } vidmode_t;
 
 static const vidmode_t r_vidModes[] =
@@ -521,9 +521,9 @@ static const vidmode_t r_vidModes[] =
 	{ "2048x1536",         2048, 1536, 1 },
 	{ "2560x1600 (16:10)", 2560, 1600, 1 },
 };
-static const int s_numVidModes = ( sizeof( r_vidModes ) / sizeof( r_vidModes[ 0 ] ) );
+static const int s_numVidModes = (sizeof(r_vidModes) / sizeof(r_vidModes[0]));
 
-qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode )
+qboolean R_GetModeInfo(int *width, int *height, float *windowAspect, int mode)
 {
 	const vidmode_t *vm;
 
@@ -549,11 +549,11 @@ qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode )
 	}
 	else
 	{
-		vm = &r_vidModes[ mode ];
+		vm = &r_vidModes[mode];
 
 		*width = vm->width;
 		*height = vm->height;
-		*windowAspect = ( float ) vm->width / ( vm->height * vm->pixelAspect );
+		*windowAspect = (float)vm->width / (vm->height * vm->pixelAspect);
 	}
 
 	return qtrue;
@@ -562,18 +562,18 @@ qboolean R_GetModeInfo( int *width, int *height, float *windowAspect, int mode )
 /*
 ** R_ModeList_f
 */
-static void R_ModeList_f( void )
+static void R_ModeList_f(void)
 {
-	int i;
+	int             i;
 
-	ri.Printf( PRINT_ALL, "\n" );
+	ri.Printf(PRINT_ALL, "\n");
 
-	for ( i = 0; i < s_numVidModes; i++ )
+	for(i = 0; i < s_numVidModes; i++)
 	{
-		ri.Printf( PRINT_ALL, "Mode %-2d: %s\n", i, r_vidModes[ i ].description );
+		ri.Printf(PRINT_ALL, "Mode %-2d: %s\n", i, r_vidModes[i].description);
 	}
 
-	ri.Printf( PRINT_ALL, "\n" );
+	ri.Printf(PRINT_ALL, "\n");
 }
 
 

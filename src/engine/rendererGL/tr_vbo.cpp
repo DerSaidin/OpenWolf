@@ -33,8 +33,8 @@ VBO_t          *R_CreateVBO(const char *name, byte *vertexes, int vertexesSize, 
 	// TODO
 	return NULL;
 #else
-	VBO_t *vbo;
-	int   glUsage;
+	VBO_t          *vbo;
+	int             glUsage;
 
 	switch (usage)
 	{
@@ -51,9 +51,9 @@ VBO_t          *R_CreateVBO(const char *name, byte *vertexes, int vertexesSize, 
 			Com_Error(ERR_FATAL, "bad vboUsage_t given: %i", usage);
 	}
 
-	if ( strlen( name ) >= MAX_QPATH )
+	if(strlen(name) >= MAX_QPATH)
 	{
-		ri.Error( ERR_DROP, "R_CreateVBO: \"%s\" is too long\n", name );
+		ri.Error(ERR_DROP, "R_CreateVBO: \"%s\" is too long\n", name);
 	}
 
 	// make sure the render thread is stopped
@@ -462,7 +462,7 @@ R_BindNullVBO
 */
 void R_BindNullVBO(void)
 {
-	GLimp_LogComment( "--- R_BindNullVBO ---\n" );
+	GLimp_LogComment("--- R_BindNullVBO ---\n");
 
 #if defined(USE_D3D10)
 	// TODO
@@ -516,9 +516,9 @@ void R_BindIBO(IBO_t * ibo)
 R_BindNullIBO
 ============
 */
-void R_BindNullIBO( void )
+void R_BindNullIBO(void)
 {
-	GLimp_LogComment( "--- R_BindNullIBO ---\n" );
+	GLimp_LogComment("--- R_BindNullIBO ---\n");
 
 #if defined(USE_D3D10)
 	// TODO
@@ -698,20 +698,20 @@ void R_ShutdownVBOs(void)
 			{
 				srfVBOMesh_t *vboSurf;
 
-				vboSurf = ( srfVBOMesh_t * ) Com_GrowListElement( &tr.world->clusterVBOSurfaces[ j ], i );
+				vboSurf = (srfVBOMesh_t *) Com_GrowListElement(&tr.world->clusterVBOSurfaces[j], i);
 				ibo = vboSurf->ibo;
 
 #if defined(USE_D3D10)
 		// TODO
 #else
-				if ( ibo->indexesVBO )
+				if(ibo->indexesVBO)
 				{
 					glDeleteBuffers( 1, &ibo->indexesVBO );
 				}
 #endif
 			}
 
-			Com_DestroyGrowList( &tr.world->clusterVBOSurfaces[ j ] );
+			Com_DestroyGrowList(&tr.world->clusterVBOSurfaces[j]);
 		}
 	}
 

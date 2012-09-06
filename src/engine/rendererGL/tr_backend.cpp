@@ -1672,7 +1672,7 @@ static void Render_lightVolume(interaction_t * ia)
 			vec3_t          viewOrigin;
 			vec3_t          lightOrigin;
 			vec4_t          lightColor;
-			bool			shadowCompare;
+			bool            shadowCompare;
 
 			GLimp_LogComment("--- Render_lightVolume_omni ---\n");
 
@@ -8102,7 +8102,7 @@ static void IssueEntityMultiOcclusionQueries(link_t * multiQueue, link_t * indiv
 
 static bool EntityOcclusionResultAvailable(trRefEntity_t *entity)
 {
-	GLint			available;
+	GLint           available;
 
 	if(entity->occlusionQueryObject > 0)
 	{
@@ -8118,14 +8118,14 @@ static bool EntityOcclusionResultAvailable(trRefEntity_t *entity)
 		return available;
 	}
 
-	return qtrue;
+	return true;
 }
 
 static void GetEntityOcclusionQueryResult(trRefEntity_t *entity)
 {
-	link_t			*l, *sentinel;
-	int			     ocSamples;
-	GLint			 available;
+	link_t         *l, *sentinel;
+	int             ocSamples;
+	GLint           available;
 
 	GLimp_LogComment("--- GetEntityOcclusionQueryResult ---\n");
 
@@ -8583,8 +8583,8 @@ static void RB_RenderDebugUtils()
 		vec4_t          lightColor;
 		vec4_t          quadVerts[4];
 
-		vec3_t			minSize = {-2, -2, -2};
-		vec3_t			maxSize = { 2,  2,  2};
+		vec3_t          minSize = {-2, -2, -2};
+		vec3_t          maxSize = { 2,  2,  2};
 
 		gl_genericShader->DisableAlphaTesting();
 		gl_genericShader->DisablePortalClipping();

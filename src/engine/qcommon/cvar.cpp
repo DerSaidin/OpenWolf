@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -1054,7 +1055,7 @@ Cvar_List_f
 void Cvar_List_f(void)
 {
 	convar_t         *var;
-	int             i;
+	int             i = 0;
 	char           *match;
 
 	if(Cmd_Argc() > 1)
@@ -1066,7 +1067,6 @@ void Cvar_List_f(void)
 		match = NULL;
 	}
 
-	i = 0;
 	for(var = cvar_vars; var; var = var->next, i++)
 	{
 		if(match && !Com_Filter(match, var->name, qfalse))
@@ -1131,7 +1131,7 @@ void Cvar_List_f(void)
 			Com_Printf(" ");
 		}
 
-		Com_Printf(" %s \"%s\" %s\n", var->name, var->string, var->description);
+		Com_Printf("    %-32s \"%-48s\"^7\"%5s^7\"\n", var->name, var->string, var->description);
 	}
 
 	Com_Printf("\n%i total cvars\n", i);
@@ -1372,25 +1372,25 @@ Reads in all archived cvars
 */
 void Cvar_Init(void)
 {
-	cvar_cheats = Cvar_Get("sv_cheats", "1", CVAR_ROM | CVAR_SYSTEMINFO, "test");
+	cvar_cheats = Cvar_Get("sv_cheats", "1", CVAR_ROM | CVAR_SYSTEMINFO, "Allow or disallow cheats on server.");
 
-	Cmd_AddCommand("toggle", Cvar_Toggle_f, "test");
+	Cmd_AddCommand("toggle", Cvar_Toggle_f, "^1Toggles a console variable's values (use for more info).");
 	Cmd_SetCommandCompletionFunc( "toggle", Cvar_CompleteCvarName );
-	Cmd_AddCommand("cycle", Cvar_Cycle_f, "test");	// ydnar
+	Cmd_AddCommand("cycle", Cvar_Cycle_f, "^1Cycles a cvar for easy single key binding.");
 	Cmd_SetCommandCompletionFunc( "cycle", Cvar_CompleteCvarName );
-	Cmd_AddCommand("set", Cvar_Set_f, "test");
+	Cmd_AddCommand("set", Cvar_Set_f, "^1Create or change the value of a console variable.");
 	Cmd_SetCommandCompletionFunc( "set", Cvar_CompleteCvarName );
-	Cmd_AddCommand("sets", Cvar_SetS_f, "test");
+	Cmd_AddCommand("sets", Cvar_SetS_f, "^1Create or change the value of a serverinfo variable.");
 	Cmd_SetCommandCompletionFunc( "sets", Cvar_CompleteCvarName );
-	Cmd_AddCommand("setu", Cvar_SetU_f, "test");
+	Cmd_AddCommand("setu", Cvar_SetU_f, "^1Create or change the value of a userinfo variable.");
 	Cmd_SetCommandCompletionFunc( "setu", Cvar_CompleteCvarName );
-	Cmd_AddCommand("seta", Cvar_SetA_f, "test");
+	Cmd_AddCommand("seta", Cvar_SetA_f, "^1Create or change the value of a archive variable.");
 	Cmd_SetCommandCompletionFunc( "seta", Cvar_CompleteCvarName );
-	Cmd_AddCommand("reset", Cvar_Reset_f, "test");
+	Cmd_AddCommand("reset", Cvar_Reset_f, "^1Reset any type variable to initial value.");
 	Cmd_SetCommandCompletionFunc( "reset", Cvar_CompleteCvarName );
-	Cmd_AddCommand("cvarlist", Cvar_List_f, "test");
-	Cmd_AddCommand("cvar_restart", Cvar_Restart_f, "test");
+	Cmd_AddCommand("cvarlist", Cvar_List_f, "^1Display all console variables beginning with the specified prefix.");
+	Cmd_AddCommand("cvar_restart", Cvar_Restart_f, "^1Reset all console variables to their default values.");
 
 	// NERVE - SMF - can't rely on autoexec to do this
-	Cvar_Get("devdll", "1", CVAR_ROM, "test");
+	Cvar_Get("devdll", "1", CVAR_ROM, "^1test");
 }

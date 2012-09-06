@@ -2,6 +2,7 @@
 ===========================================================================
 Copyright (C) 1999-2005 Id Software, Inc.
 Copyright (C) 2005 Stuart Dalton (badcdev@gmail.com)
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of OpenWolf source code.
 
@@ -500,12 +501,12 @@ void S_Init( void )
 
 		S_CodecInit( );
 
-		Cmd_AddCommand( "play", S_Play_f, "test" );
-		Cmd_AddCommand( "music", S_Music_f, "test" );
-		Cmd_AddCommand( "stopmusic", S_StopMusic_f, "test" );
-		Cmd_AddCommand( "s_list", S_SoundList, "test" );
-		Cmd_AddCommand( "s_stop", S_StopAllSounds, "test" );
-		Cmd_AddCommand( "s_info", S_SoundInfo, "test" );
+		Cmd_AddCommand( "play", S_Play_f, "^1Plays specified music file (music music.wav)." );
+		Cmd_AddCommand( "music", S_Music_f, "^1Plays specified music file (music music.wav)." );
+		Cmd_AddCommand( "stopmusic", S_StopMusic_f, "^1Stop playing music file." );
+		Cmd_AddCommand( "s_list", S_SoundList, "^1Display paths and filenames of all sound files as they are played." );
+		Cmd_AddCommand( "s_stop", S_StopAllSounds, "^1Stop whatever sound that is currently playing from playing." );
+		Cmd_AddCommand( "s_info", S_SoundInfo, "^1Display information about sound system." );
 
 		cv = Cvar_Get( "s_useOpenAL", "1", CVAR_ARCHIVE, "test" );
 		if( cv->integer ) {

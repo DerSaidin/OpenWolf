@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -4993,68 +4994,68 @@ void CL_Init(void)
 	//
 	// register our commands
 	//
-	Cmd_AddCommand("cmd", CL_ForwardToServer_f, "test");
+	Cmd_AddCommand("cmd", CL_ForwardToServer_f, "^1Send a command to server remote console.");
 #if defined (GUIDMASTER_SUPPORT)
-	Cmd_AddCommand("getguid", CL_CmdGetGuid_f, "test");
+	Cmd_AddCommand("getguid", CL_CmdGetGuid_f, "^1Send request for generating to GUID server.");
 #endif
-	Cmd_AddCommand("configstrings", CL_Configstrings_f, "test");
-	Cmd_AddCommand("clientinfo", CL_Clientinfo_f, "test");
-	Cmd_AddCommand("snd_reload", CL_Snd_Reload_f, "test");
-	Cmd_AddCommand("snd_restart", CL_Snd_Restart_f, "test");
-	Cmd_AddCommand("vid_restart", CL_Vid_Restart_f, "test");
-	Cmd_AddCommand("ui_restart", CL_UI_Restart_f, "test");	// NERVE - SMF
-	Cmd_AddCommand("disconnect", CL_Disconnect_f, "test");
-	Cmd_AddCommand("record", CL_Record_f, "test");
-	Cmd_AddCommand("demo", CL_PlayDemo_f, "test");
+	Cmd_AddCommand("configstrings", CL_Configstrings_f, "^1List the current config strings in effec.t");
+	Cmd_AddCommand("clientinfo", CL_Clientinfo_f, "^1Display name, rate, number of snaps, player model, rail color, and handicap.");
+	Cmd_AddCommand("snd_reload", CL_Snd_Reload_f, "^1Reload sound system.");
+	Cmd_AddCommand("snd_restart", CL_Snd_Restart_f, "^1Reinitialize sound.");
+	Cmd_AddCommand("vid_restart", CL_Vid_Restart_f, "^1Reinitialize video.");
+	Cmd_AddCommand("ui_restart", CL_UI_Restart_f, "^11Reinitialize User Interface (UI).");
+	Cmd_AddCommand("disconnect", CL_Disconnect_f, "^1Disconnects you from server (local included).");
+	Cmd_AddCommand("record", CL_Record_f, "^1Records a demo.");
+	Cmd_AddCommand("demo", CL_PlayDemo_f, "^1Play demo.");
 	Cmd_SetCommandCompletionFunc( "demo", CL_CompleteDemoName );
-	Cmd_AddCommand("cinematic", CL_PlayCinematic_f, "test");
-	Cmd_AddCommand("stoprecord", CL_StopRecord_f, "test");
-	Cmd_AddCommand("connect", CL_Connect_f, "test");
-	Cmd_AddCommand("reconnect", CL_Reconnect_f, "test");
-	Cmd_AddCommand("localservers", CL_LocalServers_f, "test");
-	Cmd_AddCommand("globalservers", CL_GlobalServers_f, "test");
+	Cmd_AddCommand("cinematic", CL_PlayCinematic_f, "^1Play the OpenWolf movie RoQ files (cinematic intro.RoQ).");
+	Cmd_AddCommand("stoprecord", CL_StopRecord_f, "^1Stop recording a demo.");
+	Cmd_AddCommand("connect", CL_Connect_f, "^1Connect to server (connect xx.xxx.xx.xx) or (connect serverURL.com).");
+	Cmd_AddCommand("reconnect", CL_Reconnect_f, "^1Re-initialize the connection to the last server you were connected to.");
+	Cmd_AddCommand("localservers", CL_LocalServers_f, "^1List servers on LAN or local sub net only.");
+	Cmd_AddCommand("globalservers", CL_GlobalServers_f, "^1List public servers on the internet.");
 #if defined (USE_HTTP)
-	Cmd_AddCommand ("login", CL_Login_f, "test");
-	Cmd_AddCommand ("highscore", CL_Highscore_f, "test");
-	Cmd_AddCommand ("forgotpassword", CL_ForgotPassword_f, "test");
-	Cmd_AddCommand ("createcharacter", CL_CreateCharacter_f, "test");
-	Cmd_AddCommand ("deletecharacter", CL_DeleteCharacter_f, "test");
-	Cmd_AddCommand ("getaccount", CL_GetAccount_f, "test");
-	Cmd_AddCommand ("globalhighscores", CL_GlobalHighScores_f, "test");
+	Cmd_AddCommand ("login", CL_Login_f, "^1Login to URL.");
+	Cmd_AddCommand ("highscore", CL_Highscore_f, "^1Gets highscores results from the website.");
+	Cmd_AddCommand ("forgotpassword", CL_ForgotPassword_f, "^1Send forgot password request to URL.");
+	Cmd_AddCommand ("createcharacter", CL_CreateCharacter_f, "^1Create characer.");
+	Cmd_AddCommand ("deletecharacter", CL_DeleteCharacter_f, "^1Remove created character.");
+	Cmd_AddCommand ("getaccount", CL_GetAccount_f, "^1Get account from URL.");
+	Cmd_AddCommand ("globalhighscores", CL_GlobalHighScores_f, "^1Get highscores from URL.");
 #endif
-	Cmd_AddCommand("openurl", CL_OpenUrl_f, "test");
-	Cmd_AddCommand("rcon", CL_Rcon_f, "test");
-	Cmd_AddCommand("setenv", CL_Setenv_f, "test");
-	Cmd_AddCommand("ping", CL_Ping_f, "test");
-	Cmd_AddCommand("serverstatus", CL_ServerStatus_f, "test");
-	Cmd_AddCommand("showip", CL_ShowIP_f, "test");
-	Cmd_AddCommand("fs_openedList", CL_OpenedPK3List_f, "test");
-	Cmd_AddCommand("fs_referencedList", CL_ReferencedPK3List_f, "test");
+	Cmd_AddCommand("openurl", CL_OpenUrl_f, "^1Open URL.");
+	Cmd_AddCommand("rcon", CL_Rcon_f, "^1Start a remote console to a server.");
+	Cmd_AddCommand("setenv", CL_Setenv_f, "^1Sets environment variables.");
+	Cmd_AddCommand("ping", CL_Ping_f, "^1Manually ping a server (ping '<sv_hostname>' or by the IP address).");
+	Cmd_AddCommand("serverstatus", CL_ServerStatus_f, "^1Display the current status of the connected server as well as connected users and their slot number. if you specify an IP address it will display the status of a remote server.");
+	Cmd_AddCommand("showip", CL_ShowIP_f, "^1Display your current TCP/IP address.");
+	Cmd_AddCommand("fs_openedList", CL_OpenedPK3List_f, "^1Variable holds a list of all the pk3 files the client found.");
+	Cmd_AddCommand("fs_referencedList", CL_ReferencedPK3List_f, "^1Variable holds a list of all the pk3 files the client loaded data from.");
 
-	Cmd_AddCommand ("irc_connect", CL_OW_InitIRC, "test");
-	Cmd_AddCommand ("irc_quit", CL_OW_IRCInitiateShutdown, "test");
-	Cmd_AddCommand ("irc_say", CL_OW_IRCSay, "test");
+	Cmd_AddCommand ("irc_connect", CL_OW_InitIRC, "^1Connect at IRC server and chatroom.");
+	Cmd_AddCommand ("irc_quit", CL_OW_IRCInitiateShutdown, "^1Disconnect from IRC server.");
+	Cmd_AddCommand ("irc_say", CL_OW_IRCSay, "^1Talk at IRC chatroom.");
 
 	// Ridah, startup-caching system
-	Cmd_AddCommand("cache_startgather", CL_Cache_StartGather_f, "test");
-	Cmd_AddCommand("cache_usedfile", CL_Cache_UsedFile_f, "test");
-	Cmd_AddCommand("cache_setindex", CL_Cache_SetIndex_f, "test");
-	Cmd_AddCommand("cache_mapchange", CL_Cache_MapChange_f, "test");
-	Cmd_AddCommand("cache_endgather", CL_Cache_EndGather_f, "test");
+	Cmd_AddCommand("cache_startgather", CL_Cache_StartGather_f, "^1TODO - Add description.");
+	Cmd_AddCommand("cache_usedfile", CL_Cache_UsedFile_f, "^1TODO - Add description.");
+	Cmd_AddCommand("cache_setindex", CL_Cache_SetIndex_f, "^1TODO - Add description.");
+	Cmd_AddCommand("cache_mapchange", CL_Cache_MapChange_f, "^1TODO - Add description.");
+	Cmd_AddCommand("cache_endgather", CL_Cache_EndGather_f, "^1TODO - Add description.");
 
-	Cmd_AddCommand("updatehunkusage", CL_UpdateLevelHunkUsage, "test");
-	Cmd_AddCommand("updatescreen", SCR_UpdateScreen, "test");
+	Cmd_AddCommand("updatehunkusage", CL_UpdateLevelHunkUsage, "^1Use to update the hunkusage.dat file.");
+	Cmd_AddCommand("updatescreen", SCR_UpdateScreen, "^1This is called every frame, and can also be called explicitly to flush text to the screen.");
 	// done.
 
-	Cmd_AddCommand("SaveTranslations", CL_SaveTranslations_f, "test");	// NERVE - SMF - localization
-	Cmd_AddCommand("SaveNewTranslations", CL_SaveNewTranslations_f, "test");	// NERVE - SMF - localization
-	Cmd_AddCommand("LoadTranslations", CL_LoadTranslations_f, "test");	// NERVE - SMF - localization
+	Cmd_AddCommand("SaveTranslations", CL_SaveTranslations_f, "^1Save translations to file");
+	Cmd_AddCommand("SaveNewTranslations", CL_SaveNewTranslations_f, "^1Save new translations to file");
+	Cmd_AddCommand("LoadTranslations", CL_LoadTranslations_f, "^1Reload translations from file");
 
-	Cmd_AddCommand("setRecommended", CL_SetRecommended_f, "test");
-	Cmd_AddCommand("wav_record", CL_WavRecord_f, "test");
-	Cmd_AddCommand("wav_stoprecord", CL_WavStopRecord_f, "test");
-	Cmd_AddCommand("video", CL_Video_f, "test");
-	Cmd_AddCommand("stopvideo", CL_StopVideo_f, "test");
+	Cmd_AddCommand("setRecommended", CL_SetRecommended_f, "^1Use to load the recommended hardware settings that match's current hardware.");
+	Cmd_AddCommand("wav_record", CL_WavRecord_f, "^1Command to record .wav audio file.");
+	Cmd_AddCommand("wav_stoprecord", CL_WavStopRecord_f, "^1Command to stop recording a .wav audio file.");
+	Cmd_AddCommand("video", CL_Video_f, "^1Command for recording .AVI files from recorded demos.");
+	Cmd_AddCommand("stopvideo", CL_StopVideo_f, "^1Command for stop recording .AVI files.");
 
 	SCR_Init();
 

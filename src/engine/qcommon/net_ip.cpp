@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -1621,7 +1622,7 @@ void NET_Init( void ) {
 
 	NET_Config( qtrue );
 	
-	Cmd_AddCommand ("net_restart", NET_Restart_f, "test");
+	Cmd_AddCommand ("net_restart", NET_Restart_f, "^1Reset all the network related variables like rate etc...");
 }
 
 

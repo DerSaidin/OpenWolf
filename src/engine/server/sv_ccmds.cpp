@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -870,28 +871,28 @@ void SV_AddOperatorCommands(void) {
 	}
 	initialized = qtrue;
 
-	Cmd_AddCommand("heartbeat", SV_Heartbeat_f, "test");
-	Cmd_AddCommand("status", SV_Status_f, "test");
-	Cmd_AddCommand("serverinfo", SV_Serverinfo_f, "test");
-	Cmd_AddCommand("systeminfo", SV_Systeminfo_f, "test");
-	Cmd_AddCommand("dumpuser", SV_DumpUser_f, "test");
-	Cmd_AddCommand("map_restart", SV_MapRestart_f, "test");
-	Cmd_AddCommand("fieldinfo", SV_FieldInfo_f, "test");
-	Cmd_AddCommand("sectorlist", SV_SectorList_f, "test");
-	Cmd_AddCommand("map", SV_Map_f, "test");
+	Cmd_AddCommand("heartbeat", SV_Heartbeat_f, "^1Send a manual heartbeat to the master servers.");
+	Cmd_AddCommand("status", SV_Status_f, "^1Status of currently connected server.");
+	Cmd_AddCommand("serverinfo", SV_Serverinfo_f, "^1Gives information about local server from the console of that server.");
+	Cmd_AddCommand("systeminfo", SV_Systeminfo_f, "^1Returns values for: g_syncronousclients, sv_serverid, and timescale.");
+	Cmd_AddCommand("dumpuser", SV_DumpUser_f, "^1Display user info (handicap, model/color, rail color, more…).");
+	Cmd_AddCommand("map_restart", SV_MapRestart_f, "^1Resets the game on the same map.");
+	Cmd_AddCommand("fieldinfo", SV_FieldInfo_f, "^1Write in console informations from Entitystate fields and Playerstate fields in order of priority.");
+	Cmd_AddCommand("sectorlist", SV_SectorList_f, "^1Use to display a list of sectors and number of entities on the current level.");
+	Cmd_AddCommand("map", SV_Map_f, "^1Loads specified map.");
 	Cmd_SetCommandCompletionFunc( "map", SV_CompleteMapName );
-	Cmd_AddCommand("gameCompleteStatus", SV_GameCompleteStatus_f, "test");	// NERVE - SMF
+	Cmd_AddCommand("gameCompleteStatus", SV_GameCompleteStatus_f, "^1Sends gameCompleteStatus messages to specific master servers.");
 #ifndef PRE_RELEASE_DEMO_NODEVMAP
-	Cmd_AddCommand("devmap", SV_Map_f, "test");
+	Cmd_AddCommand("devmap", SV_Map_f, "^1Load a devmap with bots spawned.");
 	Cmd_SetCommandCompletionFunc( "devmap", SV_CompleteMapName );
-	Cmd_AddCommand("spmap", SV_Map_f, "test");
+	Cmd_AddCommand("spmap", SV_Map_f, "^1Load a level with bots spawned.");
 	Cmd_SetCommandCompletionFunc( "devmap", SV_CompleteMapName );
-	Cmd_AddCommand("spdevmap", SV_Map_f, "test");
+	Cmd_AddCommand("spdevmap", SV_Map_f, "^1Load a devmap with bots spawned.");
 	Cmd_SetCommandCompletionFunc( "devmap", SV_CompleteMapName );
 #endif
-	Cmd_AddCommand("loadgame", SV_LoadGame_f, "test");
-	Cmd_AddCommand("killserver", SV_KillServer_f, "test");
+	Cmd_AddCommand("loadgame", SV_LoadGame_f, "^1Use to load a saved game.");
+	Cmd_AddCommand("killserver", SV_KillServer_f, "^1Stops server from running and broadcasting heartbeat.");
 	if(com_dedicated->integer) {
-		Cmd_AddCommand("say", SV_ConSay_f, "test");
+		Cmd_AddCommand("say", SV_ConSay_f, "^1Say something to everyone on the server.");
 	}
 }

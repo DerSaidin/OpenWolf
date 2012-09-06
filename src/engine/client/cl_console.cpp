@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -513,48 +514,48 @@ void Con_Init(void)
 {
 	Com_Printf("\n----- Console Initialization -------\n");
 
-	con_notifytime = Cvar_Get("con_notifytime", "7", 0, "test");	// JPW NERVE increased per id req for obits
-	con_conspeed = Cvar_Get("scr_conspeed", "3", 0, "test");
-	con_debug = Cvar_Get("con_debug", "0", CVAR_ARCHIVE, "test");	//----(SA)    added
-	con_autoclear = Cvar_Get("con_autoclear", "1", CVAR_ARCHIVE, "test");
+	con_notifytime = Cvar_Get("con_notifytime", "7", 0, "^1Defines how long messages (from players or the system) are on the screen.");
+	con_conspeed = Cvar_Get("scr_conspeed", "3", 0, "^1Set how fast the console goes up and down.");
+	con_debug = Cvar_Get("con_debug", "0", CVAR_ARCHIVE, "^1Toggle console debugging.");
+	con_autoclear = Cvar_Get("con_autoclear", "1", CVAR_ARCHIVE, "^1Toggles clearing of unfinished text after closing console.");
 	
 	// Defines cvar for color and alpha for console/bar under console
-	scr_conUseShader = Cvar_Get ("scr_conUseShader", "0", CVAR_ARCHIVE, "test");
+	scr_conUseShader = Cvar_Get ("scr_conUseShader", "0", CVAR_ARCHIVE, "^1Use console shader. ");
 	
-	scr_conColorAlpha = Cvar_Get ("scr_conColorAlpha", "0.5", CVAR_ARCHIVE, "test");
-	scr_conColorRed = Cvar_Get ("scr_conColorRed", "0", CVAR_ARCHIVE, "test");
-	scr_conColorBlue = Cvar_Get ("scr_conColorBlue", "0.3", CVAR_ARCHIVE, "test");
-	scr_conColorGreen = Cvar_Get ("scr_conColorGreen", "0.23", CVAR_ARCHIVE, "test");
+	scr_conColorAlpha = Cvar_Get ("scr_conColorAlpha", "0.5", CVAR_ARCHIVE, "^1Defines the backgroud Alpha color of the console.");
+	scr_conColorRed = Cvar_Get ("scr_conColorRed", "0", CVAR_ARCHIVE, "^1Defines the backgroud Red color of the console.");
+	scr_conColorBlue = Cvar_Get ("scr_conColorBlue", "0.3", CVAR_ARCHIVE, "^1Defines the backgroud Blue color of the console.");
+	scr_conColorGreen = Cvar_Get ("scr_conColorGreen", "0.23", CVAR_ARCHIVE, "^1Defines the backgroud Green color of the console.");
 	
-	scr_conUseOld = Cvar_Get ("scr_conUseOld", "0", CVAR_ARCHIVE, "test");
+	scr_conUseOld = Cvar_Get ("scr_conUseOld", "0", CVAR_ARCHIVE, "^1Use old console.");
 	
-	scr_conBarHeight = Cvar_Get ("scr_conBarHeight", "2", CVAR_ARCHIVE, "test");
+	scr_conBarHeight = Cvar_Get ("scr_conBarHeight", "2", CVAR_ARCHIVE, "^1Defines the bar height of the console.");
 	
-	scr_conBarColorAlpha = Cvar_Get ("scr_conBarColorAlpha", "0.3", CVAR_ARCHIVE, "test");
-	scr_conBarColorRed = Cvar_Get ("scr_conBarColorRed", "1", CVAR_ARCHIVE, "test");
-	scr_conBarColorBlue = Cvar_Get ("scr_conBarColorBlue", "1", CVAR_ARCHIVE, "test");
-	scr_conBarColorGreen = Cvar_Get ("scr_conBarColorGreen", "1", CVAR_ARCHIVE, "test");
+	scr_conBarColorAlpha = Cvar_Get ("scr_conBarColorAlpha", "0.3", CVAR_ARCHIVE, "^1Defines the bar Alpha color of the console.");
+	scr_conBarColorRed = Cvar_Get ("scr_conBarColorRed", "1", CVAR_ARCHIVE, "^1Defines the bar Red color of the console.");
+	scr_conBarColorBlue = Cvar_Get ("scr_conBarColorBlue", "1", CVAR_ARCHIVE, "^1Defines the bar Blue color of the console.");
+	scr_conBarColorGreen = Cvar_Get ("scr_conBarColorGreen", "1", CVAR_ARCHIVE, "^1Defines the bar Green color of the console.");
 	
-	scr_conHeight = Cvar_Get ("scr_conHeight", "50", CVAR_ARCHIVE, "test");
+	scr_conHeight = Cvar_Get ("scr_conHeight", "50", CVAR_ARCHIVE, "^1Console height size.");
 	
-	scr_conBarSize = Cvar_Get ("scr_conBarSize", "2", CVAR_ARCHIVE, "test");
+	scr_conBarSize = Cvar_Get ("scr_conBarSize", "2", CVAR_ARCHIVE, "^1Console bar size.");
 
 	// Done defining cvars for console colors
 	
 	Field_Clear(&g_consoleField);
 	g_consoleField.widthInChars = g_console_field_width;
 
-	Cmd_AddCommand("toggleConsole", Con_ToggleConsole_f, "test");
-	Cmd_AddCommand("clear", Con_Clear_f, "test");
-	Cmd_AddCommand("condump", Con_Dump_f, "test");
-	Cmd_AddCommand ("search", Con_Search_f, "test");
-	Cmd_AddCommand ("searchDown", Con_Search_f, "test");
-	Cmd_AddCommand ("grep", Con_Grep_f, "test");
+	Cmd_AddCommand("toggleConsole", Con_ToggleConsole_f, "^1Opens or closes the console.");
+	Cmd_AddCommand("clear", Con_Clear_f, "^1Clear console history.");
+	Cmd_AddCommand("condump", Con_Dump_f, "^1Dumps the contents of the console to a text file.");
+	Cmd_AddCommand ("search", Con_Search_f, "^1Find the text you are looking for.");
+	Cmd_AddCommand ("searchDown", Con_Search_f, "^1Scroll the console to find the text you are looking for.");
+	Cmd_AddCommand ("grep", Con_Grep_f, "^1Find the text you are looking for.");
 	
 	// ydnar: these are deprecated in favor of cgame/ui based version
-	Cmd_AddCommand("clMessageMode", Con_MessageMode_f, "test");
-	Cmd_AddCommand("clMessageMode2", Con_MessageMode2_f, "test");
-	Cmd_AddCommand("clMessageMode3", Con_MessageMode3_f, "test");
+	Cmd_AddCommand("clMessageMode", Con_MessageMode_f, "^1(global chat), without the convenient pop-up box. Also: ‘say’.");
+	Cmd_AddCommand("clMessageMode2", Con_MessageMode2_f, "^1(teamchat), without the convenient pop-up box. Also: ‘say_team’.");
+	Cmd_AddCommand("clMessageMode3", Con_MessageMode3_f, "^1(fireteam chat), without the convenient pop-up box.");
 
 	Com_Printf("Console initialized.\n");
 }

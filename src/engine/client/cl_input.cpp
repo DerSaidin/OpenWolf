@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -1546,128 +1547,128 @@ void CL_InitInput(void)
 {
 //	Cmd_AddCommand ("centerview", IN_CenterView, "test");
 
-	Cmd_AddCommand("+moveup", IN_UpDown, "test");
-	Cmd_AddCommand("-moveup", IN_UpUp, "test");
-	Cmd_AddCommand("+movedown", IN_DownDown, "test");
-	Cmd_AddCommand("-movedown", IN_DownUp, "test");
-	Cmd_AddCommand("+left", IN_LeftDown, "test");
-	Cmd_AddCommand("-left", IN_LeftUp, "test");
-	Cmd_AddCommand("+right", IN_RightDown, "test");
-	Cmd_AddCommand("-right", IN_RightUp, "test");
-	Cmd_AddCommand("+forward", IN_ForwardDown, "test");
-	Cmd_AddCommand("-forward", IN_ForwardUp, "test");
-	Cmd_AddCommand("+back", IN_BackDown, "test");
-	Cmd_AddCommand("-back", IN_BackUp, "test");
-	Cmd_AddCommand("+lookup", IN_LookupDown, "test");
-	Cmd_AddCommand("-lookup", IN_LookupUp, "test");
-	Cmd_AddCommand("+lookdown", IN_LookdownDown, "test");
-	Cmd_AddCommand("-lookdown", IN_LookdownUp, "test");
-	Cmd_AddCommand("+strafe", IN_StrafeDown, "test");
-	Cmd_AddCommand("-strafe", IN_StrafeUp, "test");
-	Cmd_AddCommand("+moveleft", IN_MoveleftDown, "test");
-	Cmd_AddCommand("-moveleft", IN_MoveleftUp, "test");
-	Cmd_AddCommand("+moveright", IN_MoverightDown, "test");
-	Cmd_AddCommand("-moveright", IN_MoverightUp, "test");
-	Cmd_AddCommand("+speed", IN_SpeedDown, "test");
-	Cmd_AddCommand("-speed", IN_SpeedUp, "test");
+	Cmd_AddCommand("+moveup", IN_UpDown, "^1Start moving up (jump, climb up, swim up.)");
+	Cmd_AddCommand("-moveup", IN_UpUp, "^1Stop moving up (jump, climb up, swim up.)");
+	Cmd_AddCommand("+movedown", IN_DownDown, "^1Start moving down (crouch, climb down, swim down.)");
+	Cmd_AddCommand("-movedown", IN_DownUp, "^1Stop moving down (crouch, climb down, swim down.");
+	Cmd_AddCommand("+left", IN_LeftDown, "^1Start turning left.");
+	Cmd_AddCommand("-left", IN_LeftUp, "^1Stop turning to the left.");
+	Cmd_AddCommand("+right", IN_RightDown, "^1Start turning right.");
+	Cmd_AddCommand("-right", IN_RightUp, "^1Stop turning right.");
+	Cmd_AddCommand("+forward", IN_ForwardDown, "^1Start moving forward.");
+	Cmd_AddCommand("-forward", IN_ForwardUp, "^1Stop moving forward.");
+	Cmd_AddCommand("+back", IN_BackDown, "^1Start moving backwards.");
+	Cmd_AddCommand("-back", IN_BackUp, "^1Stop moving backwards.");
+	Cmd_AddCommand("+lookup", IN_LookupDown, "^1Start looking up.");
+	Cmd_AddCommand("-lookup", IN_LookupUp, "^1Stop looking up.");
+	Cmd_AddCommand("+lookdown", IN_LookdownDown, "^1Start looking down.");
+	Cmd_AddCommand("-lookdown", IN_LookdownUp, "^1Stop looking down.");
+	Cmd_AddCommand("+strafe", IN_StrafeDown, "^1Start changing directional movement into strafing movement.");
+	Cmd_AddCommand("-strafe", IN_StrafeUp, "^1Stop changing directional movement into strafing movement.");
+	Cmd_AddCommand("+moveleft", IN_MoveleftDown, "^1Start strafing to the left.");
+	Cmd_AddCommand("-moveleft", IN_MoveleftUp, "^1Stop strafing to the left.");
+	Cmd_AddCommand("+moveright", IN_MoverightDown, "^1Start strafing to the right.");
+	Cmd_AddCommand("-moveright", IN_MoverightUp, "^1Stop strafing to the right.");
+	Cmd_AddCommand("+speed", IN_SpeedDown, "^1Speed toggle bound to shift key by default toggles run/walk.");
+	Cmd_AddCommand("-speed", IN_SpeedUp, "^1Speed toggle bound to shift key by default toggles run/walk.");
 
-	Cmd_AddCommand("+attack", IN_Button0Down, "test");	// ---- id   (primary firing)
-	Cmd_AddCommand("-attack", IN_Button0Up, "test");
+	Cmd_AddCommand("+attack", IN_Button0Down, "^1Start attacking (shooting, punching).");
+	Cmd_AddCommand("-attack", IN_Button0Up, "^1Stop attacking (shooting, punching).");
 
-    Cmd_AddCommand ("+button0", IN_Button0Down, "test");
-    Cmd_AddCommand ("-button0", IN_Button0Up, "test");
+    Cmd_AddCommand ("+button0", IN_Button0Down, "^1Start firing same as mouse button 1 (fires weapon).");
+    Cmd_AddCommand ("-button0", IN_Button0Up, "^1Stop firing same as mouse button 1 (fires weapon).");
 
-	Cmd_AddCommand("+button1", IN_Button1Down, "test");
-	Cmd_AddCommand("-button1", IN_Button1Up, "test");
+	Cmd_AddCommand("+button1", IN_Button1Down, "^1Start displaying chat bubble.");
+	Cmd_AddCommand("-button1", IN_Button1Up, "^1Stop displaying chat bubble.");
 
-	Cmd_AddCommand ("+button2", IN_Button2Down, "test");
-	Cmd_AddCommand ("-button2", IN_Button2Up, "test");
+	Cmd_AddCommand ("+button2", IN_Button2Down, "^1Start using items (same as enter).");
+	Cmd_AddCommand ("-button2", IN_Button2Up, "^1Stop using items (same as releasing enter).");
 
-	Cmd_AddCommand("+useitem", IN_UseItemDown, "test");
-	Cmd_AddCommand("-useitem", IN_UseItemUp, "test");
+	Cmd_AddCommand("+useitem", IN_UseItemDown, "^1Start issuing useitem command.");
+	Cmd_AddCommand("-useitem", IN_UseItemUp, "^1Stops issuing useitem command.");
 
-	Cmd_AddCommand("+salute", IN_Button3Down, "test");	//----(SA) salute
-	Cmd_AddCommand("-salute", IN_Button3Up, "test");
-    Cmd_AddCommand ("+button3", IN_Button3Down, "test");
-    Cmd_AddCommand ("-button3", IN_Button3Up, "test");
+	Cmd_AddCommand("+salute", IN_Button3Down, "^1Start dragging bodies when they wait for a medic.");
+	Cmd_AddCommand("-salute", IN_Button3Up, "^1Stops issuing salute command.");
+    Cmd_AddCommand ("+button3", IN_Button3Down, "^1Start player taunt animation.");
+    Cmd_AddCommand ("-button3", IN_Button3Up, "^1Stop player taunt animation.");
 
-	Cmd_AddCommand("+button4", IN_Button4Down, "test");
-	Cmd_AddCommand("-button4", IN_Button4Up, "test");
+	Cmd_AddCommand("+button4", IN_Button4Down, "^1TODO - Add description.");
+	Cmd_AddCommand("-button4", IN_Button4Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button5", IN_Button5Down, "test");
-	Cmd_AddCommand ("-button5", IN_Button5Up, "test");
+	Cmd_AddCommand ("+button5", IN_Button5Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button5", IN_Button5Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button6", IN_Button6Down, "test");
-	Cmd_AddCommand ("-button6", IN_Button6Up, "test");
+	Cmd_AddCommand ("+button6", IN_Button6Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button6", IN_Button6Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button7", IN_Button7Down, "test");
-	Cmd_AddCommand ("-button7", IN_Button7Up, "test");
+	Cmd_AddCommand ("+button7", IN_Button7Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button7", IN_Button7Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button8", IN_Button8Down, "test");
-	Cmd_AddCommand ("-button8", IN_Button8Up, "test");
+	Cmd_AddCommand ("+button8", IN_Button8Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button8", IN_Button8Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button9", IN_Button9Down, "test");
-	Cmd_AddCommand ("-button9", IN_Button9Up, "test");
+	Cmd_AddCommand ("+button9", IN_Button9Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button9", IN_Button9Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button10", IN_Button10Down, "test");
-	Cmd_AddCommand ("-button10", IN_Button10Up, "test");
+	Cmd_AddCommand ("+button10", IN_Button10Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button10", IN_Button10Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button11", IN_Button11Down, "test");
-	Cmd_AddCommand ("-button11", IN_Button11Up, "test");
+	Cmd_AddCommand ("+button11", IN_Button11Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button11", IN_Button11Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button12", IN_Button12Down, "test");
-	Cmd_AddCommand ("-button12", IN_Button12Up, "test");
+	Cmd_AddCommand ("+button12", IN_Button12Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button12", IN_Button12Up, "^1TODO - Add description.");
 
-	Cmd_AddCommand ("+button13", IN_Button13Down, "test");
-	Cmd_AddCommand ("-button13", IN_Button13Up, "test");
+	Cmd_AddCommand ("+button13", IN_Button13Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button13", IN_Button13Up, "^1TODO - Add descriptio.n");
 
-	Cmd_AddCommand ("+button14", IN_Button14Down, "test");
-	Cmd_AddCommand ("-button14", IN_Button14Up, "test");
+	Cmd_AddCommand ("+button14", IN_Button14Down, "^1TODO - Add description.");
+	Cmd_AddCommand ("-button14", IN_Button14Up, "^1TODO - Add description.");
 
 	// Rafael Activate
-	Cmd_AddCommand("+activate", IN_ActivateDown, "test");
-	Cmd_AddCommand("-activate", IN_ActivateUp, "test");
+	Cmd_AddCommand("+activate", IN_ActivateDown, "^1Performs various actions like opening doors, picking up weapons.");
+	Cmd_AddCommand("-activate", IN_ActivateUp, "^1Stops issuing +activate command, stop opening doors etc.");
 	// done.
 
 	// Rafael Kick
 	// Arnout: now prone
-	Cmd_AddCommand("+prone", IN_ProneDown, "test");
-	Cmd_AddCommand("-prone", IN_ProneUp, "test");
+	Cmd_AddCommand("+prone", IN_ProneDown, "^1Go prone, lie down.");
+	Cmd_AddCommand("-prone", IN_ProneUp, "^1Stop issuing command to go prone.");
 	// done
 	
-	Cmd_AddCommand("+dodge", IN_ProneDown, "test");
-	Cmd_AddCommand("-dodge", IN_ProneUp, "test");
+	Cmd_AddCommand("+dodge", IN_ProneDown, "^1Go prone, lie down.");
+	Cmd_AddCommand("-dodge", IN_ProneUp, "^1Stop issuing command to go prone.");
 	
-	Cmd_AddCommand("+sprint", IN_SprintDown, "test");
-	Cmd_AddCommand("-sprint", IN_SprintUp, "test");
+	Cmd_AddCommand("+sprint", IN_SprintDown, "^1Sprint, run fast draining stanima bar.");
+	Cmd_AddCommand("-sprint", IN_SprintUp, "^1Stops issuing sprint command.");
 
 	// wolf buttons
-	Cmd_AddCommand("+attack2", IN_Wbutton0Down, "test");	//----(SA) secondary firing
-	Cmd_AddCommand("-attack2", IN_Wbutton0Up, "test");
-	Cmd_AddCommand("+zoom", IN_ZoomDown, "test");	//
-	Cmd_AddCommand("-zoom", IN_ZoomUp, "test");
-	Cmd_AddCommand("+reload", IN_ReloadDown, "test");	//
-	Cmd_AddCommand("-reload", IN_ReloadUp, "test");
-	Cmd_AddCommand("+leanleft", IN_LeanLeftDown, "test");
-	Cmd_AddCommand("-leanleft", IN_LeanLeftUp, "test");
-	Cmd_AddCommand("+leanright", IN_LeanRightDown, "test");
-	Cmd_AddCommand("-leanright", IN_LeanRightUp, "test");
+	Cmd_AddCommand("+attack2", IN_Wbutton0Down, "^1Secondary firing mode.");
+	Cmd_AddCommand("-attack2", IN_Wbutton0Up, "^1Stop issuing command to perform secondary attack.");
+	Cmd_AddCommand("+zoom", IN_ZoomDown, "^1Use binoculars.");
+	Cmd_AddCommand("-zoom", IN_ZoomUp, "^1Stops issuing zoom command.");
+	Cmd_AddCommand("+reload", IN_ReloadDown, "^1Reload weapon.");
+	Cmd_AddCommand("-reload", IN_ReloadUp, "^1Stops issuing reload command.");
+	Cmd_AddCommand("+leanleft", IN_LeanLeftDown, "^1Leans to the left.");
+	Cmd_AddCommand("-leanleft", IN_LeanLeftUp, "^1Stop issuing command to lean to the left.");
+	Cmd_AddCommand("+leanright", IN_LeanRightDown, "^1Leans to the right.");
+	Cmd_AddCommand("-leanright", IN_LeanRightUp, "^1Stop issuing command to lean to the right.");
 
 
-	Cmd_AddCommand("+mlook", IN_MLookDown, "test");
-	Cmd_AddCommand("-mlook", IN_MLookUp, "test");
+	Cmd_AddCommand("+mlook", IN_MLookDown, "^1Toggles mouselook.");
+	Cmd_AddCommand("-mlook", IN_MLookUp, "^1Stop +mlook (mouselook), go back to mouse-movement.");
 
 
 	//Cmd_AddCommand ("notebook",IN_Notebook);
-	Cmd_AddCommand("help", IN_Help, "test");
+	Cmd_AddCommand("help", IN_Help, "^1Startup help system.");
 
 #ifdef USE_VOIP
-	Cmd_AddCommand ("+voiprecord", IN_VoipRecordDown, "test");
-	Cmd_AddCommand ("-voiprecord", IN_VoipRecordUp, "test");
+	Cmd_AddCommand ("+voiprecord", IN_VoipRecordDown, "^1Start talking over VOIP.");
+	Cmd_AddCommand ("-voiprecord", IN_VoipRecordUp, "^1Stop issuing command to VOIP talk.");
 #endif	
 	
-	cl_nodelta = Cvar_Get("cl_nodelta", "0", 0, "test");
-	cl_debugMove = Cvar_Get("cl_debugMove", "0", 0, "test");
+	cl_nodelta = Cvar_Get("cl_nodelta", "0", 0, "^1Disable delta compression (slows net performance, only use if net errors happen otherwise not recommended).");
+	cl_debugMove = Cvar_Get("cl_debugMove", "0", 0, "^1Used for debugging cl_debugmove.");
 }
 
 

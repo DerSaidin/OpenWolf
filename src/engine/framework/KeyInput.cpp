@@ -1247,13 +1247,13 @@ void idKeyInput::Init( void ) {
 	keys = new idKey[MAX_KEYS];
 
 	// register our functions
-	Cmd_AddCommand( "bind",Key_Bind_f, "test" );
+	Cmd_AddCommand( "bind", Key_Bind_f, "^1Used for assigning keys to actions." );
 	Cmd_SetCommandCompletionFunc( "bind", Key_CompleteBind );
-	Cmd_AddCommand( "unbind",Key_Unbind_f, "test" );
+	Cmd_AddCommand( "unbind", Key_Unbind_f, "^1Used for unassigning commands etc to a specified key." );
 	Cmd_SetCommandCompletionFunc( "unbind", Key_CompleteUnbind );
-	Cmd_AddCommand( "unbindall",Key_Unbindall_f, "test" );
-	Cmd_AddCommand( "bindlist",Key_Bindlist_f, "test" );
-	Cmd_AddCommand( "editbind",Key_EditBind_f, "test" );
+	Cmd_AddCommand( "unbindall", Key_Unbindall_f, "^1Used for unassigning all commands etc from ALL keys." );
+	Cmd_AddCommand( "bindlist", Key_Bindlist_f, "^1Displays list of cvars in console." );
+	Cmd_AddCommand( "editbind", Key_EditBind_f, "^1Used for edit a assigned key." );
 	Cmd_SetCommandCompletionFunc( "editbind", Key_CompleteEditbind );
 }
 

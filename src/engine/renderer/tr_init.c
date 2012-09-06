@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -1256,16 +1257,16 @@ void R_Register(void)
 	r_highQualityVideo = ri.Cvar_Get("r_highQualityVideo", "1", CVAR_ARCHIVE);
 	// make sure all the commands added here are also
 	// removed in R_Shutdown
-	ri.Cmd_AddCommand("imagelist", R_ImageList_f, "test");
-	ri.Cmd_AddCommand("shaderlist", R_ShaderList_f, "test");
-	ri.Cmd_AddCommand("skinlist", R_SkinList_f, "test");
-	ri.Cmd_AddCommand("modellist", R_Modellist_f, "test");
-	ri.Cmd_AddCommand("modelist", R_ModeList_f, "test");
-	ri.Cmd_AddCommand("screenshot", R_ScreenShot_f, "test");
-	ri.Cmd_AddCommand("screenshotJPEG", R_ScreenShot_f), "test";
-	ri.Cmd_AddCommand("screenshotPNG", R_ScreenShot_f, "test");
-	ri.Cmd_AddCommand("gfxinfo", GfxInfo_f, "test");
-	ri.Cmd_AddCommand("taginfo", R_TagInfo_f, "test");
+	ri.Cmd_AddCommand("imagelist", R_ImageList_f, "^1List currently open images/textures used by the current map. also displays the amount of texture memory the map is using which is the last number displayed.");
+	ri.Cmd_AddCommand("shaderlist", R_ShaderList_f, "^1List of currently open shaders.");
+	ri.Cmd_AddCommand("skinlist", R_SkinList_f, "^1List of currently open skins.");
+	ri.Cmd_AddCommand("modellist", R_Modellist_f, "^1List of currently open player models.");
+	ri.Cmd_AddCommand("modelist", R_ModeList_f, "^1List of accessible screen resolutions.");
+	ri.Cmd_AddCommand("screenshot", R_ScreenShot_f, "^1Takes a screenshot, in high quality lossless TGA format.");
+	ri.Cmd_AddCommand("screenshotJPEG", R_ScreenShot_f, "^1Takes a screenshot, in lossy-compression JPEG format.");
+	ri.Cmd_AddCommand("screenshotPNG", R_ScreenShot_f, "^1Takes a screenshot, in lossy-compression PNG format.");
+	ri.Cmd_AddCommand("gfxinfo", GfxInfo_f, "^1Returns extensive information about video settings.");
+	ri.Cmd_AddCommand("taginfo", R_TagInfo_f, "^1Command not functional.");
 }
 
 /*

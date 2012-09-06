@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -329,9 +330,9 @@ extern void Sys_ClearViewlog_f( void );
 #endif
 
 void Sys_Init(void) {
-	Cmd_AddCommand( "in_restart", Sys_In_Restart_f, "test" );
+	Cmd_AddCommand( "in_restart", Sys_In_Restart_f, "^1Restarts all the input drivers, dinput, joystick, etc." );
 #if defined (_WIN32) && !defined (_DEBUG)
-	Cmd_AddCommand( "clearviewlog", Sys_ClearViewlog_f, "test" );
+	Cmd_AddCommand( "clearviewlog", Sys_ClearViewlog_f, "^1Clear windows console." );
 
 	Sys_PrintCpuInfo();
 	Sys_PrintOSInfo();

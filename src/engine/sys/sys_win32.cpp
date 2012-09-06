@@ -66,23 +66,6 @@ static int sys_retcode;
 static char sys_exitstr[MAX_STRING_CHARS];
 
 /*
-==================
-CON_CtrlHandler
-
-The Windows Console doesn't use signals for terminating the application
-with Ctrl-C, logging off, window closing, etc.  Instead it uses a special
-handler routine.  Fortunately, the values for Ctrl signals don't seem to
-overlap with true signal codes that Windows provides, so calling
-Sys_SigHandler() with those numbers should be safe for generating unique
-shutdown messages.
-==================
-*/
-static BOOL WINAPI CON_CtrlHandler( DWORD sig ) {
-	Sys_SigHandler( sig );
-	return TRUE;
-}
-
-/*
 ================
 Sys_SetFPUCW
 Set FPU control word to default value

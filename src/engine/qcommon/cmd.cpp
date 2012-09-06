@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -110,8 +111,12 @@ cmd_function_t *Cmd_FindCommand( const char *cmd_name )
 {
 	cmd_function_t *cmd;
 	for( cmd = cmd_functions; cmd; cmd = cmd->next )
-		if( !Q_stricmp( cmd_name, cmd->name ) )
+	{
+		if( !Q_stricmp( cmd_name, cmd->name ) ) 
+		{
 			return cmd;
+		}
+	}
 	return NULL;
 }
 
@@ -1395,8 +1400,7 @@ void Cmd_List_f(void)
 			continue;
 		}
 
-		Com_Printf("%s\%s\n", cmd->name, cmd->desc);
-		//Com_Printf( "%10s            %s\n", cmd->name, cmd->desc );
+		Com_Printf("    %-32s ^7\"%s^7\"\n", cmd->name, cmd->desc);
 		i++;
 	}
 	Com_Printf("%i commands\n", i);
@@ -1491,17 +1495,17 @@ Cmd_Init
 */
 void Cmd_Init(void)
 {
-	Cmd_AddCommand("cmdlist", Cmd_List_f, "test");
-	Cmd_AddCommand("exec", Cmd_Exec_f, "test");
+	Cmd_AddCommand("cmdlist", Cmd_List_f, "^1Display all console commands beginning with the specified prefix.");
+	Cmd_AddCommand("exec", Cmd_Exec_f, "^1Execute a script file.");
 	Cmd_SetCommandCompletionFunc( "exec", Cmd_CompleteCfgName );
-	Cmd_AddCommand("wait", Cmd_Wait_f, "test");
+	Cmd_AddCommand("wait", Cmd_Wait_f,"^1Make script execution wait for some rendered frames.");
 	Cmd_SetCommandCompletionFunc( "math", Cvar_CompleteCvarName );
-	Cmd_AddCommand ("alias", Cmd_Alias_f, "test");
+	Cmd_AddCommand ("alias", Cmd_Alias_f, "^1Create a script function. Without arguments show the list of all alias.");
 	Cmd_SetCommandCompletionFunc( "alias", Cmd_CompleteAliasName );
-	Cmd_AddCommand ("unalias", Cmd_UnAlias_f, "test");
+	Cmd_AddCommand ("unalias", Cmd_UnAlias_f, "^1Removes the alias.");
 	Cmd_SetCommandCompletionFunc( "unalias", Cmd_CompleteAliasName );
-	Cmd_AddCommand ("aliaslist", Cmd_AliasList_f, "test");
-	Cmd_AddCommand ("clearaliases", Cmd_ClearAliases_f, "test");
+	Cmd_AddCommand ("aliaslist", Cmd_AliasList_f, "^1Lists all existing aliases.");
+	Cmd_AddCommand ("clearaliases", Cmd_ClearAliases_f, "^1Removes all existing aliases.");
 }
 
 

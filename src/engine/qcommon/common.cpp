@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -1849,13 +1850,13 @@ void Com_InitHunkMemory( void )
 
 	Hunk_Clear();
 
-	Cmd_AddCommand( "meminfo", Com_Meminfo_f, "test" );
+	Cmd_AddCommand( "meminfo", Com_Meminfo_f, "^1Shows memory usage in the console.");
 #ifdef ZONE_DEBUG
-	Cmd_AddCommand( "zonelog", Z_LogHeap, "test" );
+	Cmd_AddCommand( "zonelog", Z_LogHeap, "^Shows memory usage in the console." );
 #endif
 #ifdef HUNK_DEBUG
-	Cmd_AddCommand( "hunklog", Hunk_Log, "test" );
-	Cmd_AddCommand( "hunksmalllog", Hunk_SmallLog, "test" );
+	Cmd_AddCommand( "hunklog", Hunk_Log, "^Shows memory usage in the console." );
+	Cmd_AddCommand( "hunksmalllog", Hunk_SmallLog, "^Shows memory usage in the console." );
 #endif
 }
 
@@ -3264,13 +3265,13 @@ void Com_Init(char *commandLine)
 
 	if(com_developer && com_developer->integer)
 	{
-		Cmd_AddCommand("error", Com_Error_f, "test");
-		Cmd_AddCommand("crash", Com_Crash_f, "test");
-		Cmd_AddCommand("freeze", Com_Freeze_f, "test");
+		Cmd_AddCommand("error", Com_Error_f, "^1Execute an error routine to protect the server");
+		Cmd_AddCommand("crash", Com_Crash_f, "^1Causes engine to perform an illegal operation in Windows");
+		Cmd_AddCommand("freeze", Com_Freeze_f, "^1Freeze game and all animation for specified time (freeze 5) (5 seconds)");
 	}
-	Cmd_AddCommand("quit", Com_Quit_f, "test");
-	Cmd_AddCommand("changeVectors", MSG_ReportChangeVectors_f, "test");
-	Cmd_AddCommand("writeconfig", Com_WriteConfig_f, "test");
+	Cmd_AddCommand("quit", Com_Quit_f, "^1Quit OpenWolf and return to your OS");
+	Cmd_AddCommand("changeVectors", MSG_ReportChangeVectors_f, "^1Change to vector defined by FIND_NEW_CHANGE_VECTORS as in vector graphics");
+	Cmd_AddCommand("writeconfig", Com_WriteConfig_f, "^1Saves current configuration to a cfg file");
 
 	s = va("%s %s %s", Q3_VERSION, ARCH_STRING, __DATE__);
 	com_version = Cvar_Get("version", s, CVAR_ROM | CVAR_SERVERINFO, "test");

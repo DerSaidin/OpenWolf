@@ -2,7 +2,8 @@
 ===========================================================================
 
 OpenWolf GPL Source Code
-Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company.
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -81,7 +82,7 @@ void VM_Init( void ) {
 	Cvar_Get( "vm_game", "0", CVAR_ARCHIVE, "test" );
 	Cvar_Get( "vm_ui", "0", CVAR_ARCHIVE, "test" );
 
-	Cmd_AddCommand ("vminfo", VM_VmInfo_f, "test" );
+	Cmd_AddCommand ("vminfo", VM_VmInfo_f, "^1Display information about virtual machine interpreter on the local machine." );
 
 	Com_Memset( vmTable, 0, sizeof( vmTable ) );
 }

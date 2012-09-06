@@ -3,6 +3,7 @@
 
 OpenWolf GPL Source Code
 Copyright (C) 1999-2010 id Software LLC, a ZeniMax Media company. 
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of the OpenWolf GPL Source Code (OpenWolf Source Code).  
 
@@ -3552,11 +3553,11 @@ static void FS_Startup( const char *gameName ) {
 #endif // PRE_RELEASE_DEMO
 
 	// add our commands
-	Cmd_AddCommand( "path", FS_Path_f, "test" );
-	Cmd_AddCommand( "dir", FS_Dir_f, "test" );
-	Cmd_AddCommand( "fdir", FS_NewDir_f, "test" );
-	Cmd_AddCommand( "touchFile", FS_TouchFile_f, "test" );
-	Cmd_AddCommand ("which", FS_Which_f, "test" );
+	Cmd_AddCommand( "path", FS_Path_f, "^1Display all current game paths." );
+	Cmd_AddCommand( "dir", FS_Dir_f, "^1Display directory if syntax is correct ex. (dir \) or (dir ..\) or (dir ..\main)." );
+	Cmd_AddCommand( "fdir", FS_NewDir_f, "^1Allows the user to search his game directory for the presence of file types." );
+	Cmd_AddCommand( "touchFile", FS_TouchFile_f, "^1Make the file a zero byte file." );
+	Cmd_AddCommand( "which", FS_Which_f, "^1Accepts a file name as argument and reports where the file is taken from." );
 
 	// show_bug.cgi?id=506
 	// reorder the pure pk3 files according to server order

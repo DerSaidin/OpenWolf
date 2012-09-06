@@ -2,6 +2,7 @@
 ===========================================================================
 Copyright (C) 1999-2005 Id Software, Inc.
 Copyright (C) 2006-2011 Robert Beckebans <trebor_7@users.sourceforge.net>
+Copyright (C) 2012 Dusan Jocic <dusanjocic@msn.com>
 
 This file is part of OpenWolf source code.
 
@@ -1724,28 +1725,28 @@ void R_Register(void)
 	r_detailTextures = ri.Cvar_Get("r_detailtextures", "1", CVAR_ARCHIVE | CVAR_LATCH, "test");
 
 	// make sure all the commands added here are also removed in R_Shutdown
-	ri.Cmd_AddCommand("imagelist", R_ImageList_f, "test");
-	ri.Cmd_AddCommand("shaderlist", R_ShaderList_f, "test");
-	ri.Cmd_AddCommand("shaderexp", R_ShaderExp_f, "test");
-	ri.Cmd_AddCommand("skinlist", R_SkinList_f, "test");
-	ri.Cmd_AddCommand("modellist", R_Modellist_f, "test");
-	ri.Cmd_AddCommand("modelist", R_ModeList_f, "test");
+	ri.Cmd_AddCommand("imagelist", R_ImageList_f, "^1List currently open images/textures used by the current map. also displays the amount of texture memory the map is using which is the last number displayed.");
+	ri.Cmd_AddCommand("shaderlist", R_ShaderList_f, "^1List of currently open shaders.");
+	ri.Cmd_AddCommand("shaderexp", R_ShaderExp_f, "^1List of currentlytest shaders.");
+	ri.Cmd_AddCommand("skinlist", R_SkinList_f, "^1List of currently open skins.");
+	ri.Cmd_AddCommand("modellist", R_Modellist_f, "^1List of currently open player models.");
+	ri.Cmd_AddCommand("modelist", R_ModeList_f, "^1List of accessible screen resolutions.");
 
 #if defined(USE_REFENTITY_ANIMATIONSYSTEM)
-	ri.Cmd_AddCommand("animationlist", R_AnimationList_f, "test");
+	ri.Cmd_AddCommand("animationlist", R_AnimationList_f, "^1List of total animations.");
 #endif
 
-	ri.Cmd_AddCommand("fbolist", R_FBOList_f, "test");
-	ri.Cmd_AddCommand("vbolist", R_VBOList_f, "test");
-	ri.Cmd_AddCommand("screenshot", R_ScreenShot_f, "test");
-	ri.Cmd_AddCommand("screenshotJPEG", R_ScreenShotJPEG_f, "test");
-	ri.Cmd_AddCommand("screenshotPNG", R_ScreenShotPNG_f, "test");
-	ri.Cmd_AddCommand("gfxinfo", GfxInfo_f, "test");
+	ri.Cmd_AddCommand("fbolist", R_FBOList_f, "^1List of avaiable frame buffer object.");
+	ri.Cmd_AddCommand("vbolist", R_VBOList_f, "^1List of avaiable vertex buffer object.");
+	ri.Cmd_AddCommand("screenshot", R_ScreenShot_f, "^1Takes a screenshot, in high quality lossless TGA format.");
+	ri.Cmd_AddCommand("screenshotJPEG", R_ScreenShotJPEG_f, "^1Takes a screenshot, in lossy-compression JPEG format.");
+	ri.Cmd_AddCommand("screenshotPNG", R_ScreenShotPNG_f, "^1Takes a screenshot, in lossy-compression PNG format.");
+	ri.Cmd_AddCommand("gfxinfo", GfxInfo_f, "^1Returns extensive information about video settings.");
 //	ri.Cmd_AddCommand("generatemtr", R_GenerateMaterialFile_f);
-	ri.Cmd_AddCommand("buildcubemaps", R_BuildCubeMaps, "test");
+	ri.Cmd_AddCommand("buildcubemaps", R_BuildCubeMaps, "^1Build cube maps.");
 
 #if !defined(USE_D3D10)
-	ri.Cmd_AddCommand("glsl_restart", GLSL_restart_f, "test");
+	ri.Cmd_AddCommand("glsl_restart", GLSL_restart_f, "^1Restart and recompile GLSL files.");
 #endif
 }
 

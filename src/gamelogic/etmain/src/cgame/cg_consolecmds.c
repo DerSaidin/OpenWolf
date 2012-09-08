@@ -1155,104 +1155,105 @@ static void CG_CPM_f(void)
 typedef struct
 {
 	char           *cmd;
+	char           *desc;
 	void            (*function) (void);
 } consoleCommand_t;
 
 static consoleCommand_t commands[] = {
-//  { "obj", CG_Obj_f },
-//  { "setspawnpt", CG_Obj_f },
-	{"testgun", CG_TestGun_f},
-	{"testmodel", CG_TestModel_f},
-	{"nextframe", CG_TestModelNextFrame_f},
-	{"prevframe", CG_TestModelPrevFrame_f},
-	{"nextskin", CG_TestModelNextSkin_f},
-	{"prevskin", CG_TestModelPrevSkin_f},
-	{"viewpos", CG_Viewpos_f},
-	{"+scores", CG_ScoresDown_f},
-	{"-scores", CG_ScoresUp_f},
-	{"zoomin", CG_ZoomIn_f},
-	{"zoomout", CG_ZoomOut_f},
-	{"weaplastused", CG_LastWeaponUsed_f},
-	{"weapnextinbank", CG_NextWeaponInBank_f},
-	{"weapprevinbank", CG_PrevWeaponInBank_f},
-	{"weapnext", CG_NextWeapon_f},
-	{"weapprev", CG_PrevWeapon_f},
-	{"weapalt", CG_AltWeapon_f},
-	{"weapon", CG_Weapon_f},
-	{"weaponbank", CG_WeaponBank_f},
-	{"tell_target", CG_TellTarget_f},
-	{"tell_attacker", CG_TellAttacker_f},
-	{"tcmd", CG_TargetCommand_f},
-	{"fade", CG_Fade_f},		// duffy
-	{"loadhud", CG_LoadHud_f},
-	{"loadweapons", CG_LoadWeapons_f},
+//  { "obj", "", CG_Obj_f },
+//  { "setspawnpt", "^1Change spawn point", CG_Obj_f },
+	{"testgun", "^1Developer: first person weapon test", CG_TestGun_f},
+	{"testmodel", "^1Developer: world model test", CG_TestModel_f},
+	{"nextframe", "^1Developer: animation step", CG_TestModelNextFrame_f},
+	{"prevframe", "^1Developer: animation step", CG_TestModelPrevFrame_f},
+	{"nextskin", "^1Developer: player skin change", CG_TestModelNextSkin_f},
+	{"prevskin", "^1Developer: player skin change", CG_TestModelPrevSkin_f},
+	{"viewpos", "^Show client view position", CG_Viewpos_f},
+	{"+scores", "^1Show scores", CG_ScoresDown_f},
+	{"-scores", "^1Hide scores", CG_ScoresUp_f},
+	{"zoomin", "^1Zoom compass in", CG_ZoomIn_f},
+	{"zoomout", "^1Zoom compass out", CG_ZoomOut_f},
+	{"weaplastused", "^1Select recent weapon", CG_LastWeaponUsed_f},
+	{"weapnextinbank", "^1Select next weapon", CG_NextWeaponInBank_f},
+	{"weapprevinbank", "^1Select previous weapon", CG_PrevWeaponInBank_f},
+	{"weapnext", "^1Select next weapon", CG_NextWeapon_f},
+	{"weapprev", "^1Select previous weapon", CG_PrevWeapon_f},
+	{"weapalt", "^1Alternate attack or function", CG_AltWeapon_f},
+	{"weapon", "^1Select weapon", CG_Weapon_f},
+	{"weaponbank", "^1Select weapon", CG_WeaponBank_f},
+	{"tell_target", "^1Chat to target", CG_TellTarget_f},
+	{"tell_attacker", "^1Chat to last attacker", CG_TellAttacker_f},
+	{"tcmd", "", CG_TargetCommand_f},
+	{"fade", "", CG_Fade_f},		// duffy
+	{"loadhud", "", CG_LoadHud_f},
+	{"loadweapons", "", CG_LoadWeapons_f},
 
-	{"mp_QuickMessage", CG_QuickMessage_f},
-	{"mp_fireteammsg", CG_QuickFireteams_f},
-	{"mp_fireteamadmin", CG_QuickFireteamAdmin_f},
-	{"wm_sayPlayerClass", CG_SayPlayerClass_f},
-	{"wm_ftsayPlayerClass", CG_FTSayPlayerClass_f},
+	{"mp_QuickMessage", "^1Voice chat menu to all", CG_QuickMessage_f},
+	{"mp_fireteammsg", "^1Voice chat menu for fireteam", CG_QuickFireteams_f},
+	{"mp_fireteamadmin", "^1Fireteam admin menu", CG_QuickFireteamAdmin_f},
+	{"wm_sayPlayerClass", "^1Voice chat current class to team",  CG_SayPlayerClass_f},
+	{"wm_ftsayPlayerClass", "^1Voice chat current class to fireteam", CG_FTSayPlayerClass_f},
 
 
-	{"VoiceChat", CG_VoiceChat_f},
-	{"VoiceTeamChat", CG_TeamVoiceChat_f},
+	{"VoiceChat", "^1Voice chat to all", CG_VoiceChat_f},
+	{"VoiceTeamChat", "^1Voice chat to team", CG_TeamVoiceChat_f},
 
 	// ydnar: say, teamsay, etc
-	{"messageMode", CG_MessageMode_f},
-	{"messageMode2", CG_MessageMode_f},
-	{"messageMode3", CG_MessageMode_f},
-	{"messageSend", CG_MessageSend_f},
+	{"messageMode", "^1Chat dialoge to all", CG_MessageMode_f},
+	{"messageMode2", "^1Chat dialoge to team", CG_MessageMode_f},
+	{"messageMode3", "^1Chat dialoge to fireteam", CG_MessageMode_f},
+	{"messageSend", "^1", CG_MessageSend_f},
 
-	{"SetWeaponCrosshair", CG_SetWeaponCrosshair_f},
+	{"SetWeaponCrosshair", "^1", CG_SetWeaponCrosshair_f},
 	// -NERVE - SMF
 
-	{"VoiceFireTeamChat", CG_BuddyVoiceChat_f},
+	{"VoiceFireTeamChat", "^1", CG_BuddyVoiceChat_f},
 
-	{"openlimbomenu", CG_LimboMenu_f},
+	{"openlimbomenu", "^1", CG_LimboMenu_f},
 
-	{"+stats", CG_StatsDown_f},
-	{"-stats", CG_StatsUp_f},
-	{"+topshots", CG_topshotsDown_f},
-	{"-topshots", CG_topshotsUp_f},
+	{"+stats", "^1Show weapon statistics", CG_StatsDown_f},
+	{"-stats", "^1Hide weapon statistics", CG_StatsUp_f},
+	{"+topshots", "^1", CG_topshotsDown_f},
+	{"-topshots", "^1", CG_topshotsUp_f},
 
 	// OSP
-	{"autoRecord", CG_autoRecord_f},
-	{"autoScreenshot", CG_autoScreenShot_f},
-	{"currentTime", CG_currentTime_f},
-	{"keyoff", CG_keyOff_f},
-	{"keyon", CG_keyOn_f},
+	{"autoRecord", "^1Start recording a demo", CG_autoRecord_f},
+	{"autoScreenshot", "^1Take a screenshot", CG_autoScreenShot_f},
+	{"currentTime", "^1", CG_currentTime_f},
+	{"keyoff", "^1", CG_keyOff_f},
+	{"keyon", "^1", CG_keyOn_f},
 #ifdef MV_SUPPORT
-	{"mvactivate", CG_mvToggleAll_f},
-	{"mvdel", CG_mvDelete_f},
-	{"mvhide", CG_mvHideView_f},
-	{"mvnew", CG_mvNew_f},
-	{"mvshow", CG_mvShowView_f},
-	{"mvswap", CG_mvSwapViews_f},
-	{"mvtoggle", CG_mvToggleView_f},
-	{"spechelp", CG_toggleSpecHelp_f},
+	{"mvactivate", "^1Toggle multiview mode", CG_mvToggleAll_f},
+	{"mvdel", "^1Multiview", CG_mvDelete_f},
+	{"mvhide", "^1Multiview", CG_mvHideView_f},
+	{"mvnew", "^1Multiview", CG_mvNew_f},
+	{"mvshow", "^1Multiview", CG_mvShowView_f},
+	{"mvswap", "^1Multiview", CG_mvSwapViews_f},
+	{"mvtoggle", "^1Multiview", CG_mvToggleView_f},
+	{"spechelp", "^1Toggle spectator button list", CG_toggleSpecHelp_f},
 #endif
-	{"statsdump", CG_dumpStats_f},
-	{"+vstr", CG_vstrDown_f},
-	{"-vstr", CG_vstrUp_f},
+	{"statsdump", "^1", CG_dumpStats_f},
+	{"+vstr", "^1", CG_vstrDown_f},
+	{"-vstr", "^1", CG_vstrUp_f},
 	// OSP
 
-	{"selectbuddy", CG_SelectBuddy_f},
+	{"selectbuddy", "^1", CG_SelectBuddy_f},
 
-	{"MapZoomIn", CG_AutomapZoomIn_f},
-	{"MapZoomOut", CG_AutomapZoomOut_f},
-	{"+mapexpand", CG_AutomapExpandDown_f},
-	{"-mapexpand", CG_AutomapExpandUp_f},
+	{"MapZoomIn", "^1Zoom in compass", CG_AutomapZoomIn_f},
+	{"MapZoomOut", "^1Zoom out compass", CG_AutomapZoomOut_f},
+	{"+mapexpand", "^1", CG_AutomapExpandDown_f},
+	{"-mapexpand", "^1", CG_AutomapExpandUp_f},
 
-	{"generateTracemap", CG_GenerateTracemap},
+	{"generateTracemap", "^1Developer: render command for BSP", CG_GenerateTracemap},
 	// xkan, 11/27/2002, toggle automap on/off
-	{"ToggleAutoMap", CG_ToggleAutomap_f},
+	{"ToggleAutoMap", "^1", CG_ToggleAutomap_f},
 
-	{"editSpeakers", CG_EditSpeakers_f},
-	{"dumpSpeaker", CG_DumpSpeaker_f},
-	{"modifySpeaker", CG_ModifySpeaker_f},
-	{"undoSpeaker", CG_UndoSpeaker_f},
-	{"cpm", CG_CPM_f},
-	{"forcetapout", CG_ForceTapOut_f},
+	{"editSpeakers", "^1", CG_EditSpeakers_f},
+	{"dumpSpeaker", "^1", CG_DumpSpeaker_f},
+	{"modifySpeaker", "^1", CG_ModifySpeaker_f},
+	{"undoSpeaker", "^1", CG_UndoSpeaker_f},
+	{"cpm", "^1", CG_CPM_f},
+	{"forcetapout", "^1Ensure you are gibbed and ready to spawn", CG_ForceTapOut_f},
 };
 
 
@@ -1304,81 +1305,81 @@ void CG_InitConsoleCommands(void)
 
 	for(i = 0; i < sizeof(commands) / sizeof(commands[0]); i++)
 	{
-		trap_AddCommand(commands[i].cmd);
+		trap_AddCommand(commands[i].cmd, commands[i].desc);
 	}
 
 	//
 	// the game server will interpret these commands, which will be automatically
 	// forwarded to the server after they are not recognized locally
 	//
-	trap_AddCommand("kill");
-	trap_AddCommand("say");
+	trap_AddCommand("kill", "^1Commit suicide");
+	trap_AddCommand("say", "^1Chat message to all");
 //	trap_AddCommand("say_limbo");	// NERVE - SMF	CHRUKER: b011 - Doesn't exist
 //	trap_AddCommand("tell");		// CHRUKER: b011 - Doesn't exist
-	trap_AddCommand("listbotgoals");
-	trap_AddCommand("give");
-	trap_AddCommand("god");
-	trap_AddCommand("notarget");
-	trap_AddCommand("noclip");
-	trap_AddCommand("team");
-	trap_AddCommand("follow");
-//	trap_AddCommand("addbot");		// CHRUKER: b011 - Not activated
-	trap_AddCommand("setviewpos");
-	trap_AddCommand("callvote");
-	trap_AddCommand("vote");
+	trap_AddCommand("listbotgoals", "");
+	trap_AddCommand("give", "^1Cheat to be given items and health");
+	trap_AddCommand("god", "^!Cheat to enable god mode");
+	trap_AddCommand("notarget", "");
+	trap_AddCommand("noclip", "^1Cheat to clip through walls");
+	trap_AddCommand("team", "^1Change team");
+	trap_AddCommand("follow", "^1Spectate a client");
+//	trap_AddCommand("addbot", "^1Add a bot");		// CHRUKER: b011 - Not activated
+	trap_AddCommand("setviewpos", "");
+	trap_AddCommand("callvote", "^1Call a vote");
+	trap_AddCommand("vote", "^1Cast your vote");
 
 	// Rafael
-	trap_AddCommand("nofatigue");
+	trap_AddCommand("nofatigue", "^1Cheat for infinite sprint");
 
 	// NERVE - SMF
-	trap_AddCommand("follownext");
-	trap_AddCommand("followprev");
+	trap_AddCommand("follownext", "^1Spectate next player");
+	trap_AddCommand("followprev", "^1Spectate previous player");
 
-	trap_AddCommand("start_match");
-	trap_AddCommand("reset_match");
-	trap_AddCommand("swap_teams");
+	trap_AddCommand("start_match", "^1Referee: Start the match");
+	trap_AddCommand("reset_match", "^1Referee: Restart the match");
+	trap_AddCommand("swap_teams", "^1Referee: Swap teams");
 	// -NERVE - SMF
 	// OSP
-	trap_AddCommand("?");
-	trap_AddCommand("bottomshots");
-	trap_AddCommand("commands");
-	trap_AddCommand("lock");
+	trap_AddCommand("?", "^1???");
+	trap_AddCommand("bottomshots", "^1Show worst accuracy");
+	trap_AddCommand("commands", "^1");
+	trap_AddCommand("lock", "^1Team: Prevent players from changing to your team");
 #ifdef MV_SUPPORT
-	trap_AddCommand("mvadd");
-	trap_AddCommand("mvaxis");
-	trap_AddCommand("mvallies");
-	trap_AddCommand("mvall");
-	trap_AddCommand("mvnone");
+	trap_AddCommand("mvadd", "^1Multiview");
+	trap_AddCommand("mvaxis", "^1Multiview axis players");
+	trap_AddCommand("mvallies", "^1Multiview allied players");
+	trap_AddCommand("mvall", "^1Multiview all players");
+	trap_AddCommand("mvnone", "^1Multiview");
 #endif
-	trap_AddCommand("notready");
-	trap_AddCommand("pause");
-	trap_AddCommand("players");
-	trap_AddCommand("readyteam");
-	trap_AddCommand("ready");
-	trap_AddCommand("ref");
-	trap_AddCommand("say_teamnl");
-	trap_AddCommand("say_team");
-	trap_AddCommand("scores");
-	trap_AddCommand("specinvite");
-	trap_AddCommand("speclock");
-	trap_AddCommand("specunlock");
-	trap_AddCommand("statsall");
-	trap_AddCommand("statsdump");
-	trap_AddCommand("timein");
-	trap_AddCommand("timeout");
-	trap_AddCommand("topshots");
-	trap_AddCommand("unlock");
-	trap_AddCommand("unpause");
-	trap_AddCommand("unready");
-	trap_AddCommand("weaponstats");
+	trap_AddCommand("notready", "^1Declare yourself unready");
+	trap_AddCommand("pause", "^1Team: Pause game");
+	trap_AddCommand("players", "^1List players");
+	trap_AddCommand("readyteam", "Declare team ready");
+	trap_AddCommand("ready", "^1Declare yourself ready");
+	trap_AddCommand("ref", "^1Referee: Authorize, command list");
+	trap_AddCommand("say_teamnl", "");
+	trap_AddCommand("say_team", "^1Chat to team");
+	trap_AddCommand("scores", "^1List player scores");
+	trap_AddCommand("specinvite", "^1Team: Allow a spectator to your team viewpoints");
+	trap_AddCommand("speclock", "^1Team: Block spectators from your team viewpoints");
+	trap_AddCommand("specunlock", "^1Team: Allow any spectators to view your team viewpoints");
+	trap_AddCommand("statsall", "^1Show gamplay stats for all players");
+	trap_AddCommand("statsdump", "^1Dump gameplay stats for all players");
+	trap_AddCommand("timein", "^1Team: Unpause game");
+	trap_AddCommand("timeout", "^1Team: Pause game");
+	trap_AddCommand("topshots", "^1Shows best accuracy");
+	trap_AddCommand("unlock", "^1Team: Allow players to change to your team");
+	trap_AddCommand("unpause", "^1Team: Unpause game");
+	trap_AddCommand("unready", "^1Declare yourself unready");
+	trap_AddCommand("weaponstats", "^1Show your per weapon stats in console");
 	// OSP
 
-	trap_AddCommand("fireteam");
-//	trap_AddCommand("buddylist");	// CHRUKER: b011 - Doesn't exist
-	trap_AddCommand("showstats");
+	trap_AddCommand("fireteam", "^1");
+//	trap_AddCommand("buddylist", "^1");	// CHRUKER: b011 - Doesn't exist
+	trap_AddCommand("showstats", "^1");
 
-	trap_AddCommand("ignore");
-	trap_AddCommand("unignore");
+	trap_AddCommand("ignore", "^1Ignore chats from a player/team/all");
+	trap_AddCommand("unignore", "^1Unignore chats");
 
 //	trap_AddCommand("addtt");	// CHRUKER: b011 - Doesn't exist
 //	trap_AddCommand("selectbuddy");	// CHRUKER: b011 - Duplicate of an existing client side command
@@ -1387,20 +1388,20 @@ void CG_InitConsoleCommands(void)
 //	trap_AddCommand("loadgame");	// CHRUKER: b011 - Only available with savegame support
 //	trap_AddCommand("savegame");	// CHRUKER: b011 - Only available with savegame support
 
-	trap_AddCommand("campaign");
-	trap_AddCommand("listcampaigns");
+	trap_AddCommand("campaign", "^1Start a campaign");
+	trap_AddCommand("listcampaigns", "^1List available campaigns");
 
 //	trap_AddCommand("setweapons");	// CHRUKER: b011 - Doesn't exist
 //	trap_AddCommand("setclass");	// CHRUKER: b011 - Doesn't exist
 
-	trap_AddCommand("lua_status");
+	trap_AddCommand("lua_status", "^1Display lua modules");
 
 	// CHRUKER: b011 - Missing commands
-	trap_AddCommand ("imready");
-	trap_AddCommand ("say_buddy");
-	trap_AddCommand ("setspawnpt");
-	trap_AddCommand ("vsay");
-	trap_AddCommand ("vsay_buddy");
-	trap_AddCommand ("vsay_team");
-	trap_AddCommand ("where");
+	trap_AddCommand ("imready", "^1");
+	trap_AddCommand ("say_buddy", "^1Chat to fireteam");
+	trap_AddCommand ("setspawnpt", "^1Set spawn point");
+	trap_AddCommand ("vsay", "^1Voice chat message to all");
+	trap_AddCommand ("vsay_buddy", "^1Voice chat message to fireteam");
+	trap_AddCommand ("vsay_team", "^1Voice chat message to team");
+	trap_AddCommand ("where", "^1");
 }

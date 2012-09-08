@@ -9346,8 +9346,8 @@ void _UI_Init(qboolean inGameLoad)
 	Q_strncpyz(translated_yes, DC->translateString("Yes"), sizeof(translated_yes));
 	Q_strncpyz(translated_no, DC->translateString("NO"), sizeof(translated_no));
 
-	trap_AddCommand("campaign");
-	trap_AddCommand("listcampaigns");
+	trap_AddCommand("campaign", "^1");
+	trap_AddCommand("listcampaigns", "^1");
 }
 
 

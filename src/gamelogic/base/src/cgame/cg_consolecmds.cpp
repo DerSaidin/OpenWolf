@@ -148,32 +148,33 @@ static void CG_TellAttacker_f( void )
 static struct
 {
   char  *cmd;
+  char  *desc;
   void  (*function)( void );
   void ( *completer )( void );
 } commands[ ] =
 {
-	{ "testgun", CG_TestGun_f, NULL },
-	{ "testmodel", CG_TestModel_f, NULL },
-	{ "nextframe", CG_TestModelNextFrame_f, NULL },
-	{ "prevframe", CG_TestModelPrevFrame_f, NULL },
-	{ "nextskin", CG_TestModelNextSkin_f, NULL },
-	{ "prevskin", CG_TestModelPrevSkin_f, NULL },
-	{ "viewpos", CG_Viewpos_f, NULL },
-	{ "+scores", CG_ScoresDown_f, NULL },
-	{ "-scores", CG_ScoresUp_f, NULL },
-	{ "+zoom", CG_ZoomDown_f, NULL },
-	{ "-zoom", CG_ZoomUp_f, NULL },
-	{ "sizeup", CG_SizeUp_f, NULL },
-	{ "sizedown", CG_SizeDown_f, NULL },
-	{ "weapnext", CG_NextWeapon_f, NULL },
-	{ "weapprev", CG_PrevWeapon_f, NULL },
-	{ "weapon", CG_Weapon_f, NULL },
-	{ "tell_target", CG_TellTarget_f, NULL },
-	{ "tell_attacker", CG_TellAttacker_f, NULL },
-	{ "testPS", CG_TestPS_f, NULL },
-	{ "destroyTestPS", CG_DestroyTestPS_f, NULL },
-	{ "testTS", CG_TestTS_f, NULL },
-	{ "destroyTestTS", CG_DestroyTestTS_f, NULL },
+	{ "testgun", "^1Developer first person weapon test", CG_TestGun_f, NULL },
+	{ "testmodel", "^1Developer world model test", CG_TestModel_f, NULL },
+	{ "nextframe", "^1Developer animation step", CG_TestModelNextFrame_f, NULL },
+	{ "prevframe", "^1Developer animation step", CG_TestModelPrevFrame_f, NULL },
+	{ "nextskin", "^1Developer player skin change", CG_TestModelNextSkin_f, NULL },
+	{ "prevskin", "^1Developer player skin change", CG_TestModelPrevSkin_f, NULL },
+	{ "viewpos", "^1Print client view position", CG_Viewpos_f, NULL },
+	{ "+scores", "^1Show scores", CG_ScoresDown_f, NULL },
+	{ "-scores", "^1Hide scores", CG_ScoresUp_f, NULL },
+	{ "+zoom", "^1Zoom compass in", CG_ZoomDown_f, NULL },
+	{ "-zoom", "^1Zoom compass out", CG_ZoomUp_f, NULL },
+	{ "sizeup", "^1Reduce screen boarder", CG_SizeUp_f, NULL },
+	{ "sizedown", "^1Increase screen boarder", CG_SizeDown_f, NULL },
+	{ "weapnext", "^1Select next weapon", CG_NextWeapon_f, NULL },
+	{ "weapprev", "^1Select previous weapon", CG_PrevWeapon_f, NULL },
+	{ "weapon", "^1Select weapon", CG_Weapon_f, NULL },
+	{ "tell_target", "Chat to target", CG_TellTarget_f, NULL },
+	{ "tell_attacker", "Chat to last attacker", CG_TellAttacker_f, NULL },
+	{ "testPS", "", CG_TestPS_f, NULL },
+	{ "destroyTestPS", "", CG_DestroyTestPS_f, NULL },
+	{ "testTS", "", CG_TestTS_f, NULL },
+	{ "destroyTestTS", "", CG_DestroyTestTS_f, NULL },
 };
 
 
@@ -227,53 +228,53 @@ void CG_InitConsoleCommands( void )
   int   i;
 
   for( i = 0 ; i < sizeof( commands ) / sizeof( commands[ 0 ] ) ; i++ )
-    trap_AddCommand( commands[ i ].cmd );
+    trap_AddCommand( commands[ i ].cmd, commands[ i ].desc );
 
   //
   // the game server will interpret these commands, which will be automatically
   // forwarded to the server after they are not recognized locally
   //
-  trap_AddCommand( "kill" );
-  trap_AddCommand( "say" );
-  trap_AddCommand( "say_team" );
-  trap_AddCommand( "tell" );
-  trap_AddCommand( "vsay" );
-  trap_AddCommand( "vsay_team" );
-  trap_AddCommand( "vtell" );
-  trap_AddCommand( "vtaunt" );
-  trap_AddCommand( "vosay" );
-  trap_AddCommand( "vosay_team" );
-  trap_AddCommand( "votell" );
-  trap_AddCommand( "give" );
-  trap_AddCommand( "god" );
-  trap_AddCommand( "notarget" );
-  trap_AddCommand( "noclip" );
-  trap_AddCommand( "team" );
-  trap_AddCommand( "follow" );
-  trap_AddCommand( "addbot" );
-  trap_AddCommand( "setviewpos" );
-  trap_AddCommand( "callvote" );
-  trap_AddCommand( "vote" );
-  trap_AddCommand( "callteamvote" );
-  trap_AddCommand( "teamvote" );
-  trap_AddCommand( "stats" );
-  trap_AddCommand( "teamtask" );
-  trap_AddCommand( "class" );
-  trap_AddCommand( "build" );
-  trap_AddCommand( "buy" );
-  trap_AddCommand( "sell" );
-  trap_AddCommand( "reload" );
-  trap_AddCommand( "itemact" );
-  trap_AddCommand( "itemdeact" );
-  trap_AddCommand( "itemtoggle" );
-  trap_AddCommand( "destroy" );
-  trap_AddCommand( "deconstruct" );
-  trap_AddCommand( "menu" );
-  trap_AddCommand( "ui_menu" );
-  trap_AddCommand( "mapRotation" );
-  trap_AddCommand( "stopMapRotation" );
-  trap_AddCommand( "alienWin" );
-  trap_AddCommand( "humanWin" );
+  trap_AddCommand( "kill", "^1Commit suicide" );
+  trap_AddCommand( "say", "^1Chat to all" );
+  trap_AddCommand( "say_team", "^1Chat to team" );
+  trap_AddCommand( "tell", "^1Chat to target" );
+  trap_AddCommand( "vsay", "^1Voice chat to all" );
+  trap_AddCommand( "vsay_team", "^1Voice chat to team" );
+  trap_AddCommand( "vtell", "^1Voice chat to target" );
+  trap_AddCommand( "vtaunt", "" );
+  trap_AddCommand( "vosay", "" );
+  trap_AddCommand( "vosay_team", "" );
+  trap_AddCommand( "votell", "" );
+  trap_AddCommand( "give", "^1Cheat to be given items and health" );
+  trap_AddCommand( "god", "^!Cheat to enable god mode" );
+  trap_AddCommand( "notarget", "" );
+  trap_AddCommand( "noclip", "^1Cheat to clip through walls" );
+  trap_AddCommand( "team", "^1Change team" );
+  trap_AddCommand( "follow", "^1Spectate a client" );
+  trap_AddCommand( "addbot", "^1Add a bot" );
+  trap_AddCommand( "setviewpos", "" );
+  trap_AddCommand( "callvote", "^1Call a vote" );
+  trap_AddCommand( "vote", "^1Cast your vote" );
+  trap_AddCommand( "callteamvote", "^1Call a vote within team" );
+  trap_AddCommand( "teamvote", "^1Cast your vote within team" );
+  trap_AddCommand( "stats", "" );
+  trap_AddCommand( "teamtask", "" );
+  trap_AddCommand( "class", "^1Change class" );
+  trap_AddCommand( "build", "" );
+  trap_AddCommand( "buy", "^1An ancient relic" );
+  trap_AddCommand( "sell", "^1An ancient relic" );
+  trap_AddCommand( "reload", "^1Reload current weapon" );
+  trap_AddCommand( "itemact", "" );
+  trap_AddCommand( "itemdeact", "" );
+  trap_AddCommand( "itemtoggle", "" );
+  trap_AddCommand( "destroy", "" );
+  trap_AddCommand( "deconstruct" ,"" );
+  trap_AddCommand( "menu" ,"" );
+  trap_AddCommand( "ui_menu", "" );
+  trap_AddCommand( "mapRotation", "" );
+  trap_AddCommand( "stopMapRotation", "" );
+  trap_AddCommand( "alienWin", "" );
+  trap_AddCommand( "humanWin", "" );
 }
 
 /*
